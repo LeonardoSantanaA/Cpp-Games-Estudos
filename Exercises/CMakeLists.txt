@@ -2,3 +2,5 @@ cmake_minimum_required(VERSION 3.17)
 project(exercises)
 
 add_executable(Dollar_Exercise ./exerciseDollars.cpp)
+add_executable(Star_Exercise1 ./exerciseStar1.cpp)
+add_executable(Star_Exercise2 ./exerciseStar2.cpp)

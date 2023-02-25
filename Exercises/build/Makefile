@@ -129,6 +129,32 @@ Dollar_Exercise/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Dollar_Exercise.dir/build.make CMakeFiles/Dollar_Exercise.dir/build
 .PHONY : Dollar_Exercise/fast
 
+#=============================================================================
+# Target rules for targets named Star_Exercise1
+
+# Build rule for target.
+Star_Exercise1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Star_Exercise1
+.PHONY : Star_Exercise1
+
+# fast build rule for target.
+Star_Exercise1/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise1.dir/build.make CMakeFiles/Star_Exercise1.dir/build
+.PHONY : Star_Exercise1/fast
+
+#=============================================================================
+# Target rules for targets named Star_Exercise2
+
+# Build rule for target.
+Star_Exercise2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Star_Exercise2
+.PHONY : Star_Exercise2
+
+# fast build rule for target.
+Star_Exercise2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise2.dir/build.make CMakeFiles/Star_Exercise2.dir/build
+.PHONY : Star_Exercise2/fast
+
 exerciseDollars.o: exerciseDollars.cpp.o
 .PHONY : exerciseDollars.o
 
@@ -153,6 +179,54 @@ exerciseDollars.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Dollar_Exercise.dir/build.make CMakeFiles/Dollar_Exercise.dir/exerciseDollars.cpp.s
 .PHONY : exerciseDollars.cpp.s
 
+exerciseStar1.o: exerciseStar1.cpp.o
+.PHONY : exerciseStar1.o
+
+# target to build an object file
+exerciseStar1.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise1.dir/build.make CMakeFiles/Star_Exercise1.dir/exerciseStar1.cpp.o
+.PHONY : exerciseStar1.cpp.o
+
+exerciseStar1.i: exerciseStar1.cpp.i
+.PHONY : exerciseStar1.i
+
+# target to preprocess a source file
+exerciseStar1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise1.dir/build.make CMakeFiles/Star_Exercise1.dir/exerciseStar1.cpp.i
+.PHONY : exerciseStar1.cpp.i
+
+exerciseStar1.s: exerciseStar1.cpp.s
+.PHONY : exerciseStar1.s
+
+# target to generate assembly for a file
+exerciseStar1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise1.dir/build.make CMakeFiles/Star_Exercise1.dir/exerciseStar1.cpp.s
+.PHONY : exerciseStar1.cpp.s
+
+exerciseStar2.o: exerciseStar2.cpp.o
+.PHONY : exerciseStar2.o
+
+# target to build an object file
+exerciseStar2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise2.dir/build.make CMakeFiles/Star_Exercise2.dir/exerciseStar2.cpp.o
+.PHONY : exerciseStar2.cpp.o
+
+exerciseStar2.i: exerciseStar2.cpp.i
+.PHONY : exerciseStar2.i
+
+# target to preprocess a source file
+exerciseStar2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise2.dir/build.make CMakeFiles/Star_Exercise2.dir/exerciseStar2.cpp.i
+.PHONY : exerciseStar2.cpp.i
+
+exerciseStar2.s: exerciseStar2.cpp.s
+.PHONY : exerciseStar2.s
+
+# target to generate assembly for a file
+exerciseStar2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise2.dir/build.make CMakeFiles/Star_Exercise2.dir/exerciseStar2.cpp.s
+.PHONY : exerciseStar2.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,9 +236,17 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Dollar_Exercise"
+	@echo "... Star_Exercise1"
+	@echo "... Star_Exercise2"
 	@echo "... exerciseDollars.o"
 	@echo "... exerciseDollars.i"
 	@echo "... exerciseDollars.s"
+	@echo "... exerciseStar1.o"
+	@echo "... exerciseStar1.i"
+	@echo "... exerciseStar1.s"
+	@echo "... exerciseStar2.o"
+	@echo "... exerciseStar2.i"
+	@echo "... exerciseStar2.s"
 .PHONY : help
 
 

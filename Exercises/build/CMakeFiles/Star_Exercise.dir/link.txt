@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Star_Exercise.dir/exerciseStar1.cpp.o -o Star_Exercise 

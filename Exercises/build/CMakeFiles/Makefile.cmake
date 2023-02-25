@@ -44,4 +44,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Dollar_Exercise.dir/DependInfo.cmake"
+  "CMakeFiles/Star_Exercise1.dir/DependInfo.cmake"
+  "CMakeFiles/Star_Exercise2.dir/DependInfo.cmake"
   )
