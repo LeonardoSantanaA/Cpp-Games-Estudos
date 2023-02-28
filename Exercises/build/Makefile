@@ -168,6 +168,19 @@ Game_of_Eight/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game_of_Eight.dir/build.make CMakeFiles/Game_of_Eight.dir/build
 .PHONY : Game_of_Eight/fast
 
+#=============================================================================
+# Target rules for targets named Swap_Exercise
+
+# Build rule for target.
+Swap_Exercise: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Swap_Exercise
+.PHONY : Swap_Exercise
+
+# fast build rule for target.
+Swap_Exercise/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Swap_Exercise.dir/build.make CMakeFiles/Swap_Exercise.dir/build
+.PHONY : Swap_Exercise/fast
+
 GameOfEight.o: GameOfEight.cpp.o
 .PHONY : GameOfEight.o
 
@@ -264,6 +277,30 @@ exerciseStar2.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise2.dir/build.make CMakeFiles/Star_Exercise2.dir/exerciseStar2.cpp.s
 .PHONY : exerciseStar2.cpp.s
 
+exerciseSwap.o: exerciseSwap.cpp.o
+.PHONY : exerciseSwap.o
+
+# target to build an object file
+exerciseSwap.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Swap_Exercise.dir/build.make CMakeFiles/Swap_Exercise.dir/exerciseSwap.cpp.o
+.PHONY : exerciseSwap.cpp.o
+
+exerciseSwap.i: exerciseSwap.cpp.i
+.PHONY : exerciseSwap.i
+
+# target to preprocess a source file
+exerciseSwap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Swap_Exercise.dir/build.make CMakeFiles/Swap_Exercise.dir/exerciseSwap.cpp.i
+.PHONY : exerciseSwap.cpp.i
+
+exerciseSwap.s: exerciseSwap.cpp.s
+.PHONY : exerciseSwap.s
+
+# target to generate assembly for a file
+exerciseSwap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Swap_Exercise.dir/build.make CMakeFiles/Swap_Exercise.dir/exerciseSwap.cpp.s
+.PHONY : exerciseSwap.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -276,6 +313,7 @@ help:
 	@echo "... Game_of_Eight"
 	@echo "... Star_Exercise1"
 	@echo "... Star_Exercise2"
+	@echo "... Swap_Exercise"
 	@echo "... GameOfEight.o"
 	@echo "... GameOfEight.i"
 	@echo "... GameOfEight.s"
@@ -288,6 +326,9 @@ help:
 	@echo "... exerciseStar2.o"
 	@echo "... exerciseStar2.i"
 	@echo "... exerciseStar2.s"
+	@echo "... exerciseSwap.o"
+	@echo "... exerciseSwap.i"
+	@echo "... exerciseSwap.s"
 .PHONY : help
 
 

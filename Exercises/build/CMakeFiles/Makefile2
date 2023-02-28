@@ -67,6 +67,7 @@ all: CMakeFiles/Dollar_Exercise.dir/all
 all: CMakeFiles/Star_Exercise1.dir/all
 all: CMakeFiles/Star_Exercise2.dir/all
 all: CMakeFiles/Game_of_Eight.dir/all
+all: CMakeFiles/Swap_Exercise.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -78,6 +79,7 @@ clean: CMakeFiles/Dollar_Exercise.dir/clean
 clean: CMakeFiles/Star_Exercise1.dir/clean
 clean: CMakeFiles/Star_Exercise2.dir/clean
 clean: CMakeFiles/Game_of_Eight.dir/clean
+clean: CMakeFiles/Swap_Exercise.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -183,6 +185,32 @@ Game_of_Eight: CMakeFiles/Game_of_Eight.dir/rule
 CMakeFiles/Game_of_Eight.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game_of_Eight.dir/build.make CMakeFiles/Game_of_Eight.dir/clean
 .PHONY : CMakeFiles/Game_of_Eight.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Swap_Exercise.dir
+
+# All Build rule for target.
+CMakeFiles/Swap_Exercise.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Swap_Exercise.dir/build.make CMakeFiles/Swap_Exercise.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Swap_Exercise.dir/build.make CMakeFiles/Swap_Exercise.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=9,10 "Built target Swap_Exercise"
+.PHONY : CMakeFiles/Swap_Exercise.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Swap_Exercise.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Swap_Exercise.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles 0
+.PHONY : CMakeFiles/Swap_Exercise.dir/rule
+
+# Convenience name for target.
+Swap_Exercise: CMakeFiles/Swap_Exercise.dir/rule
+.PHONY : Swap_Exercise
+
+# clean rule for target.
+CMakeFiles/Swap_Exercise.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Swap_Exercise.dir/build.make CMakeFiles/Swap_Exercise.dir/clean
+.PHONY : CMakeFiles/Swap_Exercise.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
