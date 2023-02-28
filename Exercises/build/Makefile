@@ -155,6 +155,43 @@ Star_Exercise2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise2.dir/build.make CMakeFiles/Star_Exercise2.dir/build
 .PHONY : Star_Exercise2/fast
 
+#=============================================================================
+# Target rules for targets named Game_of_Eight
+
+# Build rule for target.
+Game_of_Eight: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Game_of_Eight
+.PHONY : Game_of_Eight
+
+# fast build rule for target.
+Game_of_Eight/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game_of_Eight.dir/build.make CMakeFiles/Game_of_Eight.dir/build
+.PHONY : Game_of_Eight/fast
+
+GameOfEight.o: GameOfEight.cpp.o
+.PHONY : GameOfEight.o
+
+# target to build an object file
+GameOfEight.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game_of_Eight.dir/build.make CMakeFiles/Game_of_Eight.dir/GameOfEight.cpp.o
+.PHONY : GameOfEight.cpp.o
+
+GameOfEight.i: GameOfEight.cpp.i
+.PHONY : GameOfEight.i
+
+# target to preprocess a source file
+GameOfEight.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game_of_Eight.dir/build.make CMakeFiles/Game_of_Eight.dir/GameOfEight.cpp.i
+.PHONY : GameOfEight.cpp.i
+
+GameOfEight.s: GameOfEight.cpp.s
+.PHONY : GameOfEight.s
+
+# target to generate assembly for a file
+GameOfEight.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game_of_Eight.dir/build.make CMakeFiles/Game_of_Eight.dir/GameOfEight.cpp.s
+.PHONY : GameOfEight.cpp.s
+
 exerciseDollars.o: exerciseDollars.cpp.o
 .PHONY : exerciseDollars.o
 
@@ -236,8 +273,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Dollar_Exercise"
+	@echo "... Game_of_Eight"
 	@echo "... Star_Exercise1"
 	@echo "... Star_Exercise2"
+	@echo "... GameOfEight.o"
+	@echo "... GameOfEight.i"
+	@echo "... GameOfEight.s"
 	@echo "... exerciseDollars.o"
 	@echo "... exerciseDollars.i"
 	@echo "... exerciseDollars.s"

@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Game_of_Eight.dir/GameOfEight.cpp.o -o Game_of_Eight 

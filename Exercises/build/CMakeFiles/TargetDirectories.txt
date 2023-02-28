@@ -1,5 +1,6 @@
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/Dollar_Exercise.dir
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/Star_Exercise1.dir
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/Star_Exercise2.dir
+/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/Game_of_Eight.dir
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/edit_cache.dir
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/rebuild_cache.dir
