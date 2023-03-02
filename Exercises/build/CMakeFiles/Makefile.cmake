@@ -50,4 +50,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Swap_Exercise.dir/DependInfo.cmake"
   "CMakeFiles/Array_Exercise1.dir/DependInfo.cmake"
   "CMakeFiles/Array_Exercise2.dir/DependInfo.cmake"
+  "CMakeFiles/Array_Exercise3.dir/DependInfo.cmake"
   )

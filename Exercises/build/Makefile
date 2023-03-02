@@ -207,6 +207,19 @@ Array_Exercise2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise2.dir/build.make CMakeFiles/Array_Exercise2.dir/build
 .PHONY : Array_Exercise2/fast
 
+#=============================================================================
+# Target rules for targets named Array_Exercise3
+
+# Build rule for target.
+Array_Exercise3: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Array_Exercise3
+.PHONY : Array_Exercise3
+
+# fast build rule for target.
+Array_Exercise3/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise3.dir/build.make CMakeFiles/Array_Exercise3.dir/build
+.PHONY : Array_Exercise3/fast
+
 GameOfEight.o: GameOfEight.cpp.o
 .PHONY : GameOfEight.o
 
@@ -278,6 +291,30 @@ exerciseArray2.s: exerciseArray2.cpp.s
 exerciseArray2.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise2.dir/build.make CMakeFiles/Array_Exercise2.dir/exerciseArray2.cpp.s
 .PHONY : exerciseArray2.cpp.s
+
+exerciseArray3.o: exerciseArray3.cpp.o
+.PHONY : exerciseArray3.o
+
+# target to build an object file
+exerciseArray3.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise3.dir/build.make CMakeFiles/Array_Exercise3.dir/exerciseArray3.cpp.o
+.PHONY : exerciseArray3.cpp.o
+
+exerciseArray3.i: exerciseArray3.cpp.i
+.PHONY : exerciseArray3.i
+
+# target to preprocess a source file
+exerciseArray3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise3.dir/build.make CMakeFiles/Array_Exercise3.dir/exerciseArray3.cpp.i
+.PHONY : exerciseArray3.cpp.i
+
+exerciseArray3.s: exerciseArray3.cpp.s
+.PHONY : exerciseArray3.s
+
+# target to generate assembly for a file
+exerciseArray3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise3.dir/build.make CMakeFiles/Array_Exercise3.dir/exerciseArray3.cpp.s
+.PHONY : exerciseArray3.cpp.s
 
 exerciseDollars.o: exerciseDollars.cpp.o
 .PHONY : exerciseDollars.o
@@ -385,6 +422,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Array_Exercise1"
 	@echo "... Array_Exercise2"
+	@echo "... Array_Exercise3"
 	@echo "... Dollar_Exercise"
 	@echo "... Game_of_Eight"
 	@echo "... Star_Exercise1"
@@ -399,6 +437,9 @@ help:
 	@echo "... exerciseArray2.o"
 	@echo "... exerciseArray2.i"
 	@echo "... exerciseArray2.s"
+	@echo "... exerciseArray3.o"
+	@echo "... exerciseArray3.i"
+	@echo "... exerciseArray3.s"
 	@echo "... exerciseDollars.o"
 	@echo "... exerciseDollars.i"
 	@echo "... exerciseDollars.s"
