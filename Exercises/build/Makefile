@@ -182,17 +182,30 @@ Swap_Exercise/fast:
 .PHONY : Swap_Exercise/fast
 
 #=============================================================================
-# Target rules for targets named Array_Exercise
+# Target rules for targets named Array_Exercise1
 
 # Build rule for target.
-Array_Exercise: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Array_Exercise
-.PHONY : Array_Exercise
+Array_Exercise1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Array_Exercise1
+.PHONY : Array_Exercise1
 
 # fast build rule for target.
-Array_Exercise/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise.dir/build.make CMakeFiles/Array_Exercise.dir/build
-.PHONY : Array_Exercise/fast
+Array_Exercise1/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise1.dir/build.make CMakeFiles/Array_Exercise1.dir/build
+.PHONY : Array_Exercise1/fast
+
+#=============================================================================
+# Target rules for targets named Array_Exercise2
+
+# Build rule for target.
+Array_Exercise2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Array_Exercise2
+.PHONY : Array_Exercise2
+
+# fast build rule for target.
+Array_Exercise2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise2.dir/build.make CMakeFiles/Array_Exercise2.dir/build
+.PHONY : Array_Exercise2/fast
 
 GameOfEight.o: GameOfEight.cpp.o
 .PHONY : GameOfEight.o
@@ -223,7 +236,7 @@ exerciseArray1.o: exerciseArray1.cpp.o
 
 # target to build an object file
 exerciseArray1.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise.dir/build.make CMakeFiles/Array_Exercise.dir/exerciseArray1.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise1.dir/build.make CMakeFiles/Array_Exercise1.dir/exerciseArray1.cpp.o
 .PHONY : exerciseArray1.cpp.o
 
 exerciseArray1.i: exerciseArray1.cpp.i
@@ -231,7 +244,7 @@ exerciseArray1.i: exerciseArray1.cpp.i
 
 # target to preprocess a source file
 exerciseArray1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise.dir/build.make CMakeFiles/Array_Exercise.dir/exerciseArray1.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise1.dir/build.make CMakeFiles/Array_Exercise1.dir/exerciseArray1.cpp.i
 .PHONY : exerciseArray1.cpp.i
 
 exerciseArray1.s: exerciseArray1.cpp.s
@@ -239,8 +252,32 @@ exerciseArray1.s: exerciseArray1.cpp.s
 
 # target to generate assembly for a file
 exerciseArray1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise.dir/build.make CMakeFiles/Array_Exercise.dir/exerciseArray1.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise1.dir/build.make CMakeFiles/Array_Exercise1.dir/exerciseArray1.cpp.s
 .PHONY : exerciseArray1.cpp.s
+
+exerciseArray2.o: exerciseArray2.cpp.o
+.PHONY : exerciseArray2.o
+
+# target to build an object file
+exerciseArray2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise2.dir/build.make CMakeFiles/Array_Exercise2.dir/exerciseArray2.cpp.o
+.PHONY : exerciseArray2.cpp.o
+
+exerciseArray2.i: exerciseArray2.cpp.i
+.PHONY : exerciseArray2.i
+
+# target to preprocess a source file
+exerciseArray2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise2.dir/build.make CMakeFiles/Array_Exercise2.dir/exerciseArray2.cpp.i
+.PHONY : exerciseArray2.cpp.i
+
+exerciseArray2.s: exerciseArray2.cpp.s
+.PHONY : exerciseArray2.s
+
+# target to generate assembly for a file
+exerciseArray2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise2.dir/build.make CMakeFiles/Array_Exercise2.dir/exerciseArray2.cpp.s
+.PHONY : exerciseArray2.cpp.s
 
 exerciseDollars.o: exerciseDollars.cpp.o
 .PHONY : exerciseDollars.o
@@ -346,7 +383,8 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Array_Exercise"
+	@echo "... Array_Exercise1"
+	@echo "... Array_Exercise2"
 	@echo "... Dollar_Exercise"
 	@echo "... Game_of_Eight"
 	@echo "... Star_Exercise1"
@@ -358,6 +396,9 @@ help:
 	@echo "... exerciseArray1.o"
 	@echo "... exerciseArray1.i"
 	@echo "... exerciseArray1.s"
+	@echo "... exerciseArray2.o"
+	@echo "... exerciseArray2.i"
+	@echo "... exerciseArray2.s"
 	@echo "... exerciseDollars.o"
 	@echo "... exerciseDollars.i"
 	@echo "... exerciseDollars.s"
