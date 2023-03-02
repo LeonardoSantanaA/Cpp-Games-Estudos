@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Array_Exercise4.dir/exerciseArray4.cpp.o -o Array_Exercise4 
