@@ -48,4 +48,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Star_Exercise2.dir/DependInfo.cmake"
   "CMakeFiles/Game_of_Eight.dir/DependInfo.cmake"
   "CMakeFiles/Swap_Exercise.dir/DependInfo.cmake"
+  "CMakeFiles/Array_Exercise.dir/DependInfo.cmake"
   )
