@@ -233,6 +233,19 @@ Array_Exercise4/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise4.dir/build.make CMakeFiles/Array_Exercise4.dir/build
 .PHONY : Array_Exercise4/fast
 
+#=============================================================================
+# Target rules for targets named DynamicMemory_Exercise
+
+# Build rule for target.
+DynamicMemory_Exercise: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 DynamicMemory_Exercise
+.PHONY : DynamicMemory_Exercise
+
+# fast build rule for target.
+DynamicMemory_Exercise/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicMemory_Exercise.dir/build.make CMakeFiles/DynamicMemory_Exercise.dir/build
+.PHONY : DynamicMemory_Exercise/fast
+
 GameOfEight.o: GameOfEight.cpp.o
 .PHONY : GameOfEight.o
 
@@ -377,6 +390,30 @@ exerciseDollars.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Dollar_Exercise.dir/build.make CMakeFiles/Dollar_Exercise.dir/exerciseDollars.cpp.s
 .PHONY : exerciseDollars.cpp.s
 
+exerciseDynamicMemory.o: exerciseDynamicMemory.cpp.o
+.PHONY : exerciseDynamicMemory.o
+
+# target to build an object file
+exerciseDynamicMemory.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicMemory_Exercise.dir/build.make CMakeFiles/DynamicMemory_Exercise.dir/exerciseDynamicMemory.cpp.o
+.PHONY : exerciseDynamicMemory.cpp.o
+
+exerciseDynamicMemory.i: exerciseDynamicMemory.cpp.i
+.PHONY : exerciseDynamicMemory.i
+
+# target to preprocess a source file
+exerciseDynamicMemory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicMemory_Exercise.dir/build.make CMakeFiles/DynamicMemory_Exercise.dir/exerciseDynamicMemory.cpp.i
+.PHONY : exerciseDynamicMemory.cpp.i
+
+exerciseDynamicMemory.s: exerciseDynamicMemory.cpp.s
+.PHONY : exerciseDynamicMemory.s
+
+# target to generate assembly for a file
+exerciseDynamicMemory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicMemory_Exercise.dir/build.make CMakeFiles/DynamicMemory_Exercise.dir/exerciseDynamicMemory.cpp.s
+.PHONY : exerciseDynamicMemory.cpp.s
+
 exerciseStar1.o: exerciseStar1.cpp.o
 .PHONY : exerciseStar1.o
 
@@ -462,6 +499,7 @@ help:
 	@echo "... Array_Exercise3"
 	@echo "... Array_Exercise4"
 	@echo "... Dollar_Exercise"
+	@echo "... DynamicMemory_Exercise"
 	@echo "... Game_of_Eight"
 	@echo "... Star_Exercise1"
 	@echo "... Star_Exercise2"
@@ -484,6 +522,9 @@ help:
 	@echo "... exerciseDollars.o"
 	@echo "... exerciseDollars.i"
 	@echo "... exerciseDollars.s"
+	@echo "... exerciseDynamicMemory.o"
+	@echo "... exerciseDynamicMemory.i"
+	@echo "... exerciseDynamicMemory.s"
 	@echo "... exerciseStar1.o"
 	@echo "... exerciseStar1.i"
 	@echo "... exerciseStar1.s"

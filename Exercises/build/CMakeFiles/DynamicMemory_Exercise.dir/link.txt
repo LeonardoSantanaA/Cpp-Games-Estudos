@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/DynamicMemory_Exercise.dir/exerciseDynamicMemory.cpp.o -o DynamicMemory_Exercise 

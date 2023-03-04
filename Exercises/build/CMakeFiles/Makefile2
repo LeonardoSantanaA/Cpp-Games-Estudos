@@ -72,6 +72,7 @@ all: CMakeFiles/Array_Exercise1.dir/all
 all: CMakeFiles/Array_Exercise2.dir/all
 all: CMakeFiles/Array_Exercise3.dir/all
 all: CMakeFiles/Array_Exercise4.dir/all
+all: CMakeFiles/DynamicMemory_Exercise.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -88,6 +89,7 @@ clean: CMakeFiles/Array_Exercise1.dir/clean
 clean: CMakeFiles/Array_Exercise2.dir/clean
 clean: CMakeFiles/Array_Exercise3.dir/clean
 clean: CMakeFiles/Array_Exercise4.dir/clean
+clean: CMakeFiles/DynamicMemory_Exercise.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -123,7 +125,7 @@ CMakeFiles/Dollar_Exercise.dir/clean:
 CMakeFiles/Star_Exercise1.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise1.dir/build.make CMakeFiles/Star_Exercise1.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise1.dir/build.make CMakeFiles/Star_Exercise1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=13,14 "Built target Star_Exercise1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=15,16 "Built target Star_Exercise1"
 .PHONY : CMakeFiles/Star_Exercise1.dir/all
 
 # Build rule for subdir invocation for target.
@@ -149,7 +151,7 @@ CMakeFiles/Star_Exercise1.dir/clean:
 CMakeFiles/Star_Exercise2.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise2.dir/build.make CMakeFiles/Star_Exercise2.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise2.dir/build.make CMakeFiles/Star_Exercise2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=15,16 "Built target Star_Exercise2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=17,18 "Built target Star_Exercise2"
 .PHONY : CMakeFiles/Star_Exercise2.dir/all
 
 # Build rule for subdir invocation for target.
@@ -175,7 +177,7 @@ CMakeFiles/Star_Exercise2.dir/clean:
 CMakeFiles/Game_of_Eight.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game_of_Eight.dir/build.make CMakeFiles/Game_of_Eight.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game_of_Eight.dir/build.make CMakeFiles/Game_of_Eight.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=11,12 "Built target Game_of_Eight"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=13,14 "Built target Game_of_Eight"
 .PHONY : CMakeFiles/Game_of_Eight.dir/all
 
 # Build rule for subdir invocation for target.
@@ -201,7 +203,7 @@ CMakeFiles/Game_of_Eight.dir/clean:
 CMakeFiles/Swap_Exercise.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Swap_Exercise.dir/build.make CMakeFiles/Swap_Exercise.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Swap_Exercise.dir/build.make CMakeFiles/Swap_Exercise.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=17,18 "Built target Swap_Exercise"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=19,20 "Built target Swap_Exercise"
 .PHONY : CMakeFiles/Swap_Exercise.dir/all
 
 # Build rule for subdir invocation for target.
@@ -323,6 +325,32 @@ Array_Exercise4: CMakeFiles/Array_Exercise4.dir/rule
 CMakeFiles/Array_Exercise4.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Array_Exercise4.dir/build.make CMakeFiles/Array_Exercise4.dir/clean
 .PHONY : CMakeFiles/Array_Exercise4.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/DynamicMemory_Exercise.dir
+
+# All Build rule for target.
+CMakeFiles/DynamicMemory_Exercise.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicMemory_Exercise.dir/build.make CMakeFiles/DynamicMemory_Exercise.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicMemory_Exercise.dir/build.make CMakeFiles/DynamicMemory_Exercise.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=11,12 "Built target DynamicMemory_Exercise"
+.PHONY : CMakeFiles/DynamicMemory_Exercise.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/DynamicMemory_Exercise.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/DynamicMemory_Exercise.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles 0
+.PHONY : CMakeFiles/DynamicMemory_Exercise.dir/rule
+
+# Convenience name for target.
+DynamicMemory_Exercise: CMakeFiles/DynamicMemory_Exercise.dir/rule
+.PHONY : DynamicMemory_Exercise
+
+# clean rule for target.
+CMakeFiles/DynamicMemory_Exercise.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicMemory_Exercise.dir/build.make CMakeFiles/DynamicMemory_Exercise.dir/clean
+.PHONY : CMakeFiles/DynamicMemory_Exercise.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
