@@ -1,0 +1,3 @@
+/home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles/Hangman.dir
+/home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles/edit_cache.dir
+/home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles/rebuild_cache.dir
