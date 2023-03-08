@@ -68,7 +68,7 @@ void UpdateBoard(char guess, char* noptrHiddenPhrase, const char secretPhrase[],
   bool found = false;
 
   for(int i = 0; i < secretPhraseLength; i++){
-    if(std::tolower(secretPhrase[i] == guess)){
+    if(std::tolower(secretPhrase[i]) == guess){
       noptrHiddenPhrase[i] = secretPhrase[i];
       found = true;
     }
@@ -200,15 +200,16 @@ void DrawBoard(int numberOfGuessesLeft, const char* noptrHiddenPhrase){
       std::cout << " |" << std::endl;
       std::cout << "-+-" << std::endl << std::endl;;
       }
+    break;
     case 6:
-    {
+      {
       std::cout << " +---+" << std::endl;
       std::cout << " |   |" << std::endl;
       std::cout << " |" << std::endl;
       std::cout << " |" << std::endl;
       std::cout << " |" << std::endl;
       std::cout << "-+-" << std::endl << std::endl;
-    }
+      }
     break;
   }
   std::cout << "Secret Phrase: " << noptrHiddenPhrase << std::endl << std::endl;
@@ -231,13 +232,15 @@ char GetCharacter(const char* prompt, const char* error){
     }else{
       std::cin.ignore(IGNORE_CHARS, '\n');
       if(std::isalpha(input)){
+        std::cout << "DEBUG char verificado: " << input << std::endl;
         input = std::tolower(input);
+        std::cout << "DEBUG char passado no tolower: " << input << std::endl;
       }else{
         std::cout << error << std::endl;
       }
     }
   }while(failure);
-
+  std::cout << "DEBUG saida: " << input << std::endl;
   return input;
 }
 
@@ -262,13 +265,13 @@ char GetCharacter(const char* prompt, const char* error, const char validInput[]
         input = std::tolower(input);
       }
       for(int i = 0; i < validInputLength; i++){
-        if(input == validInput[i])
+        if(input == validInput[i]){
             return input;
+          }
       }
     }
 
-    std::cout << error << std::endl;
-    failure = true;
   }while(failure);
+
   return input;
 }
