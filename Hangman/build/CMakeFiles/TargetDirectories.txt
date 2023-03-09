@@ -1,3 +1,8 @@
-/home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles/Hangman.dir
 /home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles/edit_cache.dir
 /home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles/rebuild_cache.dir
+/home/lekaum/Desktop/Games-C++/Hangman/build/includes/CMakeFiles/utils.dir
+/home/lekaum/Desktop/Games-C++/Hangman/build/includes/CMakeFiles/edit_cache.dir
+/home/lekaum/Desktop/Games-C++/Hangman/build/includes/CMakeFiles/rebuild_cache.dir
+/home/lekaum/Desktop/Games-C++/Hangman/build/src/CMakeFiles/Hangman.dir
+/home/lekaum/Desktop/Games-C++/Hangman/build/src/CMakeFiles/edit_cache.dir
+/home/lekaum/Desktop/Games-C++/Hangman/build/src/CMakeFiles/rebuild_cache.dir

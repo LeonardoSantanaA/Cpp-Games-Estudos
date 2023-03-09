@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles /home/lekaum/Desktop/Games-C++/Hangman/build//CMakeFiles/progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	cd /home/lekaum/Desktop/Games-C++/Hangman/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles /home/lekaum/Desktop/Games-C++/Hangman/build/src//CMakeFiles/progress.marks
+	cd /home/lekaum/Desktop/Games-C++/Hangman/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
+	cd /home/lekaum/Desktop/Games-C++/Hangman/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,44 +103,56 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /home/lekaum/Desktop/Games-C++/Hangman/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /home/lekaum/Desktop/Games-C++/Hangman/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/lekaum/Desktop/Games-C++/Hangman/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named utils
+# Convenience name for target.
+src/CMakeFiles/Hangman.dir/rule:
+	cd /home/lekaum/Desktop/Games-C++/Hangman/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/Hangman.dir/rule
+.PHONY : src/CMakeFiles/Hangman.dir/rule
 
-# Build rule for target.
-utils: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils
-.PHONY : utils
-
-# fast build rule for target.
-utils/fast:
-	$(MAKE) $(MAKESILENT) -f includes/CMakeFiles/utils.dir/build.make includes/CMakeFiles/utils.dir/build
-.PHONY : utils/fast
-
-#=============================================================================
-# Target rules for targets named Hangman
-
-# Build rule for target.
-Hangman: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Hangman
+# Convenience name for target.
+Hangman: src/CMakeFiles/Hangman.dir/rule
 .PHONY : Hangman
 
 # fast build rule for target.
 Hangman/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/Hangman.dir/build.make src/CMakeFiles/Hangman.dir/build
+	cd /home/lekaum/Desktop/Games-C++/Hangman/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/Hangman.dir/build.make src/CMakeFiles/Hangman.dir/build
 .PHONY : Hangman/fast
+
+Hangman.o: Hangman.cpp.o
+.PHONY : Hangman.o
+
+# target to build an object file
+Hangman.cpp.o:
+	cd /home/lekaum/Desktop/Games-C++/Hangman/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/Hangman.dir/build.make src/CMakeFiles/Hangman.dir/Hangman.cpp.o
+.PHONY : Hangman.cpp.o
+
+Hangman.i: Hangman.cpp.i
+.PHONY : Hangman.i
+
+# target to preprocess a source file
+Hangman.cpp.i:
+	cd /home/lekaum/Desktop/Games-C++/Hangman/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/Hangman.dir/build.make src/CMakeFiles/Hangman.dir/Hangman.cpp.i
+.PHONY : Hangman.cpp.i
+
+Hangman.s: Hangman.cpp.s
+.PHONY : Hangman.s
+
+# target to generate assembly for a file
+Hangman.cpp.s:
+	cd /home/lekaum/Desktop/Games-C++/Hangman/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/Hangman.dir/build.make src/CMakeFiles/Hangman.dir/Hangman.cpp.s
+.PHONY : Hangman.cpp.s
 
 # Help Target
 help:
@@ -151,7 +163,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Hangman"
-	@echo "... utils"
+	@echo "... Hangman.o"
+	@echo "... Hangman.i"
+	@echo "... Hangman.s"
 .PHONY : help
 
 
@@ -163,6 +177,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/lekaum/Desktop/Games-C++/Hangman/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

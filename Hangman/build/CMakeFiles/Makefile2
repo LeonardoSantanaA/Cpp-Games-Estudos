@@ -63,42 +63,101 @@ CMAKE_BINARY_DIR = /home/lekaum/Desktop/Games-C++/Hangman/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/Hangman.dir/all
+all: includes/all
+all: src/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: includes/preinstall
+preinstall: src/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/Hangman.dir/clean
+clean: includes/clean
+clean: src/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/Hangman.dir
+# Directory level rules for directory includes
+
+# Recursive "all" directory target.
+includes/all: includes/CMakeFiles/utils.dir/all
+.PHONY : includes/all
+
+# Recursive "preinstall" directory target.
+includes/preinstall:
+.PHONY : includes/preinstall
+
+# Recursive "clean" directory target.
+includes/clean: includes/CMakeFiles/utils.dir/clean
+.PHONY : includes/clean
+
+#=============================================================================
+# Directory level rules for directory src
+
+# Recursive "all" directory target.
+src/all: src/CMakeFiles/Hangman.dir/all
+.PHONY : src/all
+
+# Recursive "preinstall" directory target.
+src/preinstall:
+.PHONY : src/preinstall
+
+# Recursive "clean" directory target.
+src/clean: src/CMakeFiles/Hangman.dir/clean
+.PHONY : src/clean
+
+#=============================================================================
+# Target rules for target includes/CMakeFiles/utils.dir
 
 # All Build rule for target.
-CMakeFiles/Hangman.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Hangman.dir/build.make CMakeFiles/Hangman.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Hangman.dir/build.make CMakeFiles/Hangman.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles --progress-num=1,2 "Built target Hangman"
-.PHONY : CMakeFiles/Hangman.dir/all
+includes/CMakeFiles/utils.dir/all:
+	$(MAKE) $(MAKESILENT) -f includes/CMakeFiles/utils.dir/build.make includes/CMakeFiles/utils.dir/depend
+	$(MAKE) $(MAKESILENT) -f includes/CMakeFiles/utils.dir/build.make includes/CMakeFiles/utils.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles --progress-num=3,4 "Built target utils"
+.PHONY : includes/CMakeFiles/utils.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Hangman.dir/rule: cmake_check_build_system
+includes/CMakeFiles/utils.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Hangman.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 includes/CMakeFiles/utils.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles 0
-.PHONY : CMakeFiles/Hangman.dir/rule
+.PHONY : includes/CMakeFiles/utils.dir/rule
 
 # Convenience name for target.
-Hangman: CMakeFiles/Hangman.dir/rule
+utils: includes/CMakeFiles/utils.dir/rule
+.PHONY : utils
+
+# clean rule for target.
+includes/CMakeFiles/utils.dir/clean:
+	$(MAKE) $(MAKESILENT) -f includes/CMakeFiles/utils.dir/build.make includes/CMakeFiles/utils.dir/clean
+.PHONY : includes/CMakeFiles/utils.dir/clean
+
+#=============================================================================
+# Target rules for target src/CMakeFiles/Hangman.dir
+
+# All Build rule for target.
+src/CMakeFiles/Hangman.dir/all: includes/CMakeFiles/utils.dir/all
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/Hangman.dir/build.make src/CMakeFiles/Hangman.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/Hangman.dir/build.make src/CMakeFiles/Hangman.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles --progress-num=1,2 "Built target Hangman"
+.PHONY : src/CMakeFiles/Hangman.dir/all
+
+# Build rule for subdir invocation for target.
+src/CMakeFiles/Hangman.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/Hangman.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Hangman/build/CMakeFiles 0
+.PHONY : src/CMakeFiles/Hangman.dir/rule
+
+# Convenience name for target.
+Hangman: src/CMakeFiles/Hangman.dir/rule
 .PHONY : Hangman
 
 # clean rule for target.
-CMakeFiles/Hangman.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Hangman.dir/build.make CMakeFiles/Hangman.dir/clean
-.PHONY : CMakeFiles/Hangman.dir/clean
+src/CMakeFiles/Hangman.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/Hangman.dir/build.make src/CMakeFiles/Hangman.dir/clean
+.PHONY : src/CMakeFiles/Hangman.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -11,6 +11,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.25.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.25.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.25.2/CMakeSystem.cmake"
+  "/home/lekaum/Desktop/Games-C++/Hangman/includes/CMakeLists.txt"
+  "/home/lekaum/Desktop/Games-C++/Hangman/src/CMakeLists.txt"
   "/usr/share/cmake/Modules/CMakeCCompiler.cmake.in"
   "/usr/share/cmake/Modules/CMakeCCompilerABI.c"
   "/usr/share/cmake/Modules/CMakeCInformation.cmake"
@@ -119,9 +121,12 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/3.25.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.25.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "includes/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/Hangman.dir/DependInfo.cmake"
+  "includes/CMakeFiles/utils.dir/DependInfo.cmake"
+  "src/CMakeFiles/Hangman.dir/DependInfo.cmake"
   )
