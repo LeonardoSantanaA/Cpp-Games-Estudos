@@ -246,6 +246,19 @@ DynamicMemory_Exercise/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicMemory_Exercise.dir/build.make CMakeFiles/DynamicMemory_Exercise.dir/build
 .PHONY : DynamicMemory_Exercise/fast
 
+#=============================================================================
+# Target rules for targets named TicTacToe
+
+# Build rule for target.
+TicTacToe: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 TicTacToe
+.PHONY : TicTacToe
+
+# fast build rule for target.
+TicTacToe/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TicTacToe.dir/build.make CMakeFiles/TicTacToe.dir/build
+.PHONY : TicTacToe/fast
+
 GameOfEight.o: GameOfEight.cpp.o
 .PHONY : GameOfEight.o
 
@@ -269,6 +282,30 @@ GameOfEight.s: GameOfEight.cpp.s
 GameOfEight.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game_of_Eight.dir/build.make CMakeFiles/Game_of_Eight.dir/GameOfEight.cpp.s
 .PHONY : GameOfEight.cpp.s
+
+TicTacToe.o: TicTacToe.cpp.o
+.PHONY : TicTacToe.o
+
+# target to build an object file
+TicTacToe.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TicTacToe.dir/build.make CMakeFiles/TicTacToe.dir/TicTacToe.cpp.o
+.PHONY : TicTacToe.cpp.o
+
+TicTacToe.i: TicTacToe.cpp.i
+.PHONY : TicTacToe.i
+
+# target to preprocess a source file
+TicTacToe.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TicTacToe.dir/build.make CMakeFiles/TicTacToe.dir/TicTacToe.cpp.i
+.PHONY : TicTacToe.cpp.i
+
+TicTacToe.s: TicTacToe.cpp.s
+.PHONY : TicTacToe.s
+
+# target to generate assembly for a file
+TicTacToe.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TicTacToe.dir/build.make CMakeFiles/TicTacToe.dir/TicTacToe.cpp.s
+.PHONY : TicTacToe.cpp.s
 
 exerciseArray1.o: exerciseArray1.cpp.o
 .PHONY : exerciseArray1.o
@@ -504,9 +541,13 @@ help:
 	@echo "... Star_Exercise1"
 	@echo "... Star_Exercise2"
 	@echo "... Swap_Exercise"
+	@echo "... TicTacToe"
 	@echo "... GameOfEight.o"
 	@echo "... GameOfEight.i"
 	@echo "... GameOfEight.s"
+	@echo "... TicTacToe.o"
+	@echo "... TicTacToe.i"
+	@echo "... TicTacToe.s"
 	@echo "... exerciseArray1.o"
 	@echo "... exerciseArray1.i"
 	@echo "... exerciseArray1.s"

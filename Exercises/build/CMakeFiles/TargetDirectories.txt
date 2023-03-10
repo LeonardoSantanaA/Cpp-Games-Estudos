@@ -8,5 +8,6 @@
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/Array_Exercise3.dir
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/Array_Exercise4.dir
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/DynamicMemory_Exercise.dir
+/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/TicTacToe.dir
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/edit_cache.dir
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/rebuild_cache.dir

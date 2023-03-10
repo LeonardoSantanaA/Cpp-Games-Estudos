@@ -53,4 +53,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Array_Exercise3.dir/DependInfo.cmake"
   "CMakeFiles/Array_Exercise4.dir/DependInfo.cmake"
   "CMakeFiles/DynamicMemory_Exercise.dir/DependInfo.cmake"
+  "CMakeFiles/TicTacToe.dir/DependInfo.cmake"
   )
