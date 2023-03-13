@@ -1,19 +1,20 @@
 #include <cstdlib>
 #include <iostream>
 
+typedef int type;
 
 struct DynamicArray{
-  int* dynamicArray;
+  type* dynamicArray;
   int capacity;
   int size;
 };
 
-int * CreateDynamicArray(int &capacity, int &size);
-void DeleteDynamicArray(int* dynamicArray, int& size);
-void InsertElement(int** dynamicArray, int element, int &size, int &capacity);
-void DeleteElement(int* dynamicArray, int elementIndex, int &size);
-void ResizeDynamicArray(int** dynamicArray, int &capacity, int newCapacity);
-void PrintDynamicArray(int* dynamicArray, int &capacity);
+type * CreateDynamicArray(int &capacity, int &size);
+void DeleteDynamicArray(type* dynamicArray, int& size);
+void InsertElement(type** dynamicArray, const int &element, int &size, int &capacity);
+void DeleteElement(type* dynamicArray, const int &elementIndex, int &size);
+void ResizeDynamicArray(type** dynamicArray, int &capacity, const int &newCapacity);
+void PrintDynamicArray(type* dynamicArray, const int &capacity);
 
 int main( int argc , char **argv ){
   int option = 0;
@@ -39,7 +40,7 @@ int main( int argc , char **argv ){
         break; 
       }
       case 1:{
-        int newElement = 0;
+        type newElement = 0;
         std::cout << "Insert the value of the new element: ";
         std::cin >> newElement;
         std::cout << std::endl;
@@ -68,18 +69,18 @@ int main( int argc , char **argv ){
   return 0;
 }
 
-int * CreateDynamicArray(int &capacity, int &size){
+type * CreateDynamicArray(int &capacity, int &size){
   size = 0;
-  int * arrayPtr = new int[capacity];
+  type * arrayPtr = new int[capacity];
   return arrayPtr;
 }
 
-void DeleteDynamicArray(int* dynamicArray, int &size){
+void DeleteDynamicArray(type* dynamicArray, int &size){
   size = 0;
   delete [] dynamicArray;
 }
 
-void InsertElement(int** dynamicArray, int element, int &size, int &capacity){
+void InsertElement(type** dynamicArray, const int &element, int &size, int &capacity){
   if(capacity <= size)
     ResizeDynamicArray(dynamicArray, capacity, size + 1);
   (*dynamicArray)[size] = element;
@@ -87,7 +88,7 @@ void InsertElement(int** dynamicArray, int element, int &size, int &capacity){
    
 } 
 
-void DeleteElement(int* dynamicArray, int elementIndex, int &size){
+void DeleteElement(type* dynamicArray, const int& elementIndex, int &size){
   for(int i = elementIndex; i < size; i++){
     if(i + 1 < size)
       dynamicArray[i] = dynamicArray[i + 1];
@@ -98,8 +99,8 @@ void DeleteElement(int* dynamicArray, int elementIndex, int &size){
   }
 }
 
-void ResizeDynamicArray(int** dynamicArray, int &capacity,int newCapacity){
-  int * newArray = new int[newCapacity];
+void ResizeDynamicArray(type** dynamicArray, int &capacity, const int& newCapacity){
+  type * newArray = new type[newCapacity];
   capacity = newCapacity;
   for(int i = 0; i < capacity; i++){
     newArray[i] = (*dynamicArray)[i];
@@ -108,7 +109,7 @@ void ResizeDynamicArray(int** dynamicArray, int &capacity,int newCapacity){
   *dynamicArray = newArray;
 }
 
-void PrintDynamicArray(int* dynamicArray, int &capacity){
+void PrintDynamicArray(type* dynamicArray, const int &capacity){
   std::cout << "///////\n";
   for(int i = 0; i < capacity; i++){
     std::cout << "position[" << i << "] - " << dynamicArray[i] << ";\n";
