@@ -1,6 +1,13 @@
 #include <cstdlib>
 #include <iostream>
 
+
+struct DynamicArray{
+  int* dynamicArray;
+  int capacity;
+  int size;
+};
+
 int * CreateDynamicArray(int &capacity, int &size);
 void DeleteDynamicArray(int* dynamicArray, int& size);
 void InsertElement(int** dynamicArray, int element, int &size, int &capacity);
@@ -9,11 +16,12 @@ void ResizeDynamicArray(int** dynamicArray, int &capacity, int newCapacity);
 void PrintDynamicArray(int* dynamicArray, int &capacity);
 
 int main( int argc , char **argv ){
-  int capacity = 0, size = 0, option = 0;
+  int option = 0;
+  DynamicArray array;
 
   std::cout << "Insert a capacity for your dynamic array: ";
-  std::cin >> capacity;
-  int * dynamicArray = CreateDynamicArray(capacity, size);
+  std::cin >> array.capacity;
+  array.dynamicArray = CreateDynamicArray(array.capacity, array.size);
   std::cout << std::endl;
   std::cout << "Dynamic Array created! Tell me what you wanna do:\n";
   do{
@@ -26,7 +34,7 @@ int main( int argc , char **argv ){
     std::cout << std::endl;
     switch(option){
       case 0:{
-        DeleteDynamicArray(dynamicArray, size);
+        DeleteDynamicArray(array.dynamicArray, array.size);
         std::exit(1);
         break; 
       }
@@ -35,7 +43,7 @@ int main( int argc , char **argv ){
         std::cout << "Insert the value of the new element: ";
         std::cin >> newElement;
         std::cout << std::endl;
-        InsertElement(&dynamicArray, newElement, size, capacity);
+        InsertElement(&array.dynamicArray, newElement, array.size, array.capacity);
         break;  
       }
       case 2: {
@@ -43,11 +51,11 @@ int main( int argc , char **argv ){
         std::cout << "Insert the position of the element: ";
         std::cin >> index; 
         std::cout << std::endl; 
-        DeleteElement(dynamicArray, index, size);
+        DeleteElement(array.dynamicArray, index, array.size);
         break;
       }
       case 3: {
-        PrintDynamicArray(dynamicArray, capacity);
+        PrintDynamicArray(array.dynamicArray, array.capacity);
         break;
       }
         default:{ 
@@ -55,7 +63,7 @@ int main( int argc , char **argv ){
       }
     }
   }while(option != 0);
-  delete [] dynamicArray;
+  delete [] array.dynamicArray;
 
   return 0;
 }
