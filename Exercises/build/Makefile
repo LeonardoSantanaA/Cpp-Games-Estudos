@@ -259,6 +259,43 @@ TicTacToe/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TicTacToe.dir/build.make CMakeFiles/TicTacToe.dir/build
 .PHONY : TicTacToe/fast
 
+#=============================================================================
+# Target rules for targets named Calculator
+
+# Build rule for target.
+Calculator: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Calculator
+.PHONY : Calculator
+
+# fast build rule for target.
+Calculator/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/build
+.PHONY : Calculator/fast
+
+Calculator.o: Calculator.cpp.o
+.PHONY : Calculator.o
+
+# target to build an object file
+Calculator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/Calculator.cpp.o
+.PHONY : Calculator.cpp.o
+
+Calculator.i: Calculator.cpp.i
+.PHONY : Calculator.i
+
+# target to preprocess a source file
+Calculator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/Calculator.cpp.i
+.PHONY : Calculator.cpp.i
+
+Calculator.s: Calculator.cpp.s
+.PHONY : Calculator.s
+
+# target to generate assembly for a file
+Calculator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/Calculator.cpp.s
+.PHONY : Calculator.cpp.s
+
 GameOfEight.o: GameOfEight.cpp.o
 .PHONY : GameOfEight.o
 
@@ -535,6 +572,7 @@ help:
 	@echo "... Array_Exercise2"
 	@echo "... Array_Exercise3"
 	@echo "... Array_Exercise4"
+	@echo "... Calculator"
 	@echo "... Dollar_Exercise"
 	@echo "... DynamicMemory_Exercise"
 	@echo "... Game_of_Eight"
@@ -542,6 +580,9 @@ help:
 	@echo "... Star_Exercise2"
 	@echo "... Swap_Exercise"
 	@echo "... TicTacToe"
+	@echo "... Calculator.o"
+	@echo "... Calculator.i"
+	@echo "... Calculator.s"
 	@echo "... GameOfEight.o"
 	@echo "... GameOfEight.i"
 	@echo "... GameOfEight.s"
