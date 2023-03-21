@@ -64,54 +64,53 @@ CMAKE_BINARY_DIR = /home/lekaum/Desktop/Games-C++/Battleship/build
 
 # The main recursive "all" target.
 all: src/all
-all: includes/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: src/preinstall
-preinstall: includes/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: src/clean
-clean: includes/clean
 .PHONY : clean
-
-#=============================================================================
-# Directory level rules for directory includes
-
-# Recursive "all" directory target.
-includes/all: includes/CMakeFiles/utils.dir/all
-.PHONY : includes/all
-
-# Recursive "preinstall" directory target.
-includes/preinstall:
-.PHONY : includes/preinstall
-
-# Recursive "clean" directory target.
-includes/clean: includes/CMakeFiles/utils.dir/clean
-.PHONY : includes/clean
 
 #=============================================================================
 # Directory level rules for directory src
 
 # Recursive "all" directory target.
 src/all: src/CMakeFiles/BattleShip.dir/all
+src/all: src/includes/all
 .PHONY : src/all
 
 # Recursive "preinstall" directory target.
-src/preinstall:
+src/preinstall: src/includes/preinstall
 .PHONY : src/preinstall
 
 # Recursive "clean" directory target.
 src/clean: src/CMakeFiles/BattleShip.dir/clean
+src/clean: src/includes/clean
 .PHONY : src/clean
+
+#=============================================================================
+# Directory level rules for directory src/includes
+
+# Recursive "all" directory target.
+src/includes/all: src/includes/CMakeFiles/utils.dir/all
+.PHONY : src/includes/all
+
+# Recursive "preinstall" directory target.
+src/includes/preinstall:
+.PHONY : src/includes/preinstall
+
+# Recursive "clean" directory target.
+src/includes/clean: src/includes/CMakeFiles/utils.dir/clean
+.PHONY : src/includes/clean
 
 #=============================================================================
 # Target rules for target src/CMakeFiles/BattleShip.dir
 
 # All Build rule for target.
-src/CMakeFiles/BattleShip.dir/all: includes/CMakeFiles/utils.dir/all
+src/CMakeFiles/BattleShip.dir/all: src/includes/CMakeFiles/utils.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/BattleShip.dir/build.make src/CMakeFiles/BattleShip.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/BattleShip.dir/build.make src/CMakeFiles/BattleShip.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Battleship/build/CMakeFiles --progress-num=1,2 "Built target BattleShip"
@@ -134,30 +133,30 @@ src/CMakeFiles/BattleShip.dir/clean:
 .PHONY : src/CMakeFiles/BattleShip.dir/clean
 
 #=============================================================================
-# Target rules for target includes/CMakeFiles/utils.dir
+# Target rules for target src/includes/CMakeFiles/utils.dir
 
 # All Build rule for target.
-includes/CMakeFiles/utils.dir/all:
-	$(MAKE) $(MAKESILENT) -f includes/CMakeFiles/utils.dir/build.make includes/CMakeFiles/utils.dir/depend
-	$(MAKE) $(MAKESILENT) -f includes/CMakeFiles/utils.dir/build.make includes/CMakeFiles/utils.dir/build
+src/includes/CMakeFiles/utils.dir/all:
+	$(MAKE) $(MAKESILENT) -f src/includes/CMakeFiles/utils.dir/build.make src/includes/CMakeFiles/utils.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/includes/CMakeFiles/utils.dir/build.make src/includes/CMakeFiles/utils.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Battleship/build/CMakeFiles --progress-num=3,4 "Built target utils"
-.PHONY : includes/CMakeFiles/utils.dir/all
+.PHONY : src/includes/CMakeFiles/utils.dir/all
 
 # Build rule for subdir invocation for target.
-includes/CMakeFiles/utils.dir/rule: cmake_check_build_system
+src/includes/CMakeFiles/utils.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Battleship/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 includes/CMakeFiles/utils.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/includes/CMakeFiles/utils.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Battleship/build/CMakeFiles 0
-.PHONY : includes/CMakeFiles/utils.dir/rule
+.PHONY : src/includes/CMakeFiles/utils.dir/rule
 
 # Convenience name for target.
-utils: includes/CMakeFiles/utils.dir/rule
+utils: src/includes/CMakeFiles/utils.dir/rule
 .PHONY : utils
 
 # clean rule for target.
-includes/CMakeFiles/utils.dir/clean:
-	$(MAKE) $(MAKESILENT) -f includes/CMakeFiles/utils.dir/build.make includes/CMakeFiles/utils.dir/clean
-.PHONY : includes/CMakeFiles/utils.dir/clean
+src/includes/CMakeFiles/utils.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/includes/CMakeFiles/utils.dir/build.make src/includes/CMakeFiles/utils.dir/clean
+.PHONY : src/includes/CMakeFiles/utils.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

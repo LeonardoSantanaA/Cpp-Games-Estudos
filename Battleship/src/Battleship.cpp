@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstring>
-#include "Utils.hpp"
+#include "./includes/Utils.hpp"
 
 enum{
   AIRCRAFT_CARRIER_SIZE = 5,
@@ -11,7 +11,7 @@ enum{
 
   BOARD_SIZE = 10,
   NUM_SHIPS = 5,
-  PLAYER_NAME_SIZE = 8, //Player1, Player2
+  PLAYER_NAME_SIZE = 10, //Player1, Player2
   MAX_SHIP_SIZE = AIRCRAFT_CARRIER_SIZE
 };
 
@@ -68,13 +68,25 @@ bool WantToPlayAgain();
 void SetupBoards(Player &player);
 void ClearBoards(Player &player);
 void DrawBoards(const Player &player);
+void DrawSeparatorLine();
+void DrawColumnRow();
+void DrawShipBoardRow(const Player &player, int row);
+void DrawGuessBoardRow(const Player &player, int row);
+char GetGuessRepresentationAt(const Player &player, int row, int col);
+char GetShipRepresentationAt(const Player &player, int row, int col);
+const char *GetShipNameForShipType(ShipType shipType);
+ShipPositionType GetBoardPosition();
+ShipPositionType MapBoardPosition(char rowInput, int colInput);
+ShipOrientationType GetShipOrientation();
+bool IsValidPlacement(const Player &player, const Ship &currentShip, const ShipPositionType &shipPosition, ShipOrientationType orientation);
+void PlaceShipOnBoard(Player &player, Ship &currentShip, const ShipPositionType &shipPosition, ShipOrientationType orientation);
 
 int main( int argc , char **argv ){
   Player player1;
   Player player2;
 
-  InitializePlayer(player1, "Player1");
-  InitializePlayer(player2, "Player2");
+  InitializePlayer(player1, "[Player1] ");
+  InitializePlayer(player2, "[Player2] ");
 
   do{
     PlayGame(player1, player2);
@@ -119,10 +131,117 @@ bool WantToPlayAgain(){
   return input == 'y';
 }
 
+const char *GetShipNameForShipType(ShipType shipType){
+  if(shipType == ST_AIRCRAFT_CARRIER)
+    return "Aircrafter Carrier";
+  else if(shipType == ST_BATTLESHIP)
+    return "Battleship";
+  else if(shipType == ST_CRUISER)
+    return "Cruiser";
+  else if(shipType == ST_DESTROYER)
+    return "Destroyer";
+  else if(shipType == ST_SUBMARINE)
+    return "Submarine"; 
+  return "None";
+}
+
+bool IsValidPlacement(const Player &player, const Ship &currentShip, const ShipPositionType &shipPosition, ShipOrientationType orientation){
+  if(orientation == SO_HORIZONTAL){
+    for(int c = shipPosition.col; c < (shipPosition.col + currentShip.shipSize); c++){
+      if(player.shipBoard[shipPosition.row][c].shipType != ST_NONE || c >= BOARD_SIZE)
+        return false;
+    }
+  }else{
+    for(int r = shipPosition.row; r < (shipPosition.row + currentShip.shipSize); r++){
+      if(player.shipBoard[r][shipPosition.col].shipType != ST_NONE || r >= BOARD_SIZE)
+        return false;
+    }
+  }
+  return true;
+}
+
+void PlaceShipOnBoard(Player &player, Ship &currentShip, const ShipPositionType &shipPosition, ShipOrientationType orientation){
+  currentShip.position = shipPosition;
+  currentShip.orientation = orientation;
+
+  if(orientation == SO_HORIZONTAL){
+    for(int c = shipPosition.col; c < (shipPosition.col + currentShip.shipSize); c++){
+      player.shipBoard[shipPosition.row][c].shipType = currentShip.shipType;
+      player.shipBoard[shipPosition.row][c].isHit = false;
+    }
+  }else{
+    for(int r = shipPosition.row; r < (shipPosition.row + currentShip.shipSize); r++){
+      player.shipBoard[r][shipPosition.col].shipType = currentShip.shipType;
+      player.shipBoard[r][shipPosition.col].isHit = false;
+    }
+  }
+}
+
+ShipPositionType MapBoardPosition(char rowInput, int colInput){
+  int realRow = rowInput - 'A';
+  int realCol = colInput - 1;
+
+  ShipPositionType boardPosition;
+
+  boardPosition.row = realRow;
+  boardPosition.col = realCol;
+
+  return boardPosition;
+}
+
+ShipPositionType GetBoardPosition(){
+  char rowInput;
+  int colInput;
+
+  const char validRowsInputs[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'}; 
+  const int validColumnsInputs[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+  rowInput = GetCharacter("Please input a row (A - J): ", Utils::INPUT_ERROR_STRING, validRowsInputs, BOARD_SIZE, Utils::CC_UPPER_CASE);
+  colInput = GetInteger("Please input a column (1 - 10): ", Utils::INPUT_ERROR_STRING, validColumnsInputs, BOARD_SIZE);
+
+  return MapBoardPosition(rowInput, colInput);
+}
+
+ShipOrientationType GetShipOrientation(){
+  ShipOrientationType orientation;
+  const char validInput[2] = {'H', 'V'};
+  char input = GetCharacter("Please choose a orientation (H) for Horizontal or (V) for Vertical: ", Utils::INPUT_ERROR_STRING, validInput, 2, Utils::CC_UPPER_CASE);
+  
+  if(input == validInput[0])
+    return SO_HORIZONTAL;
+  else
+    return SO_VERTICAL;
+}
+
 void SetupBoards(Player &player){
   ClearBoards(player);
   
+  for(int i = 0; i < NUM_SHIPS; i++){
+    DrawBoards(player);
+    Ship &currentShip = player.ships[i];
+    ShipPositionType shipPosition;
+    ShipOrientationType orientation;
+
+    bool isValidPlacement = false;
+
+    do{
+      std::cout << player.playerName << "please set the position and orientation for your " << GetShipNameForShipType(currentShip.shipType) << std::endl;
+      
+      shipPosition = GetBoardPosition();
+      orientation = GetShipOrientation();
+
+      isValidPlacement = IsValidPlacement(player, currentShip, shipPosition, orientation);
+
+      if(!isValidPlacement){
+        std::cout << "That was not a valid placement. Please try again." << std::endl;
+      }
+
+    }while(!isValidPlacement);
+
+    PlaceShipOnBoard(player, currentShip, shipPosition, orientation);
+  }
   DrawBoards(player);
+
 }
 
 void ClearBoards(Player& player){
@@ -151,7 +270,7 @@ void DrawColumnsRow(){
   }
 }
 
-char GetShipRepresentation(const Player &player, int row, int col){
+char GetShipRepresentationAt(const Player &player, int row, int col){
   if(player.shipBoard[row][col].isHit){
     return '*'; //represents hit 
   }
@@ -186,7 +305,7 @@ void DrawShipBoardRow(const Player &player, int row){
   std::cout << rowName << '|';
 
   for(int c = 0; c < BOARD_SIZE; c++){
-    std::cout << " " << GetShipRepresentation(player, row, c) << " |";
+    std::cout << " " << GetShipRepresentationAt(player, row, c) << " |";
   }
 }
 
@@ -218,3 +337,5 @@ void DrawBoards(const Player &player){
   DrawSeparatorLine();
   std::cout << std::endl;
 }
+
+

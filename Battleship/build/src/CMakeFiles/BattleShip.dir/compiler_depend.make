@@ -187,8 +187,10 @@ src/CMakeFiles/BattleShip.dir/Battleship.cpp.o: /home/lekaum/Desktop/Games-C++/B
   /usr/include/c++/12.2.1/cstring \
   /usr/include/string.h \
   /usr/include/strings.h \
-  /home/lekaum/Desktop/Games-C++/Battleship/includes/Utils.hpp
+  /home/lekaum/Desktop/Games-C++/Battleship/src/includes/Utils.hpp
 
+
+/home/lekaum/Desktop/Games-C++/Battleship/src/includes/Utils.hpp:
 
 /usr/include/strings.h:
 
@@ -197,8 +199,6 @@ src/CMakeFiles/BattleShip.dir/Battleship.cpp.o: /home/lekaum/Desktop/Games-C++/B
 /usr/include/c++/12.2.1/bits/ostream.tcc:
 
 /usr/include/c++/12.2.1/bits/basic_ios.tcc:
-
-/home/lekaum/Desktop/Games-C++/Battleship/includes/Utils.hpp:
 
 /usr/include/c++/12.2.1/x86_64-pc-linux-gnu/bits/ctype_base.h:
 

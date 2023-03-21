@@ -1,4 +1,4 @@
-# Install script for directory: /home/lekaum/Desktop/Games-C++/Battleship/includes
+# Install script for directory: /home/lekaum/Desktop/Games-C++/Battleship/src/includes
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

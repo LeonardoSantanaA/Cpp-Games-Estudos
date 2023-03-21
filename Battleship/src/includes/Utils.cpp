@@ -81,3 +81,31 @@ char GetCharacter(const char *prompt, const char *error, const char validInput[]
 
   return input;
 }
+
+int GetInteger(const char *prompt, const char *error, const int validInput[], int validInputLength){
+  int input;
+  bool inputFailure;
+
+  do{
+    inputFailure = false;
+    std::cout << prompt;
+    std::cin >> input;
+    if(std::cin.fail()){
+      std::cin.clear();
+      std::cin.ignore(Utils::IGNORE_CHARS, '\n');
+      std::cout << error << std::endl;
+    }else{
+      for(int i = 0; i < validInputLength; i++){
+        if(input == validInput[i])
+          return input;
+      }
+    }
+    std::cout << error << std::endl;
+    inputFailure = true;
+  }while(inputFailure);
+
+  return -1;
+}
+
+
+

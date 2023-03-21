@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -Dutils_EXPORTS
 
-CXX_INCLUDES = -I/home/lekaum/Desktop/Games-C++/Battleship/includes
+CXX_INCLUDES = -I/home/lekaum/Desktop/Games-C++/Battleship/src/includes
 
 CXX_FLAGS = -fPIC
 

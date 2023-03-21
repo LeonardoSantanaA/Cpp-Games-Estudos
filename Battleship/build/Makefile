@@ -139,7 +139,7 @@ utils: cmake_check_build_system
 
 # fast build rule for target.
 utils/fast:
-	$(MAKE) $(MAKESILENT) -f includes/CMakeFiles/utils.dir/build.make includes/CMakeFiles/utils.dir/build
+	$(MAKE) $(MAKESILENT) -f src/includes/CMakeFiles/utils.dir/build.make src/includes/CMakeFiles/utils.dir/build
 .PHONY : utils/fast
 
 # Help Target

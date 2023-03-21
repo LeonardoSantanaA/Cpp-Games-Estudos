@@ -1,5 +1,5 @@
-includes/CMakeFiles/utils.dir/Utils.cpp.o: \
- /home/lekaum/Desktop/Games-C++/Battleship/includes/Utils.cpp \
+src/includes/CMakeFiles/utils.dir/Utils.cpp.o: \
+ /home/lekaum/Desktop/Games-C++/Battleship/src/includes/Utils.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/12.2.1/iostream \
  /usr/include/c++/12.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
  /usr/include/c++/12.2.1/x86_64-pc-linux-gnu/bits/os_defines.h \
@@ -132,4 +132,4 @@ includes/CMakeFiles/utils.dir/Utils.cpp.o: \
  /usr/include/c++/12.2.1/bits/basic_ios.tcc \
  /usr/include/c++/12.2.1/bits/ostream.tcc /usr/include/c++/12.2.1/istream \
  /usr/include/c++/12.2.1/bits/istream.tcc \
- /home/lekaum/Desktop/Games-C++/Battleship/includes/Utils.hpp
+ /home/lekaum/Desktop/Games-C++/Battleship/src/includes/Utils.hpp

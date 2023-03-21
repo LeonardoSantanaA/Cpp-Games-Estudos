@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Battleship/build/CMakeFiles /home/lekaum/Desktop/Games-C++/Battleship/build/includes//CMakeFiles/progress.marks
-	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 includes/all
+	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Battleship/build/CMakeFiles /home/lekaum/Desktop/Games-C++/Battleship/build/src/includes//CMakeFiles/progress.marks
+	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/includes/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Battleship/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 includes/clean
+	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/includes/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,12 +103,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 includes/preinstall
+	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/includes/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 includes/preinstall
+	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/includes/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
@@ -117,17 +117,17 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-includes/CMakeFiles/utils.dir/rule:
-	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 includes/CMakeFiles/utils.dir/rule
-.PHONY : includes/CMakeFiles/utils.dir/rule
+src/includes/CMakeFiles/utils.dir/rule:
+	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/includes/CMakeFiles/utils.dir/rule
+.PHONY : src/includes/CMakeFiles/utils.dir/rule
 
 # Convenience name for target.
-utils: includes/CMakeFiles/utils.dir/rule
+utils: src/includes/CMakeFiles/utils.dir/rule
 .PHONY : utils
 
 # fast build rule for target.
 utils/fast:
-	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f includes/CMakeFiles/utils.dir/build.make includes/CMakeFiles/utils.dir/build
+	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f src/includes/CMakeFiles/utils.dir/build.make src/includes/CMakeFiles/utils.dir/build
 .PHONY : utils/fast
 
 Utils.o: Utils.cpp.o
@@ -135,7 +135,7 @@ Utils.o: Utils.cpp.o
 
 # target to build an object file
 Utils.cpp.o:
-	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f includes/CMakeFiles/utils.dir/build.make includes/CMakeFiles/utils.dir/Utils.cpp.o
+	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f src/includes/CMakeFiles/utils.dir/build.make src/includes/CMakeFiles/utils.dir/Utils.cpp.o
 .PHONY : Utils.cpp.o
 
 Utils.i: Utils.cpp.i
@@ -143,7 +143,7 @@ Utils.i: Utils.cpp.i
 
 # target to preprocess a source file
 Utils.cpp.i:
-	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f includes/CMakeFiles/utils.dir/build.make includes/CMakeFiles/utils.dir/Utils.cpp.i
+	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f src/includes/CMakeFiles/utils.dir/build.make src/includes/CMakeFiles/utils.dir/Utils.cpp.i
 .PHONY : Utils.cpp.i
 
 Utils.s: Utils.cpp.s
@@ -151,7 +151,7 @@ Utils.s: Utils.cpp.s
 
 # target to generate assembly for a file
 Utils.cpp.s:
-	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f includes/CMakeFiles/utils.dir/build.make includes/CMakeFiles/utils.dir/Utils.cpp.s
+	cd /home/lekaum/Desktop/Games-C++/Battleship/build && $(MAKE) $(MAKESILENT) -f src/includes/CMakeFiles/utils.dir/build.make src/includes/CMakeFiles/utils.dir/Utils.cpp.s
 .PHONY : Utils.cpp.s
 
 # Help Target

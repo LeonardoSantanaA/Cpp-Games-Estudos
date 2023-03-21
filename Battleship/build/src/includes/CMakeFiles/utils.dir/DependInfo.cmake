@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/lekaum/Desktop/Games-C++/Battleship/includes/Utils.cpp" "includes/CMakeFiles/utils.dir/Utils.cpp.o" "gcc" "includes/CMakeFiles/utils.dir/Utils.cpp.o.d"
+  "/home/lekaum/Desktop/Games-C++/Battleship/src/includes/Utils.cpp" "src/includes/CMakeFiles/utils.dir/Utils.cpp.o" "gcc" "src/includes/CMakeFiles/utils.dir/Utils.cpp.o.d"
   )
 
 # Targets to which this target links.
