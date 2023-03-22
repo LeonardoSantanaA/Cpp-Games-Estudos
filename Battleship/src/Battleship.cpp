@@ -80,13 +80,19 @@ ShipPositionType MapBoardPosition(char rowInput, int colInput);
 ShipOrientationType GetShipOrientation();
 bool IsValidPlacement(const Player &player, const Ship &currentShip, const ShipPositionType &shipPosition, ShipOrientationType orientation);
 void PlaceShipOnBoard(Player &player, Ship &currentShip, const ShipPositionType &shipPosition, ShipOrientationType orientation);
+ShipType UpdateBoards(ShipPositionType guess, Player &currentPlayer,Player &otherPlayer);
+bool IsGameOver(const Player &player1, const Player &player2);
+bool AreAllShipsSunk(const Player &player);
+bool IsSunk(const Player &player, const Ship &ship);
+void SwitchPlayers(Player **currentPlayer, Player **otherPlayer);
+void  DisplayWinner(const Player &player1, const Player &player2);
 
 int main( int argc , char **argv ){
   Player player1;
   Player player2;
 
-  InitializePlayer(player1, "[Player1] ");
-  InitializePlayer(player2, "[Player2] ");
+  InitializePlayer(player1, "[Player1]");
+  InitializePlayer(player2, "[Player2]");
 
   do{
     PlayGame(player1, player2);
@@ -119,6 +125,86 @@ void PlayGame(Player &player1, Player &player2){
   SetupBoards(player1);
   SetupBoards(player2);
 
+  Player *currentPlayer = &player1;
+  Player *otherPlayer = &player2;
+
+  ShipPositionType guess;
+  do{
+    DrawBoards(*currentPlayer);
+    bool isValidGuess;
+    do{
+      std::cout << currentPlayer->playerName << " what is your guess? " << std::endl;
+      guess = GetBoardPosition();
+      isValidGuess = currentPlayer->guessBoard[guess.row][guess.col] == GT_NONE;
+      if(!isValidGuess){
+        std::cout << "That was not a valid guess! Please try again." << std::endl;
+      }
+    }while(!isValidGuess);
+    ShipType type = UpdateBoards(guess, *currentPlayer, *otherPlayer);
+    DrawBoards(*currentPlayer);
+    if(type != ST_NONE && IsSunk(*otherPlayer, otherPlayer->ships[type - 1])){
+      std::cout << "You sunk " << otherPlayer->playerName << "'s " << GetShipNameForShipType(type) << "!" << std::endl;
+    }
+    WaitForKeyPress();
+    SwitchPlayers(&currentPlayer, &otherPlayer);
+  }while(!IsGameOver(player1, player2));
+
+  DisplayWinner(player1, player2);
+
+}
+
+ShipType UpdateBoards(ShipPositionType guess, Player &currentPlayer,Player &otherPlayer){
+  if(otherPlayer.shipBoard[guess.row][guess.col].shipType != ST_NONE){
+    //HIT 
+    currentPlayer.guessBoard[guess.row][guess.col] = GT_HIT;
+    otherPlayer.shipBoard[guess.row][guess.col].isHit = true;
+  }else{
+    currentPlayer.guessBoard[guess.row][guess.col] = GT_MISSED;
+  }
+  return otherPlayer.shipBoard[guess.row][guess.col].shipType;
+}
+
+void SwitchPlayers(Player **currentPlayer, Player **otherPlayer){
+  Player *temp = *currentPlayer;
+  *currentPlayer = *otherPlayer;
+  *otherPlayer = temp;
+}
+
+void  DisplayWinner(const Player &player1, const Player &player2){
+  if(AreAllShipsSunk(player1)){
+    std::cout << "Congratulations " << player2.playerName << "! Your won!" << std::endl;
+  }else{
+    std::cout << "Congratulations " << player1.playerName << "! You won!" << std::endl;
+  }
+}
+
+bool IsSunk(const Player &player, const Ship &ship){
+  if(ship.orientation == SO_HORIZONTAL){
+    for(int col = ship.position.col; col < (ship.position.col + ship.shipSize); col++){
+      if(!player.shipBoard[ship.position.row][col].isHit)
+        return false;
+      
+    }
+  }else{
+    for(int row = ship.position.row; row < (ship.position.row + ship.shipSize); row++){
+      if(!player.shipBoard[row][ship.position.col].isHit)
+        return false;
+    }
+  }
+  return true;
+}
+
+bool AreAllShipsSunk(const Player &player){
+  for(int i = 0; i < NUM_SHIPS; i++){
+    if(!IsSunk(player, player.ships[i]))
+      return false;
+    
+  }
+  return true;
+}
+
+bool IsGameOver(const Player &player1, const Player &player2){
+  return AreAllShipsSunk(player1) || AreAllShipsSunk(player2);
 }
 
 bool WantToPlayAgain(){
@@ -225,7 +311,7 @@ void SetupBoards(Player &player){
     bool isValidPlacement = false;
 
     do{
-      std::cout << player.playerName << "please set the position and orientation for your " << GetShipNameForShipType(currentShip.shipType) << std::endl;
+      std::cout << player.playerName << " please set the position and orientation for your " << GetShipNameForShipType(currentShip.shipType) << std::endl;
       
       shipPosition = GetBoardPosition();
       orientation = GetShipOrientation();
@@ -239,9 +325,10 @@ void SetupBoards(Player &player){
     }while(!isValidPlacement);
 
     PlaceShipOnBoard(player, currentShip, shipPosition, orientation);
+    WaitForKeyPress();
   }
   DrawBoards(player);
-
+  WaitForKeyPress();
 }
 
 void ClearBoards(Player& player){
@@ -319,6 +406,7 @@ void DrawGuessBoardRow(const Player &player, int row){
 }
 
 void DrawBoards(const Player &player){
+  ClearScreen();
   DrawColumnsRow();
   DrawColumnsRow();
   std::cout << std::endl;

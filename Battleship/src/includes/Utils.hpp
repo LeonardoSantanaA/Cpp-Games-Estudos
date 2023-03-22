@@ -16,4 +16,6 @@ namespace Utils
 char GetCharacter(const char *prompt, const char *error);
 char GetCharacter(const char *prompt, const char *error, const char validInput[], int validInputLength, Utils::CharacterCaseType charCase);
 int GetInteger(const char *prompt, const char *error, const int validInput[], int validInputLength);
+void ClearScreen();
+void WaitForKeyPress();
 #endif

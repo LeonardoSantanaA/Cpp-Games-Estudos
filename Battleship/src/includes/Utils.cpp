@@ -107,5 +107,14 @@ int GetInteger(const char *prompt, const char *error, const int validInput[], in
   return -1;
 }
 
+void ClearScreen(){
+  system("clear");
+}
 
-
+void WaitForKeyPress(){
+  char key = '\0';
+  do{
+    std::cout << "Press a key to continue...";
+    std::cin >> key;
+  }while(key == '\0');
+}
