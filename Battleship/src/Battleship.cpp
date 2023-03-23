@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cstring>
+#include <cstdlib>
+#include <ctime>
 #include "./includes/Utils.hpp"
 
 enum{
@@ -52,7 +54,13 @@ struct ShipPartType{
   bool isHit;
 };
 
+enum PlayerType{
+  PT_HUMAN = 0,
+  PT_AI
+};
+
 struct Player{
+  PlayerType playerType;
   char playerName[PLAYER_NAME_SIZE];
   Ship ships[NUM_SHIPS];
   GuessType guessBoard[BOARD_SIZE][BOARD_SIZE];
@@ -85,9 +93,15 @@ bool IsGameOver(const Player &player1, const Player &player2);
 bool AreAllShipsSunk(const Player &player);
 bool IsSunk(const Player &player, const Ship &ship);
 void SwitchPlayers(Player **currentPlayer, Player **otherPlayer);
-void  DisplayWinner(const Player &player1, const Player &player2);
+void DisplayWinner(const Player &player1, const Player &player2);
+PlayerType GetPlayer2Type();
+ShipPositionType GetRandomPosition();
+ShipPositionType GetAIGuess(const Player &currentPlayer);
+void SetupAIBoards(Player &player);
 
 int main( int argc , char **argv ){
+  std::srand(std::time(NULL));
+
   Player player1;
   Player player2;
 
@@ -122,6 +136,11 @@ void InitializeShip(Ship &ship, int shipSize, ShipType shipType){
 }
 
 void PlayGame(Player &player1, Player &player2){
+
+  ClearScreen();
+  player1.playerType = PT_HUMAN;
+  player2.playerType = GetPlayer2Type();
+
   SetupBoards(player1);
   SetupBoards(player2);
 
@@ -130,20 +149,38 @@ void PlayGame(Player &player1, Player &player2){
 
   ShipPositionType guess;
   do{
-    DrawBoards(*currentPlayer);
+    if(currentPlayer->playerType == PT_HUMAN)
+      DrawBoards(*currentPlayer);
+
     bool isValidGuess;
     do{
-      std::cout << currentPlayer->playerName << " what is your guess? " << std::endl;
-      guess = GetBoardPosition();
-      isValidGuess = currentPlayer->guessBoard[guess.row][guess.col] == GT_NONE;
-      if(!isValidGuess){
-        std::cout << "That was not a valid guess! Please try again." << std::endl;
+      if(currentPlayer->playerType == PT_HUMAN){
+        std::cout << currentPlayer->playerName << " what is your guess? " << std::endl;
+        guess = GetBoardPosition();
+      }else{
+        guess = GetAIGuess(*currentPlayer);
       }
+      isValidGuess = currentPlayer->guessBoard[guess.row][guess.col] == GT_NONE;
+      if(!isValidGuess && currentPlayer->playerType == PT_HUMAN)
+        std::cout << "That was not a valid guess! Please try again." << std::endl;
+      
     }while(!isValidGuess);
     ShipType type = UpdateBoards(guess, *currentPlayer, *otherPlayer);
-    DrawBoards(*currentPlayer);
+
+    
+    if(currentPlayer->playerType == PT_AI){
+      DrawBoards(*otherPlayer);
+      std::cout << currentPlayer->playerName << " chose row " << char(guess.row + 'A') << " and column " << guess.col + 1 << std::endl;
+    }else{
+      DrawBoards(*currentPlayer);
+    }
+
     if(type != ST_NONE && IsSunk(*otherPlayer, otherPlayer->ships[type - 1])){
-      std::cout << "You sunk " << otherPlayer->playerName << "'s " << GetShipNameForShipType(type) << "!" << std::endl;
+      if(currentPlayer->playerType == PT_AI){
+        std::cout << currentPlayer->playerName << " sunk your " << GetShipNameForShipType(type) << "!" << std::endl;
+      }else{
+        std::cout << "You sunk " << otherPlayer->playerName << "'s " << GetShipNameForShipType(type) << "!" << std::endl;
+      }
     }
     WaitForKeyPress();
     SwitchPlayers(&currentPlayer, &otherPlayer);
@@ -301,7 +338,12 @@ ShipOrientationType GetShipOrientation(){
 
 void SetupBoards(Player &player){
   ClearBoards(player);
-  
+ 
+  if(player.playerType == PT_AI){
+    SetupAIBoards(player);
+    return;
+  }
+
   for(int i = 0; i < NUM_SHIPS; i++){
     DrawBoards(player);
     Ship &currentShip = player.ships[i];
@@ -426,4 +468,41 @@ void DrawBoards(const Player &player){
   std::cout << std::endl;
 }
 
+PlayerType GetPlayer2Type(){
+  const int validInput[2] = {1 ,2};
 
+  int input = GetInteger("Who would you like to player against?\n1. Human\n2. AI\n\nWhat is your choice? ", Utils::INPUT_ERROR_STRING, validInput, 2);
+
+  if(input == 1)
+    return PT_HUMAN;
+  else
+    return PT_AI;
+}
+
+ShipPositionType GetRandomPosition(){
+  ShipPositionType guess;
+
+  guess.row = (std::rand() % BOARD_SIZE) - 1;
+  guess.col = (std::rand() & BOARD_SIZE) - 1;
+
+  return guess;
+
+}
+
+ShipPositionType GetAIGuess(const Player &currentPlayer){
+  return GetRandomPosition();
+}
+
+void SetupAIBoards(Player &player){
+  ShipPositionType pos;
+  ShipOrientationType orientation;
+
+  for(int i = 0; i < NUM_SHIPS; i++){
+    Ship &currentShip = player.ships[i];
+    do{
+      pos = GetRandomPosition();
+      orientation = ShipOrientationType(rand() & 2);
+    }while(!IsValidPlacement(player, currentShip, pos, orientation));
+    PlaceShipOnBoard(player, currentShip, pos, orientation);
+  }
+}
