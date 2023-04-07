@@ -1,8 +1,11 @@
 #include <iostream>
 #include <fstream>
+#include <cstring>
+#include <ostream>
 #include "includes/Utils.hpp"
 
 const int MAX_NAME_SIZE = 256;
+const char* CONTACTS_FILE_NAME = "Contacts.bin"; //binary file
 
 struct Contact{
   char firstName[MAX_NAME_SIZE];
@@ -22,6 +25,9 @@ char GetOptionFromUser();
 void ExecuteOption(char option, ContactsDB& contactsDB);
 void AddOption(ContactsDB& contactsDB);
 void DisplayOption(const ContactsDB& contactsDB);
+void ResizeContactsDB(ContactsDB& contactsDB, int newCapacity); 
+void SaveContacts(const ContactsDB& contactsDB);
+void CreateContactsFile();
 
 int main( int argc , char **argv ){
   ContactsDB contactsDB;
@@ -29,7 +35,12 @@ int main( int argc , char **argv ){
   contactsDB.numberOfContacts = 0;
   contactsDB.capacity = 0;
 
-  LoadContacts(contactsDB);
+  CreateContactsFile();
+
+  if(!LoadContacts(contactsDB)){
+    std::cout << "Error reading file: " << CONTACTS_FILE_NAME << std::endl;
+    return 0;
+  }
 
   char option;
 
@@ -40,12 +51,65 @@ int main( int argc , char **argv ){
 
   }while(option != 'q');
 
+  SaveContacts(contactsDB);
+
+  if(contactsDB.optrContacts != nullptr){
+    delete [] contactsDB.optrContacts;
+    contactsDB.optrContacts = nullptr;
+  }
+
   return 0;
   
 }
 
-bool LoadContacts(ContactsDB& contactsDB){
+void CreateContactsFile(){
+  std::ifstream inFile;
+  
+  inFile.open(CONTACTS_FILE_NAME, std::fstream::binary);
+  if(!inFile.is_open()){
+    std::ofstream outFile;
+    outFile.open(CONTACTS_FILE_NAME, std::fstream::binary);
+    outFile << std::flush;
+    outFile.close();
+  }
+}
 
+
+bool LoadContacts(ContactsDB& contactsDB){
+  std::ifstream inFile;
+
+  inFile.open(CONTACTS_FILE_NAME, std::fstream::binary);
+  
+  if(inFile.is_open()){
+    inFile.seekg(0, inFile.end); //move the cursor to the final
+    int lengthOfFileInBytes = inFile.tellg(); //returns the index of the cursor 
+    inFile.seekg(0, inFile.beg); //move the cursor to the beginning 
+
+    int numberOfContacts = lengthOfFileInBytes / sizeof(Contact);
+    int capacity = numberOfContacts * 2 + 10;
+
+    contactsDB.optrContacts = new Contact[capacity];
+    contactsDB.numberOfContacts = numberOfContacts;
+    contactsDB.capacity = capacity;
+
+    inFile.read((char*)contactsDB.optrContacts, lengthOfFileInBytes);
+
+    inFile.close();
+
+    return true;
+  }
+
+  return false;
+}
+
+void SaveContacts(const ContactsDB& contactsDB){
+  std::ofstream outFile;
+
+  outFile.open(CONTACTS_FILE_NAME, std::fstream::binary);
+  if(outFile.is_open()){
+    outFile.write((char*)contactsDB.optrContacts, contactsDB.numberOfContacts * sizeof(Contact));
+    outFile.close();
+  }
 }
 
 char GetOptionFromUser(){
@@ -53,6 +117,7 @@ char GetOptionFromUser(){
 
   return GetCharacter("Please choose any option:\n\n(D)isplay Contacts\n(A)dd Contact\n(Q)uit\n\nWhat is your choice: ", Utils::INPUT_ERROR_STRING, options, 3, Utils::CC_LOWER_CASE);
 }
+
 void ExecuteOption(char option, ContactsDB& contactsDB){
   switch(option){
     case 'a':
@@ -88,4 +153,22 @@ void DisplayOption(const ContactsDB& contactsDB){
     std::cout << "Name: " << contactsDB.optrContacts[i].firstName << " " << contactsDB.optrContacts[i].lastName << std::endl;
     std::cout << "Phone number: " << contactsDB.optrContacts[i].phoneNumber << std::endl << std::endl;
   }
+}
+
+void ResizeContactsDB(ContactsDB& contactsDB, int newCapacity){
+  Contact* newContactsPtr = new Contact[newCapacity];
+
+  for(int i = 0; i < contactsDB.numberOfContacts; i++){
+    std::strcpy(newContactsPtr[i].firstName, contactsDB.optrContacts[i].firstName);
+    std::strcpy(newContactsPtr[i].lastName, contactsDB.optrContacts[i].lastName);
+    newContactsPtr[i].phoneNumber = contactsDB.optrContacts[i].phoneNumber;
+  }
+
+  if(contactsDB.optrContacts != nullptr){
+    delete[] contactsDB.optrContacts;
+    contactsDB.optrContacts = nullptr;
+  }
+
+  contactsDB.optrContacts = newContactsPtr;
+  contactsDB.capacity = newCapacity;
 }

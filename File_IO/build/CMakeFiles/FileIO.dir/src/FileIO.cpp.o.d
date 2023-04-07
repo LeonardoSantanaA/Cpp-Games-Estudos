@@ -135,5 +135,6 @@ CMakeFiles/FileIO.dir/src/FileIO.cpp.o: \
  /usr/include/c++/12.2.1/bits/codecvt.h \
  /usr/include/c++/12.2.1/x86_64-pc-linux-gnu/bits/basic_file.h \
  /usr/include/c++/12.2.1/x86_64-pc-linux-gnu/bits/c++io.h \
- /usr/include/c++/12.2.1/bits/fstream.tcc \
+ /usr/include/c++/12.2.1/bits/fstream.tcc /usr/include/c++/12.2.1/cstring \
+ /usr/include/string.h /usr/include/strings.h \
  /home/lekaum/Desktop/Games-C++/File_IO/src/includes/Utils.hpp
