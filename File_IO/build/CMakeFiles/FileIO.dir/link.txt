@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/FileIO.dir/src/FileIO.cpp.o -o FileIO  -Wl,-rpath,/home/lekaum/Desktop/Games-C++/File_IO/build/src/includes src/includes/libutils.so 

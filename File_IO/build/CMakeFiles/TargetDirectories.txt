@@ -1,0 +1,8 @@
+/home/lekaum/Desktop/Games-C++/File_IO/build/CMakeFiles/FileIO.dir
+/home/lekaum/Desktop/Games-C++/File_IO/build/CMakeFiles/edit_cache.dir
+/home/lekaum/Desktop/Games-C++/File_IO/build/CMakeFiles/rebuild_cache.dir
+/home/lekaum/Desktop/Games-C++/File_IO/build/src/CMakeFiles/edit_cache.dir
+/home/lekaum/Desktop/Games-C++/File_IO/build/src/CMakeFiles/rebuild_cache.dir
+/home/lekaum/Desktop/Games-C++/File_IO/build/src/includes/CMakeFiles/utils.dir
+/home/lekaum/Desktop/Games-C++/File_IO/build/src/includes/CMakeFiles/edit_cache.dir
+/home/lekaum/Desktop/Games-C++/File_IO/build/src/includes/CMakeFiles/rebuild_cache.dir
