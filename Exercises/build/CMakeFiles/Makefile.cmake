@@ -55,4 +55,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/DynamicMemory_Exercise.dir/DependInfo.cmake"
   "CMakeFiles/TicTacToe.dir/DependInfo.cmake"
   "CMakeFiles/Calculator.dir/DependInfo.cmake"
+  "CMakeFiles/PigLatin.dir/DependInfo.cmake"
   )
