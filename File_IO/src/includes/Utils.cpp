@@ -83,7 +83,7 @@ char GetCharacter(const char* prompt, const char* error, const char validInput[]
   return input;
 }
 
-int GetString(const char* prompt, const char* error, char string[], int maxLength){
+int GetString(const char* prompt, const char* error, std::string& aString){
   bool failure;
   int length;
   
@@ -91,8 +91,7 @@ int GetString(const char* prompt, const char* error, char string[], int maxLengt
     failure = false;
 
     std::cout << prompt;
-    std::cin >> std::ws; //special - meaning clear whitespace
-    std::cin.get(string, maxLength, '\n');
+    std::cin >> aString;
 
     if(std::cin.fail()){
       std::cin.clear();
@@ -101,7 +100,7 @@ int GetString(const char* prompt, const char* error, char string[], int maxLengt
       failure = true;
     }else{
       std::cin.ignore(Utils::IGNORE_CHARS, '\n');
-      length = std::strlen(string);
+      length = aString.length();
 
       if(length == 0){
         std::cout << "You must enter a word that's longer than 0 characters! Please try again." << std::endl;

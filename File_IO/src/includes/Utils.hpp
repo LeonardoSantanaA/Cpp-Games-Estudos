@@ -1,6 +1,8 @@
 #ifndef __UTILS_H__
 #define __UTILS_H__
 
+#include <string>
+
 namespace Utils
 {
   const int IGNORE_CHARS = 256;
@@ -15,7 +17,7 @@ namespace Utils
 
 char GetCharacter(const char* prompt, const char* error);
 char GetCharacter(const char* prompt, const char* error, const char validInput[], int validInputLength, Utils::CharacterCaseType charCase);
-int GetString (const char* prompt, const char* error, char string[], int maxLength);
+int GetString (const char* prompt, const char* error, std::string& aString);
 int GetInteger(const char *prompt, const char* error, const int validInput[], int validInputLength);
 void ClearScreen();
 void WaitForKeyPress();
