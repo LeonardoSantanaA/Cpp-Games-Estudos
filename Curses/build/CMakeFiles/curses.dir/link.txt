@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/curses.dir/Curses.cpp.o -o curses  -lcurses -lform 
