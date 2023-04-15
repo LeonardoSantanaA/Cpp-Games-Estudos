@@ -6,6 +6,9 @@
 int main( int argc , char **argv ){
   initscr(); //initialize screen
   curs_set(false); //invisible cursor
+  noecho(); //doesn´t show what i'm typing
+  nodelay(stdscr, true); //true means no delay - getch() to not block
+  keypad(stdscr, true); //enables the arrow keys
 
   int windowMaxX = 0;
   int windowMaxY = 0;
@@ -29,7 +32,18 @@ int main( int argc , char **argv ){
 
   clear();
 
-  refresh();
+  bool quit = false;
+  int input;
+  while(!quit){
+  input = getch(); //read 1 character from input
+    if(input == KEY_DOWN)
+      quit = true;
+
+    mvprintw(20, 20, "Hello Everyone");
+    refresh();
+
+  }
+
   getch(); //get character (pause)
   endwin();
 
