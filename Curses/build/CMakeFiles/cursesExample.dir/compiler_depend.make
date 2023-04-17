@@ -186,8 +186,11 @@ CMakeFiles/cursesExample.dir/CursesExample.cpp.o: /home/lekaum/Desktop/Games-C++
   /usr/include/c++/12.2.1/bits/basic_ios.tcc \
   /usr/include/c++/12.2.1/bits/ostream.tcc \
   /usr/include/c++/12.2.1/istream \
-  /usr/include/c++/12.2.1/bits/istream.tcc
+  /usr/include/c++/12.2.1/bits/istream.tcc \
+  /usr/include/c++/12.2.1/ctime
 
+
+/usr/include/c++/12.2.1/ctime:
 
 /usr/include/c++/12.2.1/bits/ostream.tcc:
 

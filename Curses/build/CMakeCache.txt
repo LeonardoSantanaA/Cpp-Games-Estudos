@@ -233,9 +233,6 @@ PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 //Value Computed by CMake
 curses_BINARY_DIR:STATIC=/home/lekaum/Desktop/Games-C++/Curses/build
 
-//The directory containing a CMake configuration file for curses.
-curses_DIR:PATH=curses_DIR-NOTFOUND
-
 //Value Computed by CMake
 curses_IS_TOP_LEVEL:STATIC=ON
 
