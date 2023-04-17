@@ -1,3 +1,4 @@
 /home/lekaum/Desktop/Games-C++/Curses/build/CMakeFiles/curses.dir
+/home/lekaum/Desktop/Games-C++/Curses/build/CMakeFiles/cursesExample.dir
 /home/lekaum/Desktop/Games-C++/Curses/build/CMakeFiles/edit_cache.dir
 /home/lekaum/Desktop/Games-C++/Curses/build/CMakeFiles/rebuild_cache.dir

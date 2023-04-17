@@ -1,0 +1,57 @@
+#include <curses.h>
+#include <iostream>
+#include <ctime>
+
+int main( int argc , char **argv ){
+  int currentXPos = 0;
+  int currentYPos = 0;
+
+  initscr();
+  noecho();
+  curs_set(false);
+  nodelay(stdscr, true);
+  keypad(stdscr, true);
+
+  bool quit = false;
+
+  int input; //int for arrow keys 
+
+  clock_t currentTime = clock(); //give us the current time in clock ticks
+  const int FPS = 60;
+
+  while(!quit){
+
+    clock_t newTime = clock();
+    clock_t dt = newTime - currentTime;
+
+    if(dt > (CLOCKS_PER_SEC / FPS)){ // t/s / f/s -> t/f 
+    currentTime = newTime;
+
+    input = getch();
+
+    if(input != 'q'){
+      clear();
+
+      if(input == KEY_DOWN){
+        currentYPos++;
+      }else if(input == KEY_UP){
+        currentYPos--;
+      }else if(input == KEY_LEFT){
+        currentXPos--;
+      }else if(input == KEY_RIGHT){
+        currentXPos++;
+      }
+      mvprintw(currentYPos, currentXPos, "o");
+      refresh();
+    }else{
+      quit = true;
+    }
+
+    }
+  }
+
+  endwin();
+
+  return 0;
+}
+

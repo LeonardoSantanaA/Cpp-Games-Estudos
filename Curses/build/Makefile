@@ -129,6 +129,19 @@ curses/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/curses.dir/build.make CMakeFiles/curses.dir/build
 .PHONY : curses/fast
 
+#=============================================================================
+# Target rules for targets named cursesExample
+
+# Build rule for target.
+cursesExample: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cursesExample
+.PHONY : cursesExample
+
+# fast build rule for target.
+cursesExample/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursesExample.dir/build.make CMakeFiles/cursesExample.dir/build
+.PHONY : cursesExample/fast
+
 Curses.o: Curses.cpp.o
 .PHONY : Curses.o
 
@@ -153,6 +166,30 @@ Curses.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/curses.dir/build.make CMakeFiles/curses.dir/Curses.cpp.s
 .PHONY : Curses.cpp.s
 
+CursesExample.o: CursesExample.cpp.o
+.PHONY : CursesExample.o
+
+# target to build an object file
+CursesExample.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursesExample.dir/build.make CMakeFiles/cursesExample.dir/CursesExample.cpp.o
+.PHONY : CursesExample.cpp.o
+
+CursesExample.i: CursesExample.cpp.i
+.PHONY : CursesExample.i
+
+# target to preprocess a source file
+CursesExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursesExample.dir/build.make CMakeFiles/cursesExample.dir/CursesExample.cpp.i
+.PHONY : CursesExample.cpp.i
+
+CursesExample.s: CursesExample.cpp.s
+.PHONY : CursesExample.s
+
+# target to generate assembly for a file
+CursesExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursesExample.dir/build.make CMakeFiles/cursesExample.dir/CursesExample.cpp.s
+.PHONY : CursesExample.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,9 +199,13 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... curses"
+	@echo "... cursesExample"
 	@echo "... Curses.o"
 	@echo "... Curses.i"
 	@echo "... Curses.s"
+	@echo "... CursesExample.o"
+	@echo "... CursesExample.i"
+	@echo "... CursesExample.s"
 .PHONY : help
 
 

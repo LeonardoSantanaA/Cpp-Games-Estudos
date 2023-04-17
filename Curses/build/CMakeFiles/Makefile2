@@ -64,6 +64,7 @@ CMAKE_BINARY_DIR = /home/lekaum/Desktop/Games-C++/Curses/build
 
 # The main recursive "all" target.
 all: CMakeFiles/curses.dir/all
+all: CMakeFiles/cursesExample.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -72,6 +73,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/curses.dir/clean
+clean: CMakeFiles/cursesExample.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -99,6 +101,32 @@ curses: CMakeFiles/curses.dir/rule
 CMakeFiles/curses.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/curses.dir/build.make CMakeFiles/curses.dir/clean
 .PHONY : CMakeFiles/curses.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/cursesExample.dir
+
+# All Build rule for target.
+CMakeFiles/cursesExample.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursesExample.dir/build.make CMakeFiles/cursesExample.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursesExample.dir/build.make CMakeFiles/cursesExample.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Curses/build/CMakeFiles --progress-num=3,4 "Built target cursesExample"
+.PHONY : CMakeFiles/cursesExample.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/cursesExample.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Curses/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/cursesExample.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Curses/build/CMakeFiles 0
+.PHONY : CMakeFiles/cursesExample.dir/rule
+
+# Convenience name for target.
+cursesExample: CMakeFiles/cursesExample.dir/rule
+.PHONY : cursesExample
+
+# clean rule for target.
+CMakeFiles/cursesExample.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursesExample.dir/build.make CMakeFiles/cursesExample.dir/clean
+.PHONY : CMakeFiles/cursesExample.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
