@@ -1,18 +1,21 @@
 #ifndef _TEXTINVADERS_H_
 #define _TEXTINVADERS_H_
 
-#include <iostream>
-#include <curses.h>
 #include <string>
 #include <vector>
-#include "CursesUtils.hpp"
+
+const char* PLAYER_SPRITE[] = {" =A= ", "====="};
 
 enum {
   SHIELD_SPRITE_HEIGHT = 3,
   NUM_ALIEN_ROWS = 5,
   NUM_ALIEN_COLUMNS = 11,
   MAX_NUMBER_ALIEN_BOMBS = 3,
-  MAX_NUMBER_LIVES
+  MAX_NUMBER_LIVES,
+  PLAYER_SPRITE_WIDTH = 5,
+  PLAYER_SPRITE_HEIGHT = 2,
+  NOT_IN_PLAY = -1,
+  PLAYER_MOVEMENT_AMOUNT = 2,
 };
 
 enum AlienState{

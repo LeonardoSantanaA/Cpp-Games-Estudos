@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/TextInvaders.dir/TextInvaders.cpp.o CMakeFiles/TextInvaders.dir/CursesUtils.cpp.o -o TextInvaders  -lcurses -lform 

@@ -1,0 +1,3 @@
+/home/lekaum/Desktop/Games-C++/TextInvaders/build/CMakeFiles/TextInvaders.dir
+/home/lekaum/Desktop/Games-C++/TextInvaders/build/CMakeFiles/edit_cache.dir
+/home/lekaum/Desktop/Games-C++/TextInvaders/build/CMakeFiles/rebuild_cache.dir
