@@ -3,11 +3,17 @@
 
 #include <string>
 #include <vector>
+#include <ctime>
 
 const char* PLAYER_SPRITE[] = {" =A= ", "====="};
 
+const char PLAYER_MISSILE_SPRITE = '|';
+
+const char* SHIELD_SPRITE[] = {"/IIIII\\", "IIIIIII", "I/   \\I"};
+
 enum {
   SHIELD_SPRITE_HEIGHT = 3,
+  SHIELD_SPRITE_WIDTH = 7,
   NUM_ALIEN_ROWS = 5,
   NUM_ALIEN_COLUMNS = 11,
   MAX_NUMBER_ALIEN_BOMBS = 3,
@@ -16,6 +22,9 @@ enum {
   PLAYER_SPRITE_HEIGHT = 2,
   NOT_IN_PLAY = -1,
   PLAYER_MOVEMENT_AMOUNT = 2,
+  PLAYER_MISSILE_SPEED = 1,
+  FPS = 20,
+  NUM_SHIELS = 4,
 };
 
 enum AlienState{

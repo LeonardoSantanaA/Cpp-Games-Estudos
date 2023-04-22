@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cmath>
+#include <cstring>
 #include "TextInvaders.hpp"
 #include "CursesUtils.hpp"
 
@@ -10,10 +12,15 @@ int HandleInput(const Game& game, Player& player);
 void UpdateGame(const Game& game, Player& player);
 void DrawGame(const Game& game, const Player& player);
 void MovePlayer(const Game& game, Player& player, int dx);
+void PlayerShoot(Player& player);
+void DrawPlayer(const Player& player, const char* sprite[]);
+void UpdateMissile(Player& player);
+void InitShields(const Game& game, Shield shields[], int numberOfShields);
 
 int main(){
   Game game;
   Player player;
+  Shield shields[NUM_SHIELS];
 
   InitializeCurses(true);
 
@@ -23,18 +30,27 @@ int main(){
   bool quit = false;
   int input;
 
+  clock_t lastTime = clock();
+
   while(!quit){
     input = HandleInput(game, player);
 
     if(input != 'q'){
+      clock_t currentTime = clock();
+      clock_t dt = currentTime - lastTime;
+
+      if(dt > CLOCKS_PER_SEC / FPS){
+      lastTime = currentTime;
+
       UpdateGame(game, player);
       ClearScreen(); //curses utils 
       DrawGame(game, player);
       RefreshScreen(); //curses utils
+
+      }
     }else{
       quit = true;
     }
-
   }
 
   ShutdownCurses();
@@ -82,17 +98,22 @@ int HandleInput(const Game& game, Player& player){
     case AK_RIGHT:
       MovePlayer(game, player, PLAYER_MOVEMENT_AMOUNT);
       break;
+
+    case ' ':
+      PlayerShoot(player);
+      break;
   }
 
   return ' ';
 }
 
 void UpdateGame(const Game& game, Player& player){
-  
+  UpdateMissile(player); 
 }
 
 void DrawGame(const Game& game, const Player& player){
-  DrawSprite(player.position.x, player.position.y, PLAYER_SPRITE, player.spriteSize.height);
+  DrawPlayer(player, PLAYER_SPRITE);
+
 }
 
 void MovePlayer(const Game& game, Player& player, int dx){
@@ -102,5 +123,45 @@ void MovePlayer(const Game& game, Player& player, int dx){
     player.position.x = 0;
   }else{
     player.position.x += dx;
+  }
+}
+
+void PlayerShoot(Player& player){
+  if(player.missile.x == NOT_IN_PLAY || player.missile.y == NOT_IN_PLAY){
+    player.missile.y = player.position.y - 1; //one row above the player 
+    player.missile.x = player.position.x + player.spriteSize.width / 2;
+  }
+}
+
+void DrawPlayer(const Player& player, const char* sprite[]){
+  DrawSprite(player.position.x, player.position.y, PLAYER_SPRITE, player.spriteSize.height);
+  if(player.missile.x != NOT_IN_PLAY){
+    DrawCharacter(player.missile.x, player.missile.y, PLAYER_MISSILE_SPRITE);
+  }
+}
+
+void UpdateMissile(Player& player){
+  if(player.missile.y != NOT_IN_PLAY){
+    player.missile.y -= PLAYER_MISSILE_SPEED;
+
+    if(player.missile.y < 0){
+      ResetMissile(player);
+    }
+  }
+}
+
+void InitShields(const Game& game, Shield shields[], int numberOfShields){
+  int firstPadding = std::ceil(float(game.windowSize.width - numberOfShields * SHIELD_SPRITE_WIDTH) / float(numberOfShields + 1));
+  int xPadding = std::floor(float(game.windowSize.width - numberOfShields * SHIELD_SPRITE_WIDTH) / float(numberOfShields + 1));
+
+  for(int i = 0; i < numberOfShields; i++){
+    Shield& shield = shields[i];
+    shield.position.x = firstPadding + i * (SHIELD_SPRITE_WIDTH + xPadding);
+    shield.position.y = game.windowSize.height - PLAYER_SPRITE_HEIGHT - 1 - SHIELD_SPRITE_HEIGHT - 2;
+
+    for(int row = 0; row < SHIELD_SPRITE_HEIGHT; row++){
+      shield.sprite[row] = new char[SHIELD_SPRITE_WIDTH + 1];
+      strcpy(shield.sprite[row], SHIELD_SPRITE[row]);
+    }
   }
 }
