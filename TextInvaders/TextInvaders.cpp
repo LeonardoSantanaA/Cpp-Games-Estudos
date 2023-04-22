@@ -10,12 +10,14 @@ void ResetPlayer(const Game& game, Player& player);
 void ResetMissile(Player& player);
 int HandleInput(const Game& game, Player& player);
 void UpdateGame(const Game& game, Player& player);
-void DrawGame(const Game& game, const Player& player);
+void DrawGame(const Game& game, const Player& player, Shield shields[], int numberOfShields);
 void MovePlayer(const Game& game, Player& player, int dx);
 void PlayerShoot(Player& player);
 void DrawPlayer(const Player& player, const char* sprite[]);
 void UpdateMissile(Player& player);
 void InitShields(const Game& game, Shield shields[], int numberOfShields);
+void CleanUpShields(Shield shields[], int numberOfShields);
+void DrawShields(const Shield shields[], int numberOfShields);
 
 int main(){
   Game game;
@@ -26,6 +28,7 @@ int main(){
 
   InitGame(game);
   InitPlayer(game, player);
+  InitShields(game, shields, NUM_SHIELS);
 
   bool quit = false;
   int input;
@@ -44,7 +47,7 @@ int main(){
 
       UpdateGame(game, player);
       ClearScreen(); //curses utils 
-      DrawGame(game, player);
+      DrawGame(game, player, shields, NUM_SHIELS);
       RefreshScreen(); //curses utils
 
       }
@@ -53,6 +56,7 @@ int main(){
     }
   }
 
+  CleanUpShields(shields, NUM_SHIELS);
   ShutdownCurses();
 
   return 0;
@@ -111,9 +115,9 @@ void UpdateGame(const Game& game, Player& player){
   UpdateMissile(player); 
 }
 
-void DrawGame(const Game& game, const Player& player){
+void DrawGame(const Game& game, const Player& player, Shield shields[], int numberOfShields){
   DrawPlayer(player, PLAYER_SPRITE);
-
+  DrawShields(shields, numberOfShields);
 }
 
 void MovePlayer(const Game& game, Player& player, int dx){
@@ -163,5 +167,23 @@ void InitShields(const Game& game, Shield shields[], int numberOfShields){
       shield.sprite[row] = new char[SHIELD_SPRITE_WIDTH + 1];
       strcpy(shield.sprite[row], SHIELD_SPRITE[row]);
     }
+  }
+}
+
+void CleanUpShields(Shield shields[], int numberOfShields){
+  for(int i = 0; i < numberOfShields; i++){
+    Shield& shield = shields[i];
+
+    for(int row = 0; row < SHIELD_SPRITE_HEIGHT; row++){
+      delete [] shield.sprite[row];
+    }
+  }
+}
+
+void DrawShields(const Shield shields[], int numberOfShields){
+  for(int i = 0; i < numberOfShields; i++){
+    const Shield& shield = shields[i];
+
+    DrawSprite(shield.position.x, shield.position.y, (const char**)shield.sprite, SHIELD_SPRITE_HEIGHT);
   }
 }
