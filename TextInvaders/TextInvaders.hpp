@@ -24,7 +24,7 @@ enum {
   PLAYER_MOVEMENT_AMOUNT = 2,
   PLAYER_MISSILE_SPEED = 1,
   FPS = 20,
-  NUM_SHIELS = 4,
+  NUM_SHIELDS = 4,
 };
 
 enum AlienState{

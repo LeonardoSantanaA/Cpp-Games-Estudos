@@ -9,7 +9,7 @@ void InitPlayer(const Game& game, Player& player);
 void ResetPlayer(const Game& game, Player& player);
 void ResetMissile(Player& player);
 int HandleInput(const Game& game, Player& player);
-void UpdateGame(const Game& game, Player& player);
+void UpdateGame(const Game& game, Player& player, Shield shields[], int numberOfShields);
 void DrawGame(const Game& game, const Player& player, Shield shields[], int numberOfShields);
 void MovePlayer(const Game& game, Player& player, int dx);
 void PlayerShoot(Player& player);
@@ -18,17 +18,20 @@ void UpdateMissile(Player& player);
 void InitShields(const Game& game, Shield shields[], int numberOfShields);
 void CleanUpShields(Shield shields[], int numberOfShields);
 void DrawShields(const Shield shields[], int numberOfShields);
+//Returns the shield index of which shield got, return NOT_IT_PLAY if nothing was hit, also returns the shield collision point 
+int IsCollision(const Position& projectile, const Shield shields[], int numberOfShields, Position& shieldCollisionPoint);
+void ResolveShieldCollision(Shield shields[], int shieldIndex, const Position& shieldCollisionPoint);
 
 int main(){
   Game game;
   Player player;
-  Shield shields[NUM_SHIELS];
+  Shield shields[NUM_SHIELDS];
 
   InitializeCurses(true);
 
   InitGame(game);
   InitPlayer(game, player);
-  InitShields(game, shields, NUM_SHIELS);
+  InitShields(game, shields, NUM_SHIELDS);
 
   bool quit = false;
   int input;
@@ -45,9 +48,9 @@ int main(){
       if(dt > CLOCKS_PER_SEC / FPS){
       lastTime = currentTime;
 
-      UpdateGame(game, player);
+      UpdateGame(game, player, shields, NUM_SHIELDS);
       ClearScreen(); //curses utils 
-      DrawGame(game, player, shields, NUM_SHIELS);
+      DrawGame(game, player, shields, NUM_SHIELDS);
       RefreshScreen(); //curses utils
 
       }
@@ -56,7 +59,7 @@ int main(){
     }
   }
 
-  CleanUpShields(shields, NUM_SHIELS);
+  CleanUpShields(shields, NUM_SHIELDS);
   ShutdownCurses();
 
   return 0;
@@ -111,8 +114,15 @@ int HandleInput(const Game& game, Player& player){
   return ' ';
 }
 
-void UpdateGame(const Game& game, Player& player){
-  UpdateMissile(player); 
+void UpdateGame(const Game& game, Player& player, Shield shields[], int numberOfShields){
+  UpdateMissile(player);
+
+  Position shieldCollisionPoint;
+  int shieldIndex = IsCollision(player.missile, shields, numberOfShields, shieldCollisionPoint);
+  if(shieldIndex != NOT_IN_PLAY){
+    ResetMissile(player);
+    ResolveShieldCollision(shields, shieldIndex, shieldCollisionPoint);
+  }
 }
 
 void DrawGame(const Game& game, const Player& player, Shield shields[], int numberOfShields){
@@ -186,4 +196,32 @@ void DrawShields(const Shield shields[], int numberOfShields){
 
     DrawSprite(shield.position.x, shield.position.y, (const char**)shield.sprite, SHIELD_SPRITE_HEIGHT);
   }
+}
+
+int IsCollision(const Position& projectile, const Shield shields[], int numberOfShields, Position& shieldCollisionPoint){
+  shieldCollisionPoint.x = NOT_IN_PLAY;
+  shieldCollisionPoint.y = NOT_IN_PLAY;
+
+  if(projectile.y != NOT_IN_PLAY){
+    for(int i = 0; i < numberOfShields; i++){
+      const Shield& shield = shields[i];
+      
+      if(projectile.x >= shield.position.x && projectile.x < (shield.position.x + SHIELD_SPRITE_WIDTH)){
+        if(projectile.y >= shield.position.y && projectile.y < (shield.position.y + SHIELD_SPRITE_HEIGHT)){
+          if(shield.sprite[projectile.y - shield.position.y][projectile.x - shield.position.x] != ' '){
+            std::string strProjectile = std::to_string(projectile.y);
+            shieldCollisionPoint.x = projectile.x - shield.position.x;
+            shieldCollisionPoint.y = projectile.y - shield.position.y;
+            return i;
+          }
+        }
+      }
+    }
+  }
+
+  return NOT_IN_PLAY;
+}
+
+void ResolveShieldCollision(Shield shields[], int shieldIndex, const Position& shieldCollisionPoint){
+  shields[shieldIndex].sprite[shieldCollisionPoint.y][shieldCollisionPoint.x] = ' ';
 }
