@@ -11,6 +11,10 @@ const char PLAYER_MISSILE_SPRITE = '|';
 
 const char* SHIELD_SPRITE[] = {"/IIIII\\", "IIIIIII", "I/   \\I"};
 
+const char* ALIEN30_SPRITE[] = {"/oo\\", "<  >", "/oo\\","/\"\"\\"};
+const char* ALIEN20_SPRITE[] = {" >< ", "|\\/|", "|><|", "/  \\"};
+const char* ALIEN10_SPRITE[] = {"/--\\","/  \\", "/--\\", "<  >"};
+
 enum {
   SHIELD_SPRITE_HEIGHT = 3,
   SHIELD_SPRITE_WIDTH = 7,
@@ -25,6 +29,10 @@ enum {
   PLAYER_MISSILE_SPEED = 1,
   FPS = 20,
   NUM_SHIELDS = 4,
+  ALIEN_SPRITE_WIDTH = 4,
+  ALIEN_SPRITE_HEIGHT = 2,
+  ALIENS_X_PADDING = 1,
+  ALIENS_Y_PADDING = 1,
 };
 
 enum AlienState{
@@ -73,7 +81,7 @@ struct AlienBomb{
 
 struct AlienSwarm{
   Position position;
-  AlienState alien[NUM_ALIEN_ROWS][NUM_ALIEN_COLUMNS]; 
+  AlienState aliens[NUM_ALIEN_ROWS][NUM_ALIEN_COLUMNS]; 
   AlienBomb bombs[MAX_NUMBER_ALIEN_BOMBS];
   Size spriteSize;
   int animation;

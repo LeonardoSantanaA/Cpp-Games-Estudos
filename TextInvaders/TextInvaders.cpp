@@ -10,7 +10,7 @@ void ResetPlayer(const Game& game, Player& player);
 void ResetMissile(Player& player);
 int HandleInput(const Game& game, Player& player);
 void UpdateGame(const Game& game, Player& player, Shield shields[], int numberOfShields);
-void DrawGame(const Game& game, const Player& player, Shield shields[], int numberOfShields);
+void DrawGame(const Game& game, const Player& player, Shield shields[], int numberOfShields, const AlienSwarm& aliens);
 void MovePlayer(const Game& game, Player& player, int dx);
 void PlayerShoot(Player& player);
 void DrawPlayer(const Player& player, const char* sprite[]);
@@ -21,17 +21,21 @@ void DrawShields(const Shield shields[], int numberOfShields);
 //Returns the shield index of which shield got, return NOT_IT_PLAY if nothing was hit, also returns the shield collision point 
 int IsCollision(const Position& projectile, const Shield shields[], int numberOfShields, Position& shieldCollisionPoint);
 void ResolveShieldCollision(Shield shields[], int shieldIndex, const Position& shieldCollisionPoint);
+void InitAliens(const Game& game, AlienSwarm& aliens);
+void DrawAliens(const AlienSwarm& aliens);
 
 int main(){
   Game game;
   Player player;
   Shield shields[NUM_SHIELDS];
+  AlienSwarm aliens;
 
   InitializeCurses(true);
 
   InitGame(game);
   InitPlayer(game, player);
   InitShields(game, shields, NUM_SHIELDS);
+  InitAliens(game, aliens);
 
   bool quit = false;
   int input;
@@ -50,7 +54,7 @@ int main(){
 
       UpdateGame(game, player, shields, NUM_SHIELDS);
       ClearScreen(); //curses utils 
-      DrawGame(game, player, shields, NUM_SHIELDS);
+      DrawGame(game, player, shields, NUM_SHIELDS, aliens);
       RefreshScreen(); //curses utils
 
       }
@@ -125,9 +129,10 @@ void UpdateGame(const Game& game, Player& player, Shield shields[], int numberOf
   }
 }
 
-void DrawGame(const Game& game, const Player& player, Shield shields[], int numberOfShields){
+void DrawGame(const Game& game, const Player& player, Shield shields[], int numberOfShields, const AlienSwarm& aliens){
   DrawPlayer(player, PLAYER_SPRITE);
   DrawShields(shields, numberOfShields);
+  DrawAliens(aliens);
 }
 
 void MovePlayer(const Game& game, Player& player, int dx){
@@ -225,3 +230,66 @@ int IsCollision(const Position& projectile, const Shield shields[], int numberOf
 void ResolveShieldCollision(Shield shields[], int shieldIndex, const Position& shieldCollisionPoint){
   shields[shieldIndex].sprite[shieldCollisionPoint.y][shieldCollisionPoint.x] = ' ';
 }
+
+void InitAliens(const Game& game, AlienSwarm& aliens){
+  for(int row = 0; row < NUM_ALIEN_ROWS; row++){
+    for(int col = 0; col < NUM_ALIEN_COLUMNS; col++){
+      aliens.aliens[row][col] = AS_ALIVE; 
+    }
+  }
+
+  aliens.direction = 1; //right 
+  aliens.numAliensLeft = NUM_ALIEN_ROWS * NUM_ALIEN_COLUMNS;
+  aliens.animation = 0;
+  aliens.spriteSize.width = ALIEN_SPRITE_WIDTH;
+  aliens.spriteSize.height = ALIEN_SPRITE_HEIGHT;
+  aliens.numberOfBombsInPlay = 0;
+  aliens.position.x = (game.windowSize.width - NUM_ALIEN_COLUMNS * (aliens.spriteSize.width + ALIENS_X_PADDING)) / 2;
+  aliens.position.y = game.windowSize.height - NUM_ALIEN_COLUMNS - NUM_ALIEN_ROWS * aliens.spriteSize.height - ALIENS_Y_PADDING * (NUM_ALIEN_ROWS -  1) - 3 + game.level;
+  aliens.line = NUM_ALIEN_COLUMNS - (game.level - 1);
+  aliens.explosionTimer = 0;
+
+}
+
+void DrawAliens(const AlienSwarm& aliens){
+  const int NUM_30_POINT_ALIEN_ROWS = 1;
+  const int NUM_20_POINT_ALIEN_ROWS = 2;
+  const int NUM_10_POINT_ALIEN_ROWS = 2;
+
+  //draw 1 row of the 30 point aliens 
+  for(int col = 0; col < NUM_ALIEN_COLUMNS; col++){
+    int xPos = aliens.position.x + col * (aliens.spriteSize.width + ALIENS_X_PADDING);
+    int yPos = aliens.position.y;
+
+    if(aliens.aliens[0][col] == AS_ALIVE){
+      DrawSprite(xPos, yPos, ALIEN30_SPRITE, aliens.spriteSize.height);
+    }
+  }
+
+  //draw 2 rows of the 20 point aliens 
+  for(int row = 0; row < NUM_20_POINT_ALIEN_ROWS; row++){
+    for(int col = 0; col < NUM_ALIEN_COLUMNS; col++){
+      int xPos = aliens.position.x + col * (aliens.spriteSize.width + ALIENS_X_PADDING);
+      int yPos = aliens.position.y + row * (aliens.spriteSize.height + ALIENS_Y_PADDING) + NUM_30_POINT_ALIEN_ROWS * (aliens.spriteSize.height + ALIENS_Y_PADDING);
+
+      if(aliens.aliens[NUM_30_POINT_ALIEN_ROWS + row][col] == AS_ALIVE){
+        DrawSprite(xPos, yPos, ALIEN20_SPRITE, aliens.spriteSize.height);
+      }
+
+    }
+  }
+
+  //draw 2 rows of the 10 points aliens
+  for(int row = 0; row < NUM_10_POINT_ALIEN_ROWS; row++){
+    for(int col = 0; col < NUM_ALIEN_COLUMNS; col++){
+      int xPos = aliens.position.x + col * (aliens.spriteSize.width + ALIENS_X_PADDING);
+      int yPos = aliens.position.y + row * (aliens.spriteSize.height + ALIENS_Y_PADDING) + NUM_30_POINT_ALIEN_ROWS * (aliens.spriteSize.height + ALIENS_Y_PADDING) + NUM_20_POINT_ALIEN_ROWS * (aliens.spriteSize.height + ALIENS_Y_PADDING);
+
+      if(aliens.aliens[NUM_30_POINT_ALIEN_ROWS + NUM_20_POINT_ALIEN_ROWS + row][col] == AS_ALIVE){
+        DrawSprite(xPos, yPos, ALIEN10_SPRITE, aliens.spriteSize.height);
+      }
+
+    }
+  }
+}
+
