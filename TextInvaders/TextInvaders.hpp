@@ -14,6 +14,7 @@ const char* SHIELD_SPRITE[] = {"/IIIII\\", "IIIIIII", "I/   \\I"};
 const char* ALIEN30_SPRITE[] = {"/oo\\", "<  >", "/oo\\","/\"\"\\"};
 const char* ALIEN20_SPRITE[] = {" >< ", "|\\/|", "|><|", "/  \\"};
 const char* ALIEN10_SPRITE[] = {"/--\\","/  \\", "/--\\", "<  >"};
+const char* ALIEN_EXPLOSION[] = {"\\||/", "/||\\"};
 
 enum {
   SHIELD_SPRITE_HEIGHT = 3,
@@ -33,6 +34,7 @@ enum {
   ALIEN_SPRITE_HEIGHT = 2,
   ALIENS_X_PADDING = 1,
   ALIENS_Y_PADDING = 1,
+  ALIEN_EXPLOSION_TIME = 4,
 };
 
 enum AlienState{
