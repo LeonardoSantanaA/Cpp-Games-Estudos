@@ -6,7 +6,7 @@
 #include <ctime>
 
 const char* PLAYER_SPRITE[] = {" =A= ", "====="};
-
+const char* PLAYER_EXPLOSION_SPRITE[] = {",~^.'", "=====", "'+-`.", "====="};
 const char PLAYER_MISSILE_SPRITE = '|';
 
 const char* SHIELD_SPRITE[] = {"/IIIII\\", "IIIIIII", "I/   \\I"};
@@ -15,6 +15,8 @@ const char* ALIEN30_SPRITE[] = {"/oo\\", "<  >", "/oo\\","/\"\"\\"};
 const char* ALIEN20_SPRITE[] = {" >< ", "|\\/|", "|><|", "/  \\"};
 const char* ALIEN10_SPRITE[] = {"/--\\","/  \\", "/--\\", "<  >"};
 const char* ALIEN_EXPLOSION[] = {"\\||/", "/||\\"};
+
+const char* ALIEN_BOMB_SPRITE = "\\|/-";
 
 enum {
   SHIELD_SPRITE_HEIGHT = 3,
@@ -35,6 +37,7 @@ enum {
   ALIENS_X_PADDING = 1,
   ALIENS_Y_PADDING = 1,
   ALIEN_EXPLOSION_TIME = 4,
+  ALIEN_BOMB_SPEED = 1,
 };
 
 enum AlienState{
@@ -114,6 +117,7 @@ struct Game{
   Size windowSize;
   GameState currentState;
   int level;
+  int waitTimer;
 };
 
 #endif
