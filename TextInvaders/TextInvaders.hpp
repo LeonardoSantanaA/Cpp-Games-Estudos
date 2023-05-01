@@ -38,6 +38,8 @@ enum {
   ALIENS_Y_PADDING = 1,
   ALIEN_EXPLOSION_TIME = 4,
   ALIEN_BOMB_SPEED = 1,
+  WAIT_TIME = 10,
+  NUM_LEVELS = 10,
 };
 
 enum AlienState{

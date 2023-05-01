@@ -1,4 +1,5 @@
 #include "CursesUtils.hpp"
+#include <curses.h>
 
 void InitializeCurses(bool noDelay){
   initscr();
@@ -44,4 +45,8 @@ void DrawSprite(int xPos, int yPos, const char* sprite[], int spriteHeight, int 
   for(int h = 0; h < spriteHeight; h++){
     mvprintw(yPos + h, xPos, "%s" ,sprite[h + offset]);
   }
+}
+
+void DrawString(int xPos, int yPos, const std::string& string){
+  mvprintw(yPos, xPos, string.c_str());
 }

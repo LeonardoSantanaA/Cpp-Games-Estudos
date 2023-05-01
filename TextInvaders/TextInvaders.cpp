@@ -9,7 +9,7 @@ void InitGame(Game& game);
 void InitPlayer(const Game& game, Player& player);
 void ResetPlayer(const Game& game, Player& player);
 void ResetMissile(Player& player);
-int HandleInput(Game& game, Player& player);
+int HandleInput(Game& game, Player& player, AlienSwarm& aliens, Shield shields[], int numberOfShields);
 void UpdateGame(Game& game, Player& player, Shield shields[], int numberOfShields, AlienSwarm& aliens);
 void DrawGame(const Game& game, const Player& player, Shield shields[], int numberOfShields, const AlienSwarm& aliens);
 void MovePlayer(const Game& game, Player& player, int dx);
@@ -26,7 +26,7 @@ void InitAliens(const Game& game, AlienSwarm& aliens);
 void DrawAliens(const AlienSwarm& aliens);
 bool IsCollision(const Player& player, const AlienSwarm& aliens, Position& alienCollisionPositionInArray);
 int ResolveAlienCollision(AlienSwarm& aliens, const Position& hitPositionInAliensArray);
-bool UpdateAliens(const Game& game, AlienSwarm& aliens, Player& player, Shield shields[], int numberOfShields);
+bool UpdateAliens(Game& game, AlienSwarm& aliens, Player& player, Shield shields[], int numberOfShields);
 void ResetMovementTime(AlienSwarm& aliens);
 void FindEmptyRowsAndColumns(const AlienSwarm& aliens, int& emptyColsLeft, int& emptyColsRight, int &emptyRowsBottom);
 void DestroyShields(const AlienSwarm& aliens, Shield shields[], int numberOfShields);
@@ -35,6 +35,11 @@ bool ShouldShootBomb(const AlienSwarm& aliens);
 void ShootBomb(AlienSwarm& aliens, int columnToShoot);
 bool UpdateBombs(const Game& game, AlienSwarm& aliens, Player& player, Shield shields[], int numberOfShields);
 bool IsCollision(const Position& projectile, const Position& spritePosition, const Size& spriteSize);
+void ResetGame(Game& game, Player& player, AlienSwarm& aliens, Shield shields[], int numberOfShields);
+void ResetShields(const Game& game, Shield shields[], int numberOfShields);
+void DrawGameOverScreen(const Game& game);
+void DrawIntroScreen(const Game& game);
+
 
 int main(){
   srand(time(NULL));
@@ -47,6 +52,7 @@ int main(){
   InitializeCurses(true);
 
   InitGame(game);
+  game.level = 1;
   InitPlayer(game, player);
   InitShields(game, shields, NUM_SHIELDS);
   InitAliens(game, aliens);
@@ -57,7 +63,7 @@ int main(){
   clock_t lastTime = clock();
 
   while(!quit){
-    input = HandleInput(game, player);
+    input = HandleInput(game, player, aliens, shields, NUM_SHIELDS);
 
     if(input != 'q'){
       clock_t currentTime = clock();
@@ -86,8 +92,7 @@ int main(){
 void InitGame(Game& game){
   game.windowSize.width = ScreenWidth();
   game.windowSize.height = ScreenHeight();
-  game.level = 1;
-  game.currentState = GS_PLAY; //for now - TODO: change to GS_INTRO at the end
+  game.currentState = GS_INTRO;
 }
 
 void InitPlayer(const Game& game, Player& player){
@@ -109,7 +114,7 @@ void ResetMissile(Player& player){
   player.missile.y = NOT_IN_PLAY;
 }
 
-int HandleInput(Game& game, Player& player){
+int HandleInput(Game& game, Player& player, AlienSwarm& aliens, Shield shields[], int numberOfShields){
   int input = GetChar();
 
   switch(input){
@@ -140,11 +145,16 @@ int HandleInput(Game& game, Player& player){
           game.currentState = GS_WAIT;
           game.waitTimer = 10;
         }
+      }else if(game.currentState == GS_GAME_OVER){
+        game.currentState = GS_INTRO;
+        ResetGame(game, player, aliens, shields, numberOfShields);
+      }else if(game.currentState == GS_INTRO){
+        game.currentState = GS_PLAY;
       }
       break;
   }
 
-  return ' ';
+  return input;
 }
 
 void UpdateGame(Game& game, Player& player, Shield shields[], int numberOfShields, AlienSwarm& aliens){
@@ -167,6 +177,15 @@ void UpdateGame(Game& game, Player& player, Shield shields[], int numberOfShield
     if(UpdateAliens(game, aliens, player, shields, numberOfShields)){
       game.currentState = GS_PLAYER_DEAD;
     }
+
+    if(aliens.numAliensLeft == 0){
+      game.level++;
+      game.level = (game.level % NUM_LEVELS) + 1;
+
+      game.currentState = GS_WAIT;
+      game.waitTimer = WAIT_TIME;
+      ResetGame(game, player, aliens, shields, numberOfShields);
+    }
   }else if(game.currentState == GS_PLAYER_DEAD){
     player.animation = (player.animation + 1) % 2; 
   }else if(game.currentState == GS_WAIT){
@@ -186,6 +205,10 @@ void DrawGame(const Game& game, const Player& player, Shield shields[], int numb
   }
     DrawShields(shields, numberOfShields);
     DrawAliens(aliens);
+  }else if(game.currentState == GS_GAME_OVER){
+    DrawGameOverScreen(game);
+  }else if(game.currentState == GS_INTRO){
+    DrawIntroScreen(game);
   }
 }
 
@@ -224,19 +247,14 @@ void UpdateMissile(Player& player){
 }
 
 void InitShields(const Game& game, Shield shields[], int numberOfShields){
-  int firstPadding = std::ceil(float(game.windowSize.width - numberOfShields * SHIELD_SPRITE_WIDTH) / float(numberOfShields + 1));
-  int xPadding = std::floor(float(game.windowSize.width - numberOfShields * SHIELD_SPRITE_WIDTH) / float(numberOfShields + 1));
-
   for(int i = 0; i < numberOfShields; i++){
     Shield& shield = shields[i];
-    shield.position.x = firstPadding + i * (SHIELD_SPRITE_WIDTH + xPadding);
-    shield.position.y = game.windowSize.height - PLAYER_SPRITE_HEIGHT - 1 - SHIELD_SPRITE_HEIGHT - 2;
-
     for(int row = 0; row < SHIELD_SPRITE_HEIGHT; row++){
       shield.sprite[row] = new char[SHIELD_SPRITE_WIDTH + 1];
-      strcpy(shield.sprite[row], SHIELD_SPRITE[row]);
     }
   }
+
+  ResetShields(game, shields, numberOfShields);
 }
 
 void CleanUpShields(Shield shields[], int numberOfShields){
@@ -410,7 +428,7 @@ int ResolveAlienCollision(AlienSwarm& aliens, const Position& hitPositionInAlien
   }
 }
 
-bool UpdateAliens(const Game& game, AlienSwarm& aliens, Player& player, Shield shields[], int numberOfShields){
+bool UpdateAliens(Game& game, AlienSwarm& aliens, Player& player, Shield shields[], int numberOfShields){
   if(UpdateBombs(game, aliens, player, shields, numberOfShields)){
     return true;
   }
@@ -447,6 +465,11 @@ bool UpdateAliens(const Game& game, AlienSwarm& aliens, Player& player, Shield s
     aliens.direction = -aliens.direction;
     ResetMovementTime(aliens);
     DestroyShields(aliens, shields, numberOfShields);
+
+    if(aliens.line == 0){
+      game.currentState = GS_GAME_OVER;
+      return false;
+    }
   }
   if(moveHorizontal){
     aliens.position.x += aliens.direction;
@@ -629,5 +652,53 @@ bool UpdateBombs(const Game& game, AlienSwarm& aliens, Player& player, Shield sh
 
 bool IsCollision(const Position& projectile, const Position& spritePosition, const Size& spriteSize){
   return (projectile.x >= spritePosition.x && projectile.x < (spritePosition.x + spriteSize.width) && projectile.y >= spritePosition.y && projectile.y < (spritePosition.y + spriteSize.height));
+}
+
+void ResetGame(Game& game, Player& player, AlienSwarm& aliens, Shield shields[], int numberOfShields){
+  ResetPlayer(game, player);
+  ResetShields(game, shields, numberOfShields);
+  InitAliens(game, aliens);
+}
+
+void ResetShields(const Game& game, Shield shields[], int numberOfShields){
+  int firstPadding = std::ceil(float(game.windowSize.width - numberOfShields * SHIELD_SPRITE_WIDTH) / float(numberOfShields + 1));
+  int xPadding = std::floor(float(game.windowSize.width - numberOfShields * SHIELD_SPRITE_WIDTH) / float(numberOfShields + 1));
+  
+  for(int i = 0; i < numberOfShields; i++){
+    Shield& shield = shields[i];
+    shield.position.x = firstPadding + i * (SHIELD_SPRITE_WIDTH + xPadding);
+    shield.position.y = game.windowSize.height - PLAYER_SPRITE_HEIGHT - 1 - SHIELD_SPRITE_HEIGHT - 2;
+
+    for(int row = 0; row < SHIELD_SPRITE_HEIGHT; row++){
+      strcpy(shield.sprite[row], SHIELD_SPRITE[row]);
+    }
+
+  }
+}
+
+void DrawGameOverScreen(const Game& game){
+  std::string gameOverString = "Game Over!";
+  std::string pressSpaceString = "Press Space Bar to continue";
+
+  const int yPos = game.windowSize.height/2;
+
+  const int gameOverXPos = game.windowSize.width/2 - gameOverString.length()/2;
+  const int pressSpaceXPos = game.windowSize.width/2 - pressSpaceString.length()/2;
+
+  DrawString(gameOverXPos, yPos, gameOverString);
+  DrawString(pressSpaceXPos, yPos + 1, pressSpaceString);
+}
+
+void DrawIntroScreen(const Game& game){
+  std::string startString = "Welcome to Text Invaders!";
+  std::string pressSpaceString = "Press Space Bar to start";
+
+  const int yPos = game.windowSize.height/2;
+  
+  const int startXPos = game.windowSize.width/2 - startString.length()/2;
+  const int pressSpaceXPos = game.windowSize.width/2 - pressSpaceString.length()/2;
+
+  DrawString(startXPos, yPos, startString);
+  DrawString(pressSpaceXPos, yPos + 1, pressSpaceString);
 }
 
