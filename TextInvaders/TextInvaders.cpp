@@ -1,3 +1,4 @@
+#include <curses.h>
 #include <iostream>
 #include <cmath>
 #include <cstring>
@@ -105,6 +106,8 @@ void InitPlayer(const Game& game, Player& player){
 void ResetPlayer(const Game& game, Player& player){
   player.position.x = game.windowSize.width / 2 - player.spriteSize.width / 2; //puts the player in the center 
   player.position.y = game.windowSize.height - player.spriteSize.height - 1;
+  player.lives = MAX_NUMBER_LIVES;
+  player.score = 0;
   player.animation = 0;
   ResetMissile(player);
 }
@@ -234,6 +237,8 @@ void DrawPlayer(const Player& player, const char* sprite[]){
   if(player.missile.x != NOT_IN_PLAY){
     DrawCharacter(player.missile.x, player.missile.y, PLAYER_MISSILE_SPRITE);
   }
+
+  mvprintw(0, 0, "Score: %i, Lives: %i", player.score, player.lives);
 }
 
 void UpdateMissile(Player& player){

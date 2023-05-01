@@ -1,27 +1,37 @@
 CMakeFiles/TextInvaders.dir/TextInvaders.cpp.o: \
  /home/lekaum/Desktop/Games-C++/TextInvaders/TextInvaders.cpp \
- /usr/include/stdc-predef.h /usr/include/c++/12.2.1/iostream \
- /usr/include/c++/12.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
- /usr/include/c++/12.2.1/x86_64-pc-linux-gnu/bits/os_defines.h \
+ /usr/include/stdc-predef.h /usr/include/curses.h \
+ /usr/include/ncurses_dll.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/bits/wordsize.h /usr/include/bits/timesize.h \
  /usr/include/sys/cdefs.h /usr/include/bits/long-double.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /usr/include/bits/types.h /usr/include/bits/typesizes.h \
+ /usr/include/bits/time64.h /usr/include/bits/wchar.h \
+ /usr/include/bits/stdint-intn.h /usr/include/bits/stdint-uintn.h \
+ /usr/include/stdio.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/stddef.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/stdarg.h \
+ /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
+ /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
+ /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
+ /usr/include/bits/types/cookie_io_functions_t.h \
+ /usr/include/bits/stdio_lim.h /usr/include/bits/floatn.h \
+ /usr/include/bits/floatn-common.h /usr/include/wchar.h \
+ /usr/include/bits/types/wint_t.h /usr/include/bits/types/mbstate_t.h \
+ /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
+ /usr/include/unctrl.h /usr/include/c++/12.2.1/iostream \
+ /usr/include/c++/12.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
+ /usr/include/c++/12.2.1/x86_64-pc-linux-gnu/bits/os_defines.h \
  /usr/include/c++/12.2.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
  /usr/include/c++/12.2.1/pstl/pstl_config.h \
  /usr/include/c++/12.2.1/ostream /usr/include/c++/12.2.1/ios \
  /usr/include/c++/12.2.1/iosfwd /usr/include/c++/12.2.1/bits/stringfwd.h \
  /usr/include/c++/12.2.1/bits/memoryfwd.h \
  /usr/include/c++/12.2.1/bits/postypes.h /usr/include/c++/12.2.1/cwchar \
- /usr/include/wchar.h /usr/include/bits/libc-header-start.h \
- /usr/include/bits/floatn.h /usr/include/bits/floatn-common.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/stddef.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/stdarg.h \
- /usr/include/bits/wchar.h /usr/include/bits/types/wint_t.h \
- /usr/include/bits/types/mbstate_t.h \
- /usr/include/bits/types/__mbstate_t.h /usr/include/bits/types/__FILE.h \
- /usr/include/bits/types/FILE.h /usr/include/bits/types/locale_t.h \
- /usr/include/bits/types/__locale_t.h /usr/include/c++/12.2.1/exception \
+ /usr/include/c++/12.2.1/exception \
  /usr/include/c++/12.2.1/bits/exception.h \
  /usr/include/c++/12.2.1/bits/exception_ptr.h \
  /usr/include/c++/12.2.1/bits/exception_defines.h \
@@ -31,12 +41,7 @@ CMakeFiles/TextInvaders.dir/TextInvaders.cpp.o: \
  /usr/include/c++/12.2.1/bits/move.h /usr/include/c++/12.2.1/type_traits \
  /usr/include/c++/12.2.1/bits/nested_exception.h \
  /usr/include/c++/12.2.1/bits/char_traits.h \
- /usr/include/c++/12.2.1/cstdint \
- /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/stdint.h \
- /usr/include/stdint.h /usr/include/bits/types.h \
- /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
- /usr/include/bits/stdint-intn.h /usr/include/bits/stdint-uintn.h \
- /usr/include/c++/12.2.1/bits/localefwd.h \
+ /usr/include/c++/12.2.1/cstdint /usr/include/c++/12.2.1/bits/localefwd.h \
  /usr/include/c++/12.2.1/x86_64-pc-linux-gnu/bits/c++locale.h \
  /usr/include/c++/12.2.1/clocale /usr/include/locale.h \
  /usr/include/bits/locale.h /usr/include/c++/12.2.1/cctype \
@@ -105,11 +110,7 @@ CMakeFiles/TextInvaders.dir/TextInvaders.cpp.o: \
  /usr/include/sys/select.h /usr/include/bits/select.h \
  /usr/include/bits/types/sigset_t.h /usr/include/alloca.h \
  /usr/include/bits/stdlib-float.h /usr/include/c++/12.2.1/bits/std_abs.h \
- /usr/include/c++/12.2.1/cstdio /usr/include/stdio.h \
- /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__fpos64_t.h \
- /usr/include/bits/types/struct_FILE.h \
- /usr/include/bits/types/cookie_io_functions_t.h \
- /usr/include/bits/stdio_lim.h /usr/include/c++/12.2.1/cerrno \
+ /usr/include/c++/12.2.1/cstdio /usr/include/c++/12.2.1/cerrno \
  /usr/include/errno.h /usr/include/bits/errno.h \
  /usr/include/linux/errno.h /usr/include/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
@@ -159,5 +160,4 @@ CMakeFiles/TextInvaders.dir/TextInvaders.cpp.o: \
  /usr/include/c++/12.2.1/bits/stl_vector.h \
  /usr/include/c++/12.2.1/bits/stl_bvector.h \
  /usr/include/c++/12.2.1/bits/vector.tcc /usr/include/c++/12.2.1/ctime \
- /home/lekaum/Desktop/Games-C++/TextInvaders/CursesUtils.hpp \
- /usr/include/curses.h /usr/include/ncurses_dll.h /usr/include/unctrl.h
+ /home/lekaum/Desktop/Games-C++/TextInvaders/CursesUtils.hpp
