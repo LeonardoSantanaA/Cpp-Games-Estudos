@@ -18,6 +18,8 @@ const char* ALIEN_EXPLOSION[] = {"\\||/", "/||\\"};
 
 const char* ALIEN_BOMB_SPRITE = "\\|/-";
 
+const char* ALIEN_UFO_SPRITE[] = {"_/oo\\_", "=q==p="};
+
 enum {
   SHIELD_SPRITE_HEIGHT = 3,
   SHIELD_SPRITE_WIDTH = 7,
@@ -40,6 +42,9 @@ enum {
   ALIEN_BOMB_SPEED = 1,
   WAIT_TIME = 10,
   NUM_LEVELS = 10,
+  ALIEN_UFO_SPRITE_WIDTH = 6,
+  ALIEN_UFO_SPRITE_HEIGHT = 2,
+  ALIEN_UFO_SPEED = 1,
 };
 
 enum AlienState{
@@ -104,6 +109,7 @@ struct AlienUFO{
   Position position;
   Size size;
   int points; //from 50 - 200
+  int speed;
 };
 
 struct Score{
@@ -120,6 +126,7 @@ struct Game{
   GameState currentState;
   int level;
   int waitTimer;
+  clock_t gameTimer;
 };
 
 #endif
