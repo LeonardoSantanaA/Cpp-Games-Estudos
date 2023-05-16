@@ -4,6 +4,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <algorithm> //for sort
+#include <fstream>
 #include "TextInvaders.hpp"
 #include "CursesUtils.hpp"
 
@@ -49,6 +50,8 @@ void ResetGameOverPositionCursors(Game& game);
 void AddHighScore(HighScoreTable& table, int score, const std::string& name);
 bool ScoreCompare(const Score& score1, const Score& score2);
 void DrawHighScoreTable(const Game& game, const HighScoreTable& table);
+void SaveHighScores(const HighScoreTable& table);
+void LoadHighScores(HighScoreTable& table);
 
 int main(){
   srand(time(NULL));
@@ -68,6 +71,8 @@ int main(){
   InitShields(game, shields, NUM_SHIELDS);
   InitAliens(game, aliens);
   ResetUFO(game, ufo);
+
+  LoadHighScores(table);
 
   bool quit = false;
   int input;
@@ -104,7 +109,7 @@ int main(){
 void InitGame(Game& game){
   game.windowSize.width = ScreenWidth();
   game.windowSize.height = ScreenHeight();
-  game.currentState = GS_INTRO; //TODO change to GS_INTRO at the end
+  game.currentState = GS_INTRO;
   game.waitTimer = 0;
   game.gameTimer = 0;
 
@@ -136,6 +141,12 @@ int HandleInput(Game& game, Player& player, AlienSwarm& aliens, Shield shields[]
   int input = GetChar();
 
   switch(input){
+    case 's':
+      if(game.currentState == GS_INTRO){
+        game.currentState = GS_HIGH_SCORES;
+      }
+      break;
+
     case 'q':
       return input;
 
@@ -782,14 +793,17 @@ void DrawGameOverScreen(const Game& game){
 void DrawIntroScreen(const Game& game){
   std::string startString = "Welcome to Text Invaders!";
   std::string pressSpaceString = "Press Space Bar to start";
+  std::string pressSString = "Press (s) to go to the high scores";
 
-  const int yPos = game.windowSize.height/2;
+  const int yPos = game.windowSize.height/2-2;
   
   const int startXPos = game.windowSize.width/2 - startString.length()/2;
   const int pressSpaceXPos = game.windowSize.width/2 - pressSpaceString.length()/2;
+  const int pressSXPos = game.windowSize.width/2 - pressSString.length()/2;
 
   DrawString(startXPos, yPos, startString);
   DrawString(pressSpaceXPos, yPos + 1, pressSpaceString);
+  DrawString(pressSXPos, yPos+2, pressSString);
 }
 
 void ResetUFO(const Game& game, AlienUFO& ufo){
@@ -842,6 +856,8 @@ void AddHighScore(HighScoreTable& table, int score, const std::string& name){
 
   table.scores.push_back(highScore);
   std::sort(table.scores.begin(), table.scores.end(), ScoreCompare);
+
+  SaveHighScores(table);
 }
 
 bool ScoreCompare(const Score& score1, const Score& score2){
@@ -850,7 +866,9 @@ bool ScoreCompare(const Score& score1, const Score& score2){
 
 void DrawHighScoreTable(const Game& game, const HighScoreTable& table){
   std::string title = "High Scores";
+  std::string pressSpaceToContinue = "Press Space to Continue";
   int titleXPos = game.windowSize.width/2 - title.length()/2;
+  int pressSpaceXPos = game.windowSize.width/2 - pressSpaceToContinue.length()/2;
   int yPos = 5;
   int yPadding = 2;
 
@@ -861,5 +879,47 @@ void DrawHighScoreTable(const Game& game, const HighScoreTable& table){
   for(int i = 0; i < table.scores.size() && i < 10; i++){
     Score score = table.scores[i];
     mvprintw(yPos + (i+1) * yPadding, titleXPos - MAX_NUMBER_OF_CHARACTERS_IN_NAME, "%s\t\t%i", score.name.c_str(), score.score);
+  }
+
+  mvprintw(yPos + 11 * yPadding, pressSpaceXPos, pressSpaceToContinue.c_str());
+}
+
+void SaveHighScores(const HighScoreTable& table){
+  std::ofstream outFile; 
+
+  outFile.open(FILE_NAME);
+  if(outFile.is_open()){
+    for(int i = 0; i < table.scores.size() && i < MAX_HIGH_SCORES; i++){
+      outFile << table.scores[i].name << " " << table.scores[i].score << std::endl;
+    }
+    outFile.close();
+  }
+}
+
+void LoadHighScores(HighScoreTable& table){
+  std::ifstream inFile;
+
+  inFile.open(FILE_NAME);
+
+  std::string name;
+  int scoreVal;
+  Score score;
+
+  if(inFile.is_open()){
+    while(!inFile.eof()){
+      inFile >> std::ws;
+
+      if(inFile.eof()){
+        break;
+      }
+
+      inFile >> name >> scoreVal;
+      score.name = name;
+      score.score = scoreVal;
+
+      table.scores.push_back(score);
+    }
+
+    inFile.close();
   }
 }
