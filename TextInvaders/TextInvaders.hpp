@@ -45,6 +45,8 @@ enum {
   ALIEN_UFO_SPRITE_WIDTH = 6,
   ALIEN_UFO_SPRITE_HEIGHT = 2,
   ALIEN_UFO_SPEED = 1,
+  MAX_NUMBER_OF_CHARACTERS_IN_NAME = 3,
+  MAX_ALPHABET_CHARACTERS = 26,
 };
 
 enum AlienState{
@@ -127,6 +129,9 @@ struct Game{
   int level;
   int waitTimer;
   clock_t gameTimer;
+  int gameOverHPositionCursor; //where the horizontal cursor is 
+  char playerName[MAX_NUMBER_OF_CHARACTERS_IN_NAME + 1];
+  int gameOverVPositionCursor[MAX_NUMBER_OF_CHARACTERS_IN_NAME];
 };
 
 #endif
