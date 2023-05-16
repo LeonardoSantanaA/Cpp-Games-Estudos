@@ -120,7 +120,7 @@ struct Score{
 };
 
 struct HighScoreTable{
-  std::vector<Score> score;
+  std::vector<Score> scores;
 };
 
 struct Game{

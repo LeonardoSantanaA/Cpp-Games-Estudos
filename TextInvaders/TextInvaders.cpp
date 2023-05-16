@@ -3,6 +3,7 @@
 #include <cmath>
 #include <cstring>
 #include <cstdlib>
+#include <algorithm> //for sort
 #include "TextInvaders.hpp"
 #include "CursesUtils.hpp"
 
@@ -10,9 +11,9 @@ void InitGame(Game& game);
 void InitPlayer(const Game& game, Player& player);
 void ResetPlayer(const Game& game, Player& player);
 void ResetMissile(Player& player);
-int HandleInput(Game& game, Player& player, AlienSwarm& aliens, Shield shields[], int numberOfShields);
+int HandleInput(Game& game, Player& player, AlienSwarm& aliens, Shield shields[], int numberOfShields, HighScoreTable& table);
 void UpdateGame(clock_t dt, Game& game, Player& player, Shield shields[], int numberOfShields, AlienSwarm& aliens, AlienUFO& ufo);
-void DrawGame(const Game& game, const Player& player, Shield shields[], int numberOfShields, const AlienSwarm& aliens, const AlienUFO& ufo);
+void DrawGame(const Game& game, const Player& player, Shield shields[], int numberOfShields, const AlienSwarm& aliens, const AlienUFO& ufo, const HighScoreTable& table);
 void MovePlayer(const Game& game, Player& player, int dx);
 void PlayerShoot(Player& player);
 void DrawPlayer(const Player& player, const char* sprite[]);
@@ -44,6 +45,10 @@ void ResetUFO(const Game& game, AlienUFO& ufo);
 void PutUFOInPlay(const Game& game, AlienUFO& ufo);
 void UpdateUFO(const Game& game, AlienUFO& ufo);
 void DrawUFO(const AlienUFO& ufo);
+void ResetGameOverPositionCursors(Game& game);
+void AddHighScore(HighScoreTable& table, int score, const std::string& name);
+bool ScoreCompare(const Score& score1, const Score& score2);
+void DrawHighScoreTable(const Game& game, const HighScoreTable& table);
 
 int main(){
   srand(time(NULL));
@@ -53,6 +58,7 @@ int main(){
   Shield shields[NUM_SHIELDS];
   AlienSwarm aliens;
   AlienUFO ufo;
+  HighScoreTable table;
 
   InitializeCurses(true);
 
@@ -69,7 +75,7 @@ int main(){
   clock_t lastTime = clock();
 
   while(!quit){
-    input = HandleInput(game, player, aliens, shields, NUM_SHIELDS);
+    input = HandleInput(game, player, aliens, shields, NUM_SHIELDS, table);
 
     if(input != 'q'){
       clock_t currentTime = clock();
@@ -80,7 +86,7 @@ int main(){
 
       UpdateGame(dt, game, player, shields, NUM_SHIELDS, aliens, ufo);
       ClearScreen(); //curses utils 
-      DrawGame(game, player, shields, NUM_SHIELDS, aliens, ufo);
+      DrawGame(game, player, shields, NUM_SHIELDS, aliens, ufo, table);
       RefreshScreen(); //curses utils
 
       }
@@ -98,15 +104,11 @@ int main(){
 void InitGame(Game& game){
   game.windowSize.width = ScreenWidth();
   game.windowSize.height = ScreenHeight();
-  game.currentState = GS_GAME_OVER; //TODO change to GS_INTRO at the end
+  game.currentState = GS_INTRO; //TODO change to GS_INTRO at the end
   game.waitTimer = 0;
   game.gameTimer = 0;
 
-  game.gameOverHPositionCursor = 0; //first letter
-  for(int i = 0; i < MAX_NUMBER_OF_CHARACTERS_IN_NAME; i++){
-    game.playerName[i] = 'A';
-    game.gameOverVPositionCursor[i] = 0; //be at 'A'
-  }
+  ResetGameOverPositionCursors(game);
 }
 
 void InitPlayer(const Game& game, Player& player){
@@ -130,7 +132,7 @@ void ResetMissile(Player& player){
   player.missile.y = NOT_IN_PLAY;
 }
 
-int HandleInput(Game& game, Player& player, AlienSwarm& aliens, Shield shields[], int numberOfShields){
+int HandleInput(Game& game, Player& player, AlienSwarm& aliens, Shield shields[], int numberOfShields, HighScoreTable& table){
   int input = GetChar();
 
   switch(input){
@@ -181,11 +183,16 @@ int HandleInput(Game& game, Player& player, AlienSwarm& aliens, Shield shields[]
         player.animation = 0;
         if(player.lives == 0){
           game.currentState = GS_GAME_OVER;
+          ResetGameOverPositionCursors(game);
         }else{
           game.currentState = GS_WAIT;
           game.waitTimer = 10;
         }
       }else if(game.currentState == GS_GAME_OVER){
+        game.playerName[MAX_NUMBER_OF_CHARACTERS_IN_NAME] = '\0';
+        AddHighScore(table, player.score, std::string(game.playerName));
+        game.currentState = GS_HIGH_SCORES;
+      }else if(game.currentState == GS_HIGH_SCORES){
         game.currentState = GS_INTRO;
         ResetGame(game, player, aliens, shields, numberOfShields);
       }else if(game.currentState == GS_INTRO){
@@ -254,14 +261,14 @@ void UpdateGame(clock_t dt, Game& game, Player& player, Shield shields[], int nu
   }
 }
 
-void DrawGame(const Game& game, const Player& player, Shield shields[], int numberOfShields, const AlienSwarm& aliens, const AlienUFO& ufo){
+void DrawGame(const Game& game, const Player& player, Shield shields[], int numberOfShields, const AlienSwarm& aliens, const AlienUFO& ufo, const HighScoreTable& table){
   if(game.currentState == GS_PLAY || game.currentState == GS_PLAYER_DEAD || game.currentState == GS_WAIT){
   if(game.currentState == GS_PLAY || game.currentState == GS_WAIT){
     DrawPlayer(player, PLAYER_SPRITE);
   }else{
     DrawPlayer(player, PLAYER_EXPLOSION_SPRITE);
   }
-
+    
     DrawShields(shields, numberOfShields);
     DrawAliens(aliens);
     DrawUFO(ufo);
@@ -270,6 +277,8 @@ void DrawGame(const Game& game, const Player& player, Shield shields[], int numb
     DrawGameOverScreen(game);
   }else if(game.currentState == GS_INTRO){
     DrawIntroScreen(game);
+  }else if(game.currentState == GS_HIGH_SCORES){
+    DrawHighScoreTable(game, table);
   }
 }
 
@@ -818,3 +827,39 @@ void DrawUFO(const AlienUFO& ufo){
   }
 }
 
+void ResetGameOverPositionCursors(Game& game){
+  game.gameOverHPositionCursor = 0; //first letter
+  for(int i = 0; i < MAX_NUMBER_OF_CHARACTERS_IN_NAME; i++){
+    game.playerName[i] = 'A';
+    game.gameOverVPositionCursor[i] = 0; //be at 'A'
+  }
+}
+
+void AddHighScore(HighScoreTable& table, int score, const std::string& name){
+  Score highScore;
+  highScore.score = score;
+  highScore.name = name;
+
+  table.scores.push_back(highScore);
+  std::sort(table.scores.begin(), table.scores.end(), ScoreCompare);
+}
+
+bool ScoreCompare(const Score& score1, const Score& score2){
+  return score1.score > score2.score;
+}
+
+void DrawHighScoreTable(const Game& game, const HighScoreTable& table){
+  std::string title = "High Scores";
+  int titleXPos = game.windowSize.width/2 - title.length()/2;
+  int yPos = 5;
+  int yPadding = 2;
+
+  attron(A_UNDERLINE);
+  DrawString(titleXPos, yPos, title);
+  attroff(A_UNDERLINE);
+
+  for(int i = 0; i < table.scores.size() && i < 10; i++){
+    Score score = table.scores[i];
+    mvprintw(yPos + (i+1) * yPadding, titleXPos - MAX_NUMBER_OF_CHARACTERS_IN_NAME, "%s\t\t%i", score.name.c_str(), score.score);
+  }
+}

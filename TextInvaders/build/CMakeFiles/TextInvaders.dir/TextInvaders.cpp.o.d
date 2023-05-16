@@ -153,7 +153,14 @@ CMakeFiles/TextInvaders.dir/TextInvaders.cpp.o: \
  /usr/include/c++/12.2.1/tr1/poly_laguerre.tcc \
  /usr/include/c++/12.2.1/tr1/riemann_zeta.tcc \
  /usr/include/c++/12.2.1/cstring /usr/include/string.h \
- /usr/include/strings.h \
+ /usr/include/strings.h /usr/include/c++/12.2.1/algorithm \
+ /usr/include/c++/12.2.1/bits/stl_algo.h \
+ /usr/include/c++/12.2.1/bits/algorithmfwd.h \
+ /usr/include/c++/12.2.1/bits/stl_heap.h \
+ /usr/include/c++/12.2.1/bits/stl_tempbuf.h \
+ /usr/include/c++/12.2.1/bits/uniform_int_dist.h \
+ /usr/include/c++/12.2.1/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/12.2.1/pstl/execution_defs.h \
  /home/lekaum/Desktop/Games-C++/TextInvaders/TextInvaders.hpp \
  /usr/include/c++/12.2.1/vector \
  /usr/include/c++/12.2.1/bits/stl_uninitialized.h \
