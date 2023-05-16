@@ -120,14 +120,13 @@ void InitPlayer(const Game& game, Player& player){
   player.lives = MAX_NUMBER_LIVES;
   player.spriteSize.height = PLAYER_SPRITE_HEIGHT;
   player.spriteSize.width = PLAYER_SPRITE_WIDTH;
+  player.score = 0;
   ResetPlayer(game, player);
 }
 
 void ResetPlayer(const Game& game, Player& player){
   player.position.x = game.windowSize.width / 2 - player.spriteSize.width / 2; //puts the player in the center 
   player.position.y = game.windowSize.height - player.spriteSize.height - 1;
-  player.lives = MAX_NUMBER_LIVES;
-  player.score = 0;
   player.animation = 0;
   ResetMissile(player);
 }
@@ -202,6 +201,9 @@ int HandleInput(Game& game, Player& player, AlienSwarm& aliens, Shield shields[]
       }else if(game.currentState == GS_GAME_OVER){
         game.playerName[MAX_NUMBER_OF_CHARACTERS_IN_NAME] = '\0';
         AddHighScore(table, player.score, std::string(game.playerName));
+        //RESET SCORE AND LIVE
+        player.lives = MAX_NUMBER_LIVES;
+        player.score = 0;
         game.currentState = GS_HIGH_SCORES;
       }else if(game.currentState == GS_HIGH_SCORES){
         game.currentState = GS_INTRO;
@@ -239,8 +241,7 @@ void UpdateGame(clock_t dt, Game& game, Player& player, Shield shields[], int nu
     }
 
     if(aliens.numAliensLeft == 0){
-      game.level++;
-      game.level = (game.level % NUM_LEVELS) + 1;
+      game.level = ((game.level + 1) % NUM_LEVELS);
 
       game.currentState = GS_WAIT;
       game.waitTimer = WAIT_TIME;
@@ -738,7 +739,6 @@ bool IsCollision(const Position& projectile, const Position& spritePosition, con
 }
 
 void ResetGame(Game& game, Player& player, AlienSwarm& aliens, Shield shields[], int numberOfShields){
-  game.waitTimer = 0;
   game.gameTimer = 0;
   ResetPlayer(game, player);
   ResetShields(game, shields, numberOfShields);
