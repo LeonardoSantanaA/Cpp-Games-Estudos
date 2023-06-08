@@ -5,10 +5,12 @@ class Fraction{
     Fraction();
     Fraction(int n, int d);
 
-    int GetNumerator();
-    int GetDenominator();
+    float GetNumerator();
+    float GetDenominator();
     void SetNumerator(int n);
+    void SetNumerator(float n);
     void SetDenominator(int d);
+    void SetDenominator(float d);
 
     void AddFraction(Fraction& f1, Fraction& f2);
     void SubFraction(Fraction& f1, Fraction& f2);
@@ -17,8 +19,8 @@ class Fraction{
     void PrintFraction();
 
   private:
-    int numerator;
-    int denominator;
+    float numerator;
+    float denominator;
     void SimpFraction(Fraction& f);
     void CompareFraction(Fraction& f1, Fraction& f2); 
 };
@@ -27,16 +29,22 @@ Fraction::Fraction(): Fraction(0, 1){}
 
 Fraction::Fraction(int n, int d): numerator(n), denominator(d){}
 
-int Fraction::GetNumerator(){
+float Fraction::GetNumerator(){
   return this->numerator;
 }
-int Fraction::GetDenominator(){
+float Fraction::GetDenominator(){
   return this->denominator;
 }
 void Fraction::SetNumerator(int n){
   this->numerator = n;
 }
+void Fraction::SetNumerator(float n){
+  this->numerator = n;
+}
 void Fraction::SetDenominator(int d){
+  this->denominator = d;
+}
+void Fraction::SetDenominator(float d){
   this->denominator = d;
 }
 
@@ -104,8 +112,7 @@ void Fraction::MultFraction(Fraction& f1, Fraction& f2){
 }
 
 void Fraction::DivFraction(Fraction& f1, Fraction& f2){
- // CompareFraction(n1, d1, n2, d2);
-  Fraction tempF = {f2.GetDenominator(), f2.GetNumerator()};
+  Fraction tempF = {int(f2.GetDenominator()), int(f2.GetNumerator())};
   Fraction resultF;
     
   f1.PrintFraction();
@@ -113,12 +120,25 @@ void Fraction::DivFraction(Fraction& f1, Fraction& f2){
   f2.PrintFraction();
   std::cout << " => ";
 
-  resultF.MultFraction(f1, tempF);
+  resultF.SetNumerator(f1.GetNumerator() * tempF.GetNumerator());
+  resultF.SetDenominator(f1.GetDenominator() * tempF.GetDenominator());
+
+  f1.PrintFraction();
+  std::cout << " * ";
+  tempF.PrintFraction();
+  std::cout << " = ";
+  resultF.PrintFraction();
+
+  SimpFraction(resultF);
+  std::cout << " -> ";
+  resultF.PrintFraction();
+  std::cout << std::endl;
+  CompareFraction(f1, f2);
 }
 
 void Fraction::SimpFraction(Fraction& f){
   for(int i = 2; i <= 9; i++){
-    if(f.GetNumerator() % i == 0 && f.GetDenominator() % i == 0){
+    if(static_cast<int>(f.GetNumerator()) % i == 0 && static_cast<int>(f.GetDenominator()) % i == 0){
       f.SetNumerator(f.GetNumerator() / i);
       f.SetDenominator(f.GetDenominator() / i);
       SimpFraction(f);
@@ -127,11 +147,10 @@ void Fraction::SimpFraction(Fraction& f){
 }
 
 void Fraction::CompareFraction(Fraction& f1, Fraction& f2){
-  int valueFraction1 = 0, valueFraction2 = 0;
+  float valueFraction1 = 0, valueFraction2 = 0;
 
-  valueFraction1 = f1.GetNumerator() / f1.GetDenominator();
-  valueFraction2 = f2.GetNumerator() / f2.GetDenominator();
-
+  valueFraction1 = static_cast<float>(f1.GetNumerator() / f1.GetDenominator());
+  valueFraction2 = static_cast<float>(f2.GetNumerator() / f2.GetDenominator());
   if(valueFraction1 > valueFraction2){
     std::cout << "The first fraction is greater than second one!" << std::endl;
   }else if(valueFraction1 == valueFraction2){
@@ -189,7 +208,6 @@ int main( int argc , char **argv ){
       }
       break;
   }
-
   return 0;
 }
 
