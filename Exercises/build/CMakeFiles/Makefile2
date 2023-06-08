@@ -77,6 +77,7 @@ all: CMakeFiles/TicTacToe.dir/all
 all: CMakeFiles/Calculator.dir/all
 all: CMakeFiles/PigLatin.dir/all
 all: CMakeFiles/Timer.dir/all
+all: CMakeFiles/Fraction.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -98,6 +99,7 @@ clean: CMakeFiles/TicTacToe.dir/clean
 clean: CMakeFiles/Calculator.dir/clean
 clean: CMakeFiles/PigLatin.dir/clean
 clean: CMakeFiles/Timer.dir/clean
+clean: CMakeFiles/Fraction.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -133,7 +135,7 @@ CMakeFiles/Dollar_Exercise.dir/clean:
 CMakeFiles/Star_Exercise1.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise1.dir/build.make CMakeFiles/Star_Exercise1.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise1.dir/build.make CMakeFiles/Star_Exercise1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=19,20 "Built target Star_Exercise1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=21,22 "Built target Star_Exercise1"
 .PHONY : CMakeFiles/Star_Exercise1.dir/all
 
 # Build rule for subdir invocation for target.
@@ -159,7 +161,7 @@ CMakeFiles/Star_Exercise1.dir/clean:
 CMakeFiles/Star_Exercise2.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise2.dir/build.make CMakeFiles/Star_Exercise2.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Star_Exercise2.dir/build.make CMakeFiles/Star_Exercise2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=21,22 "Built target Star_Exercise2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=23,24 "Built target Star_Exercise2"
 .PHONY : CMakeFiles/Star_Exercise2.dir/all
 
 # Build rule for subdir invocation for target.
@@ -185,7 +187,7 @@ CMakeFiles/Star_Exercise2.dir/clean:
 CMakeFiles/Game_of_Eight.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game_of_Eight.dir/build.make CMakeFiles/Game_of_Eight.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game_of_Eight.dir/build.make CMakeFiles/Game_of_Eight.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=15,16 "Built target Game_of_Eight"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=17,18 "Built target Game_of_Eight"
 .PHONY : CMakeFiles/Game_of_Eight.dir/all
 
 # Build rule for subdir invocation for target.
@@ -211,7 +213,7 @@ CMakeFiles/Game_of_Eight.dir/clean:
 CMakeFiles/Swap_Exercise.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Swap_Exercise.dir/build.make CMakeFiles/Swap_Exercise.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Swap_Exercise.dir/build.make CMakeFiles/Swap_Exercise.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=23,24 "Built target Swap_Exercise"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=25,26 "Built target Swap_Exercise"
 .PHONY : CMakeFiles/Swap_Exercise.dir/all
 
 # Build rule for subdir invocation for target.
@@ -367,7 +369,7 @@ CMakeFiles/DynamicMemory_Exercise.dir/clean:
 CMakeFiles/TicTacToe.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TicTacToe.dir/build.make CMakeFiles/TicTacToe.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TicTacToe.dir/build.make CMakeFiles/TicTacToe.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=25,26 "Built target TicTacToe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=27,28 "Built target TicTacToe"
 .PHONY : CMakeFiles/TicTacToe.dir/all
 
 # Build rule for subdir invocation for target.
@@ -419,7 +421,7 @@ CMakeFiles/Calculator.dir/clean:
 CMakeFiles/PigLatin.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PigLatin.dir/build.make CMakeFiles/PigLatin.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PigLatin.dir/build.make CMakeFiles/PigLatin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=17,18 "Built target PigLatin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=19,20 "Built target PigLatin"
 .PHONY : CMakeFiles/PigLatin.dir/all
 
 # Build rule for subdir invocation for target.
@@ -445,7 +447,7 @@ CMakeFiles/PigLatin.dir/clean:
 CMakeFiles/Timer.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Timer.dir/build.make CMakeFiles/Timer.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Timer.dir/build.make CMakeFiles/Timer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=27,28 "Built target Timer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=29,30 "Built target Timer"
 .PHONY : CMakeFiles/Timer.dir/all
 
 # Build rule for subdir invocation for target.
@@ -463,6 +465,32 @@ Timer: CMakeFiles/Timer.dir/rule
 CMakeFiles/Timer.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Timer.dir/build.make CMakeFiles/Timer.dir/clean
 .PHONY : CMakeFiles/Timer.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Fraction.dir
+
+# All Build rule for target.
+CMakeFiles/Fraction.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fraction.dir/build.make CMakeFiles/Fraction.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fraction.dir/build.make CMakeFiles/Fraction.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles --progress-num=15,16 "Built target Fraction"
+.PHONY : CMakeFiles/Fraction.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Fraction.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Fraction.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles 0
+.PHONY : CMakeFiles/Fraction.dir/rule
+
+# Convenience name for target.
+Fraction: CMakeFiles/Fraction.dir/rule
+.PHONY : Fraction
+
+# clean rule for target.
+CMakeFiles/Fraction.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fraction.dir/build.make CMakeFiles/Fraction.dir/clean
+.PHONY : CMakeFiles/Fraction.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

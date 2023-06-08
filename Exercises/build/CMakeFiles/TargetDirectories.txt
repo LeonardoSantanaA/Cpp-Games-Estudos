@@ -12,5 +12,6 @@
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/Calculator.dir
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/PigLatin.dir
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/Timer.dir
+/home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/Fraction.dir
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/edit_cache.dir
 /home/lekaum/Desktop/Games-C++/Exercises/build/CMakeFiles/rebuild_cache.dir

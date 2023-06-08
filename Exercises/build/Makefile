@@ -298,6 +298,19 @@ Timer/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Timer.dir/build.make CMakeFiles/Timer.dir/build
 .PHONY : Timer/fast
 
+#=============================================================================
+# Target rules for targets named Fraction
+
+# Build rule for target.
+Fraction: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Fraction
+.PHONY : Fraction
+
+# fast build rule for target.
+Fraction/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fraction.dir/build.make CMakeFiles/Fraction.dir/build
+.PHONY : Fraction/fast
+
 Calculator.o: Calculator.cpp.o
 .PHONY : Calculator.o
 
@@ -634,6 +647,30 @@ exerciseSwap.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Swap_Exercise.dir/build.make CMakeFiles/Swap_Exercise.dir/exerciseSwap.cpp.s
 .PHONY : exerciseSwap.cpp.s
 
+fraction.o: fraction.cpp.o
+.PHONY : fraction.o
+
+# target to build an object file
+fraction.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fraction.dir/build.make CMakeFiles/Fraction.dir/fraction.cpp.o
+.PHONY : fraction.cpp.o
+
+fraction.i: fraction.cpp.i
+.PHONY : fraction.i
+
+# target to preprocess a source file
+fraction.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fraction.dir/build.make CMakeFiles/Fraction.dir/fraction.cpp.i
+.PHONY : fraction.cpp.i
+
+fraction.s: fraction.cpp.s
+.PHONY : fraction.s
+
+# target to generate assembly for a file
+fraction.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fraction.dir/build.make CMakeFiles/Fraction.dir/fraction.cpp.s
+.PHONY : fraction.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -649,6 +686,7 @@ help:
 	@echo "... Calculator"
 	@echo "... Dollar_Exercise"
 	@echo "... DynamicMemory_Exercise"
+	@echo "... Fraction"
 	@echo "... Game_of_Eight"
 	@echo "... PigLatin"
 	@echo "... Star_Exercise1"
@@ -698,6 +736,9 @@ help:
 	@echo "... exerciseSwap.o"
 	@echo "... exerciseSwap.i"
 	@echo "... exerciseSwap.s"
+	@echo "... fraction.o"
+	@echo "... fraction.i"
+	@echo "... fraction.s"
 .PHONY : help
 
 
