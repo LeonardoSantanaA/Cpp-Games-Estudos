@@ -149,7 +149,6 @@ void Fraction::PrintFraction(){
 
 int main( int argc , char **argv ){
   int n1 = 0, d1 = 0, n2 = 0, d2 = 0;
-  int numerator = 0, denominator = 0;
   char op = ' ';
   std::cout << "Choose the first numerator: ";
   std::cin >> n1;
@@ -190,7 +189,6 @@ int main( int argc , char **argv ){
       }
       break;
   }
-
 
   return 0;
 }
