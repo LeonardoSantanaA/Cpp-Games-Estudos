@@ -2,11 +2,21 @@
 
 class Fraction{
   public:
+    static Fraction aHalf;
+    static Fraction aThird;
+    static Fraction aFourth;
+    static Fraction aFifth;
+
     Fraction();
     Fraction(int n, int d);
 
-    float GetNumerator();
-    float GetDenominator();
+    inline float GetNumerator() const{
+      return this->numerator;
+    }
+    inline float GetDenominator() const{
+      return this->denominator;
+    }
+
     void SetNumerator(int n);
     void SetNumerator(float n);
     void SetDenominator(int d);
@@ -16,7 +26,10 @@ class Fraction{
     void SubFraction(Fraction& f1, Fraction& f2);
     void MultFraction(Fraction& f1, Fraction& f2);
     void DivFraction(Fraction& f1, Fraction& f2);
-    void PrintFraction();
+
+    void PrintFraction() const{
+      std::cout << this->GetNumerator() << "/" << this->GetDenominator();
+    }
 
   private:
     float numerator;
@@ -25,16 +38,15 @@ class Fraction{
     void CompareFraction(Fraction& f1, Fraction& f2); 
 };
 
+Fraction Fraction::aHalf = Fraction(1, 2);
+Fraction Fraction::aThird = Fraction(1, 3);
+Fraction Fraction::aFourth = Fraction(1, 4);
+Fraction Fraction::aFifth = Fraction(1, 5);
+
 Fraction::Fraction(): Fraction(0, 1){}
 
 Fraction::Fraction(int n, int d): numerator(n), denominator(d){}
 
-float Fraction::GetNumerator(){
-  return this->numerator;
-}
-float Fraction::GetDenominator(){
-  return this->denominator;
-}
 void Fraction::SetNumerator(int n){
   this->numerator = n;
 }
@@ -141,7 +153,7 @@ void Fraction::SimpFraction(Fraction& f){
     if(static_cast<int>(f.GetNumerator()) % i == 0 && static_cast<int>(f.GetDenominator()) % i == 0){
       f.SetNumerator(f.GetNumerator() / i);
       f.SetDenominator(f.GetDenominator() / i);
-      SimpFraction(f);
+      return SimpFraction(f);
     }
   }
 }
@@ -159,12 +171,6 @@ void Fraction::CompareFraction(Fraction& f1, Fraction& f2){
     std::cout << "The first fraction is less than second one!" << std::endl;
   }
 }
-
-void Fraction::PrintFraction(){
-  
-  std::cout << this->GetNumerator() << "/" << this->GetDenominator();
-}
-
 
 int main( int argc , char **argv ){
   int n1 = 0, d1 = 0, n2 = 0, d2 = 0;
