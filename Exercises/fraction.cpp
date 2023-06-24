@@ -30,10 +30,14 @@ class Fraction{
       this->denominator = d;
     }
 
-    void AddFraction(Fraction& otherFraction);
-    void SubFraction(Fraction& otherFraction);
-    void MultFraction(Fraction& otherFraction);
-    void DivFraction(Fraction& otherFraction);
+    void operator+(Fraction& otherFraction);
+    void operator-(Fraction& otherFraction);
+    void operator*(Fraction& otherFraction);
+    void operator/(Fraction& otherFraction);
+
+    friend void operator<<(std::ostream& consoleOut, const Fraction& fraction){
+      consoleOut << fraction.numerator << "/" << fraction.denominator;
+    }
 
     void PrintFraction() const{
       std::cout << this->GetNumerator() << "/" << this->GetDenominator();
@@ -57,7 +61,7 @@ Fraction::Fraction(int n, int d): numerator(n), denominator(d){}
 
 
 
-void Fraction::AddFraction(Fraction& otherFraction){
+void Fraction::operator+(Fraction& otherFraction){
   Fraction resultF;
   if(this->GetDenominator() == otherFraction.GetDenominator()){
     resultF.SetNumerator(this->GetNumerator() + otherFraction.GetNumerator());
@@ -68,18 +72,18 @@ void Fraction::AddFraction(Fraction& otherFraction){
   }
   this->PrintFraction();
   std::cout << " + ";
-  otherFraction.PrintFraction();
+  std::cout << otherFraction;
   std::cout << " = ";
-  resultF.PrintFraction();
+  std::cout << resultF;
 
   SimpFraction(resultF);
   std::cout << " -> ";
-  resultF.PrintFraction();
+  std::cout << resultF;
   std::cout << std::endl;
   CompareFraction(otherFraction);
 }
 
-void Fraction::SubFraction(Fraction& otherFraction){
+void Fraction::operator-(Fraction& otherFraction){
    Fraction resultF;
   if(this->GetDenominator() == otherFraction.GetDenominator()){
     resultF.SetNumerator(this->GetNumerator() - otherFraction.GetNumerator());
@@ -90,43 +94,43 @@ void Fraction::SubFraction(Fraction& otherFraction){
   }
   this->PrintFraction();
   std::cout << " - ";
-  otherFraction.PrintFraction();
+  std::cout << otherFraction;
   std::cout << " = ";
-  resultF.PrintFraction();
+  std::cout << resultF;
 
   SimpFraction(resultF);
   std::cout << " -> ";
-  resultF.PrintFraction();
+  std::cout << resultF;
   std::cout << std::endl;
   CompareFraction(otherFraction);
 }
 
-void Fraction::MultFraction(Fraction& otherFraction){
+void Fraction::operator*(Fraction& otherFraction){
   Fraction resultF;
   resultF.SetNumerator(this->GetNumerator() * otherFraction.GetNumerator());
   resultF.SetDenominator(this->GetDenominator() * otherFraction.GetDenominator());
 
   this->PrintFraction();
   std::cout << " * ";
-  otherFraction.PrintFraction();
+  std::cout << otherFraction;
   std::cout << " = ";
-  resultF.PrintFraction();
+  std::cout << resultF;
 
   SimpFraction(resultF);
   std::cout << " -> ";
-  resultF.PrintFraction();
+  std::cout << resultF;
   std::cout << std::endl;
   CompareFraction(otherFraction);
 
 }
 
-void Fraction::DivFraction(Fraction& otherFraction){
+void Fraction::operator/(Fraction& otherFraction){
   Fraction tempF = {int(otherFraction.GetDenominator()), int(otherFraction.GetNumerator())};
   Fraction resultF;
     
   this->PrintFraction();
   std::cout << " % ";
-  otherFraction.PrintFraction();
+  std::cout << otherFraction;
   std::cout << " => ";
 
   resultF.SetNumerator(this->GetNumerator() * tempF.GetNumerator());
@@ -134,13 +138,13 @@ void Fraction::DivFraction(Fraction& otherFraction){
 
   this->PrintFraction();
   std::cout << " * ";
-  tempF.PrintFraction();
+  std::cout << tempF;
   std::cout << " = ";
-  resultF.PrintFraction();
+  std::cout << resultF;
 
   SimpFraction(resultF);
   std::cout << " -> ";
-  resultF.PrintFraction();
+  std::cout << resultF;
   std::cout << std::endl;
   CompareFraction(otherFraction);
 }
@@ -189,25 +193,25 @@ int main( int argc , char **argv ){
   switch(op){
     case '+':
       {
-        f1.AddFraction(otherFraction);
+        f1 + otherFraction;
       }
       break;
     
     case '-':
       {
-        f1.SubFraction(otherFraction);
+        f1 - otherFraction;
       }
       break;
 
     case '*':
       {
-        f1.MultFraction(otherFraction);
+        f1 * otherFraction;
       }
       break;
 
     case '/':
       {
-        f1.DivFraction(otherFraction);
+        f1 / otherFraction;
       }
       break;
   }
