@@ -1,7 +1,6 @@
 #include "Utils.hpp"
 #include <cmath>
-
-static const float EPSILON = 0.0001f;
+#include <cassert>
 
 bool IsEqual(float x, float y){
   return fabsf(x - y) < EPSILON;

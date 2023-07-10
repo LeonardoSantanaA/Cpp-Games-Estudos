@@ -19,7 +19,13 @@ class Vec2D{
     bool operator!=(const Vec2D& vec) const;
   
     Vec2D operator-() const;
-  
+    Vec2D operator*(float scale) const;
+    Vec2D operator/(float scale) const;
+    Vec2D& operator*=(float scale);
+    Vec2D& operator/=(float scale);
+
+    friend Vec2D operator*(float scale, const Vec2D& vec);
+
   private:
     float mX, mY;
 };
