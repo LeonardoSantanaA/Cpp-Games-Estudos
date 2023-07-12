@@ -6,6 +6,8 @@
 
 class Vec2D{
   public:
+    static const Vec2D Zero;
+
     Vec2D(): Vec2D(0, 0){}
     Vec2D(float x, float y) : mX(x), mY(y){}
 
@@ -30,6 +32,11 @@ class Vec2D{
 
     float Mag2() const;
     float Mag() const;
+
+    Vec2D GetUnitVec() const;
+    Vec2D& Normalize();
+
+    float Distance(const Vec2D vec) const;
 
     friend Vec2D operator*(float scale, const Vec2D& vec);
 
