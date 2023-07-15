@@ -104,3 +104,7 @@ Vec2D Vec2D::ProjectOnto(const Vec2D& vec2) const{
   
   return unitVec2 * dot;
 }
+
+float Vec2D::AngleBetween(const Vec2D& vec2) const{
+  return acosf(GetUnitVec().Dot(vec2.GetUnitVec()));
+}
