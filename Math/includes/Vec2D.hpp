@@ -37,6 +37,9 @@ class Vec2D{
     Vec2D& Normalize();
 
     float Distance(const Vec2D vec) const;
+    float Dot(const Vec2D& vec) const;
+
+    Vec2D ProjectOnto(const Vec2D& vec2) const;
 
     friend Vec2D operator*(float scale, const Vec2D& vec);
 
