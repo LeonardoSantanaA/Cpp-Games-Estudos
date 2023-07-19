@@ -43,6 +43,8 @@ class Vec2D{
 
     float AngleBetween(const Vec2D& vec2) const;
 
+    Vec2D Reflect(const Vec2D& normal) const;
+
     friend Vec2D operator*(float scale, const Vec2D& vec);
 
   private:
