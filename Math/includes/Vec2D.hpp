@@ -45,6 +45,9 @@ class Vec2D{
 
     Vec2D Reflect(const Vec2D& normal) const;
 
+    void Rotate(float angle, const Vec2D& aroundPoint);
+    Vec2D RotationResult(float angle, const Vec2D& aroundPoint) const;
+
     friend Vec2D operator*(float scale, const Vec2D& vec);
 
   private:
