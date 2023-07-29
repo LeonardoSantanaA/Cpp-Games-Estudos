@@ -311,6 +311,19 @@ Fraction/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fraction.dir/build.make CMakeFiles/Fraction.dir/build
 .PHONY : Fraction/fast
 
+#=============================================================================
+# Target rules for targets named String
+
+# Build rule for target.
+String: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 String
+.PHONY : String
+
+# fast build rule for target.
+String/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/String.dir/build.make CMakeFiles/String.dir/build
+.PHONY : String/fast
+
 Calculator.o: Calculator.cpp.o
 .PHONY : Calculator.o
 
@@ -382,6 +395,30 @@ PigLatin.s: PigLatin.cpp.s
 PigLatin.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PigLatin.dir/build.make CMakeFiles/PigLatin.dir/PigLatin.cpp.s
 .PHONY : PigLatin.cpp.s
+
+StringClass.o: StringClass.cpp.o
+.PHONY : StringClass.o
+
+# target to build an object file
+StringClass.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/String.dir/build.make CMakeFiles/String.dir/StringClass.cpp.o
+.PHONY : StringClass.cpp.o
+
+StringClass.i: StringClass.cpp.i
+.PHONY : StringClass.i
+
+# target to preprocess a source file
+StringClass.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/String.dir/build.make CMakeFiles/String.dir/StringClass.cpp.i
+.PHONY : StringClass.cpp.i
+
+StringClass.s: StringClass.cpp.s
+.PHONY : StringClass.s
+
+# target to generate assembly for a file
+StringClass.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/String.dir/build.make CMakeFiles/String.dir/StringClass.cpp.s
+.PHONY : StringClass.cpp.s
 
 TicTacToe.o: TicTacToe.cpp.o
 .PHONY : TicTacToe.o
@@ -691,6 +728,7 @@ help:
 	@echo "... PigLatin"
 	@echo "... Star_Exercise1"
 	@echo "... Star_Exercise2"
+	@echo "... String"
 	@echo "... Swap_Exercise"
 	@echo "... TicTacToe"
 	@echo "... Timer"
@@ -703,6 +741,9 @@ help:
 	@echo "... PigLatin.o"
 	@echo "... PigLatin.i"
 	@echo "... PigLatin.s"
+	@echo "... StringClass.o"
+	@echo "... StringClass.i"
+	@echo "... StringClass.s"
 	@echo "... TicTacToe.o"
 	@echo "... TicTacToe.i"
 	@echo "... TicTacToe.s"

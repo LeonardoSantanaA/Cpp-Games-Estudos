@@ -58,4 +58,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/PigLatin.dir/DependInfo.cmake"
   "CMakeFiles/Timer.dir/DependInfo.cmake"
   "CMakeFiles/Fraction.dir/DependInfo.cmake"
+  "CMakeFiles/String.dir/DependInfo.cmake"
   )

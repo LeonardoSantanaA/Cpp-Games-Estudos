@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/String.dir/StringClass.cpp.o -o String 
