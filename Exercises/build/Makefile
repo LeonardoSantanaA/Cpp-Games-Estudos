@@ -312,17 +312,17 @@ Fraction/fast:
 .PHONY : Fraction/fast
 
 #=============================================================================
-# Target rules for targets named String
+# Target rules for targets named StringClass
 
 # Build rule for target.
-String: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 String
-.PHONY : String
+StringClass: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 StringClass
+.PHONY : StringClass
 
 # fast build rule for target.
-String/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/String.dir/build.make CMakeFiles/String.dir/build
-.PHONY : String/fast
+StringClass/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/StringClass.dir/build.make CMakeFiles/StringClass.dir/build
+.PHONY : StringClass/fast
 
 Calculator.o: Calculator.cpp.o
 .PHONY : Calculator.o
@@ -401,7 +401,7 @@ StringClass.o: StringClass.cpp.o
 
 # target to build an object file
 StringClass.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/String.dir/build.make CMakeFiles/String.dir/StringClass.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/StringClass.dir/build.make CMakeFiles/StringClass.dir/StringClass.cpp.o
 .PHONY : StringClass.cpp.o
 
 StringClass.i: StringClass.cpp.i
@@ -409,7 +409,7 @@ StringClass.i: StringClass.cpp.i
 
 # target to preprocess a source file
 StringClass.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/String.dir/build.make CMakeFiles/String.dir/StringClass.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/StringClass.dir/build.make CMakeFiles/StringClass.dir/StringClass.cpp.i
 .PHONY : StringClass.cpp.i
 
 StringClass.s: StringClass.cpp.s
@@ -417,7 +417,7 @@ StringClass.s: StringClass.cpp.s
 
 # target to generate assembly for a file
 StringClass.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/String.dir/build.make CMakeFiles/String.dir/StringClass.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/StringClass.dir/build.make CMakeFiles/StringClass.dir/StringClass.cpp.s
 .PHONY : StringClass.cpp.s
 
 TicTacToe.o: TicTacToe.cpp.o
@@ -728,7 +728,7 @@ help:
 	@echo "... PigLatin"
 	@echo "... Star_Exercise1"
 	@echo "... Star_Exercise2"
-	@echo "... String"
+	@echo "... StringClass"
 	@echo "... Swap_Exercise"
 	@echo "... TicTacToe"
 	@echo "... Timer"
