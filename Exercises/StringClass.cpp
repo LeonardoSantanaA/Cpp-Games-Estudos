@@ -26,6 +26,11 @@ class String{
       this->length = length;
     }
 
+    ~String(){
+      this->str = nullptr;
+      delete[] str;
+    }
+
     inline int GetLength();
 
     friend std::ostream& operator<<(std::ostream& consoleOut, String& string){
@@ -91,7 +96,6 @@ String String::operator+(String& otherString){
 
   return newString;
 }
-
 
 bool String::operator==(String& otherString){
   if(this->GetLength() == otherString.GetLength()){
@@ -189,7 +193,7 @@ String String::cpstr(String& otherStr){
 int main( int argc , char **argv ){
   //String string((char*)"Hollba");
   String string1 = "Lekaum ";
-  String string2 = "Lekaum ";
+  String string2 = "Lbkaum ";
   int indexSubstr = string2.substr("um");
   String string3 = "Santana";
   String string4 = string2.substr(4, 6);
@@ -208,10 +212,6 @@ int main( int argc , char **argv ){
   std::cout << "before copy: " << string2 << std::endl;
   string2.cpstr(string4);
   std::cout << "after copy " << string4 << ": " << string2 << std::endl;
-  //std::cout << std::endl;
-  //std::cout << string2;
-  //std::cout << std::endl;
-  //std::cout << string;
   return 0;
 }
 
