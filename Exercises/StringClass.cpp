@@ -28,14 +28,16 @@ class String{
 
     inline int GetLength();
 
-    friend void operator<<(std::ostream& consoleOut, String& string){
+    friend std::ostream& operator<<(std::ostream& consoleOut, String& string){
       for(int i = 0; i < string.GetLength() + 1; i++){
         std::cout << string.str[i];
       }
+      return consoleOut;
     }
 
     String operator+(String& otherString);
     bool operator==(String& otherString);
+    char operator[](int index);
 
     int substr(const char* substr);
     String substr(int indexStart, int length);
@@ -52,7 +54,7 @@ inline int String::VerifyLength(){
   while(str[i] != '\0'){
     i++;
   }
-  return i;
+  return i - 1;
 }
 
 int String::GetLength(){
@@ -62,7 +64,7 @@ int String::GetLength(){
   }else{
     return length;
   }
-  return i;
+  return i - 1;
 }
 
 String String::operator+(String& otherString){
@@ -106,6 +108,19 @@ bool String::operator==(String& otherString){
    return true; 
 }
 
+char String::operator[](int index){
+  try{
+    if(index > this->GetLength() || this->str[index] == '\0'){
+      throw "Out of index!";
+    }else{
+      return this->str[index];
+    }
+  }catch(const char* error){
+    std::cerr << error;
+    return -1;
+  }
+}
+
 int String::substr(const char* substr){
   int indexStr = 0;
   int indexSubStr = 0;
@@ -130,11 +145,15 @@ int String::substr(const char* substr){
 }
 
 String String::substr(int indexStart, int length){
-  if(this->GetLength() < length){
-    std::cout << "ERROR: The length is less than string length!" << std::endl;
-    return *this;
-  }
   try{
+    if(length > this->GetLength() ){
+      throw "ERROR: The length is less than string length!";
+    }
+
+    if(indexStart > length){
+      throw "ERROR: The start index is greater than length!";
+    }
+
     String newString(length);
     int indexNewString = 0;
     for(int i = indexStart; i <= length; i++){
@@ -146,8 +165,8 @@ String String::substr(int indexStart, int length){
     }
     return newString;
   }catch(const char* e){
-    std::cout << "ERROR! Look at the substr function!" << std::endl;
-    return *this;
+    std::cerr << e;
+    return 0;
   }
 }
 
@@ -156,14 +175,14 @@ int main( int argc , char **argv ){
   String string2 = "Lekaum ";
   //int indexSubstr = string2.substr("um");
   String string3 = "Santana";
-  String string4 = string3.substr(1, 7);
+  String string4 = string3.substr(4, 6);
   //if(string == string2){
     //std::cout << "is equal!" << std::endl;
   //}else{
     //std::cout << "inst equal!" << std::endl;
   //}
   //std::cout << nome;
-  std::cout << string4;
+  std::cout << string3 << std::endl;
   //std::cout << std::endl;
   //std::cout << string2;
   //std::cout << std::endl;
