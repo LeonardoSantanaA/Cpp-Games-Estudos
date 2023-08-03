@@ -1,5 +1,17 @@
 #include <iostream>
 
+namespace UtilsStr{
+  int CheckLength(const char* str);
+};
+
+int UtilsStr::CheckLength(const char* str){
+int i = 0;
+  while(str[i] != '\0'){
+    i++;
+  }
+  return i;
+}
+
 class String{
   public:
     String(const char* str){
@@ -18,14 +30,15 @@ class String{
 
     friend void operator<<(std::ostream& consoleOut, String& string){
       for(int i = 0; i < string.GetLength() + 1; i++){
-        consoleOut << string.str[i];
+        std::cout << string.str[i];
       }
     }
 
     String operator+(String& otherString);
     bool operator==(String& otherString);
 
-    int substr(const String& substr);
+    int substr(const char* substr);
+    String substr(int indexStart, int length);
 
   private:
     char* str;
@@ -54,7 +67,7 @@ int String::GetLength(){
 
 String String::operator+(String& otherString){
   int newLength = this->GetLength() + otherString.GetLength();
-  std::cout << "tamanho novo: " << newLength << std::endl;
+  //std::cout << "tamanho novo: " << newLength << std::endl;
   int lastIndex = 0;
   String newString(newLength);
   
@@ -63,7 +76,7 @@ String String::operator+(String& otherString){
       newString.str[i] = this->str[i];
    }else{
       lastIndex = i;
-      std::cout << "lastIndex: " << lastIndex << std::endl;
+      //std::cout << "lastIndex: " << lastIndex << std::endl;
       break;
     }
   }
@@ -81,7 +94,6 @@ bool String::operator==(String& otherString){
   if(this->GetLength() == otherString.GetLength()){
     for(int i = 0; i < this->GetLength(); i++){
       if((this->str[i] == otherString.str[i]) && this->str[i] != '\0'){
-        //std::cout << this->str[i] << " é igual de " << otherString.str[i] << std::endl;
         continue;
       }else{
         return false;
@@ -94,21 +106,64 @@ bool String::operator==(String& otherString){
    return true; 
 }
 
-int String::substr(const String& substr){
+int String::substr(const char* substr){
+  int indexStr = 0;
+  int indexSubStr = 0;
+  int firstIndexSubStr = 0;
+  int lastIndexSubStr = UtilsStr::CheckLength(substr);
 
+  while(this->str[indexStr] != '\0'){
+    if(this->str[indexStr] == substr[indexSubStr]){
+      if(indexSubStr == 0){
+        firstIndexSubStr = indexStr;
+      }
+      indexSubStr++;
+      if(indexSubStr == lastIndexSubStr){
+        return firstIndexSubStr;
+      }
+    }else{
+      indexSubStr = 0;
+    }
+    indexStr++;
+  }
+  return -1;
+}
+
+String String::substr(int indexStart, int length){
+  if(this->GetLength() < length){
+    std::cout << "ERROR: The length is less than string length!" << std::endl;
+    return *this;
+  }
+  try{
+    String newString(length);
+    int indexNewString = 0;
+    for(int i = indexStart; i <= length; i++){
+        newString.str[indexNewString] = this->str[i];  
+        if(indexNewString > newString.GetLength()){
+          break;
+        }
+        indexNewString++;
+    }
+    return newString;
+  }catch(const char* e){
+    std::cout << "ERROR! Look at the substr function!" << std::endl;
+    return *this;
+  }
 }
 
 int main( int argc , char **argv ){
   String string((char*)"Hollba");
   String string2 = "Lekaum ";
+  //int indexSubstr = string2.substr("um");
   String string3 = "Santana";
-  String nome = string2 + string3;
-  if(string == string2){
-    std::cout << "is equal!" << std::endl;
-  }else{
-    std::cout << "inst equal!" << std::endl;
-  }
-  std::cout << nome;
+  String string4 = string3.substr(1, 7);
+  //if(string == string2){
+    //std::cout << "is equal!" << std::endl;
+  //}else{
+    //std::cout << "inst equal!" << std::endl;
+  //}
+  //std::cout << nome;
+  std::cout << string4;
   //std::cout << std::endl;
   //std::cout << string2;
   //std::cout << std::endl;
