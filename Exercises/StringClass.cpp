@@ -41,6 +41,7 @@ class String{
 
     int substr(const char* substr);
     String substr(int indexStart, int length);
+    String cpstr(String& otherStr);
 
   private:
     char* str;
@@ -68,7 +69,7 @@ int String::GetLength(){
 }
 
 String String::operator+(String& otherString){
-  int newLength = this->GetLength() + otherString.GetLength();
+  int newLength = this->GetLength() + otherString.GetLength() + 1;
   //std::cout << "tamanho novo: " << newLength << std::endl;
   int lastIndex = 0;
   String newString(newLength);
@@ -146,7 +147,11 @@ int String::substr(const char* substr){
 
 String String::substr(int indexStart, int length){
   try{
-    if(length > this->GetLength() ){
+    if(length < 0){
+      throw "ERROR: The length is less than zero!";
+    }
+
+    if(length > this->GetLength()){
       throw "ERROR: The length is less than string length!";
     }
 
@@ -170,19 +175,39 @@ String String::substr(int indexStart, int length){
   }
 }
 
+String String::cpstr(String& otherStr){
+  char* oldStr = this->str;
+  oldStr = nullptr;
+  delete[] oldStr;
+  this->str = new char[otherStr.GetLength() + 1];
+  for(int i = 0; i < this->GetLength() + 1; i++){
+    this->str[i] = otherStr.str[i]; 
+  }
+  return *this;
+}
+
 int main( int argc , char **argv ){
-  String string((char*)"Hollba");
+  //String string((char*)"Hollba");
+  String string1 = "Lekaum ";
   String string2 = "Lekaum ";
-  //int indexSubstr = string2.substr("um");
+  int indexSubstr = string2.substr("um");
   String string3 = "Santana";
-  String string4 = string3.substr(4, 6);
-  //if(string == string2){
-    //std::cout << "is equal!" << std::endl;
-  //}else{
-    //std::cout << "inst equal!" << std::endl;
-  //}
+  String string4 = string2.substr(4, 6);
+  String string5 = string1 + string3;
+
+  if(string1 == string2){
+    std::cout << "is equal!" << std::endl;
+  }else{
+    std::cout << "inst equal!" << std::endl;
+  }
+  std::cout << string1[2] << std::endl;
+  std::cout << "index of substr: " << indexSubstr << std::endl;
+  std::cout << "my name: " << string5 << std::endl;
+
   //std::cout << nome;
-  std::cout << string3 << std::endl;
+  std::cout << "before copy: " << string2 << std::endl;
+  string2.cpstr(string4);
+  std::cout << "after copy " << string4 << ": " << string2 << std::endl;
   //std::cout << std::endl;
   //std::cout << string2;
   //std::cout << std::endl;
