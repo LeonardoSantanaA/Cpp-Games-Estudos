@@ -41,6 +41,7 @@ class String{
     }
 
     String operator+(String& otherString);
+    String operator+(const char* characters);
     bool operator==(String& otherString);
     char operator[](int index);
 
@@ -75,7 +76,6 @@ int String::GetLength(){
 
 String String::operator+(String& otherString){
   int newLength = this->GetLength() + otherString.GetLength() + 1;
-  //std::cout << "tamanho novo: " << newLength << std::endl;
   int lastIndex = 0;
   String newString(newLength);
   
@@ -84,13 +84,34 @@ String String::operator+(String& otherString){
       newString.str[i] = this->str[i];
    }else{
       lastIndex = i;
-      //std::cout << "lastIndex: " << lastIndex << std::endl;
       break;
     }
   }
   int index = 0;
   for(int i = lastIndex; i <= newLength; i++){
     newString.str[i] = otherString.str[index];
+    index++;
+  }
+
+  return newString;
+}
+
+String String::operator+(const char* characters){
+  int newLength = this->GetLength() + UtilsStr::CheckLength(characters) + 1;
+  int lastIndex = 0;
+  String newString(newLength);
+  
+  for(int i = 0; i < newLength; i++){
+    if(this->str[i] != '\0'){
+      newString.str[i] = this->str[i];
+   }else{
+      lastIndex = i;
+      break;
+    }
+  }
+  int index = 0;
+  for(int i = lastIndex; i <= newLength; i++){
+    newString.str[i] = characters[index];
     index++;
   }
 
@@ -190,14 +211,16 @@ String String::cpstr(String& otherStr){
   return *this;
 }
 
+//TESTS
+/*
 int main( int argc , char **argv ){
-  //String string((char*)"Hollba");
   String string1 = "Lekaum ";
   String string2 = "Lbkaum ";
   int indexSubstr = string2.substr("um");
   String string3 = "Santana";
   String string4 = string2.substr(4, 6);
   String string5 = string1 + string3;
+  String string6 = string1 + " Santana";
 
   if(string1 == string2){
     std::cout << "is equal!" << std::endl;
@@ -212,6 +235,7 @@ int main( int argc , char **argv ){
   std::cout << "before copy: " << string2 << std::endl;
   string2.cpstr(string4);
   std::cout << "after copy " << string4 << ": " << string2 << std::endl;
+  std::cout << string6 << std::endl;
   return 0;
 }
-
+*/
