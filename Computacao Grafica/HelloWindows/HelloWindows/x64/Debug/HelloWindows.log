@@ -1,2 +1,2 @@
-﻿  HelloMsg.cpp
-  HelloWindows.vcxproj -> S:\C++\Computacao Grafica\HelloWindows\x64\Debug\HelloWindows.exe
+﻿  WinDXUT.cpp
+S:\C++\Computacao Grafica\HelloWindows\HelloWindows\WinDXUT.cpp(6,10): fatal  error C1083: Não é possível abrir arquivo incluir: '': No such file or directory
