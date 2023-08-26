@@ -1,4 +1,4 @@
-﻿//
+﻿//Inicio de nova classe window
 //Professor: Judson Santiago
 #include "DXUT.h"
 
