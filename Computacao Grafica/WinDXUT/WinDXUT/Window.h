@@ -47,6 +47,7 @@ public:
 
 	void HideCursor(bool hide); //habilita ou desabilita a exibicao do cursor
 	void Print(string text, int x, int y, COLORREF color); //mostra texto na janela
+	void Clear(); //limpa a tela
 	void Close(); //fecha a janela e sai
 	bool Create(); //cria a janela com os valores dos atributos
 

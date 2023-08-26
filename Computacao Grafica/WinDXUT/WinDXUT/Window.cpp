@@ -48,6 +48,18 @@ void Window::Print(string text, int x, int y, COLORREF color) {
 	ReleaseDC(windowId, xdc); //libera o contexto do dispositivo
 }
 
+void Window::Clear()
+{
+    HDC hdc = GetDC(windowId);    // captura contexto do dispositivo
+
+    // pega tamanho da área cliente
+    RECT rect;
+    GetClientRect(windowId, &rect);
+
+    FillRect(hdc, &rect, CreateSolidBrush(Color()));  // limpa a área cliente
+    ReleaseDC(windowId, hdc); // libera o contexto do dispositivo
+}
+
 bool Window::Create() {
     HINSTANCE appId = GetModuleHandle(NULL); //identificador da aplicacao
     // atualiza posicao da janela

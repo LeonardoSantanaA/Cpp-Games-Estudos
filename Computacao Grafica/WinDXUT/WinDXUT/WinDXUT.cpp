@@ -1,4 +1,4 @@
-﻿//Inicio de nova classe window
+﻿//Classe de janela inicial
 //Professor: Judson Santiago
 #include "DXUT.h"
 
@@ -12,7 +12,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance,
     window->Mode(WINDOWED);
     window->Size(1024, 600);
     window->Color(0, 122, 204);
-    window->Title("Aplicação");
+    window->Title("Input Focus");
     window->Icon(IDI_ICON);
     window->Cursor(IDC_CURSOR);
     window->Create();
@@ -26,4 +26,3 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance,
     delete window;
     return 0;
 }
-
