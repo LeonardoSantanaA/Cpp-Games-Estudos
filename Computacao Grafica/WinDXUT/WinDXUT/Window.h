@@ -26,6 +26,9 @@ private:
 	int windowCenterX; //centro da janela no eixo x
 	int windowCenterY; //centro da janela no eixo y
 
+
+	static void (*inFocus)();
+	static void (*lostFocus)();
 public:
 	Window();	//construtor
 
@@ -50,6 +53,9 @@ public:
 	void Clear(); //limpa a tela
 	void Close(); //fecha a janela e sai
 	bool Create(); //cria a janela com os valores dos atributos
+
+	void InFocus(void(*func)()); //chama uma funcao ao ganhar foco
+	void LostFocus(void(*func)()); //chama uma funcao ao perder foco
 
 	//tratamento de eventos do windows
 	static LRESULT CALLBACK WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -111,6 +117,14 @@ inline void Window::HideCursor(bool hide) {
 
 inline void Window::Close() {
 	PostMessage(windowId, WM_DESTROY, 0, 0); //mando a mensagem WM_DESTROY pra minha janela
+}
+
+inline void Window::InFocus(void(*func)()) {
+	inFocus = func;
+}
+
+inline void Window::LostFocus(void(*func)()) {
+	lostFocus = func;
 }
 
 #endif

@@ -1,5 +1,8 @@
 #include "Window.h"
 
+void (*Window::inFocus)() = nullptr; //nenhuma acao ao ganhar foco
+void (*Window::lostFocus)() = nullptr; //nenhuma acao ao perder foco
+
 Window::Window() {
 	windowId = 0;	//id nulo porque a janela ainda nao existe
 	windowWidth = GetSystemMetrics(SM_CXSCREEN); //a janela ocupa toda a tela
@@ -118,6 +121,16 @@ bool Window::Create() {
 
 LRESULT CALLBACK Window::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     switch (message) {
+    case WM_KILLFOCUS:
+        if (lostFocus) //se o ponteiro for nulo, ele é false
+            lostFocus();
+        return 0;
+        //recebeu o foco
+    case WM_SETFOCUS:
+        if (inFocus)
+            inFocus();
+        return 0;
+
     case WM_DESTROY:
         PostQuitMessage(0);
         return 0;

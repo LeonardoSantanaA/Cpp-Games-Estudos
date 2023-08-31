@@ -4,5 +4,6 @@
 #include "Types.h"
 #include "Resources.h"
 #include "Window.h"
+#include "Input.h"
 
 #endif
