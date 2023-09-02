@@ -1,0 +1,33 @@
+﻿  App.cpp
+S:\C++\Computacao Grafica\WinDXUT\WinDXUT\App.cpp(12,9): warning C4553: '==': o resultado da expressão não usado; você pretendia que fosse '='?
+  Engine.cpp
+  Input.cpp
+  Timer.cpp
+  Window.cpp
+S:\C++\Computacao Grafica\WinDXUT\WinDXUT\Window.cpp(50,2): error C2664: 'BOOL TextOutW(HDC,int,int,LPCWSTR,int)': não é possível converter um argumento 4 de 'const _Elem *' em 'LPCWSTR'
+          with
+          [
+              _Elem=char
+          ]
+S:\C++\Computacao Grafica\WinDXUT\WinDXUT\Window.cpp(50,31): message : Tipos apontados não são relacionados; conversão requer reinterpret_cast, conversão C-style ou conversão function-style entre parênteses
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\wingdi.h(5147,25): message : consulte a declaração de 'TextOutW'
+S:\C++\Computacao Grafica\WinDXUT\WinDXUT\Window.cpp(50,2): message : ao tentar corresponder a lista de argumentos '(HDC, int, int, const _Elem *, int)'
+          with
+          [
+              _Elem=char
+          ]
+S:\C++\Computacao Grafica\WinDXUT\WinDXUT\Window.cpp(81,30): error C2440: '=': não é possível converter de 'const char [10]' para 'LPCWSTR'
+S:\C++\Computacao Grafica\WinDXUT\WinDXUT\Window.cpp(81,30): message : Tipos apontados não são relacionados; conversão requer reinterpret_cast, conversão C-style ou conversão function-style entre parênteses
+S:\C++\Computacao Grafica\WinDXUT\WinDXUT\Window.cpp(85,9): error C2664: 'int MessageBoxW(HWND,LPCWSTR,LPCWSTR,UINT)': não é possível converter um argumento 2 de 'const char [27]' em 'LPCWSTR'
+S:\C++\Computacao Grafica\WinDXUT\WinDXUT\Window.cpp(85,26): message : Tipos apontados não são relacionados; conversão requer reinterpret_cast, conversão C-style ou conversão function-style entre parênteses
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\winuser.h(9161,1): message : consulte a declaração de 'MessageBoxW'
+S:\C++\Computacao Grafica\WinDXUT\WinDXUT\Window.cpp(85,9): message : ao tentar corresponder a lista de argumentos '(int, const char [27], const char [10], long)'
+S:\C++\Computacao Grafica\WinDXUT\WinDXUT\Window.cpp(89,16): error C2664: 'HWND CreateWindowExW(DWORD,LPCWSTR,LPCWSTR,DWORD,int,int,int,int,HWND,HMENU,HINSTANCE,LPVOID)': não é possível converter um argumento 2 de 'const char [10]' em 'LPCWSTR'
+S:\C++\Computacao Grafica\WinDXUT\WinDXUT\Window.cpp(91,9): message : Tipos apontados não são relacionados; conversão requer reinterpret_cast, conversão C-style ou conversão function-style entre parênteses
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\winuser.h(4433,1): message : consulte a declaração de 'CreateWindowExW'
+S:\C++\Computacao Grafica\WinDXUT\WinDXUT\Window.cpp(89,16): message : ao tentar corresponder a lista de argumentos '(int, const char [10], const _Elem *, DWORD, int, int, int, int, int, int, HINSTANCE, int)'
+          with
+          [
+              _Elem=char
+          ]
+  WinDXUT.cpp

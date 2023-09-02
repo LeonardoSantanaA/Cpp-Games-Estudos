@@ -3,15 +3,19 @@
 
 #include "App.h"
 #include "Window.h"
+#include "Timer.h"
 
 class Engine {
 private:
-	static App* app;	//aplicacao a ser executada
+	static Timer timer;
+	float FrameTime();	//calcula o tempo do quadro
 	int Loop();	//laco principal do motor
 
 public:
 	static Window* window;
 	static Input* input;
+	static App* app;	//aplicacao a ser executada
+	static float frameTime;
 
 	Engine();
 	~Engine();

@@ -18,11 +18,13 @@ private:
 public:
     void Init();
     void Update();
-    void Display();
+    //void Display();
+    void Draw();
     void Finalize();
 };
 
 void WinApp::Init() {
+    /*
     //captura a posicao do mouse
     lastX = input->MouseX();
     lastY = input->MouseY();
@@ -31,13 +33,14 @@ void WinApp::Init() {
     textSize << "Tamanho: " << window->Width() << " x " << window->Height();
     textMode << "Formato: " << (window->Mode() == WINDOWED ? "Em Janela" : "Tela Cheia");
     textMouse << input->MouseX() << " x " << input->MouseY();
+    */
 }
 
 void WinApp::Update() {
     //sai com o pressionamento da tecla ESC
     if (input->KeyPress(VK_ESCAPE))
         window->Close();
-
+    /*
     //converte posicao do mouse em texto para exibicao
     textMouse.str("");  //limpa a string
     textMouse << input->MouseX() << " x " << input->MouseY();
@@ -51,21 +54,25 @@ void WinApp::Update() {
     //atualiza posicao do mouse
     lastX = input->MouseX();
     lastY = input->MouseY();
+    */
 }
-
+/*
 void WinApp::Display() {
     window->Print("Window App Demo", 10, 10, RGB(255, 255, 255));
     window->Print(textSize.str(), 10, 50, RGB(255, 255, 255));
     window->Print(textMode.str(), 10, 75, RGB(255, 255, 255));
     window->Print(textMouse.str(), 10, 100, RGB(255, 255, 255));
 }
+*/
+
+void WinApp::Draw() {}
 
 void WinApp::Finalize(){}   //nao tenho nada pra liberar, nao aloquei nada
 
 //prototipo de funcoes e declaracoes globais
 Window* window;
-void Welcome();
-void Bye();
+//void Welcome();
+//void Bye();
 
 int APIENTRY WinMain(_In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
@@ -76,7 +83,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance,
     engine->window->Mode(WINDOWED);
     engine->window->Size(1024, 600);
     engine->window->Color(0, 122, 204);
-    engine->window->Title("Aplicação Windows");
+    engine->window->Title("Aplicação Windows com Timer");
     engine->window->Icon(IDI_ICON);
     engine->window->Cursor(IDC_CURSOR);
    
