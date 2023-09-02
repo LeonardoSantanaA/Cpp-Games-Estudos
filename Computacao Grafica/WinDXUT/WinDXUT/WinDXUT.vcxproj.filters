@@ -33,6 +33,12 @@
     <ClInclude Include="Input.h">
       <Filter>DXUT\Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="App.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources.rc">
@@ -45,6 +51,12 @@
       <Filter>DXUT\Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
+      <Filter>DXUT\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>DXUT\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="App.cpp">
       <Filter>DXUT\Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>

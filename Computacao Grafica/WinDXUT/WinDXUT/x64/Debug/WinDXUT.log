@@ -1,5 +1,6 @@
-﻿  Input.cpp
-  Window.cpp
+﻿  App.cpp
+S:\C++\Computacao Grafica\WinDXUT\WinDXUT\App.cpp(12,9): warning C4553: '==': o resultado da expressão não usado; você pretendia que fosse '='?
+  Engine.cpp
   WinDXUT.cpp
   Gerando Código...
   WinDXUT.vcxproj -> S:\C++\Computacao Grafica\WinDXUT\x64\Debug\WinDXUT.exe
