@@ -8,8 +8,9 @@
     ]
   },
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Graphics"
   ],
-  "SelectedNode": "\\CMakeLists.txt",
+  "SelectedNode": "\\Setup.cpp",
   "PreviewInSolutionExplorer": false
 }

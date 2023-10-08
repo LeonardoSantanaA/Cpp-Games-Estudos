@@ -1,6 +1,8 @@
 #include <iostream>
 #include <SDL.h>
 
+#include "Graphics/Color.h"
+
 const int SCREEN_WIDTH = 224;
 const int SCREEN_HEIGHT = 288;
 
@@ -22,9 +24,15 @@ int main(int argc, char* argv[]) {
 
 	SDL_Surface* noptrWindowSurface = SDL_GetWindowSurface(optrWindow);
 
-	uint32_t color = 0xFF0000;
+	SDL_PixelFormat* pixelFormat = noptrWindowSurface->format;
 
-	SetPixel(noptrWindowSurface, color, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	std::cout << "The window pixel format is: " << SDL_GetPixelFormatName(pixelFormat->format);
+
+	Color::InitColorFormat(pixelFormat);
+
+	//Color c(255, 255, 0, 255);
+
+	SetPixel(noptrWindowSurface, Color::White().GetPixelColor(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	SDL_UpdateWindowSurface(optrWindow);
 
 	SDL_Event sdlEvent;
