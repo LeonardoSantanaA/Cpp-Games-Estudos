@@ -7,10 +7,12 @@ find_package(SDL2 REQUIRED)
 
 
 add_executable(SDL2Setup "Setup.cpp" 
-"Graphics/Color.cpp" 
-"Graphics/ScreenBuffer.cpp" 
-"Graphics/Screen.cpp"
-"Utils/Utils.cpp"
-"Utils/Vec2D.cpp"   )
+"src/Graphics/Color.cpp" 
+"src/Graphics/ScreenBuffer.cpp" 
+"src/Graphics/Screen.cpp"
+"src/Utils/Utils.cpp"
+"src/Utils/Vec2D.cpp"
+"src/Shapes/Line2D.cpp"
+)
 
 target_link_libraries(SDL2Setup SDL2::SDL2 SDL2::SDL2main)

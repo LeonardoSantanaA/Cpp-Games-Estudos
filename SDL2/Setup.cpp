@@ -1,18 +1,18 @@
 #include <iostream>
 #include <SDL.h>
 
-#include "Graphics/Color.h"
-#include "Graphics/ScreenBuffer.h"
-#include "Graphics/Screen.h"
+#include "src/Graphics/Color.h"
+#include "src/Graphics/ScreenBuffer.h"
+#include "src/Graphics/Screen.h"
 
 const int SCREEN_WIDTH = 224;
 const int SCREEN_HEIGHT = 288;
-const int MAGNIFCATION = 3;
+const int MAGNIFICATION = 3;
 
 int main(int argc, char* argv[]) {
 	Screen theScreen;
 
-	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFCATION);
+	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 	theScreen.Draw(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, Color::Yellow());
 	theScreen.SwapScreens();
 

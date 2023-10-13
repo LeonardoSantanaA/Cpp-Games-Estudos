@@ -9,9 +9,10 @@
   },
   "ExpandedNodes": [
     "",
-    "\\Graphics",
-    "\\Utils"
+    "\\src",
+    "\\src\\Shapes",
+    "\\src\\Utils"
   ],
-  "SelectedNode": "\\Graphics\\ScreenBuffer.h",
+  "SelectedNode": "\\src\\Utils\\Vec2D.h",
   "PreviewInSolutionExplorer": false
 }
