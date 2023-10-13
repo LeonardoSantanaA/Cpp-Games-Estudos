@@ -9,8 +9,9 @@
   },
   "ExpandedNodes": [
     "",
-    "\\Graphics"
+    "\\Graphics",
+    "\\Utils"
   ],
-  "SelectedNode": "\\Graphics\\ScreenBuffer.cpp",
+  "SelectedNode": "\\Graphics\\ScreenBuffer.h",
   "PreviewInSolutionExplorer": false
 }
