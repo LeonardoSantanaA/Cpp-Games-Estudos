@@ -1,5 +1,6 @@
 #include "Line2D.h"
 #include "/C++/SDL2/src/Utils/Utils.h"
+#include "/C++/SDL2/src/Utils/Vec2D.h"
 #include <cmath>
 
 Line2D::Line2D(): Line2D(Vec2D::Zero, Vec2D::Zero) {
@@ -40,7 +41,7 @@ float Line2D::MinDistanceFrom(const Vec2D& p, bool limitToSegment) const {
 	return p.Distance(ClosestPoint(p, limitToSegment));
 }
 
-Vec2D Line2D::ClosestPoint(const Vec2D& p, bool limitToSegment = false) const {
+Vec2D Line2D::ClosestPoint(const Vec2D& p, bool limitToSegment) const {
 	Vec2D p0ToP = p - mP0;
 
 	Vec2D p0ToP1 = mP1 - mP0;
