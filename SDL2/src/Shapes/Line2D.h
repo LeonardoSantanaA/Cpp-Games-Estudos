@@ -12,8 +12,8 @@ public:
 	inline const Vec2D& GetP0() const { return mP0; }
 	inline const Vec2D& GetP1() const { return mP1; }
 
-	inline void SetP0(const Vec2D& p0) { mP0 = p0; }
-	inline void SetP1(const Vec2D& p1) { mP1 = p1; }
+	inline void SetP0(const Vec2D& p0);
+	inline void SetP1(const Vec2D& p1);
 
 	bool operator==(const Line2D& line) const;
 	Vec2D Midpoint() const;
@@ -26,5 +26,8 @@ private:
 	Vec2D mP0;
 	Vec2D mP1;
 };
+
+inline void Line2D::SetP0(const Vec2D& p0) { mP0 = p0; }
+inline void Line2D::SetP1(const Vec2D& p1) { mP1 = p1; }
 
 #endif

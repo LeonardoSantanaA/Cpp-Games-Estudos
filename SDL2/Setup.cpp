@@ -15,11 +15,18 @@ int main(int argc, char* argv[]) {
 
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
-	Line2D line = { Vec2D(0, 0), Vec2D(SCREEN_WIDTH, SCREEN_HEIGHT) };
+	Line2D line = { Vec2D(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), Vec2D(SCREEN_WIDTH/2 + 80, SCREEN_HEIGHT/2) };
 
-	theScreen.Draw(line, Color::White());
+	float radian = 0;
+	while (true) {
+		SDL_Delay(100);
+		radian -= 0.0001f;
+		theScreen.RotateLine(line, radian, Color::Blue());
+		theScreen.SwapScreens();
+	}
+	//theScreen.Draw(line, Color::White());
 	//theScreen.Draw(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, Color::Yellow());
-	theScreen.SwapScreens();
+	//theScreen.SwapScreens();
 
 	//std::cout << "The window pixel format is: " << SDL_GetPixelFormatName(pixelFormat->format);
 

@@ -118,6 +118,15 @@ void Screen::Draw(const Line2D& line, const Color& color) {
 	}
 }
 
+void  Screen::RotateLine(Line2D& line, float radian, const Color& color) {
+	Vec2D newVec = line.GetP1();
+	
+	radian -= 0.1f;
+	newVec.Rotate(radian, line.GetP0());
+	line.SetP1(newVec);
+	Draw(line, color);
+}
+
 void Screen::ClearScreen() {
 	assert(moptrWindow);
 	if (moptrWindow) {
