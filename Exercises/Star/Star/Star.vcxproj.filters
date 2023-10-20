@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Arquivos de Origem">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Arquivos de Recurso">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Graphics">
+      <UniqueIdentifier>{0018edcd-3815-4e6d-a0b3-15250a9545be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Shapes">
+      <UniqueIdentifier>{66a170a1-d4fa-4713-900e-f19bb7712304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Utils">
+      <UniqueIdentifier>{0de52e1f-7cc4-4112-ae00-6c18e58aa72e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Graphics">
+      <UniqueIdentifier>{3d076031-42b3-4784-bede-48edbcf28780}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Utils">
+      <UniqueIdentifier>{1f89a0df-9a92-4635-a12e-1784b11ed44e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Shapes">
+      <UniqueIdentifier>{7ad53aa1-7db4-467c-9f0f-0ec7d091a540}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\Graphics\Color.h">
+      <Filter>Arquivos de Cabeçalho\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Graphics\Screen.h">
+      <Filter>Arquivos de Cabeçalho\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Graphics\ScreenBuffer.h">
+      <Filter>Arquivos de Cabeçalho\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Shapes\Line2D.h">
+      <Filter>Arquivos de Cabeçalho\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utils\Vec2D.h">
+      <Filter>Arquivos de Cabeçalho\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utils\Utils.h">
+      <Filter>Arquivos de Cabeçalho\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Star.h">
+      <Filter>Arquivos de Cabeçalho\Shapes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Graphics\Color.cpp">
+      <Filter>Arquivos de Origem\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Graphics\Screen.cpp">
+      <Filter>Arquivos de Origem\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Graphics\ScreenBuffer.cpp">
+      <Filter>Arquivos de Origem\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Shapes\Line2D.cpp">
+      <Filter>Arquivos de Origem\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utils\Utils.cpp">
+      <Filter>Arquivos de Origem\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utils\Vec2D.cpp">
+      <Filter>Arquivos de Origem\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Setup.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Star.cpp">
+      <Filter>Arquivos de Origem\Shapes</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
