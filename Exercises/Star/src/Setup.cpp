@@ -5,6 +5,7 @@
 #include "Graphics/ScreenBuffer.h"
 #include "Graphics/Screen.h"
 #include "Shapes/Line2D.h"
+#include "/C++/Exercises/Star/Star/Star.h"
 
 const int SCREEN_WIDTH = 224;
 const int SCREEN_HEIGHT = 288;
@@ -16,7 +17,11 @@ int main(int argc, char* argv[]) {
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
 	Line2D line = { Vec2D(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), Vec2D(SCREEN_WIDTH/2 + 80, SCREEN_HEIGHT/2) };
+	float size = 70;
+	Star star(SCREEN_WIDTH/2 - (size/2), SCREEN_HEIGHT / 2 - (size/2), size);
 
+
+	/*
 	float radian = 0;
 	while (true) {
 		SDL_Delay(100);
@@ -24,9 +29,11 @@ int main(int argc, char* argv[]) {
 		theScreen.RotateLine(line, radian, Color::Blue());
 		theScreen.SwapScreens();
 	}
+	*/
 	//theScreen.Draw(line, Color::White());
 	//theScreen.Draw(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, Color::Yellow());
-	//theScreen.SwapScreens();
+	theScreen.Draw(star, Color::Yellow());
+	theScreen.SwapScreens();
 
 	//std::cout << "The window pixel format is: " << SDL_GetPixelFormatName(pixelFormat->format);
 

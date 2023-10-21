@@ -1,1 +1,6 @@
-﻿  Star.vcxproj -> S:\C++\Exercises\Star\x64\Debug\Star.exe
+﻿  Setup.cpp
+S:\C++\SDL2\src\Utils\Vec2D.h(12,29): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+S:\C++\SDL2\src\Utils\Vec2D.h(12,36): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+S:\C++\Exercises\Star\src\Setup.cpp(21,62): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+S:\C++\Exercises\Star\src\Setup.cpp(21,38): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+  Star.vcxproj -> S:\C++\Exercises\Star\x64\Debug\Star.exe

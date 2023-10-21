@@ -2,6 +2,7 @@
 #include "/C++/SDL2/src/Utils/Utils.h"
 #include "/C++/SDL2/src/Utils/Vec2D.h"
 #include "/C++/SDL2/src/Shapes/Line2D.h"
+#include "/C++/Exercises/Star/Star/Star.h"
 #include <cmath>
 #include <SDL.h>
 #include <iostream>
@@ -116,6 +117,18 @@ void Screen::Draw(const Line2D& line, const Color& color) {
 			}
 		}
 	}
+}
+
+void Screen::Draw(const Star& star, const Color& color) {
+
+	Draw(star.GetBaseBottom(), color);
+	Draw(star.GetBaseTop(), color);
+	Draw(star.GetSideLU(), color);
+	Draw(star.GetSideRU(), color);
+	Draw(star.GetSideLD(), color);
+	Draw(star.GetSideRD(), color);
+	Draw(star.MidPoint(), Color::Red());
+
 }
 
 void  Screen::RotateLine(Line2D& line, float radian, const Color& color) {
