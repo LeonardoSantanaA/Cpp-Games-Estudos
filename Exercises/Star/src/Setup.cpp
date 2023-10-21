@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
 	Line2D line = { Vec2D(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), Vec2D(SCREEN_WIDTH/2 + 80, SCREEN_HEIGHT/2) };
-	float size = 70;
+	float size = 120;
 	Star star(SCREEN_WIDTH/2 - (size/2), SCREEN_HEIGHT / 2 - (size/2), size);
 
 
@@ -25,15 +25,24 @@ int main(int argc, char* argv[]) {
 	float radian = 0;
 	while (true) {
 		SDL_Delay(100);
-		radian -= 0.0001f;
-		theScreen.RotateLine(line, radian, Color::Blue());
+		radian -= 0.01f;
+		theScreen.Rotate(line, radian, Color::Blue());
 		theScreen.SwapScreens();
 	}
 	*/
+	float radian = 0;
+	while (true) {
+		SDL_Delay(100);
+		radian -= 0.1f;
+		theScreen.Rotate(star, radian, Color::Yellow());
+		theScreen.SwapScreens();
+		theScreen.Draw(star.MidPoint(), Color::Red());
+	}
+	
 	//theScreen.Draw(line, Color::White());
 	//theScreen.Draw(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, Color::Yellow());
-	theScreen.Draw(star, Color::Yellow());
-	theScreen.SwapScreens();
+	//theScreen.Draw(star, Color::Yellow());
+	//theScreen.SwapScreens();
 
 	//std::cout << "The window pixel format is: " << SDL_GetPixelFormatName(pixelFormat->format);
 

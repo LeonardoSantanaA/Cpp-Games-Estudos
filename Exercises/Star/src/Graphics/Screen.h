@@ -30,8 +30,9 @@ public:
 	void Draw(int x, int y, const Color& color);
 	void Draw(const Vec2D& point, const Color& color);
 	void Draw(const Line2D& line, const Color& color);
-	void Draw(const Star& star, const Color& color);
-	void RotateLine(Line2D& line, float radian, const Color& color);
+	void Draw(Star& star, const Color& color);
+	void Rotate(Line2D& line, float radian, const Color& color);
+	void Rotate(Star& star, float radian, const Color& color);
 
 private:
 	Screen(const Screen& screen);

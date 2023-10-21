@@ -119,25 +119,30 @@ void Screen::Draw(const Line2D& line, const Color& color) {
 	}
 }
 
-void Screen::Draw(const Star& star, const Color& color) {
-
-	Draw(star.GetBaseBottom(), color);
-	Draw(star.GetBaseTop(), color);
-	Draw(star.GetSideLU(), color);
-	Draw(star.GetSideRU(), color);
-	Draw(star.GetSideLD(), color);
-	Draw(star.GetSideRD(), color);
-	Draw(star.MidPoint(), Color::Red());
-
+void Screen::Draw(Star& star, const Color& color) {
+	for (int i = 0; i < 6; i++) {
+		Draw(star.GetVertice(i), color);
+	}
 }
 
-void  Screen::RotateLine(Line2D& line, float radian, const Color& color) {
+void  Screen::Rotate(Line2D& line, float radian, const Color& color) {
 	Vec2D newVec = line.GetP1();
 	
-	radian -= 0.1f;
 	newVec.Rotate(radian, line.GetP0());
 	line.SetP1(newVec);
 	Draw(line, color);
+}
+
+void Screen::Rotate(Star& star, float radian, const Color& color) {
+	for (int i = 0; i < 6; i++) {
+		Vec2D starVertice0 = star.GetVertice(i).GetP0();
+		Vec2D starVertice1 = star.GetVertice(i).GetP1();
+		starVertice0.Rotate(radian, star.MidPoint());
+		starVertice1.Rotate(radian, star.MidPoint());
+		Line2D starLine(starVertice0, starVertice1);
+		Draw(starLine, color);
+
+	}
 }
 
 void Screen::ClearScreen() {
