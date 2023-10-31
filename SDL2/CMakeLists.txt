@@ -12,7 +12,8 @@ add_executable(SDL2Setup "Setup.cpp"
 "src/Graphics/Screen.cpp"
 "src/Utils/Utils.cpp"
 "src/Utils/Vec2D.cpp"
+"src/Utils/Vec2D.h"
 "src/Shapes/Line2D.cpp"
-)
+ "src/Shapes/Shape.h" "src/Shapes/Shape.cpp" "src/Shapes/Triangle.h" "src/Shapes/Triangle.cpp")
 
 target_link_libraries(SDL2Setup SDL2::SDL2 SDL2::SDL2main)

@@ -8,8 +8,11 @@
     ]
   },
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\Shapes",
+    "\\src\\Utils"
   ],
-  "SelectedNode": "\\CMakeLists.txt",
+  "SelectedNode": "\\src\\Shapes\\Triangle.cpp",
   "PreviewInSolutionExplorer": false
 }
