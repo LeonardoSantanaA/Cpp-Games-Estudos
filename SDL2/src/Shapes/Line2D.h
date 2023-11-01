@@ -1,7 +1,7 @@
 #ifndef SHAPES_LINE_2D_
 #define SHAPES_LINE_2D_
 
-#include "/C++/SDL2/src/Utils/Vec2D.h"
+#include "../Utils/Vec2D.h"
 
 class Line2D {
 public:
