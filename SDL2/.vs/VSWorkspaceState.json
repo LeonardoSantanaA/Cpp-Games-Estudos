@@ -10,9 +10,9 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\Shapes",
+    "\\src\\Graphics",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\src\\Shapes\\Circle.cpp",
+  "SelectedNode": "\\src\\Utils\\Utils.h",
   "PreviewInSolutionExplorer": false
 }
