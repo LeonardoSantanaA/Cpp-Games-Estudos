@@ -22,9 +22,9 @@ int main(int argc, char* argv[]) {
 	Triangle triangle = { Vec2D(60, 10), Vec2D(10, 110), Vec2D(110, 110) };
 	Circle circle = { Vec2D(SCREEN_WIDTH / 2 + 50, SCREEN_HEIGHT / 2 + 50), 50 };
 
-	theScreen.Draw(triangle, Color::Red());
-	theScreen.Draw(rect, Color::Blue());
-	theScreen.Draw(circle, Color::Pink());
+	theScreen.Draw(triangle, Color::Red(), true, Color::Cyan());
+	theScreen.Draw(rect, Color::Blue(), true, Color::Blue());
+	theScreen.Draw(circle, Color::Pink(), true, Color::Pink());
 
 	/*
 	//ROTATION LINE EXERCISE
