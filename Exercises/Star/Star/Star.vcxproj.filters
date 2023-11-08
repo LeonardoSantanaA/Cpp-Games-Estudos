@@ -51,7 +51,7 @@
     <ClInclude Include="..\src\Utils\Utils.h">
       <Filter>Arquivos de Cabeçalho\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Star.h">
+    <ClInclude Include="..\src\Shapes\Star.h">
       <Filter>Arquivos de Cabeçalho\Shapes</Filter>
     </ClInclude>
   </ItemGroup>

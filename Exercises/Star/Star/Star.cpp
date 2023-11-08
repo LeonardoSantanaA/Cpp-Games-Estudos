@@ -1,8 +1,18 @@
-#include "Star.h"
-#include "/C++/Exercises/Star/src/Shapes/Line2D.h"
+#include "../src/Shapes/Star.h"
+#include "../src/Shapes/Line2D.h"
+#include <random>
 
 Star::Star() : Star(Vec2D::Zero, SIZE_DEFAULT) {
 
+}
+
+Star::Star(int x, int y) : startPosition(x, y) {
+	std::random_device r;
+	std::default_random_engine e1(r());
+	std::uniform_int_distribution<int> uniform_dist(20, 200);
+	int randomSize = uniform_dist(e1);
+	this->size = randomSize;
+	Initialize();
 }
 
 Star::Star(int x, int y, float size) : startPosition(x, y), size(size) {
@@ -13,10 +23,6 @@ Star::Star(const Vec2D& vec, float size): startPosition(vec), size(size) {
 	Initialize();
 }
 
-Star::~Star() {
-	delete[] starVertice;
-	starVertice = NULL;
-}
 
 Line2D Star::GetVertice(int index) {
 	return starVertice[index];
@@ -37,35 +43,41 @@ void Star::Initialize() {
 	Vec2D p0BaseBottom = { startPosition.GetX(), yBaseBottom };
 	Vec2D p1BaseBottom = { startPosition.GetX() + size, yBaseBottom };
 	Line2D baseBottom(p0BaseBottom, p1BaseBottom);
-	starVertice[0] = baseBottom;
+	//starVertice[0] = baseBottom;
+	starVertice.push_back(baseBottom);
 
 	//Base Top
 	Vec2D p0BaseTop = { startPosition.GetX(), yBaseTop };
 	Vec2D p1BaseTop = { startPosition.GetX() + size, yBaseTop };
 	Line2D baseTop(p0BaseTop, p1BaseTop);
-	starVertice[1] = baseTop;
+	//starVertice[1] = baseTop;
+	starVertice.push_back(baseTop);
 
 	//Side Left-Up
 	Vec2D p0SideLU = { p0BaseBottom.GetX(),yBaseBottom};
 	Vec2D p1SideLU = { midPoint.GetX(), startPosition.GetY()};
 	Line2D sideLU(p0SideLU, p1SideLU);
-	starVertice[2] = sideLU;
+	//starVertice[2] = sideLU;
+	starVertice.push_back(sideLU);
 
 	//Size Right-Up
 	Vec2D p0SideRU = { p1BaseBottom.GetX(), yBaseBottom };
 	Vec2D p1SideRU = { midPoint.GetX(), startPosition.GetY() };
 	Line2D sideRU(p0SideRU, p1SideRU);
-	starVertice[3] = sideRU;
+	//starVertice[3] = sideRU;
+	starVertice.push_back(sideRU);
 
 	//Size Left-Down
 	Vec2D p0SideLD = { p0BaseTop.GetX(), yBaseTop };
 	Vec2D p1SideLD = { midPoint.GetX(), startPosition.GetY() + size};
 	Line2D sideLD(p0SideLD, p1SideLD);
-	starVertice[4] = sideLD;
+	//starVertice[4] = sideLD;
+	starVertice.push_back(sideLD);
 
 	//Size Right-Down
 	Vec2D p0SideRD = { p1BaseTop.GetX(), yBaseTop };
 	Vec2D p1SideRD = { midPoint.GetX(), startPosition.GetY() + size};
 	Line2D sideRD(p0SideRD, p1SideRD);
-	starVertice[5] = sideRD;
+	//starVertice[5] = sideRD;
+	starVertice.push_back(sideRD);
 }

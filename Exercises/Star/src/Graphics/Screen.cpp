@@ -1,18 +1,21 @@
 #include "Screen.h"
-#include "/C++/SDL2/src/Utils/Utils.h"
-#include "/C++/SDL2/src/Utils/Vec2D.h"
-#include "/C++/SDL2/src/Shapes/Line2D.h"
-#include "/C++/Exercises/Star/Star/Star.h"
+#include "../Utils/Utils.h"
+#include "../Utils/Vec2D.h"
+#include "../Shapes/Line2D.h"
 #include <cmath>
 #include <SDL.h>
 #include <iostream>
 #include <cassert>
+#include <random>
+#include <math.h>
 
 Screen::Screen(): mWidth(0), mHeight(0), moptrWindow(nullptr), mnoptrWindowSurface(nullptr) {
 
 }
 
 Screen::~Screen() {
+	vecStars.clear();
+
 	if (moptrWindow) {
 		SDL_DestroyWindow(moptrWindow);
 		moptrWindow = nullptr;
@@ -141,8 +144,42 @@ void Screen::Rotate(Star& star, float radian, const Color& color) {
 		starVertice1.Rotate(radian, star.MidPoint());
 		Line2D starLine(starVertice0, starVertice1);
 		Draw(starLine, color);
-
 	}
+}
+
+//This metod will change the parameters to the random values
+void Screen::RandomizeSpawnScreen(int& width, int& height) {
+	std::random_device rW;
+	std::default_random_engine eW(rW());
+	std::uniform_int_distribution<int> uniform_dist_width(10, (Width() - 100));
+	width = uniform_dist_width(eW);
+
+	std::random_device rH;
+	std::default_random_engine eH(rH());
+	std::uniform_int_distribution<int> uniform_dist_height(10, (Height() - 100));
+	height = uniform_dist_height(eH);
+}
+
+void Screen::RandomRotateStar(const int qtd, const Color& color) {
+	for (size_t i = 0; i < qtd; i++) {
+		std::random_device rA;
+		std::default_random_engine eA(rA());
+		std::uniform_real_distribution<float> uniform_real_speed(0, TWO_PI);
+		float randSpeed = uniform_real_speed(eA);
+		vecStars[i].SetRotationSpeed(randSpeed);
+
+		Rotate(vecStars[i], vecStars[i].GetRotationSpeed(), color);
+	}
+}
+
+void Screen::GenerateStars(const int qtd, const Color& color) {
+	int widthRand = 0;
+	int heightRand = 0;
+	for (size_t i = 0; i < qtd; i++) {
+		RandomizeSpawnScreen(widthRand, heightRand);
+		vecStars.push_back(Star(widthRand, heightRand));
+	}
+	RandomRotateStar(qtd, color);
 }
 
 void Screen::ClearScreen() {
