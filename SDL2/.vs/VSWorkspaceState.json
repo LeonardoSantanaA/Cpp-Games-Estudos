@@ -10,10 +10,12 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\App",
     "\\src\\Graphics",
+    "\\src\\Scenes",
     "\\src\\Shapes",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\Setup.cpp",
+  "SelectedNode": "\\src\\Scenes\\Scene.h",
   "PreviewInSolutionExplorer": false
 }

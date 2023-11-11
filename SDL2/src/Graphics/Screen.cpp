@@ -50,6 +50,7 @@ SDL_Window* Screen::Init(uint32_t w, uint32_t h, uint32_t mag) {
 		mBackBuffer.Clear(mClearColor);
 	}
 
+	return moptrWindow;
 }
 
 void Screen::SwapScreens() {

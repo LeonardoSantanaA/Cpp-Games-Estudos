@@ -8,8 +8,7 @@ public:
     static const Vec2D Zero;
 
     Vec2D() : Vec2D(0, 0) {}
-    Vec2D(float x, float y) : mX(x), mY(y) {}
-    Vec2D(int x, int y) : mX(x), mY(y) {}
+    Vec2D(float x, float y) : mX(float(x)), mY(float(y)) {}
 
     inline void SetX(float x) { mX = x; }
     inline void SetY(float y) { mY = y; }
