@@ -271,7 +271,6 @@ void Screen::FillPoly(const std::vector<Vec2D>& points, const Color& color) {
 
 					for (int pixelX = nodeXVec[k]; pixelX < nodeXVec[k + 1]; ++pixelX) {
 						Draw(pixelX, pixelY, color);
-						
 					}
 					
 				}

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <cassert>
 #include <random>
+#include <algorithm>
 #include <math.h>
 
 Screen::Screen(): mWidth(0), mHeight(0), moptrWindow(nullptr), mnoptrWindowSurface(nullptr) {
@@ -123,8 +124,8 @@ void Screen::Draw(const Line2D& line, const Color& color) {
 }
 
 void Screen::Draw(Star& star, const Color& color) {
-	for (int i = 0; i < 6; i++) {
-		Draw(star.GetVertice(i), color);
+	for (Line2D starLines : star.GetLines()) {
+		Draw(starLines, color);
 	}
 }
 

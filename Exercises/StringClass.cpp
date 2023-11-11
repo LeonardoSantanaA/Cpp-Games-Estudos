@@ -14,9 +14,9 @@ int i = 0;
 
 class String{
   public:
-    String(const char* str){
+    String(char* str){
       this->str = (char*)str;
-      this->length = VerifyLength();
+      this->length = VerifyLength() + 1;
     }
 
     String():str((char*)"Hello"), length(5){}
@@ -24,6 +24,49 @@ class String{
     String(int length){
       str = new char[length];
       this->length = length;
+    }
+
+    //copy constructor
+    String(String& otherString) : length(otherString.length), str(otherString.str) {} 
+
+    const String& operator=(String& otherString) {  //copy operator
+        if (this == &otherString)
+        {
+            return *this;
+        }
+
+        delete[] str;
+
+        length = otherString.length;
+
+        for (size_t i = 0; i < length; ++i)
+        {
+            str[i] = otherString.str[i];
+        }
+
+        return *this;
+    }
+
+    //move constructor
+    String(String&& otherString): length(otherString.length), str(otherString.str) {
+        otherString.length = 0;
+        otherString.str = nullptr;
+    }
+
+    String& operator=(String&& otherString) {
+        if (this == &otherString) {
+            return *this;
+        }
+
+        delete [] str;
+
+        str = otherString.str;
+        length = otherString.length;
+
+        otherString.str = nullptr;
+        otherString.length = 0;
+
+        return *this;
     }
 
     ~String(){
@@ -35,8 +78,9 @@ class String{
 
     friend std::ostream& operator<<(std::ostream& consoleOut, String& string){
       for(int i = 0; i < string.GetLength() + 1; i++){
-        std::cout << string.str[i];
+        consoleOut << string.str[i];
       }
+     // consoleOut << "\0";
       return consoleOut;
     }
 
@@ -48,6 +92,7 @@ class String{
     int substr(const char* substr);
     String substr(int indexStart, int length);
     String cpstr(String& otherStr);
+    String cpstr(String&& otherStr);
 
   private:
     char* str;
@@ -211,8 +256,19 @@ String String::cpstr(String& otherStr){
   return *this;
 }
 
+String String::cpstr(String&& otherStr) {
+    char* oldStr = this->str;
+    oldStr = nullptr;
+    delete[] oldStr;
+    this->str = new char[otherStr.GetLength() + 1];
+    for (int i = 0; i < this->GetLength() + 1; i++) {
+        this->str[i] = otherStr.str[i];
+    }
+    return *this;
+}
+
 //TESTS
-/*
+
 int main( int argc , char **argv ){
   String string1 = "Lekaum ";
   String string2 = "Lbkaum ";
@@ -221,6 +277,7 @@ int main( int argc , char **argv ){
   String string4 = string2.substr(4, 6);
   String string5 = string1 + string3;
   String string6 = string1 + " Santana";
+  String string7 = string1;
 
   if(string1 == string2){
     std::cout << "is equal!" << std::endl;
@@ -234,8 +291,8 @@ int main( int argc , char **argv ){
   //std::cout << nome;
   std::cout << "before copy: " << string2 << std::endl;
   string2.cpstr(string4);
-  std::cout << "after copy " << string4 << ": " << string2 << std::endl;
-  std::cout << string6 << std::endl;
+  std::cout << "after copy " << string4 << string2 << std::endl;
+  std::cout << string7 << std::endl;
   return 0;
 }
-*/
+

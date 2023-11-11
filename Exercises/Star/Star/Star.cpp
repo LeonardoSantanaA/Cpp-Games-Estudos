@@ -2,6 +2,7 @@
 #include "../src/Shapes/Line2D.h"
 #include <random>
 
+
 Star::Star() : Star(Vec2D::Zero, SIZE_DEFAULT) {
 
 }

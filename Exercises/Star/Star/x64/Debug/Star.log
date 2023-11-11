@@ -1,4 +1,22 @@
-﻿  Setup.cpp
+﻿  Screen.cpp
 S:\C++\SDL2\src\Utils\Vec2D.h(12,29): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
 S:\C++\SDL2\src\Utils\Vec2D.h(12,36): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+S:\C++\Exercises\Star\src\Graphics\Screen.cpp(72,55): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+S:\C++\Exercises\Star\src\Graphics\Screen.cpp(72,41): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+S:\C++\Exercises\Star\src\Graphics\Screen.cpp(81,10): warning C4244: 'inicializando': conversão de 'float' para 'int', possível perda de dados
+S:\C++\Exercises\Star\src\Graphics\Screen.cpp(82,10): warning C4244: 'inicializando': conversão de 'float' para 'int', possível perda de dados
+S:\C++\Exercises\Star\src\Graphics\Screen.cpp(83,10): warning C4244: 'inicializando': conversão de 'float' para 'int', possível perda de dados
+S:\C++\Exercises\Star\src\Graphics\Screen.cpp(84,10): warning C4244: 'inicializando': conversão de 'float' para 'int', possível perda de dados
+  Setup.cpp
+S:\C++\SDL2\src\Utils\Vec2D.h(12,29): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+S:\C++\SDL2\src\Utils\Vec2D.h(12,36): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+  Vec2D.cpp
+S:\C++\Exercises\Star\src\Utils\Vec2D.h(12,29): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+S:\C++\Exercises\Star\src\Utils\Vec2D.h(12,36): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+  Star.cpp
+S:\C++\SDL2\src\Utils\Vec2D.h(12,29): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+S:\C++\SDL2\src\Utils\Vec2D.h(12,36): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+S:\C++\Exercises\Star\Star\Star.cpp(15,15): warning C4244: '=': conversão de 'int' para 'float', possível perda de dados
+  Gerando Código...
+S:\C++\Exercises\Star\src\Graphics\Screen.cpp(50): warning C4715: 'Screen::Init': nem todos os caminhos de controle retornam um valor
   Star.vcxproj -> S:\C++\Exercises\Star\x64\Debug\Star.exe

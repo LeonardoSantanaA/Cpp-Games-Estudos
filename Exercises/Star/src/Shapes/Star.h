@@ -23,6 +23,8 @@ public:
 	inline void SetRotationSpeed(float speed) { rotationSpeed = speed; }
 	inline float GetRotationSpeed() { return rotationSpeed; }
 	inline float GetSize() { return size; }
+	inline Vec2D GetVec() { return startPosition; }
+	inline std::vector<Line2D> GetLines() { return starVertice; }
 	Line2D GetVertice(int index);
 	Vec2D MidPoint() const;
 };

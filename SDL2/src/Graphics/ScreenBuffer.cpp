@@ -12,6 +12,10 @@ ScreenBuffer::ScreenBuffer(const ScreenBuffer& screenBuffer) {
 	SDL_BlitSurface(screenBuffer.mSurface, nullptr, mSurface, nullptr);
 }
 
+ScreenBuffer::ScreenBuffer(ScreenBuffer&& otherScreenBuffer):mSurface(otherScreenBuffer.mSurface) {
+	otherScreenBuffer.mSurface = nullptr;
+}
+
 ScreenBuffer::~ScreenBuffer() {
 	if (mSurface) {
 		SDL_FreeSurface(mSurface);
@@ -33,6 +37,18 @@ ScreenBuffer& ScreenBuffer::operator=(const ScreenBuffer& screenBuffer) {
 
 		SDL_BlitSurface(screenBuffer.mSurface, nullptr, mSurface, nullptr);
 	}
+
+	return *this;
+}
+
+ScreenBuffer& ScreenBuffer::operator=(ScreenBuffer&& otherScreenBuffer) {
+	if (this == &otherScreenBuffer) {
+		return *this;
+	}
+
+	mSurface = otherScreenBuffer.mSurface;
+
+	otherScreenBuffer.mSurface = nullptr;
 
 	return *this;
 }

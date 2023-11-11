@@ -1,3 +1,8 @@
+//memory leak verify
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
 #include <iostream>
 #include <SDL.h>
 
@@ -14,6 +19,9 @@ const int SCREEN_HEIGHT = 288;
 const int MAGNIFICATION = 3;
 
 int main(int argc, char* argv[]) {
+	//verify memory leaks
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
 	Screen theScreen;
 
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
@@ -54,6 +62,8 @@ int main(int argc, char* argv[]) {
 
 	SDL_Event sdlEvent;
 	bool running = true;
+
+
 
 	while (running) {
 		while (SDL_PollEvent(&sdlEvent)) {

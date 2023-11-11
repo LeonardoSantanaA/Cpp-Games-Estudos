@@ -47,18 +47,15 @@ int main(int argc, char* argv[]) {
 	}
 	*/
 
-
 	//theScreen.Draw(line, Color::White());
 	//theScreen.Draw(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, Color::Yellow());
 	//theScreen.Draw(star, Color::Yellow());
-	theScreen.SwapScreens();
+	//theScreen.SwapScreens();
 
 	//std::cout << "The window pixel format is: " << SDL_GetPixelFormatName(pixelFormat->format);
 
 	SDL_Event sdlEvent;
 	bool running = true;
-
-	float radian = 0.0f;
 
 	while (running) {
 		while (SDL_PollEvent(&sdlEvent)) {
@@ -68,11 +65,12 @@ int main(int argc, char* argv[]) {
 				break;
 			}
 		}
+
 		for (Star& star : theScreen.GetStars()) {
 			SDL_Delay(10);
 			theScreen.Rotate(star, GetRandomNumberFloat(0, TWO_PI), Color::Yellow());
 		}
-
+		
 		theScreen.SwapScreens();
 	}
 
