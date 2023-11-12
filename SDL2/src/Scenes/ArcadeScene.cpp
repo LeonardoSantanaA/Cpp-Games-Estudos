@@ -1,4 +1,6 @@
 #include "ArcadeScene.h"
+#include <iostream>
+#include "../Input/GameController.h"
 
 
 ArcadeScene::ArcadeScene() {
@@ -6,7 +8,25 @@ ArcadeScene::ArcadeScene() {
 }
 
 void ArcadeScene::Init() {
+	ButtonAction action;
+	action.key = GameController::ActionKey();
+	action.action = [](uint32_t dt, InputState state) {
+		if (GameController::IsPressed(state)) {
+			std::cout << "Action button was pressed!" << std::endl;
+		}
+		};
 
+	mGameController.AddInputActionForKey(action);
+
+	ButtonAction up;
+	up.key = GameController::UpKey();
+	up.action = [](uint32_t dt, InputState state) {
+		if (GameController::IsPressed(state)) {
+			std::cout << "Up button was pressed!" << std::endl;
+		}
+	};
+
+	mGameController.AddInputActionForKey(up);
 }
 void ArcadeScene::Update(uint32_t dt) {
 

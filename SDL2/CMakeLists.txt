@@ -6,7 +6,7 @@ project(SDL2Test)
 find_package(SDL2 REQUIRED) 
 
 
-add_executable(SDL2Setup WIN32 "Setup.cpp" 
+add_executable(SDL2Setup  "Setup.cpp" 
 "src/Graphics/Color.cpp" 
 "src/Graphics/ScreenBuffer.cpp" 
 "src/Graphics/Screen.cpp"
@@ -18,6 +18,6 @@ add_executable(SDL2Setup WIN32 "Setup.cpp"
 "src/Shapes/Triangle.h" "src/Shapes/Triangle.cpp" 
 "src/Shapes/AARectangle.h" "src/Shapes/AARectangle.cpp" 
 "src/Shapes/Circle.h" "src/Shapes/Circle.cpp" 
-"src/App/App.h" "src/App/App.cpp" "src/Scenes/Scene.h" "src/Scenes/ArcadeScene.h" "src/Scenes/ArcadeScene.cpp")
+"src/App/App.h" "src/App/App.cpp" "src/Scenes/Scene.h" "src/Scenes/ArcadeScene.h" "src/Scenes/ArcadeScene.cpp" "src/Input/InputAction.h" "src/Input/GameController.h" "src/Input/GameController.cpp" "src/Input/InputController.h" "src/Input/InputController.cpp")
 
 target_link_libraries(SDL2Setup SDL2::SDL2 SDL2::SDL2main)

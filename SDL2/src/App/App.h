@@ -5,6 +5,7 @@
 #include <vector>
 #include <memory>
 #include "../Scenes/Scene.h"
+#include "../Input/InputController.h"
 
 struct SDL_Window;
 
@@ -26,4 +27,5 @@ private:
 	SDL_Window* mnoptrWindow;
 
 	std::vector<std::unique_ptr<Scene>> mSceneStack;
+	InputController mInputController;
 };
