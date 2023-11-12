@@ -18,6 +18,6 @@ add_executable(SDL2Setup WIN32 "Setup.cpp"
 "src/Shapes/Triangle.h" "src/Shapes/Triangle.cpp" 
 "src/Shapes/AARectangle.h" "src/Shapes/AARectangle.cpp" 
 "src/Shapes/Circle.h" "src/Shapes/Circle.cpp" 
-"src/App/App.h" "src/App/App.cpp" "src/Scenes/Scene.h")
+"src/App/App.h" "src/App/App.cpp" "src/Scenes/Scene.h" "src/Scenes/ArcadeScene.h" "src/Scenes/ArcadeScene.cpp")
 
 target_link_libraries(SDL2Setup SDL2::SDL2 SDL2::SDL2main)

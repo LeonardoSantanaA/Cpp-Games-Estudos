@@ -11,11 +11,10 @@
     "",
     "\\src",
     "\\src\\App",
-    "\\src\\Graphics",
     "\\src\\Scenes",
     "\\src\\Shapes",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\src\\Scenes\\Scene.h",
+  "SelectedNode": "\\src\\Scenes\\ArcadeScene.cpp",
   "PreviewInSolutionExplorer": false
 }
