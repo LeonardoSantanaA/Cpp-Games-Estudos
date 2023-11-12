@@ -20,7 +20,6 @@ bool App::Init(uint32_t width, uint32_t height, uint32_t mag) {
 
 void App::Run() {
 	if (mnoptrWindow) {
-		SDL_Event sdlEvent;
 		bool running = true;
 
 		uint32_t lastTick = SDL_GetTicks();

@@ -17,6 +17,6 @@
     "\\src\\Shapes",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\CMakeLists.txt",
+  "SelectedNode": "\\src\\Input\\InputController.cpp",
   "PreviewInSolutionExplorer": false
 }
