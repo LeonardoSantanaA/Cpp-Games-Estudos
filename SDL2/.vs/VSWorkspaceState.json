@@ -11,11 +11,9 @@
     "",
     "\\src",
     "\\src\\App",
-    "\\src\\Assets",
     "\\src\\Games",
-    "\\src\\Graphics",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\src\\Utils\\FileCommandLoader.cpp",
+  "SelectedNode": "\\src\\Games\\Breakout.cpp",
   "PreviewInSolutionExplorer": false
 }

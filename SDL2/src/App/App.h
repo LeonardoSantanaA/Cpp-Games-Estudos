@@ -1,4 +1,5 @@
 #pragma once
+
 #include "../Graphics/Screen.h"
 #include <stdint.h>
 #include <SDL.h>
