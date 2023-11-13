@@ -6,7 +6,7 @@ GameController::GameController(): mMouseMovedAction(nullptr) {
 
 }
 
-InputAction GameController::GetActionForKey(InputKey key) {
+InputAction GameController::GetActionForKey(const InputKey& key) {
 	for (const auto& buttonAction: mButtonActions) {
 		if (key == buttonAction.key) {
 			return buttonAction.action;
@@ -56,7 +56,7 @@ InputKey GameController::DownKey() {
 	return static_cast<InputKey>(SDLK_DOWN);
 }
 
-MouseInputAction GameController::GetMouseButtonActionForMouseButton(MouseButton button) {
+MouseInputAction GameController::GetMouseButtonActionForMouseButton(MouseButton& button) {
 	for (const auto& buttonAction : mMouseButtonActions) {
 		if (button = buttonAction.mouseButton) {
 			return buttonAction.mouseInputAction;

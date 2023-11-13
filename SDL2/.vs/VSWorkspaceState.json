@@ -11,12 +11,13 @@
     "",
     "\\src",
     "\\src\\App",
+    "\\src\\Games",
     "\\src\\Graphics",
     "\\src\\Input",
     "\\src\\Scenes",
     "\\src\\Shapes",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\src\\Input\\InputController.cpp",
+  "SelectedNode": "\\src\\Scenes\\GameScene.cpp",
   "PreviewInSolutionExplorer": false
 }

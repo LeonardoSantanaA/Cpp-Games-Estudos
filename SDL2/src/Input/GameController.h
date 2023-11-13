@@ -6,7 +6,7 @@
 class GameController {
 public:
 	GameController();
-	InputAction GetActionForKey(InputKey key);
+	InputAction GetActionForKey(const InputKey& key);
 	void AddInputActionForKey(const ButtonAction& buttonAction);
 	void ClearAll();
 
@@ -22,7 +22,7 @@ public:
 	inline const MouseMovedAction& GetMouseMovedAction() { return mMouseMovedAction; }
 	inline void SetMouseMovedAction(const MouseMovedAction& mouseMovedAction) { mMouseMovedAction = mouseMovedAction; }
 
-	MouseInputAction GetMouseButtonActionForMouseButton(MouseButton button);
+	MouseInputAction GetMouseButtonActionForMouseButton(MouseButton& button);
 	void AddMouseButtonAction(const MouseButtonAction& mouseButtonAction);
 
 	static MouseButton LeftMouseButton();
