@@ -26,6 +26,9 @@ add_executable(SDL2Setup  "Setup.cpp"
 "src/Input/InputController.h" "src/Input/InputController.cpp" 
 "src/Games/Game.h" 
 "src/Scenes/GameScene.h" "src/Scenes/GameScene.cpp" 
-"src/Utils/FileCommandLoader.h" "src/Utils/FileCommandLoader.cpp" "src/Games/BreakOut.h" "src/Games/BreakOut.cpp")
+"src/Utils/FileCommandLoader.h" "src/Utils/FileCommandLoader.cpp" 
+"src/Games/BreakOut/BreakOut.h" "src/Games/BreakOut/BreakOut.cpp" 
+"src/Games/BreakOut/BoundaryEdge.h" 
+"src/Games/BreakOut/Excluder.h" "src/Games/BreakOut/Excluder.cpp")
 
 target_link_libraries(SDL2Setup SDL2::SDL2 SDL2::SDL2main)

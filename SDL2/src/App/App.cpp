@@ -2,7 +2,7 @@
 #include <iostream>
 #include "../Scenes/ArcadeScene.h"
 #include "../Scenes/GameScene.h"
-#include "../Games/BreakOut.h"
+#include "../Games/BreakOut/BreakOut.h"
 #include <cassert>
 
 App& App::Singleton() {
