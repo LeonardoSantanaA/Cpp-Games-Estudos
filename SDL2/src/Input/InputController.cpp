@@ -54,7 +54,7 @@ void InputController::Update(uint32_t dt) {
 
 				action(dt, static_cast<InputState>(sdlEvent.key.state));
 			}
-			break;
+		break;
 		}
 	}
 }

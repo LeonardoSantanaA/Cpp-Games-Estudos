@@ -13,9 +13,10 @@
     "\\src\\App",
     "\\src\\Games",
     "\\src\\Games\\BreakOut",
+    "\\src\\Graphics",
     "\\src\\Input",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\CMakeLists.txt",
+  "SelectedNode": "\\src\\Games\\BreakOut\\BreakOut.cpp",
   "PreviewInSolutionExplorer": false
 }
