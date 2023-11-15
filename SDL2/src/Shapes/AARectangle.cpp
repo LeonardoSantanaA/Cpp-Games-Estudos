@@ -31,7 +31,7 @@ void AARectangle::MoveTo(const Vec2D& position) {
 }
 
 Vec2D AARectangle::GetCenterPoint() const {
-	return Vec2D(GetTopLeftPoint().GetX() + GetWidth() / 2.0f, GetTopLeftPoint().GetY() + GetHeight() / 2.0f);
+	return Vec2D(GetTopLeftPoint().GetX() + (GetWidth() / 2.0f), GetTopLeftPoint().GetY() + (GetHeight() / 2.0f));
 }
 
 bool AARectangle::Intersects(const AARectangle& otherRect) const {

@@ -1,0 +1,6 @@
+#vscode files
+*.vsidx
+*.ipch
+*.ip
+q
+SDL2/out/

@@ -36,7 +36,7 @@ bool Excluder::HasCollided(const AARectangle& rect, BoundaryEdge& edge) const {
 			}
 		}
 		else {
-			if (rect.GetCenterPoint().GetX() > mAARect.GetCenterPoint().GetX()) {
+			if (rect.GetCenterPoint().GetX() < mAARect.GetCenterPoint().GetX()) {
 				edge = mEdges[LEFT_EDGE];
 			}
 			else {

@@ -15,8 +15,10 @@
     "\\src\\Games\\BreakOut",
     "\\src\\Graphics",
     "\\src\\Input",
+    "\\src\\Scenes",
+    "\\src\\Shapes",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\src\\Games\\BreakOut\\BreakOut.cpp",
+  "SelectedNode": "\\src\\Games\\BreakOut\\Block.h",
   "PreviewInSolutionExplorer": false
 }
