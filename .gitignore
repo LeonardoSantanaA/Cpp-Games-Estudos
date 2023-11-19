@@ -4,3 +4,5 @@
 *.ip
 q
 SDL2/out/
+SDL2/.vs/
+*.db
