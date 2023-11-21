@@ -23,6 +23,8 @@ public:
 	void PopScene(std::unique_ptr<Scene> scene);
 	Scene* TopScene(); //current scene
 
+	static const std::string& GetBasePath();
+
 private:
 	Screen mScreen;
 	SDL_Window* mnoptrWindow;

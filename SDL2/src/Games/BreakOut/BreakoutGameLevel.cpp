@@ -1,5 +1,7 @@
 #include "BreakoutGameLevel.h"
 #include "Ball.h"
+#include "../../App/App.h"
+#include "../../Utils/FileCommandLoader.h"
 
 BreakoutGameLevel::BreakoutGameLevel() {
 
@@ -65,13 +67,11 @@ void BreakoutGameLevel::Draw(Screen& screen) {
 void BreakoutGameLevel::CreateDefaultLevel(const AARectangle& boundary) {
 	mBlocks.clear();
 
-	const int BLOCK_WIDTH = 16;
-	const int BLOCK_HEIGHT = 8;
 
 	const int NUM_BLOCKS_ACROSS = ((int)boundary.GetWidth() / BLOCK_WIDTH);
 	const int NUM_BLOCK_ROWS = 5;
 
-	float startX = ((int)boundary.GetWidth() - (NUM_BLOCKS_ACROSS * (BLOCK_WIDTH ))) / 2;
+	float startX = 0;
 
 	Color colors[NUM_BLOCK_ROWS];
 	colors[0] = Color::Red();
@@ -83,10 +83,132 @@ void BreakoutGameLevel::CreateDefaultLevel(const AARectangle& boundary) {
 	for (int r = 0; r < NUM_BLOCK_ROWS; ++r) {
 		AARectangle blockRect = { Vec2D(startX, BLOCK_HEIGHT * (r + 1)), BLOCK_WIDTH, BLOCK_HEIGHT };
 		for (int c = 0; c < NUM_BLOCKS_ACROSS; ++c) {
-			Block b;
-			b.Init(blockRect, 1, Color::Black(), colors[r]);
+			Block b;	
+			b.Init(blockRect, 1, Color::White(), colors[r]);
 			mBlocks.push_back(b);
 			blockRect.MoveBy(Vec2D(BLOCK_WIDTH, 0));
 		}
 	}
+}
+
+struct LayoutBlock {
+	char symbol = '-';
+	int hp = 0;
+	Color color = Color::Black();
+};
+
+LayoutBlock FindLayoutBlockForSymbol(const std::vector<LayoutBlock>& blocks, char symbol) {
+	for (size_t i = 0; i < blocks.size(); i++) {
+		if (blocks[i].symbol == symbol) {
+			return blocks[i];
+		}
+	}
+
+	return LayoutBlock();
+}
+
+std::vector<BreakoutGameLevel> BreakoutGameLevel::LoadLevelsFromFile(const std::string& filePath) {
+	std::vector<BreakoutGameLevel> levels;
+
+	std::vector<LayoutBlock> layoutBlocks;
+
+	std::vector<Block> levelBlocks;
+
+	int width = 0;
+	int height = 0;
+
+	FileCommandLoader fileLoader;
+
+	Command levelCommand;
+	levelCommand.command = "level";
+	levelCommand.parseFunc = [&](ParseFuncParams params) {
+		if (levels.size() > 0) {
+			levels.back().Load(levelBlocks);
+		}
+		layoutBlocks.clear();
+		levelBlocks.clear();
+		width = 0;
+		height = 0;
+
+		BreakoutGameLevel level;
+		level.Init(AARectangle(Vec2D::Zero, App::Singleton().Width(), App::Singleton().Height()));
+		levels.push_back(level);
+		};
+	fileLoader.AddCommand(levelCommand);
+
+	Command blockCommand;
+	blockCommand.command = "block";
+	blockCommand.parseFunc = [&](ParseFuncParams params) {
+		LayoutBlock lb;
+
+		layoutBlocks.push_back(lb);
+		};
+	fileLoader.AddCommand(blockCommand);
+
+	Command symbolCommand;
+	symbolCommand.command = "symbol";
+	symbolCommand.parseFunc = [&](ParseFuncParams params) {
+		layoutBlocks.back().symbol = FileCommandLoader::ReadChar(params);
+		};
+	fileLoader.AddCommand(symbolCommand);
+
+	Command fillColorCommand;
+	fillColorCommand.command = "fillcolor";
+	fillColorCommand.parseFunc = [&](ParseFuncParams params) {
+		layoutBlocks.back().color = FileCommandLoader::ReadColor(params);
+		};
+	fileLoader.AddCommand(fillColorCommand);
+
+	Command hpCommand;
+	hpCommand.command = "hp";
+	hpCommand.parseFunc = [&](ParseFuncParams params) {
+		layoutBlocks.back().hp = FileCommandLoader::ReadInt(params);
+		};
+	fileLoader.AddCommand(hpCommand);
+
+	Command widthCommand;
+	widthCommand.command = "width";
+	widthCommand.parseFunc = [&](ParseFuncParams params) {
+		width = FileCommandLoader::ReadInt(params);
+		};
+	fileLoader.AddCommand(widthCommand);
+
+	Command heightCommand;
+	heightCommand.command = "height";
+	heightCommand.parseFunc = [&](ParseFuncParams params) {
+		height = FileCommandLoader::ReadInt(params);
+		};
+	fileLoader.AddCommand(heightCommand);
+
+	Command layoutCommand;
+	layoutCommand.commandType = COMMAND_MULTI_LINE;
+	layoutCommand.command = "layout";
+	layoutCommand.parseFunc = [&](ParseFuncParams params) {
+		int blockWidth = BLOCK_WIDTH;
+		int screenWidth = App::Singleton().Width();
+
+		float startingX = static_cast<float>(screenWidth - blockWidth * width) / 2.0f;
+		AARectangle blockRect(Vec2D(startingX, (params.lineNum + 1) * BLOCK_HEIGHT), BLOCK_WIDTH, BLOCK_HEIGHT);
+
+		for (int c = 0; c < params.line.length(); ++c) {
+			if (params.line[c] != '-') {
+				LayoutBlock layoutBlock = FindLayoutBlockForSymbol(layoutBlocks, params.line[c]);
+
+				Block b;
+				b.Init(blockRect, layoutBlock.hp, Color::Black(), layoutBlock.color);
+				levelBlocks.push_back(b);
+			}
+			blockRect.MoveBy(Vec2D(BLOCK_WIDTH, 0));
+		}
+		};
+	fileLoader.AddCommand(layoutCommand);
+
+	fileLoader.LoadFile(filePath);
+
+	if (levels.size() > 0) {
+		levels.back().Load(levelBlocks);
+	}
+
+	return levels;
+
 }

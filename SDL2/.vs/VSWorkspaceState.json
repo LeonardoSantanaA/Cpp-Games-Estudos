@@ -10,7 +10,7 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\App",
+    "\\src\\Assets",
     "\\src\\Games",
     "\\src\\Games\\BreakOut",
     "\\src\\Graphics",
@@ -19,6 +19,6 @@
     "\\src\\Shapes",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\Setup.cpp",
+  "SelectedNode": "\\src\\Assets\\BreakoutLevels.txt",
   "PreviewInSolutionExplorer": false
 }
