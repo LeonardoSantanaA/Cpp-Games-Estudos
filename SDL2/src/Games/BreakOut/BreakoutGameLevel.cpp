@@ -107,6 +107,15 @@ LayoutBlock FindLayoutBlockForSymbol(const std::vector<LayoutBlock>& blocks, cha
 	return LayoutBlock();
 }
 
+bool BreakoutGameLevel::IsLevelComplete() const{
+	for (size_t i = 0; i < mBlocks.size(); ++i) {
+		if (!mBlocks[i].IsDestroyed() && mBlocks[i].GetHP() != Block::UNBREAKABLE) {
+			return false;
+		}
+	}
+	return true;
+}
+
 std::vector<BreakoutGameLevel> BreakoutGameLevel::LoadLevelsFromFile(const std::string& filePath) {
 	std::vector<BreakoutGameLevel> levels;
 

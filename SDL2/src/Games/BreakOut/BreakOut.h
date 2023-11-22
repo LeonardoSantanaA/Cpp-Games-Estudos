@@ -7,6 +7,12 @@
 #include "BreakoutGameLevel.h"
 #include <vector>
 
+enum BreakoutGameStates {
+	IN_PLAY = 0,
+	IN_SERVE,
+	IN_GAME_OVER
+};
+
 class BreakOut: public Game {
 public:
 	virtual void Init(GameController& controller) override;
@@ -15,15 +21,25 @@ public:
 	virtual const std::string& GetName() const override;
 
 private:
-	void ResetGame();
+	const int NUM_LIVES = 3;
+
+	void ResetGame(size_t toLevel = 0);
 
 	inline BreakoutGameLevel& GetCurrentLevel() { return mLevels[mCurrentLevel]; }
+	void SetToServeState();
 
+	bool IsBallPassedCutoffY() const;
+	void ReduceLifeByOne();
+	bool IsGameOver() const { return mLives < 0; }
 
+	const float INITIAL_BALL_SPEED = 100.0f;
 	const Vec2D INITIAL_BALL_VELOCITY = Vec2D(100, -100);
 	Paddle mPaddle;
 	Ball mBall;
 	LevelBoundary mLevelBoundary;
 	std::vector<BreakoutGameLevel> mLevels;
 	size_t mCurrentLevel;
+	BreakoutGameStates mGameState;
+	int mLives;
+	float mYCutoff;
 };

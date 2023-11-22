@@ -1,0 +1,3 @@
+S:/C++/SDL2/out/build/x64-Release/CMakeFiles/SDL2Setup.dir
+S:/C++/SDL2/out/build/x64-Release/CMakeFiles/edit_cache.dir
+S:/C++/SDL2/out/build/x64-Release/CMakeFiles/rebuild_cache.dir

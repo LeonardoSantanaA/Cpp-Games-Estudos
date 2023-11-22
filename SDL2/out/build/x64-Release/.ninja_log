@@ -1,0 +1,23 @@
+# ninja log v5
+30	190	7214075948615041	CMakeFiles/SDL2Setup.dir/src/Utils/Utils.cpp.obj	d006692b4194e47f
+9	610	7214075952933492	CMakeFiles/SDL2Setup.dir/src/Graphics/Color.cpp.obj	e6f68b4d1979a8d5
+15	361	7214075950180858	CMakeFiles/SDL2Setup.dir/src/Graphics/ScreenBuffer.cpp.obj	b0782aebfef0e666
+36	495	7214075951746671	CMakeFiles/SDL2Setup.dir/src/Utils/Vec2D.cpp.obj	7f6e5a0f1e805825
+50	496	7214075951786574	CMakeFiles/SDL2Setup.dir/src/Shapes/Shape.cpp.obj	a3056a1164f9da92
+43	540	7214075952225392	CMakeFiles/SDL2Setup.dir/src/Shapes/Line2D.cpp.obj	5b8f2b36acb4d3bb
+63	544	7214075952275260	CMakeFiles/SDL2Setup.dir/src/Shapes/AARectangle.cpp.obj	74562cd18aba0341
+58	585	7214075952684166	CMakeFiles/SDL2Setup.dir/src/Shapes/Triangle.cpp.obj	115ed4fac21f2515
+4	716	7214075953941051	CMakeFiles/SDL2Setup.dir/Setup.cpp.obj	19e9ea6514b65210
+190	738	7214075954230372	CMakeFiles/SDL2Setup.dir/src/Shapes/Circle.cpp.obj	f997c004e73ca224
+22	766	7214075954499551	CMakeFiles/SDL2Setup.dir/src/Graphics/Screen.cpp.obj	75a6292c0474eefe
+3	548	7214087472950035	SDL2Setup.exe	a65076987655cd37
+25	492	7214109905915106	CMakeFiles/SDL2Setup.dir/src/Shapes/Line2D.cpp.obj	5b8f2b36acb4d3bb
+29	494	7214109905984919	CMakeFiles/SDL2Setup.dir/src/Shapes/Shape.cpp.obj	a3056a1164f9da92
+37	520	7214109906214305	CMakeFiles/SDL2Setup.dir/src/Shapes/Triangle.cpp.obj	115ed4fac21f2515
+15	526	7214109906343958	CMakeFiles/SDL2Setup.dir/src/Utils/Vec2D.cpp.obj	7f6e5a0f1e805825
+42	583	7214109906902456	CMakeFiles/SDL2Setup.dir/src/Shapes/AARectangle.cpp.obj	74562cd18aba0341
+50	627	7214109907351257	CMakeFiles/SDL2Setup.dir/src/Shapes/Circle.cpp.obj	f997c004e73ca224
+3	711	7214109908198994	CMakeFiles/SDL2Setup.dir/Setup.cpp.obj	19e9ea6514b65210
+57	815	7214109909236456	CMakeFiles/SDL2Setup.dir/src/App/App.cpp.obj	1fe05cc6a4347533
+8	851	7214109909595248	CMakeFiles/SDL2Setup.dir/src/Graphics/Screen.cpp.obj	75a6292c0474eefe
+851	1266	7214109913740557	SDL2Setup.exe	94a1c738adefc25
