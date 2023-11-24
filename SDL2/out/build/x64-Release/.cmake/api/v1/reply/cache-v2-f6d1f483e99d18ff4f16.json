@@ -1066,6 +1066,18 @@
 			"value" : "FALSE"
 		},
 		{
+			"name" : "Release",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "No help, variable specified on the command line."
+				}
+			],
+			"type" : "STRING",
+			"value" : "Release"
+		},
+		{
 			"name" : "SDL2Test_BINARY_DIR",
 			"properties" : 
 			[

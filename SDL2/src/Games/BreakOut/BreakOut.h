@@ -5,6 +5,7 @@
 #include "Ball.h"
 #include "LevelBoundary.h"
 #include "BreakoutGameLevel.h"
+#include "../../Utils/ScoreFileLoader.h"
 #include <vector>
 
 enum BreakoutGameStates {
@@ -22,7 +23,7 @@ public:
 
 private:
 	const int NUM_LIVES = 3;
-
+	
 	void ResetGame(size_t toLevel = 0);
 
 	inline BreakoutGameLevel& GetCurrentLevel() { return mLevels[mCurrentLevel]; }
@@ -31,6 +32,8 @@ private:
 	bool IsBallPassedCutoffY() const;
 	void ReduceLifeByOne();
 	bool IsGameOver() const { return mLives < 0; }
+
+	ScoreFileLoader scoreFile;
 
 	const float INITIAL_BALL_SPEED = 100.0f;
 	const Vec2D INITIAL_BALL_VELOCITY = Vec2D(100, -100);
@@ -41,5 +44,6 @@ private:
 	size_t mCurrentLevel;
 	BreakoutGameStates mGameState;
 	int mLives;
+	int mScore;
 	float mYCutoff;
 };

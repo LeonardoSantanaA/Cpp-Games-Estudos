@@ -44,6 +44,8 @@ void BreakoutGameLevel::Update(uint32_t dt, Ball& ball) {
 	if (noptrBlockToBounceOffOf != nullptr) {
 		noptrBlockToBounceOffOf->Bounce(ball, edgeToBounceOffOf);
 		noptrBlockToBounceOffOf->ReduceHP();
+		mLevelScore += SCORE_POINTS;
+		std::cout << "Score: " << GetLevelScore() << std::endl;
 	}
 	
 	for (const auto& block : collidedBlocks) {

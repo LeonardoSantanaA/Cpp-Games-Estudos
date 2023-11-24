@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Release-d0094a50bb2071803777.json",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.0"
@@ -19,7 +19,7 @@
 					]
 				}
 			],
-			"name" : "Release",
+			"name" : "Debug",
 			"projects" : 
 			[
 				{
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "SDL2Setup::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-SDL2Setup-Release-c289468db57fa3d446dd.json",
+					"jsonFile" : "target-SDL2Setup-Debug-15aa9dc82a92eb028d38.json",
 					"name" : "SDL2Setup",
 					"projectIndex" : 0
 				}
@@ -49,7 +49,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "S:/C++/SDL2/out/build/x64-Release",
+		"build" : "S:/C++/SDL2/out/build/x64-Debug",
 		"source" : "S:/C++/SDL2"
 	},
 	"version" : 

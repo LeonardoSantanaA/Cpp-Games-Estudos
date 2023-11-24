@@ -3,6 +3,8 @@
 #include "../../App/App.h"
 #include <iostream>
 #include "../../Shapes/Circle.h"
+#include "../../Utils/ScoreFileLoader.h"
+
 
 /*
 	Paddle
@@ -41,7 +43,8 @@
 
 void BreakOut::Init(GameController& controller) {
 	controller.ClearAll();
-
+	scoreFile.LoadScoreFileLoader(App::GetBasePath() + "Assets/Scores.txt");
+	
 
 	ResetGame();
 
@@ -121,15 +124,18 @@ void BreakOut::Update(uint32_t dt) {
 		GetCurrentLevel().Update(dt, mBall);
 
 		if (IsBallPassedCutoffY()) {
+			
 			ReduceLifeByOne();
 			if (!IsGameOver()) {
 				SetToServeState();
 			}
 			else {
+				scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", "ABC", GetCurrentLevel().GetLevelScore());
 				mGameState = IN_GAME_OVER;
 			}
 		}
 		else if (GetCurrentLevel().IsLevelComplete()) {
+			scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", "ABC", GetCurrentLevel().GetLevelScore());
 			mCurrentLevel = (mCurrentLevel + 1) % mLevels.size();
 			ResetGame(mCurrentLevel);
 		}
@@ -141,11 +147,10 @@ void BreakOut::Draw(Screen& screen) {
 	mBall.Draw(screen);
 	mPaddle.Draw(screen);
 	GetCurrentLevel().Draw(screen);
-	screen.Draw(mLevelBoundary.GetAARectangle(), Color::White());
 
 	Line2D cutoff = { Vec2D(0, mYCutoff), Vec2D(App::Singleton().Width(), mYCutoff) };
-	screen.Draw(cutoff, Color::White());
-	Circle lifeCircle = { Vec2D(7, App::Singleton().Height() - 10), 5 };
+//	screen.Draw(cutoff, Color::White());
+	Circle lifeCircle = { Vec2D(7, App::Singleton().Height() - 3), 5 };
 	for (int i = 0; i < mLives; ++i) {
 		screen.Draw(lifeCircle, Color::Red(), true, Color::Red());
 		lifeCircle.MoveBy(Vec2D(17, 0));

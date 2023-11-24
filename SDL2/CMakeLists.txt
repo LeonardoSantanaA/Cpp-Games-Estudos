@@ -6,7 +6,7 @@ project(SDL2Test)
 find_package(SDL2 REQUIRED) 
 
 
-add_executable(SDL2Setup  "Setup.cpp" 
+add_executable(SDL2Setup "Setup.cpp" 
 "src/Graphics/Color.cpp" 
 "src/Graphics/ScreenBuffer.cpp" 
 "src/Graphics/Screen.cpp"
@@ -33,6 +33,8 @@ add_executable(SDL2Setup  "Setup.cpp"
 "src/Games/BreakOut/Paddle.h" "src/Games/BreakOut/Paddle.cpp"
 "src/Games/BreakOut/Ball.h" "src/Games/BreakOut/Ball.cpp"
 "src/Games/BreakOut/LevelBoundary.h" "src/Games/BreakOut/LevelBoundary.cpp"
-"src/Games/BreakOut/Block.h" "src/Games/BreakOut/Block.cpp" "src/Games/BreakOut/BreakoutGameLevel.h" "src/Games/BreakOut/BreakoutGameLevel.cpp")
+"src/Games/BreakOut/Block.h" "src/Games/BreakOut/Block.cpp" 
+"src/Games/BreakOut/BreakoutGameLevel.h" "src/Games/BreakOut/BreakoutGameLevel.cpp"
+"src/Utils/ScoreFileLoader.h" "src/Utils/ScoreFileLoader.cpp")
 
 target_link_libraries(SDL2Setup SDL2::SDL2 SDL2::SDL2main)
