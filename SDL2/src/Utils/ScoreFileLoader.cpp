@@ -20,10 +20,11 @@ void ScoreFileLoader::LoadScoreFileLoader(const std::string& scorePath) {
 	for (int i = 0; i < SCORES_TO_SHOW; ++i) {
 		std::cout << PrintName(scores[i].name) << " - " << scores[i].score << std::endl;
 	}
-
+	std::cout << "//////////////////////" << std::endl;
 }
 
 bool ScoreFileLoader::VerifyScoreToWrite(int& index, int score) {
+	
 	for (int i = 0; i < SCORES_REAL_SIZE; ++i) {
 		if (scores[i].score == NULL || (i == SCORES_REAL_SIZE - 1 && score > scores[i].score)) {
 			index = i;
@@ -53,10 +54,9 @@ void ScoreFileLoader::SaveScoreToFile(const std::string& scorePath, const char* 
 	newScore.score = score;
 	int index;
 
-	if (VerifyScoreToWrite(index, score)) {
+	if (VerifyScoreToWrite(index, newScore.score)) {
 		scores[index] = newScore;
-		std::cout << "valor a ser redimensionado: " << scores[0].score << std::endl;
-		std::cout << "valor a ser adicionado: " << scores[index].score << "index " << index << std::endl;
+		std::cout << "Saving Score: " << scores[index].score << std::endl;
 
 		std::sort(&scores[0], &scores[index+1], [](Score& scoreA, Score& scoreB) {
 			return scoreA.score > scoreB.score;
@@ -75,5 +75,5 @@ void ScoreFileLoader::SaveScoreToFile(const std::string& scorePath, const char* 
 	for (int i = 0; i < SCORES_TO_SHOW; ++i) {
 		std::cout << PrintName(name) << " - " << scores[i].score << std::endl;
 	}
-	std::cout << "////////////////////" << std::endl;
+	std::cout << "///////////////////////////" << std::endl;
 }

@@ -8,6 +8,7 @@
 #include "../../Utils/ScoreFileLoader.h"
 #include <vector>
 
+
 enum BreakoutGameStates {
 	IN_PLAY = 0,
 	IN_SERVE,
@@ -20,6 +21,9 @@ public:
 	virtual void Update(uint32_t dt) override;
 	virtual void Draw(Screen& screen) override;
 	virtual const std::string& GetName() const override;
+
+	inline int GetLevelScore() { return mScore; }
+//	inline void SetLevelScore(int val) { mScore = val; }
 
 private:
 	const int NUM_LIVES = 3;

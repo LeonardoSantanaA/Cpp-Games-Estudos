@@ -15,6 +15,7 @@ public:
 	void Update(uint32_t dt, Ball& ball);
 	void Draw(Screen& screen);
 	inline int GetLevelScore() { return mLevelScore; }
+	inline void SetLevelScore(int val) { mLevelScore = val; }
 
 	bool IsLevelComplete() const;
 	static std::vector<BreakoutGameLevel> LoadLevelsFromFile(const std::string& filePath);

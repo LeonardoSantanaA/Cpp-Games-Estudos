@@ -130,14 +130,18 @@ void BreakOut::Update(uint32_t dt) {
 				SetToServeState();
 			}
 			else {
-				scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", "ABC", GetCurrentLevel().GetLevelScore());
+				mScore = GetCurrentLevel().GetLevelScore();
+				scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", "ABC", GetLevelScore());
 				mGameState = IN_GAME_OVER;
+				GetCurrentLevel().SetLevelScore(0);
 			}
 		}
 		else if (GetCurrentLevel().IsLevelComplete()) {
-			scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", "ABC", GetCurrentLevel().GetLevelScore());
+			mScore = GetCurrentLevel().GetLevelScore();
+			scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", "ABC", GetLevelScore());
 			mCurrentLevel = (mCurrentLevel + 1) % mLevels.size();
 			ResetGame(mCurrentLevel);
+			GetCurrentLevel().SetLevelScore(mScore);
 		}
 	}
 	

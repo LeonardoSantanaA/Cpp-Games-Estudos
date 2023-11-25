@@ -9,19 +9,19 @@
 :height 13
 :layout 13
 
---xxxxxxxxx---
--xxxxxxxxxxx--
-xxxxxxxxxxxxx-
-xxxxxxxxxxxxx-
--xxxxxxxxxxxx-
---xxxxxxxxxxxx
-------xxxxxxxx
---xxxxxxxxxxxx
--xxxxxxxxxxxx-
-xxxxxxxxxxxxx-
-xxxxxxxxxxxxx-
--xxxxxxxxxxx--
---xxxxxxxxx---
+--------------
+--------------
+--------------
+--------------
+--------------
+--------------
+--------------
+--------------
+--------------
+--------------
+--------------
+--------------
+x------------x
 
 :level
 
