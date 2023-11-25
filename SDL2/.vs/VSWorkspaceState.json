@@ -11,12 +11,11 @@
     "",
     "\\src",
     "\\src\\App",
-    "\\src\\Assets",
     "\\src\\Games",
     "\\src\\Games\\BreakOut",
-    "\\src\\Input",
-    "\\src\\Utils"
+    "\\src\\Games\\Tetris",
+    "\\src\\Graphics"
   ],
-  "SelectedNode": "\\CMakeLists.txt",
+  "SelectedNode": "\\src\\App\\App.h",
   "PreviewInSolutionExplorer": false
 }
