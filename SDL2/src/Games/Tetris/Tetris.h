@@ -3,6 +3,7 @@
 #include "../Game.h"
 #include "../../Graphics/Screen.h"
 #include "Playfield.h"
+#include "Tetromino.h"
 
 class Tetris: public Game {
 public:
@@ -13,6 +14,7 @@ public:
 
 private:
 	Playfield playfield;
+	std::vector<Tetromino> tetrominos;
 	const int BLOCK_SIZE = 16;
 
 

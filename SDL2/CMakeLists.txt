@@ -37,6 +37,6 @@ add_executable(SDL2Setup "Setup.cpp"
 "src/Games/BreakOut/BreakoutGameLevel.h" "src/Games/BreakOut/BreakoutGameLevel.cpp"
 "src/Utils/ScoreFileLoader.h" "src/Utils/ScoreFileLoader.cpp"
 "src/Games/Tetris/Tetris.h" "src/Games/Tetris/Tetris.cpp" 
-"src/Games/Tetris/Playfield.h" "src/Games/Tetris/Playfield.cpp")
+"src/Games/Tetris/Playfield.h" "src/Games/Tetris/Playfield.cpp" "src/Games/Tetris/Tetromino.h" "src/Games/Tetris/Tetromino.cpp")
 
 target_link_libraries(SDL2Setup SDL2::SDL2 SDL2::SDL2main)

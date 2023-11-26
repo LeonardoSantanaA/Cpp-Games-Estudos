@@ -14,8 +14,9 @@
     "\\src\\Games",
     "\\src\\Games\\BreakOut",
     "\\src\\Games\\Tetris",
-    "\\src\\Graphics"
+    "\\src\\Graphics",
+    "\\src\\Shapes"
   ],
-  "SelectedNode": "\\src\\App\\App.h",
+  "SelectedNode": "\\src\\Games\\Tetris\\Tetromino.h",
   "PreviewInSolutionExplorer": false
 }

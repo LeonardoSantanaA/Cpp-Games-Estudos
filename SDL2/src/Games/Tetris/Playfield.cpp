@@ -3,6 +3,9 @@
 #include "../../App/App.h"
 #include "../../Graphics/Screen.h"
 
+AARectangle Playfield::grid[BLOCKS_WIDTH][BLOCKS_HEIGHT];
+const int Playfield::GRID_BLOCK_SIZE = 12;
+
 void Playfield::Init() {
 	int startX = (App::Singleton().Width() - (BLOCKS_WIDTH * GRID_BLOCK_SIZE)) / 2;
 
@@ -13,6 +16,7 @@ void Playfield::Init() {
 			grid[xx][yy].MoveBy(Vec2D(startX, 0));
 		}
 	}
+	std::cout << "valor real: " << GetGridPosition(5, 5).GetTopLeftPoint().GetX() << std::endl;
 }
 
 void Playfield::Update(uint32_t dt) {
