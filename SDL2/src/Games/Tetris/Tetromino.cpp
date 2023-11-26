@@ -1,33 +1,11 @@
 #include "Tetromino.h"
 #include "Playfield.h"
 #include "../../Graphics/Screen.h"
+#include <random>
 
 
 void Tetromino::Init() {
-	AARectangle tetroBlock1 = AARectangle(Vec2D(0, 0),
-		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
-	//std::cout << playfield.GetGridPosition(5, 5).GetTopLeftPoint().GetX() << std::endl;
-
-	tetroBlock1.MoveTo(Playfield::GetGridPosition(5, 5).GetTopLeftPoint());
-	tetroBlocks.push_back(tetroBlock1);
-	tetroBlock1.MoveBy(Vec2D(-24, 0));
-
-
-	AARectangle tetroBlock2 = AARectangle(Vec2D(0, 0),
-		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));;
-	tetroBlock2.MoveTo(Playfield::GetGridPosition(6, 5).GetTopLeftPoint());
-	tetroBlocks.push_back(tetroBlock2);
-
-	AARectangle tetroBlock3 = AARectangle(Vec2D(0, 0),
-		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));;
-	tetroBlock3.MoveTo(Playfield::GetGridPosition(7, 5).GetTopLeftPoint());
-	tetroBlocks.push_back(tetroBlock3);
-
-	AARectangle tetroBlock4 = AARectangle(Vec2D(0, 0),
-		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));;
-	tetroBlock4.MoveTo(Playfield::GetGridPosition(6, 4).GetTopLeftPoint());
-	tetroBlocks.push_back(tetroBlock4);
-
+	GenerateTetromino();
 
 	mDirection = TetroDirection::TET_ZERO;
 	mStats = TetroStats::TET_PLAY;
@@ -54,6 +32,11 @@ void Tetromino::Update(uint32_t dt) {
 			countDelay = 0;
 		}
 	}
+	else if (mStats == TET_STATIC) {
+		//todo: STATIC TETROMINO!
+
+
+	}
 
 }
 
@@ -61,7 +44,6 @@ void Tetromino::Draw(Screen& screen) {
 	for (const auto& tetrominos : tetroBlocks) {
 		screen.Draw(tetrominos, Color::Cyan(), true, Color::White());
 	}
-
 }
 
 bool Tetromino::IsFree(const TetroDirection& dir) {
@@ -99,11 +81,111 @@ bool Tetromino::IsFree(const TetroDirection& dir) {
 	}
 	else if (dir == TetroDirection::TET_DOWN) {
 		if (downTetromino.GetTopLeftPoint().GetY() >= Playfield::GetGridPosition(0, BLOCKS_HEIGHT - 1).GetTopLeftPoint().GetY()) {
+			Solidify();
 			return false;
 		}
 	}
 
 	return true;
+}
+
+void Tetromino::GenerateTetromino() {
+	std::random_device rd;
+	std::mt19937 generator(rd());
+	std::uniform_int_distribution<int> disX(0, BLOCKS_WIDTH - 4);
+	std::uniform_int_distribution<int> disType(0, NUM_TYPES - 1);
+
+	AARectangle tetroBlock1 = AARectangle(Vec2D(0, 0),
+		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
+	AARectangle tetroBlock2 = AARectangle(Vec2D(0, 0),
+		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
+	AARectangle tetroBlock3 = AARectangle(Vec2D(0, 0),
+		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
+	AARectangle tetroBlock4 = AARectangle(Vec2D(0, 0),
+		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
+
+	int randomX = disX(generator);
+	int tetroType = disType(generator);
+	
+	switch (tetroType) {
+	case TetroTypes::I:
+	{
+		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
+		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 3, 0).GetTopLeftPoint());
+	}
+	break;
+
+	case TetroTypes::J:
+	{
+		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
+		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 2, 1).GetTopLeftPoint());
+	}
+	break;
+
+	case TetroTypes::L:
+	{
+		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
+		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX, 1).GetTopLeftPoint());
+	}
+	break;
+
+	case TetroTypes::O:
+	{
+		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX, 1).GetTopLeftPoint());
+		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 1, 1).GetTopLeftPoint());
+	}
+	break;
+
+	case TetroTypes::S:
+	{
+		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 1).GetTopLeftPoint());
+		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 1).GetTopLeftPoint());
+		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
+	}
+	break;
+
+	case TetroTypes::T:
+	{
+		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
+		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 1, 1).GetTopLeftPoint());
+	}
+	break;
+
+	case TetroTypes::Z:
+	{
+		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 1, 1).GetTopLeftPoint());
+		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 2, 1).GetTopLeftPoint());
+	}
+	break;
+	
+	default: 
+	{
+		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
+		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 3, 0).GetTopLeftPoint());
+	}
+	break;
+
+	} //end switch
+	tetroBlocks.push_back(tetroBlock1);
+	tetroBlocks.push_back(tetroBlock2);
+	tetroBlocks.push_back(tetroBlock3);
+	tetroBlocks.push_back(tetroBlock4);
+	
 }
 
 void Tetromino::MoveBy(const Vec2D& offset) {
@@ -123,7 +205,6 @@ void Tetromino::MoveDirection(const TetroDirection& dir) {
 			if (IsFree(dir)) {
 				MoveBy(Vec2D(Playfield::GRID_BLOCK_SIZE, 0));
 			}
-			
 			UnsetMovementDirection(TetroDirection::TET_RIGHT);
 		}
 }

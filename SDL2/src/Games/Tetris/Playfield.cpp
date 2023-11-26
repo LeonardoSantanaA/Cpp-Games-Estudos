@@ -16,7 +16,7 @@ void Playfield::Init() {
 			grid[xx][yy].MoveBy(Vec2D(startX, 0));
 		}
 	}
-	std::cout << "valor real: " << GetGridPosition(5, 5).GetTopLeftPoint().GetX() << std::endl;
+
 }
 
 void Playfield::Update(uint32_t dt) {

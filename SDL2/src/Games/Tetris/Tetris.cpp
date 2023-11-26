@@ -54,7 +54,6 @@ void Tetris::Update(uint32_t dt) {
 }
 
 void Tetris::Draw(Screen& screen) {
-	
 	playfield.Draw(screen);
 	for (auto& tet : tetrominos) {
 		tet.Draw(screen);

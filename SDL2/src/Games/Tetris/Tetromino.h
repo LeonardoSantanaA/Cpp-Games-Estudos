@@ -18,11 +18,23 @@ enum TetroDirection {
 	TET_DOWN
 };
 
+enum TetroTypes {
+	I = 0,
+	J,
+	L,
+	O,
+	S,
+	T,
+	Z
+};
+
 class Tetromino {
 public:
 	void Init();
 	void Update(uint32_t dt);
 	void Draw(Screen& screen);
+
+	inline void Solidify() { mStats = TetroStats::TET_STATIC; }
 
 	inline bool IsMovingLeft() const { return mDirection == TetroDirection::TET_LEFT; }
 	inline bool IsMovingRight() const { return mDirection == TetroDirection::TET_RIGHT; }
@@ -32,7 +44,10 @@ public:
 	inline void StopMovement() { mDirection = 0; }
 
 private:
+	const int NUM_TYPES = 7;
+
 	bool IsFree(const TetroDirection& dir);
+	void GenerateTetromino();
 	void MoveBy(const Vec2D& offset);
 	void MoveDirection(const TetroDirection& dir);
 	void Gravity();

@@ -12,11 +12,10 @@
     "\\src",
     "\\src\\App",
     "\\src\\Games",
-    "\\src\\Games\\BreakOut",
     "\\src\\Games\\Tetris",
     "\\src\\Graphics",
     "\\src\\Shapes"
   ],
-  "SelectedNode": "\\src\\Games\\Tetris\\Tetromino.h",
+  "SelectedNode": "\\src\\Games\\Tetris\\Playfield.cpp",
   "PreviewInSolutionExplorer": false
 }
