@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../Shapes/AARectangle.h"
+#include "../../Shapes/Line2D.h"
 #include "Playfield.h"
 
 class Screen;
@@ -35,6 +36,9 @@ public:
 	void Draw(Screen& screen);
 
 	inline void Solidify() { mStats = TetroStats::TET_STATIC; }
+	inline uint32_t GetStats() { return mStats; }
+
+	inline std::vector<Line2D> GetCollisors() const { return collisionLines; }
 
 	inline bool IsMovingLeft() const { return mDirection == TetroDirection::TET_LEFT; }
 	inline bool IsMovingRight() const { return mDirection == TetroDirection::TET_RIGHT; }
@@ -47,6 +51,7 @@ private:
 	const int NUM_TYPES = 7;
 
 	bool IsFree(const TetroDirection& dir);
+	
 	void GenerateTetromino();
 	void MoveBy(const Vec2D& offset);
 	void MoveDirection(const TetroDirection& dir);
@@ -56,6 +61,10 @@ private:
 	uint32_t mStats;
 
 	std::vector<AARectangle> tetroBlocks;
+	std::vector<Line2D> collisionLines;
+
+	void RefreshColiders();
+
 	Playfield playfield;
 	int countDelay = 0;
 };

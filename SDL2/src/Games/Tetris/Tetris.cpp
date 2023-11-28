@@ -1,6 +1,8 @@
 #include "Tetris.h"
 #include "../../App/App.h"
 #include "../../Utils/Vec2D.h"
+#include "../../Shapes/AARectangle.h"
+#include "../../Shapes/Line2D.h"
 
 /*
 	Fazer uma grid pro jogo com 10 blocos de largura e 20 de altura;
@@ -13,9 +15,7 @@
 
 void Tetris::Init(GameController& controller) {
 	playfield.Init();
-	Tetromino tetromino;
-	tetromino.Init();
-	tetrominos.push_back(tetromino);
+	GenerateTetromino();
 
 	ButtonAction leftKeyAction;
 	leftKeyAction.key = GameController::LeftKey();
@@ -44,12 +44,30 @@ void Tetris::Init(GameController& controller) {
 		
 		};
 	controller.AddInputActionForKey(rightKeyAction);
+
+	ButtonAction downKeyAction;
+	downKeyAction.key = GameController::DownKey();
+	downKeyAction.action = [this](uint32_t dt, InputState state) {
+
+		if (GameController::IsPressed(state)) {
+			tetrominos.back().SetMovementDirection(TetroDirection::TET_DOWN);
+		}
+		else {
+			tetrominos.back().UnsetMovementDirection(TetroDirection::TET_DOWN);
+		}
+
+		};
+	controller.AddInputActionForKey(downKeyAction);
 	
 }
 
 void Tetris::Update(uint32_t dt) {
 	for (auto& tet : tetrominos) {
 		tet.Update(dt);
+	}
+
+	if (tetrominos.back().GetStats() == TetroStats::TET_STATIC) {
+		GenerateTetromino();
 	}
 }
 
@@ -63,4 +81,21 @@ void Tetris::Draw(Screen& screen) {
 const std::string& Tetris::GetName() const {
 	static std::string name = "Tetris";
 	return name;
+}
+
+void Tetris::GenerateTetromino() {
+	Tetromino tetromino;
+	tetromino.Init();
+	tetrominos.push_back(tetromino);
+}
+
+bool Tetris::VerifyColissionWithOther() {
+	for (auto& tetromino : tetrominos) {
+		for (const auto& collisor : tetromino.GetCollisors()) {
+			
+		}
+	}
+
+
+	return true;
 }

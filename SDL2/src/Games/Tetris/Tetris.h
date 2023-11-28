@@ -11,12 +11,14 @@ public:
 	virtual void Update(uint32_t dt) override;
 	virtual void Draw(Screen& screen) override;
 	virtual const std::string& GetName() const override;
+	void GenerateTetromino();
 
 private:
 	Playfield playfield;
 	std::vector<Tetromino> tetrominos;
 	const int BLOCK_SIZE = 16;
 
+	bool VerifyColissionWithOther();
 
 	const int WIDTH_BLOCKS = 10;
 	const int HEIGHT_BLOCKS = 20;

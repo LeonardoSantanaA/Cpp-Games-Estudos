@@ -14,15 +14,18 @@ void Tetromino::Init() {
 void Tetromino::Update(uint32_t dt) {
 
 	if (mStats == TET_PLAY) {
-		if ((mDirection & TetroDirection::TET_LEFT) == TetroDirection::TET_LEFT 
-				&& (mDirection & TetroDirection::TET_RIGHT) == TetroDirection::TET_RIGHT) {
-			mDirection = TetroDirection::TET_ZERO;
-		}
-		if (mDirection == TetroDirection::TET_LEFT) {
+		//if ((mDirection & TetroDirection::TET_LEFT) == TetroDirection::TET_LEFT 
+			//	&& (mDirection & TetroDirection::TET_RIGHT) == TetroDirection::TET_RIGHT) {
+			//mDirection = TetroDirection::TET_ZERO;
+		//}
+		 if (mDirection == TetroDirection::TET_LEFT) {
 			MoveDirection(TetroDirection::TET_LEFT);
 		}
 		else if (mDirection == TetroDirection::TET_RIGHT) {
 			MoveDirection(TetroDirection::TET_RIGHT);
+		}
+		else if (mDirection == TetroDirection::TET_DOWN) {
+			MoveDirection(TetroDirection::TET_DOWN);
 		}
 
 		countDelay++;
@@ -44,6 +47,10 @@ void Tetromino::Draw(Screen& screen) {
 	for (const auto& tetrominos : tetroBlocks) {
 		screen.Draw(tetrominos, Color::Cyan(), true, Color::White());
 	}
+
+	for (const auto& lines : collisionLines) {
+		screen.Draw(lines, Color::Yellow());
+	}
 }
 
 bool Tetromino::IsFree(const TetroDirection& dir) {
@@ -56,7 +63,6 @@ bool Tetromino::IsFree(const TetroDirection& dir) {
 
 	AARectangle downTetromino = AARectangle(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
-	downTetromino.MoveTo(Vec2D(0, 0));
 
 	for (const auto& tetromino : tetroBlocks) {
 		if (tetromino.GetTopLeftPoint().GetX() < leftTetromino.GetTopLeftPoint().GetX()) {
@@ -68,6 +74,7 @@ bool Tetromino::IsFree(const TetroDirection& dir) {
 		if (tetromino.GetTopLeftPoint().GetY() > downTetromino.GetTopLeftPoint().GetY()) {
 			downTetromino = tetromino;
 		}
+
 	}
 	if (dir == TetroDirection::TET_LEFT) {
 		if (leftTetromino.GetTopLeftPoint().GetX() <= Playfield::GetGridPosition(0, 0).GetTopLeftPoint().GetX()) {
@@ -88,6 +95,8 @@ bool Tetromino::IsFree(const TetroDirection& dir) {
 
 	return true;
 }
+
+
 
 void Tetromino::GenerateTetromino() {
 	std::random_device rd;
@@ -186,12 +195,24 @@ void Tetromino::GenerateTetromino() {
 	tetroBlocks.push_back(tetroBlock3);
 	tetroBlocks.push_back(tetroBlock4);
 	
+	RefreshColiders();
+}
+
+void Tetromino::RefreshColiders() {
+	 collisionLines.clear();
+	for (const auto& tetromino : tetroBlocks) {
+		Line2D colliderLine;
+		colliderLine.SetP0(Vec2D(tetromino.GetTopLeftPoint().GetX() + 2, tetromino.GetBottomRightPoint().GetY()));
+		colliderLine.SetP1(Vec2D(tetromino.GetBottomRightPoint().GetX() - 2, tetromino.GetBottomRightPoint().GetY()));
+		collisionLines.push_back(colliderLine);
+	}
 }
 
 void Tetromino::MoveBy(const Vec2D& offset) {
 	for (auto& tetrominos : tetroBlocks) {
 		tetrominos.MoveBy(offset);
 	}
+	RefreshColiders();
 }
 
 void Tetromino::MoveDirection(const TetroDirection& dir) {
@@ -207,6 +228,12 @@ void Tetromino::MoveDirection(const TetroDirection& dir) {
 			}
 			UnsetMovementDirection(TetroDirection::TET_RIGHT);
 		}
+		else if (dir == TetroDirection::TET_DOWN) {
+			if (IsFree(dir)) {
+				MoveBy(Vec2D(0, Playfield::GRID_BLOCK_SIZE));
+			}
+			UnsetMovementDirection(TetroDirection::TET_DOWN);
+		}
 }
 
 void Tetromino::Gravity() {
@@ -214,3 +241,4 @@ void Tetromino::Gravity() {
 		MoveBy(Vec2D(0, Playfield::GRID_BLOCK_SIZE));
 	}
 }
+
