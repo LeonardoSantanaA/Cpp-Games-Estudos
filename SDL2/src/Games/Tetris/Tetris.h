@@ -4,6 +4,7 @@
 #include "../../Graphics/Screen.h"
 #include "Playfield.h"
 #include "Tetromino.h"
+#include "Collider.h"
 
 class Tetris: public Game {
 public:
@@ -15,10 +16,11 @@ public:
 
 private:
 	Playfield playfield;
-	std::vector<Tetromino> tetrominos;
+	Collider collider;
+	
 	const int BLOCK_SIZE = 16;
 
-	bool VerifyColissionWithOther();
+	//bool VerifyColissionWithOther();
 
 	const int WIDTH_BLOCKS = 10;
 	const int HEIGHT_BLOCKS = 20;

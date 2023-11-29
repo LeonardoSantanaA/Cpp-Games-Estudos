@@ -4,6 +4,7 @@
 #include "../../Shapes/AARectangle.h"
 #include "../../Shapes/Line2D.h"
 
+
 /*
 	Fazer uma grid pro jogo com 10 blocos de largura e 20 de altura;
 	Playfield:
@@ -22,10 +23,10 @@ void Tetris::Init(GameController& controller) {
 	leftKeyAction.action = [this](uint32_t dt, InputState state) {
 	
 			if (GameController::IsPressed(state)) {
-				tetrominos.back().SetMovementDirection(TetroDirection::TET_LEFT);
+				collider.tetrominos.back().SetMovementDirection(TetroDirection::TET_LEFT);
 			}
 			else {
-				tetrominos.back().UnsetMovementDirection(TetroDirection::TET_LEFT);
+				collider.tetrominos.back().UnsetMovementDirection(TetroDirection::TET_LEFT);
 			}
 		
 		};
@@ -36,10 +37,10 @@ void Tetris::Init(GameController& controller) {
 	rightKeyAction.action = [this](uint32_t dt, InputState state) {
 		
 			if (GameController::IsPressed(state)) {
-				tetrominos.back().SetMovementDirection(TetroDirection::TET_RIGHT);
+				collider.tetrominos.back().SetMovementDirection(TetroDirection::TET_RIGHT);
 			}
 			else {
-				tetrominos.back().UnsetMovementDirection(TetroDirection::TET_RIGHT);
+				collider.tetrominos.back().UnsetMovementDirection(TetroDirection::TET_RIGHT);
 			}
 		
 		};
@@ -50,10 +51,10 @@ void Tetris::Init(GameController& controller) {
 	downKeyAction.action = [this](uint32_t dt, InputState state) {
 
 		if (GameController::IsPressed(state)) {
-			tetrominos.back().SetMovementDirection(TetroDirection::TET_DOWN);
+			collider.tetrominos.back().SetMovementDirection(TetroDirection::TET_DOWN);
 		}
 		else {
-			tetrominos.back().UnsetMovementDirection(TetroDirection::TET_DOWN);
+			collider.tetrominos.back().UnsetMovementDirection(TetroDirection::TET_DOWN);
 		}
 
 		};
@@ -62,18 +63,18 @@ void Tetris::Init(GameController& controller) {
 }
 
 void Tetris::Update(uint32_t dt) {
-	for (auto& tet : tetrominos) {
+	for (auto& tet : collider.tetrominos) {
 		tet.Update(dt);
 	}
 
-	if (tetrominos.back().GetStats() == TetroStats::TET_STATIC) {
+	if (collider.tetrominos.back().GetStats() == TetroStats::TET_STATIC) {
 		GenerateTetromino();
 	}
 }
 
 void Tetris::Draw(Screen& screen) {
 	playfield.Draw(screen);
-	for (auto& tet : tetrominos) {
+	for (auto& tet : collider.tetrominos) {
 		tet.Draw(screen);
 	}
 }
@@ -86,9 +87,9 @@ const std::string& Tetris::GetName() const {
 void Tetris::GenerateTetromino() {
 	Tetromino tetromino;
 	tetromino.Init();
-	tetrominos.push_back(tetromino);
+	collider.tetrominos.push_back(tetromino);
 }
-
+/*
 bool Tetris::VerifyColissionWithOther() {
 	for (auto& tetromino : tetrominos) {
 		for (const auto& collisor : tetromino.GetCollisors()) {
@@ -99,3 +100,4 @@ bool Tetris::VerifyColissionWithOther() {
 
 	return true;
 }
+*/
