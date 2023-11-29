@@ -48,14 +48,18 @@ public:
 	inline void UnsetMovementDirection(TetroDirection dir) { mDirection &= ~dir; }
 	inline void StopMovement() { mDirection = 0; }
 
+	void MoveBy(const Vec2D& offset);
+
 
 private:
 	const int NUM_TYPES = 7;
 
 	bool IsFree(const TetroDirection& dir);
+
+	bool Collided(const AARectangle& block, const TetroDirection& dir);
 	
 	void GenerateTetromino();
-	void MoveBy(const Vec2D& offset);
+	
 	void MoveDirection(const TetroDirection& dir);
 	void Gravity();
 
@@ -63,9 +67,6 @@ private:
 	uint32_t mStats;
 
 	std::vector<AARectangle> tetroBlocks;
-	//std::vector<Line2D> collisionLines;
-
-	Collider collider;
 
 	Playfield playfield;
 	int countDelay = 0;

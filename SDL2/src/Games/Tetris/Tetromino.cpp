@@ -61,8 +61,6 @@ bool Tetromino::IsFree(const TetroDirection& dir) {
 	AARectangle downTetromino = AARectangle(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
 
-	if (!collider.IsColliding()) {
-
 		for (const auto& tetromino : tetroBlocks) {
 			if (tetromino.GetTopLeftPoint().GetX() < leftTetromino.GetTopLeftPoint().GetX()) {
 				leftTetromino = tetromino;
@@ -77,29 +75,85 @@ bool Tetromino::IsFree(const TetroDirection& dir) {
 
 		}
 		if (dir == TetroDirection::TET_LEFT) {
+				for (auto& tetromino : Collider::tetrominos) {
+					if (tetromino.GetStats() != TetroStats::TET_PLAY) {
+						for (auto& block : tetromino.GetRectangles()) {
+							if (Collided(block, TetroDirection::TET_LEFT)) {
+								return false;
+							}
+						}
+					}
+				}
+
 			if (leftTetromino.GetTopLeftPoint().GetX() <= Playfield::GetGridPosition(0, 0).GetTopLeftPoint().GetX()) {
+
 				return false;
 			}
 		}
 		else if (dir == TetroDirection::TET_RIGHT) {
+			for (auto& tetromino : Collider::tetrominos) {
+				if (tetromino.GetStats() != TetroStats::TET_PLAY) {
+					for (auto& block : tetromino.GetRectangles()) {
+						if (Collided(block, TetroDirection::TET_RIGHT)) {
+							return false;
+						}
+					}
+				}
+			}
+
 			if (rightTetromino.GetTopLeftPoint().GetX() >= Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetTopLeftPoint().GetX()) {
 				return false;
 			}
 		}
 		else if (dir == TetroDirection::TET_DOWN) {
+			for (auto& tetromino : Collider::tetrominos) {
+				if (tetromino.GetStats() != TetroStats::TET_PLAY) {
+					for (auto& block : tetromino.GetRectangles()) {
+						if (Collided(block, TetroDirection::TET_DOWN)) {
+							Solidify();
+							return false;
+						}
+					}
+				}
+			}
+
 			if (downTetromino.GetTopLeftPoint().GetY() >= Playfield::GetGridPosition(0, BLOCKS_HEIGHT - 1).GetTopLeftPoint().GetY()) {
 				Solidify();
 				return false;
 			}
 		}
-
-	}
 	else {
 		Solidify();
 	}
 	
-
 	return true;
+}
+
+bool Tetromino::Collided(const AARectangle& block, const TetroDirection& dir) {
+	for (auto& blockInPlay : Collider::tetrominos.back().GetRectangles()) {
+		if (dir == TetroDirection::TET_LEFT) {
+			if (blockInPlay.GetTopLeftPoint().GetY() == block.GetTopLeftPoint().GetY() &&
+				blockInPlay.GetTopLeftPoint().GetX() == block.GetBottomRightPoint().GetX()) {
+				return true;
+			}
+		}
+		else if (dir == TetroDirection::TET_RIGHT) {
+			if (blockInPlay.GetTopLeftPoint().GetY() == block.GetTopLeftPoint().GetY() &&
+				blockInPlay.GetBottomRightPoint().GetX() == block.GetTopLeftPoint().GetX()) {
+				return true;
+			}
+		}
+		else if (dir == TetroDirection::TET_DOWN) {
+			if (blockInPlay.GetTopLeftPoint().GetX() == block.GetTopLeftPoint().GetX() &&
+				blockInPlay.GetTopLeftPoint().GetY() == block.GetTopLeftPoint().GetY() - (Playfield::GRID_BLOCK_SIZE)) {
+				return true;
+			}
+		}
+
+		
+	}
+
+	return false;
 }
 
 void Tetromino::GenerateTetromino() {
@@ -120,7 +174,7 @@ void Tetromino::GenerateTetromino() {
 	int randomX = disX(generator);
 	int tetroType = disType(generator);
 	
-	randomX = 0;
+	//randomX = 0;
 	//tetroType = 0;
 
 	switch (tetroType) {
@@ -203,18 +257,6 @@ void Tetromino::GenerateTetromino() {
 	tetroBlocks.push_back(tetroBlock4);
 	
 }
-/*
-void Tetromino::RefreshColiders() {
-	 collisionLines.clear();
-	for (const auto& tetromino : tetroBlocks) {
-		Line2D colliderLine;
-		colliderLine.SetP0(Vec2D(tetromino.GetTopLeftPoint().GetX() + 2, tetromino.GetBottomRightPoint().GetY()));
-		colliderLine.SetP1(Vec2D(tetromino.GetBottomRightPoint().GetX() - 2, tetromino.GetBottomRightPoint().GetY()));
-		collisionLines.push_back(colliderLine);
-	}
-}
-*/
-
 
 void Tetromino::MoveBy(const Vec2D& offset) {
 	for (auto& tetrominos : tetroBlocks) {
