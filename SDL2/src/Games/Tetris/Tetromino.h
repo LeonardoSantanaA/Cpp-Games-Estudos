@@ -9,8 +9,14 @@ class Screen;
 
 enum TetroStats {
 	TET_PLAY = 0,
-	TET_STATIC, 
-	TET_FALLING
+	TET_STATIC
+};
+
+enum TetroRotations {
+	ROT_LEFT = 0,
+	ROT_UP,
+	ROT_RIGHT,
+	ROT_DOWN
 };
 
 enum TetroDirection {
@@ -37,7 +43,8 @@ public:
 	void Draw(Screen& screen);
 
 	inline void Solidify() { mStats = TetroStats::TET_STATIC; }
-	inline uint32_t GetStats() { return mStats; }
+	inline uint32_t GetStats() const { return mStats; }
+	inline uint32_t GetRotation() const { return mRotation; }
 
 	inline std::vector<AARectangle> GetRectangles() const { return tetroBlocks; }
 
@@ -49,15 +56,20 @@ public:
 	inline void StopMovement() { mDirection = 0; }
 
 	void MoveBy(const Vec2D& offset);
+	void Rotate();
 
 
 private:
 	const int NUM_TYPES = 7;
 
 	bool IsFree(const TetroDirection& dir);
-
+	bool IsFree(const Vec2D& vec);
 	bool Collided(const AARectangle& block, const TetroDirection& dir);
-	
+	bool CanRotate(TetroTypes type, const AARectangle& midBlock, Vec2D* rotVec);
+
+	inline void SetRotation(uint32_t rot) { mRotation = rot; }
+	inline TetroTypes GetType() const { return (TetroTypes)mType; }
+
 	void GenerateTetromino();
 	
 	void MoveDirection(const TetroDirection& dir);
@@ -65,9 +77,22 @@ private:
 
 	uint32_t mDirection;
 	uint32_t mStats;
+	uint32_t mRotation;
+	
+
+	AARectangle tetroBlock1 = AARectangle(Vec2D(0, 0),
+		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
+	AARectangle tetroBlock2 = AARectangle(Vec2D(0, 0),
+		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
+	AARectangle tetroBlock3 = AARectangle(Vec2D(0, 0),
+		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
+	AARectangle tetroBlock4 = AARectangle(Vec2D(0, 0),
+		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
 
 	std::vector<AARectangle> tetroBlocks;
 
 	Playfield playfield;
+
 	int countDelay = 0;
+	int mType = 0;
 };

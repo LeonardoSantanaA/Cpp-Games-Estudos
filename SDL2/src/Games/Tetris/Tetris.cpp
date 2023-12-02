@@ -59,6 +59,17 @@ void Tetris::Init(GameController& controller) {
 
 		};
 	controller.AddInputActionForKey(downKeyAction);
+
+	ButtonAction rotateKeyAction;
+	rotateKeyAction.key = GameController::ActionKey();
+	rotateKeyAction.action = [this](uint32_t dt, InputState state) {
+
+		if (GameController::IsPressed(state)) {
+			Collider::tetrominos.back().Rotate();
+		}
+
+		};
+	controller.AddInputActionForKey(rotateKeyAction);
 	
 }
 
