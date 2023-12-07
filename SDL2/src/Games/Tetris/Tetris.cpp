@@ -79,6 +79,7 @@ void Tetris::Update(uint32_t dt) {
 	}
 
 	if (Collider::tetrominos.back().GetStats() == TetroStats::TET_STATIC) {
+		Collider::VerifyScore();
 		GenerateTetromino();
 	}
 }
@@ -88,6 +89,8 @@ void Tetris::Draw(Screen& screen) {
 	for (auto& tet : Collider::tetrominos) {
 		tet.Draw(screen);
 	}
+
+
 }
 
 const std::string& Tetris::GetName() const {

@@ -4,6 +4,7 @@
 #include "../../Graphics/Screen.h"
 
 AARectangle Playfield::grid[BLOCKS_WIDTH][BLOCKS_HEIGHT];
+
 const int Playfield::GRID_BLOCK_SIZE = 12;
 
 void Playfield::Init() {

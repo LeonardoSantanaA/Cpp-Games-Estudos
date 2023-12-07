@@ -16,6 +16,7 @@ public:
 
 private:
 	Playfield playfield;
+	Collider collider;
 	
 	const int BLOCK_SIZE = 16;
 
