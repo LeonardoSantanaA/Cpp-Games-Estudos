@@ -2,27 +2,25 @@
 #include "../../Graphics/Screen.h"
 
 Blocks::Blocks() : Blocks(Vec2D::Zero, Vec2D::Zero) {
+
 }
 
 Blocks::Blocks(const Vec2D& topLeft, unsigned int width, unsigned int height) {
 	//this->rect.SetTopLeftPoint(topLeft);
 	rect = AARectangle(topLeft, width, height);
 	SetStats(BlockStats::BL_GAME);
+	SetFillColor(Color::Cyan());
 }
 
 Blocks::Blocks(const Vec2D& topLeft, const Vec2D& bottomRight) {
 	rect = AARectangle(topLeft, bottomRight);
 	SetStats(BlockStats::BL_GAME);
+	SetColor(Color::Cyan());
+	SetFillColor(Color::White());
 }
 
 void Blocks::Draw(Screen& screen){
-	if (mStatsBlock == BlockStats::BL_GAME) {
-		screen.Draw(rect, Color::Pink(), true, Color::White());
-	}
-	else {
-		screen.Draw(rect, Color::Red(), true, Color::Black());
-	}
-	
+	screen.Draw(rect, color, true, fillColor);
 }
 
 void Blocks::MoveTo(Vec2D pos) {

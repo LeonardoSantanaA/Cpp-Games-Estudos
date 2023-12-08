@@ -48,6 +48,7 @@ void App::Run() {
 		while (running) {
 			currentTick = SDL_GetTicks();
 			uint32_t frameTime = currentTick - lastTick;
+			
 
 			if (frameTime > 300) {
 				frameTime = 300;

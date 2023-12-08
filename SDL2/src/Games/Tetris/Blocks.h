@@ -21,8 +21,11 @@ public:
 
 	inline Vec2D GetTopLeftPoint() const { return rect.GetTopLeftPoint(); }
 	inline Vec2D GetBottomRightPoint() const { return rect.GetBottomRightPoint(); }
+	inline void SetColor(const Color& newColor) { color = newColor; }
+	inline void SetFillColor(const Color& newColor) { fillColor = newColor; }
 	void MoveTo(Vec2D pos);
 	void MoveBy(Vec2D offset);
+
 
 	inline uint32_t GetStats() const { return mStatsBlock; }
 	inline void SetStats(uint32_t status)  { mStatsBlock = status; }
@@ -30,5 +33,7 @@ public:
 private:
 	uint32_t mStatsBlock;
 
+	Color color;
+	Color fillColor;
 	AARectangle rect;
 };

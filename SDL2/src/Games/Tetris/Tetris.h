@@ -5,6 +5,7 @@
 #include "Playfield.h"
 #include "Tetromino.h"
 #include "Collider.h"
+#include <mutex>
 
 class Tetris: public Game {
 public:
@@ -17,7 +18,8 @@ public:
 private:
 	Playfield playfield;
 	Collider collider;
-	
+	std::mutex mMutex;
+
 	const int BLOCK_SIZE = 16;
 
 	const int WIDTH_BLOCKS = 10;

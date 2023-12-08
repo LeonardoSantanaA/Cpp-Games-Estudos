@@ -39,6 +39,8 @@ enum TetroTypes {
 
 class Tetromino {
 public:
+	Tetromino();
+
 	void Init();
 	void Update(uint32_t dt);
 	void Draw(Screen& screen);
@@ -47,6 +49,7 @@ public:
 	inline uint32_t GetStats() const { return mStats; }
 	inline uint32_t GetRotation() const { return mRotation; }
 
+	inline std::vector<Blocks> GetRectangles() const { return tetroBlocks; }
 	inline std::vector<Blocks>& GetRectangles() { return tetroBlocks; }
 
 	inline bool IsMovingLeft() const { return mDirection == TetroDirection::TET_LEFT; }
@@ -66,7 +69,8 @@ private:
 
 	bool IsFree(const TetroDirection& dir);
 	bool IsFree(const Vec2D& vec);
-	bool Collided(const Blocks& block, const TetroDirection& dir);
+	bool VerifyCollision(const Blocks& blockDirection, const TetroDirection& dir) const;
+	bool Collided(const Blocks& block, const TetroDirection& dir) const;
 	bool CanRotate(TetroTypes type, const Blocks& midBlock, Vec2D* rotVec);
 
 	inline void SetRotation(uint32_t rot) { mRotation = rot; }

@@ -3,7 +3,7 @@
 #include "../../Utils/Vec2D.h"
 #include "../../Shapes/AARectangle.h"
 #include "../../Shapes/Line2D.h"
-
+#include <thread>
 
 /*
 	Fazer uma grid pro jogo com 10 blocos de largura e 20 de altura;
@@ -73,15 +73,19 @@ void Tetris::Init(GameController& controller) {
 	
 }
 
+
 void Tetris::Update(uint32_t dt) {
 	for (auto& tet : Collider::tetrominos) {
 		tet.Update(dt);
 	}
 
 	if (Collider::tetrominos.back().GetStats() == TetroStats::TET_STATIC) {
-		Collider::VerifyScore();
+		std::thread threadVerifyScore(Collider::VerifyScore, Collider::tetrominos, std::ref(mMutex));
+		threadVerifyScore.join();
+		//collider.VerifyScore();
 		GenerateTetromino();
 	}
+
 }
 
 void Tetris::Draw(Screen& screen) {
@@ -100,6 +104,6 @@ const std::string& Tetris::GetName() const {
 
 void Tetris::GenerateTetromino() {
 	Tetromino tetromino;
-	tetromino.Init();
+	//tetromino.Init();
 	Collider::tetrominos.push_back(tetromino);
 }
