@@ -2,10 +2,10 @@
 
 #include <vector>
 #include <mutex>
+#include <thread>
+#include "Blocks.h"
 
 
-
-class AARectangle;
 class Tetromino;
 
 class Collider {
@@ -17,9 +17,7 @@ public:
 private:
 	int yy = 0;
 
-	
 	static void DeleteBlocks(std::vector<Tetromino>& tetrominos, int y);
-	//void AnimationDestroy(int y);
 	static void ClearBlocks(std::vector<Tetromino>& tetrominos);
 	static void FallTetrominos(std::vector<Tetromino>& tetrominos, int y);
 };

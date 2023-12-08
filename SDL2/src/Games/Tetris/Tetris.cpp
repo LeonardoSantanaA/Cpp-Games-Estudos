@@ -4,6 +4,8 @@
 #include "../../Shapes/AARectangle.h"
 #include "../../Shapes/Line2D.h"
 #include <thread>
+#include <future>
+#include <cstdint>
 
 /*
 	Fazer uma grid pro jogo com 10 blocos de largura e 20 de altura;
@@ -73,18 +75,16 @@ void Tetris::Init(GameController& controller) {
 	
 }
 
-
 void Tetris::Update(uint32_t dt) {
 	for (auto& tet : Collider::tetrominos) {
 		tet.Update(dt);
 	}
-
 	if (Collider::tetrominos.back().GetStats() == TetroStats::TET_STATIC) {
-		std::thread threadVerifyScore(Collider::VerifyScore, Collider::tetrominos, std::ref(mMutex));
-		threadVerifyScore.join();
-		//collider.VerifyScore();
-		GenerateTetromino();
+		Tetris::GenerateTetromino();
 	}
+	threadVerifyScore = std::thread(Collider::VerifyScore, Collider::tetrominos, std::ref(mMutex));
+	threadVerifyScore.join();
+	
 
 }
 
@@ -93,7 +93,6 @@ void Tetris::Draw(Screen& screen) {
 	for (auto& tet : Collider::tetrominos) {
 		tet.Draw(screen);
 	}
-
 
 }
 

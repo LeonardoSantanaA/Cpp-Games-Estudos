@@ -13,12 +13,19 @@ public:
 	virtual void Update(uint32_t dt) override;
 	virtual void Draw(Screen& screen) override;
 	virtual const std::string& GetName() const override;
-	void GenerateTetromino();
+	static void GenerateTetromino();
 
 private:
 	Playfield playfield;
 	Collider collider;
+
+	std::thread threadVerifyScore;
+	std::thread tetrominoUpdateThread;
 	std::mutex mMutex;
+
+
+	void InitializeTaskExecutionThread();
+	void TaskExecutionThread();
 
 	const int BLOCK_SIZE = 16;
 

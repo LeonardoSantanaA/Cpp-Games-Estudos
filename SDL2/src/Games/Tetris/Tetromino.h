@@ -3,6 +3,7 @@
 #include "../../Shapes/Line2D.h"
 #include "Playfield.h"
 #include "Blocks.h"
+#include <memory>
 
 class Screen;
 
@@ -69,7 +70,7 @@ private:
 
 	bool IsFree(const TetroDirection& dir);
 	bool IsFree(const Vec2D& vec);
-	bool VerifyCollision(const Blocks& blockDirection, const TetroDirection& dir) const;
+	bool VerifyCollision(const std::shared_ptr<Blocks>& blockDirection, const TetroDirection& dir) const;
 	bool Collided(const Blocks& block, const TetroDirection& dir) const;
 	bool CanRotate(TetroTypes type, const Blocks& midBlock, Vec2D* rotVec);
 
@@ -86,7 +87,6 @@ private:
 	uint32_t mStats;
 	uint32_t mRotation;
 
-
 	Blocks tetroBlock1 = Blocks (Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
 	Blocks tetroBlock2 = Blocks(Vec2D(0, 0),
@@ -94,6 +94,13 @@ private:
 	Blocks tetroBlock3 = Blocks(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
 	Blocks tetroBlock4 = Blocks(Vec2D(0, 0),
+		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
+
+	std::shared_ptr<Blocks> uniLeftTetromino = std::make_shared<Blocks>(Vec2D(0, 0),
+		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
+	std::shared_ptr<Blocks> uniRightTetromino = std::make_shared<Blocks>(Vec2D(0, 0),
+		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
+	std::shared_ptr<Blocks> uniDownTetromino = std::make_shared<Blocks>(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
 
 	std::vector<Blocks> tetroBlocks;
