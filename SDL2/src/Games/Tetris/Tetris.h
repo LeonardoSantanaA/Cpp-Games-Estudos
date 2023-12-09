@@ -6,6 +6,8 @@
 #include "Tetromino.h"
 #include "Collider.h"
 #include <mutex>
+#include "Tetromino.h"
+
 
 class Tetris: public Game {
 public:
@@ -19,15 +21,14 @@ private:
 	Playfield playfield;
 	Collider collider;
 
+	Tetromino* tetrominoInPlay;
+
 	std::thread threadVerifyScore;
 	std::thread tetrominoUpdateThread;
 	std::mutex mMutex;
 
-
-	void InitializeTaskExecutionThread();
-	void TaskExecutionThread();
-
 	const int BLOCK_SIZE = 16;
+	int countDelay = 0;
 
 	const int WIDTH_BLOCKS = 10;
 	const int HEIGHT_BLOCKS = 20;

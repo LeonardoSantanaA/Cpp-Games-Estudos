@@ -41,6 +41,7 @@ enum TetroTypes {
 class Tetromino {
 public:
 	Tetromino();
+	~Tetromino();
 
 	void Init();
 	void Update(uint32_t dt);
@@ -87,13 +88,13 @@ private:
 	uint32_t mStats;
 	uint32_t mRotation;
 
-	Blocks tetroBlock1 = Blocks (Vec2D(0, 0),
+	Blocks* tetroBlock1 = new Blocks(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
-	Blocks tetroBlock2 = Blocks(Vec2D(0, 0),
+	Blocks* tetroBlock2 = new Blocks(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
-	Blocks tetroBlock3 = Blocks(Vec2D(0, 0),
+	Blocks* tetroBlock3 = new Blocks(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
-	Blocks tetroBlock4 = Blocks(Vec2D(0, 0),
+	Blocks* tetroBlock4 = new Blocks(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
 
 	std::shared_ptr<Blocks> uniLeftTetromino = std::make_shared<Blocks>(Vec2D(0, 0),

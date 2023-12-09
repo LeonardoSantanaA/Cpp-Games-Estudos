@@ -14,6 +14,13 @@ Tetromino::Tetromino() {
 	mStats = TetroStats::TET_PLAY;
 }
 
+Tetromino::~Tetromino() {
+	//delete tetroBlock1;
+	//delete tetroBlock2;
+	//delete tetroBlock3;
+	//delete tetroBlock4;
+}
+
 void Tetromino::Update(uint32_t dt) {
 
 	if (mStats == TET_PLAY) {
@@ -69,7 +76,7 @@ bool Tetromino::IsFree(const TetroDirection& dir) {
 	//Blocks* downTetromino = new Blocks(Vec2D(0, 0),
 		//Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
 
-		for (auto& tetromino : tetroBlocks) {
+		for (const auto& tetromino : tetroBlocks) {
 			if (tetromino.GetTopLeftPoint().GetX() < uniLeftTetromino->GetTopLeftPoint().GetX()) {
 				*uniLeftTetromino = tetromino;
 			}
@@ -404,12 +411,12 @@ bool Tetromino::CanRotate(TetroTypes type, const Blocks& midBlock, Vec2D* rotVec
 		}
 		//rotation to right
 		else if (this->GetRotation() == TetroRotations::ROT_UP) {
-			rotVec[0].SetX(midBlock.GetTopLeftPoint().GetX() + Playfield::GRID_BLOCK_SIZE);
-			rotVec[1].SetX(midBlock.GetTopLeftPoint().GetX());
+			rotVec[0].SetX(midBlock.GetTopLeftPoint().GetX());
+			rotVec[1].SetX(midBlock.GetTopLeftPoint().GetX() + Playfield::GRID_BLOCK_SIZE);
 			rotVec[2].SetX(midBlock.GetTopLeftPoint().GetX());
 
-			rotVec[0].SetY(midBlock.GetTopLeftPoint().GetY());
-			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY() + Playfield::GRID_BLOCK_SIZE);
+			rotVec[0].SetY(midBlock.GetTopLeftPoint().GetY() + Playfield::GRID_BLOCK_SIZE);
+			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY());
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY() + (Playfield::GRID_BLOCK_SIZE * 2));
 
 			for (int i = 0; i < 3; ++i) {
@@ -435,7 +442,6 @@ bool Tetromino::CanRotate(TetroTypes type, const Blocks& midBlock, Vec2D* rotVec
 				}
 			}
 	
-
 			this->SetRotation(TetroRotations::ROT_DOWN);
 		}
 	}
@@ -693,87 +699,87 @@ void Tetromino::GenerateTetromino() {
 	mType = disType(generator);
 	
 	//randomX = 0;
-	//mType = 0;
+	//mType = 1;
 
 	switch (mType) {
 	case TetroTypes::I:
 	{
-		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
-		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
-		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
-		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 3, 0).GetTopLeftPoint());
+		tetroBlock1->MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2->MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3->MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
+		tetroBlock4->MoveTo(Playfield::GetGridPosition(randomX + 3, 0).GetTopLeftPoint());
 	}
 	break;
 
 	case TetroTypes::J:
 	{
-		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
-		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
-		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
-		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 2, 1).GetTopLeftPoint());
+		tetroBlock1->MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2->MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3->MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
+		tetroBlock4->MoveTo(Playfield::GetGridPosition(randomX + 2, 1).GetTopLeftPoint());
 	}
 	break;
 
 	case TetroTypes::L:
 	{
-		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
-		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
-		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
-		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX, 1).GetTopLeftPoint());
+		tetroBlock1->MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2->MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3->MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
+		tetroBlock4->MoveTo(Playfield::GetGridPosition(randomX, 1).GetTopLeftPoint());
 	}
 	break;
 
 	case TetroTypes::O:
 	{
-		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
-		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
-		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX, 1).GetTopLeftPoint());
-		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 1, 1).GetTopLeftPoint());
+		tetroBlock1->MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2->MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3->MoveTo(Playfield::GetGridPosition(randomX, 1).GetTopLeftPoint());
+		tetroBlock4->MoveTo(Playfield::GetGridPosition(randomX + 1, 1).GetTopLeftPoint());
 	}
 	break;
 
 	case TetroTypes::S:
 	{
-		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 1).GetTopLeftPoint());
-		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 1).GetTopLeftPoint());
-		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
-		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
+		tetroBlock1->MoveTo(Playfield::GetGridPosition(randomX, 1).GetTopLeftPoint());
+		tetroBlock2->MoveTo(Playfield::GetGridPosition(randomX + 1, 1).GetTopLeftPoint());
+		tetroBlock3->MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock4->MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
 	}
 	break;
 
 	case TetroTypes::T:
 	{
-		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
-		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
-		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
-		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 1, 1).GetTopLeftPoint());
+		tetroBlock1->MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2->MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3->MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
+		tetroBlock4->MoveTo(Playfield::GetGridPosition(randomX + 1, 1).GetTopLeftPoint());
 	}
 	break;
 
 	case TetroTypes::Z:
 	{
-		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
-		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
-		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 1, 1).GetTopLeftPoint());
-		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 2, 1).GetTopLeftPoint());
+		tetroBlock1->MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2->MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3->MoveTo(Playfield::GetGridPosition(randomX + 1, 1).GetTopLeftPoint());
+		tetroBlock4->MoveTo(Playfield::GetGridPosition(randomX + 2, 1).GetTopLeftPoint());
 	}
 	break;
 	
 	default: 
 	{
-		tetroBlock1.MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
-		tetroBlock2.MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
-		tetroBlock3.MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
-		tetroBlock4.MoveTo(Playfield::GetGridPosition(randomX + 3, 0).GetTopLeftPoint());
+		tetroBlock1->MoveTo(Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint());
+		tetroBlock2->MoveTo(Playfield::GetGridPosition(randomX + 1, 0).GetTopLeftPoint());
+		tetroBlock3->MoveTo(Playfield::GetGridPosition(randomX + 2, 0).GetTopLeftPoint());
+		tetroBlock4->MoveTo(Playfield::GetGridPosition(randomX + 3, 0).GetTopLeftPoint());
 	}
 	break;
 
 	} //end switch
 
-	tetroBlocks.push_back(tetroBlock1);
-	tetroBlocks.push_back(tetroBlock2);
-	tetroBlocks.push_back(tetroBlock3);
-	tetroBlocks.push_back(tetroBlock4);
+	tetroBlocks.push_back(*tetroBlock1);
+	tetroBlocks.push_back(*tetroBlock2);
+	tetroBlocks.push_back(*tetroBlock3);
+	tetroBlocks.push_back(*tetroBlock4);
 
 	this->SetRotation(TetroRotations::ROT_DOWN);
 	

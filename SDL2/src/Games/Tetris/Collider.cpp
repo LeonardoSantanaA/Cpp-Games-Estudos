@@ -13,8 +13,10 @@ void Collider::VerifyScore(std::vector<Tetromino>& tetrominos, std::mutex& mutex
 
 	for (int yy = BLOCKS_HEIGHT - 1; yy >= 0; yy--) {
 		for (auto& tetromino : tetrominos) {
+			//std::cout << "tamanho vetor tetrominos: " << tetrominos.size() << std::endl;
 			if (tetromino.GetStats() != TetroStats::TET_PLAY) {
 				for (auto& block : tetromino.GetRectangles()) {
+					//std::cout << "tamanho vetor block: " << tetromino.GetRectangles().size() << std::endl;
 					if (Playfield::grid[0][yy].GetTopLeftPoint().GetY() == block.GetTopLeftPoint().GetY()) {
 						countColumn++;
 						if (countColumn == BLOCKS_WIDTH) {
@@ -31,13 +33,10 @@ void Collider::VerifyScore(std::vector<Tetromino>& tetrominos, std::mutex& mutex
 
 		}
 		
-
-		
 		countColumn = 0;	
 	}
-	//std::cout << "contador index: " << i << std::endl;
+
 	for (int index = 0; index < i; ++index) {
-		//std::cout << "valores para deletar: " << yToDelete[index] << std::endl;
 		Collider::DeleteBlocks(tetrominos, yToDelete[index]);
 		ClearBlocks(tetrominos);
 	}
@@ -81,10 +80,10 @@ void Collider::FallTetrominos(std::vector<Tetromino>& tetrominos, int y) {
 	delete downTetromino;
 }
 
-
-
 void Collider::ClearBlocks(std::vector<Tetromino>& tetrominos) {
-
+	//create a new vector
+	std::vector<Blocks> newRectangles;
+	std::vector<Tetromino> newTetrominos;
 	//for (auto& tetromino : Collider::tetrominos) {
 		//for (const auto& block : tetromino.GetRectangles()) {
 			//std::cout << "valor antigo: " << tetromino.GetRectangles().size() << std::endl;
@@ -92,11 +91,8 @@ void Collider::ClearBlocks(std::vector<Tetromino>& tetrominos) {
 		//}
 	//}
 	for (auto& tetromino : Collider::tetrominos) {
-		//create a new vector
-		std::vector<Blocks> newRectangles;
-
 		// push into new vector only blocks where stats is BL_PLAY
-		for (const auto& block : tetromino.GetRectangles()) {
+		for (auto& block : tetromino.GetRectangles()) {
 			if (block.GetStats() != BlockStats::BL_REMOVE) {
 				newRectangles.push_back(block);
 			}
@@ -109,11 +105,20 @@ void Collider::ClearBlocks(std::vector<Tetromino>& tetrominos) {
 			// transforms my vector in a empty vector
 			tetromino.GetRectangles() = std::vector<Blocks>();
 
+			std::cout << "vetor de blocos deletado" << std::endl;
+
 			//free memory
 			tetromino.GetRectangles().shrink_to_fit();
 		}
+		else {
+			newTetrominos.push_back(tetromino);
+		}
 
 	}
+
+	std::cout << "liberado memoria de vetor de tetrominos" << std::endl;
+	Collider::tetrominos = std::move(newTetrominos);
+	
 
 	//for (auto& tetromino : Collider::tetrominos) {
 		//for (const auto& block : tetromino.GetRectangles()) {

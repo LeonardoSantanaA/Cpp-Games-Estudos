@@ -7,15 +7,6 @@
 #include <future>
 #include <cstdint>
 
-/*
-	Fazer uma grid pro jogo com 10 blocos de largura e 20 de altura;
-	Playfield:
-	matriz de blocos, com cor preta e borda branca, serve para desenhar e detectar colisao se necessario futuramente
-	essa classe tambem sera responsavel de verificar se alguma linha ficou completa para destruir e dar score
-
-	
-*/
-
 void Tetris::Init(GameController& controller) {
 	playfield.Init();
 	GenerateTetromino();
@@ -75,6 +66,8 @@ void Tetris::Init(GameController& controller) {
 	
 }
 
+constexpr int GRAVITY_DELAY = 700;
+
 void Tetris::Update(uint32_t dt) {
 	for (auto& tet : Collider::tetrominos) {
 		tet.Update(dt);
@@ -82,10 +75,15 @@ void Tetris::Update(uint32_t dt) {
 	if (Collider::tetrominos.back().GetStats() == TetroStats::TET_STATIC) {
 		Tetris::GenerateTetromino();
 	}
-	threadVerifyScore = std::thread(Collider::VerifyScore, Collider::tetrominos, std::ref(mMutex));
-	threadVerifyScore.join();
-	
 
+	countDelay += dt;
+
+	if (countDelay >= GRAVITY_DELAY) {
+		threadVerifyScore = std::thread(Collider::VerifyScore, Collider::tetrominos, std::ref(mMutex));
+		threadVerifyScore.join();
+		countDelay = 0;
+	}
+	
 }
 
 void Tetris::Draw(Screen& screen) {
