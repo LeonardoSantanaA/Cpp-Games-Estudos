@@ -45,3 +45,9 @@
 1008	1581	7237916515958386	SDL2Setup.exe	647075489c8abbf6
 4	665	7237918081476110	CMakeFiles/SDL2Setup.dir/src/Games/Tetris/Collider.cpp.obj	786788669a35a22e
 665	1289	7237918087712271	SDL2Setup.exe	647075489c8abbf6
+37	671	7238218878854695	CMakeFiles/SDL2Setup.dir/src/Games/Tetris/Collider.cpp.obj	786788669a35a22e
+22	738	7238218879532883	CMakeFiles/SDL2Setup.dir/src/Games/Tetris/Playfield.cpp.obj	c7057516eb56c76e
+6	836	7238218880525311	CMakeFiles/SDL2Setup.dir/src/App/App.cpp.obj	1fe05cc6a4347533
+15	1075	7238218882914295	CMakeFiles/SDL2Setup.dir/src/Games/Tetris/Tetris.cpp.obj	292dc1dc69b1e033
+4	874	7238219635300062	CMakeFiles/SDL2Setup.dir/src/Games/Tetris/Tetromino.cpp.obj	ffba6f76e97fe87
+875	1551	7238219642072268	SDL2Setup.exe	647075489c8abbf6

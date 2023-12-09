@@ -47,7 +47,6 @@ public:
 	void Update(uint32_t dt);
 	void Draw(Screen& screen);
 
-	inline void Solidify() { mStats = TetroStats::TET_STATIC; }
 	inline uint32_t GetStats() const { return mStats; }
 	inline uint32_t GetRotation() const { return mRotation; }
 
@@ -69,9 +68,12 @@ public:
 private:
 	const int NUM_TYPES = 7;
 
+	void Solidify();
+	void AnimationSolidify();
+
 	bool IsFree(const TetroDirection& dir);
 	bool IsFree(const Vec2D& vec);
-	bool VerifyCollision(const std::shared_ptr<Blocks>& blockDirection, const TetroDirection& dir) const;
+	bool VerifyCollision(const Blocks& blockDirection, const TetroDirection& dir) const;
 	bool Collided(const Blocks& block, const TetroDirection& dir) const;
 	bool CanRotate(TetroTypes type, const Blocks& midBlock, Vec2D* rotVec);
 
@@ -88,20 +90,20 @@ private:
 	uint32_t mStats;
 	uint32_t mRotation;
 
-	Blocks* tetroBlock1 = new Blocks(Vec2D(0, 0),
+	std::shared_ptr<Blocks> tetroBlock1 =  std::make_shared<Blocks>(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
-	Blocks* tetroBlock2 = new Blocks(Vec2D(0, 0),
+	std::shared_ptr<Blocks> tetroBlock2 = std::make_shared<Blocks>(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
-	Blocks* tetroBlock3 = new Blocks(Vec2D(0, 0),
+	std::shared_ptr<Blocks> tetroBlock3 = std::make_shared<Blocks>(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
-	Blocks* tetroBlock4 = new Blocks(Vec2D(0, 0),
+	std::shared_ptr<Blocks> tetroBlock4 = std::make_shared<Blocks>(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
 
-	std::shared_ptr<Blocks> uniLeftTetromino = std::make_shared<Blocks>(Vec2D(0, 0),
+	Blocks mLeftTetromino = Blocks(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
-	std::shared_ptr<Blocks> uniRightTetromino = std::make_shared<Blocks>(Vec2D(0, 0),
+	Blocks mRightTetromino = Blocks(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
-	std::shared_ptr<Blocks> uniDownTetromino = std::make_shared<Blocks>(Vec2D(0, 0),
+	Blocks mDownTetromino = Blocks(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
 
 	std::vector<Blocks> tetroBlocks;

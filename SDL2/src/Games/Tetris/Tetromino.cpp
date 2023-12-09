@@ -59,16 +59,26 @@ void Tetromino::Update(uint32_t dt) {
 }
 
 void Tetromino::Draw(Screen& screen) {
-	for (auto& tetromino : Collider::tetrominos) {
-		for (auto& block : tetromino.GetRectangles()) {
+	//for (auto& tetromino : Collider::tetrominos) {
+		for (auto& block : this->GetRectangles()) {
 				block.Draw(screen);
 		}
+	//}
+}
+
+void Tetromino::Solidify() {	
+	for (auto& block : this->GetRectangles()) {
+		block.SetColor(Color::Green());
 	}
+
+	mStats = TetroStats::TET_STATIC;
+
+	std::this_thread::sleep_for(std::chrono::milliseconds(300));
 }
 
 bool Tetromino::IsFree(const TetroDirection& dir) {
-	uniLeftTetromino->MoveTo(Vec2D(9999, 0));
-	uniRightTetromino->MoveTo(Vec2D(-1, 0));
+	mLeftTetromino.MoveTo(Vec2D(9999, 0));
+	mRightTetromino.MoveTo(Vec2D(-1, 0));
 
 	//Blocks* rightTetromino = new Blocks(Vec2D(0, 0),
 		//Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
@@ -77,15 +87,15 @@ bool Tetromino::IsFree(const TetroDirection& dir) {
 		//Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
 
 		for (const auto& tetromino : tetroBlocks) {
-			if (tetromino.GetTopLeftPoint().GetX() < uniLeftTetromino->GetTopLeftPoint().GetX()) {
-				*uniLeftTetromino = tetromino;
+			if (tetromino.GetTopLeftPoint().GetX() < mLeftTetromino.GetTopLeftPoint().GetX()) {
+				mLeftTetromino = tetromino;
 			}
-			else if (tetromino.GetTopLeftPoint().GetX() > uniRightTetromino->GetTopLeftPoint().GetX()) {
-				*uniRightTetromino = tetromino;
+			else if (tetromino.GetTopLeftPoint().GetX() > mRightTetromino.GetTopLeftPoint().GetX()) {
+				mRightTetromino = tetromino;
 			}
 
-			if (tetromino.GetTopLeftPoint().GetY() > uniDownTetromino->GetTopLeftPoint().GetY()) {
-				*uniDownTetromino = tetromino;
+			if (tetromino.GetTopLeftPoint().GetY() > mDownTetromino.GetTopLeftPoint().GetY()) {
+				mDownTetromino = tetromino;
 			}
 
 		}
@@ -93,7 +103,7 @@ bool Tetromino::IsFree(const TetroDirection& dir) {
 		switch (dir) {
 			case TetroDirection::TET_LEFT:
 			{
-				if (VerifyCollision(uniLeftTetromino, dir)) {
+				if (VerifyCollision(mLeftTetromino, dir)) {
 					return false;
 				}
 			}
@@ -101,7 +111,7 @@ bool Tetromino::IsFree(const TetroDirection& dir) {
 
 			case TetroDirection::TET_RIGHT:
 			{
-				if (VerifyCollision(uniRightTetromino, dir)) {
+				if (VerifyCollision(mRightTetromino, dir)) {
 					return false;
 				}
 			}
@@ -109,9 +119,9 @@ bool Tetromino::IsFree(const TetroDirection& dir) {
 
 			case TetroDirection::TET_DOWN:
 			{
-				if (VerifyCollision(uniDownTetromino, dir)){
+				if (VerifyCollision(mDownTetromino, dir)){
 					if (mStats == TetroStats::TET_PLAY) {
-						if (uniDownTetromino->GetTopLeftPoint().GetY() > Playfield::GetGridPosition(0, BLOCKS_HEIGHT - 1).GetTopLeftPoint().GetY()) {
+						if (mDownTetromino.GetTopLeftPoint().GetY() > Playfield::GetGridPosition(0, BLOCKS_HEIGHT - 1).GetTopLeftPoint().GetY()) {
 							MoveBy(Vec2D(0, -Playfield::GRID_BLOCK_SIZE));
 						}
 						Solidify();
@@ -126,7 +136,7 @@ bool Tetromino::IsFree(const TetroDirection& dir) {
 	return true;
 }
 
-bool Tetromino::VerifyCollision(const std::shared_ptr<Blocks>& blockDirection, const TetroDirection& dir) const{
+bool Tetromino::VerifyCollision(const Blocks& blockDirection, const TetroDirection& dir) const{
 	if (this->GetStats() == TetroStats::TET_PLAY) {
 		for (auto& tetromino : Collider::tetrominos) {
 			if (tetromino.GetStats() != TetroStats::TET_PLAY) {
@@ -139,17 +149,17 @@ bool Tetromino::VerifyCollision(const std::shared_ptr<Blocks>& blockDirection, c
 		}
 
 		if (dir == TetroDirection::TET_LEFT) {
-			if (blockDirection->GetTopLeftPoint().GetX() <= Playfield::GetGridPosition(0, 0).GetTopLeftPoint().GetX()) {
+			if (blockDirection.GetTopLeftPoint().GetX() <= Playfield::GetGridPosition(0, 0).GetTopLeftPoint().GetX()) {
 				return true;
 			}
 		}
 		else if (dir == TetroDirection::TET_RIGHT) {
-			if (blockDirection->GetTopLeftPoint().GetX() >= Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetTopLeftPoint().GetX()) {
+			if (blockDirection.GetTopLeftPoint().GetX() >= Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetTopLeftPoint().GetX()) {
 				return true;
 			}
 		}
 		else if (dir == TetroDirection::TET_DOWN) {
-			if (blockDirection->GetTopLeftPoint().GetY() >= Playfield::GetGridPosition(0, BLOCKS_HEIGHT - 1).GetTopLeftPoint().GetY()) {
+			if (blockDirection.GetTopLeftPoint().GetY() >= Playfield::GetGridPosition(0, BLOCKS_HEIGHT - 1).GetTopLeftPoint().GetY()) {
 				return true;
 			}
 		}

@@ -66,7 +66,7 @@ void Tetris::Init(GameController& controller) {
 	
 }
 
-constexpr int GRAVITY_DELAY = 700;
+constexpr int UPDATE_DELAY = 700;
 
 void Tetris::Update(uint32_t dt) {
 	for (auto& tet : Collider::tetrominos) {
@@ -78,7 +78,7 @@ void Tetris::Update(uint32_t dt) {
 
 	countDelay += dt;
 
-	if (countDelay >= GRAVITY_DELAY) {
+	if (countDelay >= UPDATE_DELAY) {
 		threadVerifyScore = std::thread(Collider::VerifyScore, Collider::tetrominos, std::ref(mMutex));
 		threadVerifyScore.join();
 		countDelay = 0;
