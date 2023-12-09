@@ -7,9 +7,15 @@
 #include <future>
 #include <cstdint>
 
+TetrisGameStates Tetris::mState;
+int Tetris::mScore = 0;
+
 void Tetris::Init(GameController& controller) {
+	controller.ClearAll();
+	SetTetrisStates(TetrisGameStates::TET_INPLAY);
 	playfield.Init();
 	GenerateTetromino();
+	scoreFile.LoadScoreFileLoader(App::GetBasePath() + "Assets/Scores.txt");
 
 	ButtonAction leftKeyAction;
 	leftKeyAction.key = GameController::LeftKey();
@@ -56,10 +62,15 @@ void Tetris::Init(GameController& controller) {
 	ButtonAction rotateKeyAction;
 	rotateKeyAction.key = GameController::ActionKey();
 	rotateKeyAction.action = [this](uint32_t dt, InputState state) {
-
-		if (GameController::IsPressed(state)) {
-			Collider::tetrominos.back().Rotate();
+		if (GetTetrisStates() == TetrisGameStates::TET_INPLAY) {
+			if (GameController::IsPressed(state)) {
+				Collider::tetrominos.back().Rotate();
+			}
 		}
+		else {
+			RestartGame();
+		}
+		
 
 		};
 	controller.AddInputActionForKey(rotateKeyAction);
@@ -69,21 +80,26 @@ void Tetris::Init(GameController& controller) {
 constexpr int UPDATE_DELAY = 700;
 
 void Tetris::Update(uint32_t dt) {
-	for (auto& tet : Collider::tetrominos) {
-		tet.Update(dt);
+	if (GetTetrisStates() == TetrisGameStates::TET_INPLAY) {
+		for (auto& tet : Collider::tetrominos) {
+			tet.Update(dt);
+		}
+		if (Collider::tetrominos.back().GetStats() == TetroStats::TET_STATIC) {
+			Tetris::GenerateTetromino();
+		}
+
+		countDelay += dt;
+
+		if (countDelay >= UPDATE_DELAY) {
+			threadVerifyScore = std::thread(Collider::VerifyScore, Collider::tetrominos, std::ref(mMutex));
+			threadVerifyScore.join();
+			countDelay = 0;
+		}
 	}
-	if (Collider::tetrominos.back().GetStats() == TetroStats::TET_STATIC) {
-		Tetris::GenerateTetromino();
+	else {
+
 	}
 
-	countDelay += dt;
-
-	if (countDelay >= UPDATE_DELAY) {
-		threadVerifyScore = std::thread(Collider::VerifyScore, Collider::tetrominos, std::ref(mMutex));
-		threadVerifyScore.join();
-		countDelay = 0;
-	}
-	
 }
 
 void Tetris::Draw(Screen& screen) {
@@ -103,4 +119,16 @@ void Tetris::GenerateTetromino() {
 	Tetromino tetromino;
 	//tetromino.Init();
 	Collider::tetrominos.push_back(tetromino);
+}
+
+void Tetris::RestartGame() {
+	scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", "ABC", GetScore());
+	for (auto& tetromino : Collider::tetrominos) {
+		tetromino.GetRectangles().clear();
+	}
+
+	mScore = 0;
+	Collider::tetrominos.clear();
+	GenerateTetromino();
+	SetTetrisStates(TetrisGameStates::TET_INPLAY);
 }

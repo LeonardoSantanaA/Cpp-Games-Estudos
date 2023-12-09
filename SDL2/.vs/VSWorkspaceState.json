@@ -13,8 +13,9 @@
     "\\src\\App",
     "\\src\\Games",
     "\\src\\Games\\Tetris",
-    "\\src\\Shapes"
+    "\\src\\Shapes",
+    "\\src\\Utils"
   ],
-  "SelectedNode": "\\CMakeLists.txt",
+  "SelectedNode": "\\src\\Games\\Tetris\\Ghost.cpp",
   "PreviewInSolutionExplorer": false
 }

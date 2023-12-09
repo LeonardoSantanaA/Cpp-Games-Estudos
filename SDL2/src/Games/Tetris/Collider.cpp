@@ -1,6 +1,7 @@
 #include "Collider.h"
 #include "Tetromino.h"
 #include "Playfield.h"
+#include "Tetris.h"
 
 std::vector<Tetromino> Collider::tetrominos;
 
@@ -21,8 +22,11 @@ void Collider::VerifyScore(std::vector<Tetromino>& tetrominos, std::mutex& mutex
 						countColumn++;
 						if (countColumn == BLOCKS_WIDTH) {
 							yToDelete[i] = static_cast<int>(block.GetTopLeftPoint().GetY());
+							Tetris::IncrementScore(10);
+							std::cout << "new score: " << Tetris::GetScore() << std::endl;
 							if (yToDelete[i] <= Playfield::grid[0][0].GetTopLeftPoint().GetY()) {
-								std::cout << "PERDEU" << std::endl;
+								Tetris::SetTetrisStates(TetrisGameStates::TET_GAMEOVER);
+								std::cout << "Game Over!" << std::endl;
 							}
 							i++;
 						}
@@ -43,6 +47,7 @@ void Collider::VerifyScore(std::vector<Tetromino>& tetrominos, std::mutex& mutex
 
 	if (i > 3) {
 		std::cout << "TETRIS" << std::endl;
+		Tetris::IncrementScore(100);
 	}
 
 	i = 0;

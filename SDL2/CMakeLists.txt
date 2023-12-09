@@ -40,6 +40,6 @@ add_executable(SDL2Setup "Setup.cpp"
 "src/Games/Tetris/Playfield.h" "src/Games/Tetris/Playfield.cpp" 
 "src/Games/Tetris/Tetromino.h" "src/Games/Tetris/Tetromino.cpp"
 "src/Games/Tetris/Collider.h" "src/Games/Tetris/Collider.cpp"
-"src/Games/Tetris/Blocks.h" "src/Games/Tetris/Blocks.cpp")
+"src/Games/Tetris/Blocks.h" "src/Games/Tetris/Blocks.cpp" "src/Games/Tetris/Ghost.h" "src/Games/Tetris/Ghost.cpp")
 
 target_link_libraries(SDL2Setup SDL2::SDL2 SDL2::SDL2main)

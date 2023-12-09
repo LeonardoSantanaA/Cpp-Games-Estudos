@@ -14,7 +14,7 @@ void ScoreFileLoader::LoadScoreFileLoader(const std::string& scorePath) {
 	}else {
 	 std::cerr << "Cannot open the file, the score file will be created. path: " << scorePath << std::endl;
 	}
-
+	std::cout << "//Loading file from " << scorePath << std::endl;
 	std::cout << "//Loading Score File//" << std::endl;
 	std::cout << "Show info:" << std::endl;
 	for (int i = 0; i < SCORES_TO_SHOW; ++i) {

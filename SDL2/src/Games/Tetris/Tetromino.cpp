@@ -15,14 +15,9 @@ Tetromino::Tetromino() {
 }
 
 Tetromino::~Tetromino() {
-	//delete tetroBlock1;
-	//delete tetroBlock2;
-	//delete tetroBlock3;
-	//delete tetroBlock4;
 }
 
 void Tetromino::Update(uint32_t dt) {
-
 	if (mStats == TET_PLAY) {
 		//if ((mDirection & TetroDirection::TET_LEFT) == TetroDirection::TET_LEFT 
 			//	&& (mDirection & TetroDirection::TET_RIGHT) == TetroDirection::TET_RIGHT) {
@@ -47,7 +42,7 @@ void Tetromino::Update(uint32_t dt) {
 
 		 for (auto& block : this->GetRectangles()) {
 			 if (block.GetTopLeftPoint().GetY() > Playfield::GetGridPosition(0, BLOCKS_HEIGHT - 1).GetTopLeftPoint().GetY()) {
-				 std::cout << "ta pra baixo!" << std::endl;
+				 std::cout << "adjusting position!" << std::endl;
 				 this->MoveBy(Vec2D(0, -Playfield::GRID_BLOCK_SIZE));
 			 }
 		 }
@@ -79,12 +74,6 @@ void Tetromino::Solidify() {
 bool Tetromino::IsFree(const TetroDirection& dir) {
 	mLeftTetromino.MoveTo(Vec2D(9999, 0));
 	mRightTetromino.MoveTo(Vec2D(-1, 0));
-
-	//Blocks* rightTetromino = new Blocks(Vec2D(0, 0),
-		//Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
-
-	//Blocks* downTetromino = new Blocks(Vec2D(0, 0),
-		//Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
 
 		for (const auto& tetromino : tetroBlocks) {
 			if (tetromino.GetTopLeftPoint().GetX() < mLeftTetromino.GetTopLeftPoint().GetX()) {
