@@ -11,6 +11,8 @@ class Screen;
 
 class Playfield {
 public:
+	Playfield();
+
 	static Blocks grid[BLOCKS_WIDTH][BLOCKS_HEIGHT];
 	static const int GRID_BLOCK_SIZE;
 

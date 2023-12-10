@@ -87,6 +87,7 @@ void Tetris::Update(uint32_t dt) {
 		if (Collider::tetrominos.back().GetStats() == TetroStats::TET_STATIC) {
 			Tetris::GenerateTetromino();
 		}
+		ghost.Update(dt);
 
 		countDelay += dt;
 
@@ -97,13 +98,14 @@ void Tetris::Update(uint32_t dt) {
 		}
 	}
 	else {
-
+		//GAMEOVER
 	}
 
 }
 
 void Tetris::Draw(Screen& screen) {
 	playfield.Draw(screen);
+	ghost.Draw(screen);
 	for (auto& tet : Collider::tetrominos) {
 		tet.Draw(screen);
 	}

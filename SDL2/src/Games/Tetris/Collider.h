@@ -5,7 +5,6 @@
 #include <thread>
 #include "Blocks.h"
 
-
 class Tetromino;
 
 class Collider {
@@ -18,5 +17,5 @@ private:
 
 	static void DeleteBlocks(std::vector<Tetromino>& tetrominos, int y);
 	static void ClearBlocks(std::vector<Tetromino>& tetrominos);
-	static void FallTetrominos(std::vector<Tetromino>& tetrominos, int y);
+	static bool FallTetrominos(std::vector<Tetromino>& tetrominos, int index, int qtd);
 };

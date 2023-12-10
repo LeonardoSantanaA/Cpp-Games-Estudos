@@ -8,6 +8,7 @@
 #include <mutex>
 #include "Tetromino.h"
 #include "../../Utils/ScoreFileLoader.h"
+#include "Ghost.h"
 
 enum TetrisGameStates {
 	TET_INPLAY = 0,
@@ -26,12 +27,16 @@ public:
 	inline static void SetTetrisStates(TetrisGameStates newState) { mState = newState; }
 	inline TetrisGameStates GetTetrisStates() { return mState; }
 
-	inline static void IncrementScore(int increment) { mScore += increment; }
+	inline static void IncrementScore(int increment) { 
+		mScore += increment; 
+		std::cout << "new score: " << Tetris::GetScore() << std::endl;
+	}
 	inline static int GetScore() { return mScore; }
 
 private:
 	Playfield playfield;
 	Collider collider;
+	Ghost ghost;
 
 	Tetromino* tetrominoInPlay;
 

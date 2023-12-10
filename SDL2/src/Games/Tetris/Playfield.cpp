@@ -6,8 +6,12 @@
 
 Blocks Playfield::grid[BLOCKS_WIDTH][BLOCKS_HEIGHT];
 
-
 const int Playfield::GRID_BLOCK_SIZE = 12;
+
+Playfield::Playfield() {
+	std::cout << "Playfield Started." << std::endl;
+	Playfield::Init();
+}
 
 void Playfield::Init() {
 	int startX = (App::Singleton().Width() - (BLOCKS_WIDTH * GRID_BLOCK_SIZE)) / 2;
@@ -17,8 +21,8 @@ void Playfield::Init() {
 			grid[xx][yy] = Blocks(Vec2D(xx * GRID_BLOCK_SIZE, yy * GRID_BLOCK_SIZE), 
 				Vec2D((xx * GRID_BLOCK_SIZE) + GRID_BLOCK_SIZE, (yy * GRID_BLOCK_SIZE) + GRID_BLOCK_SIZE));
 			grid[xx][yy].MoveBy(Vec2D(startX, 0));
-			grid[xx][yy].SetColor(Color::White());
-			grid[xx][yy].SetFillColor(Color::Black());
+			grid[xx][yy].SetColor(Color(15, 56, 15, 255));
+			grid[xx][yy].SetFillColor(Color(202, 220, 159, 255));
 		}
 	}
 	

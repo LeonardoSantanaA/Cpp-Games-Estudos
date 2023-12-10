@@ -11,7 +11,8 @@ class Screen;
 
 enum TetroStats {
 	TET_PLAY = 0,
-	TET_STATIC
+	TET_STATIC,
+	TET_GHOST
 };
 
 enum TetroRotations {
@@ -43,15 +44,19 @@ public:
 	Tetromino();
 	~Tetromino();
 
-	void Init();
 	void Update(uint32_t dt);
 	void Draw(Screen& screen);
 
 	inline uint32_t GetStats() const { return mStats; }
-	inline uint32_t GetRotation() const { return mRotation; }
+	inline virtual TetroRotations GetRotation() const { return mRotation; }
+	virtual inline TetroTypes GetType() const { return mType; }
 
-	inline std::vector<Blocks> GetRectangles() const { return tetroBlocks; }
-	inline std::vector<Blocks>& GetRectangles() { return tetroBlocks; }
+	virtual inline std::vector<Blocks> GetRectangles() const { return tetroBlocks; }
+	virtual inline std::vector<Blocks>& GetRectangles() { return tetroBlocks; }
+
+	bool IsFree(const Tetromino& tetrominoToDown, const Vec2D& vec);
+	virtual void MoveBy(const Vec2D& offset);
+
 
 	inline bool IsMovingLeft() const { return mDirection == TetroDirection::TET_LEFT; }
 	inline bool IsMovingRight() const { return mDirection == TetroDirection::TET_RIGHT; }
@@ -60,8 +65,7 @@ public:
 	inline void UnsetMovementDirection(TetroDirection dir) { mDirection &= ~dir; }
 	inline void StopMovement() { mDirection = 0; }
 
-	void MoveBy(const Vec2D& offset);
-	void Rotate();
+	virtual void Rotate();
 
 	void VerifyScore();
 
@@ -69,28 +73,21 @@ private:
 	const int NUM_TYPES = 7;
 
 	void Solidify();
-	void AnimationSolidify();
-
-	bool IsFree(const TetroDirection& dir);
-	bool IsFree(const Vec2D& vec);
-	bool VerifyCollision(const Blocks& blockDirection, const TetroDirection& dir) const;
-	bool Collided(const Blocks& block, const TetroDirection& dir) const;
-	bool CanRotate(TetroTypes type, const Blocks& midBlock, Vec2D* rotVec);
-
-	inline void SetRotation(uint32_t rot) { mRotation = rot; }
-	inline TetroTypes GetType() const { return (TetroTypes)mType; }
-
-
 	void GenerateTetromino();
-	
 	void MoveDirection(const TetroDirection& dir);
-	void Gravity();
-
+	
 	uint32_t mDirection;
 	uint32_t mStats;
-	uint32_t mRotation;
 
-	std::shared_ptr<Blocks> tetroBlock1 =  std::make_shared<Blocks>(Vec2D(0, 0),
+	std::vector<Blocks> tetroBlocks;
+
+	int countDelay = 0;
+
+protected:
+	TetroRotations mRotation;
+	TetroTypes mType;
+
+	std::shared_ptr<Blocks> tetroBlock1 = std::make_shared<Blocks>(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
 	std::shared_ptr<Blocks> tetroBlock2 = std::make_shared<Blocks>(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
@@ -106,8 +103,18 @@ private:
 	Blocks mDownTetromino = Blocks(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
 
-	std::vector<Blocks> tetroBlocks;
+	virtual void Gravity();
 
-	int countDelay = 0;
-	int mType = 0;
+	inline void SetState(uint32_t newState) { mStats = newState; }
+	inline virtual void SetRotation(TetroRotations rot) { mRotation = rot; }
+	inline virtual void SetType(TetroTypes newType) { mType = newType; }
+
+	virtual bool CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec);
+
+	virtual bool IsFree(const Vec2D& vec);
+	virtual bool IsFree(const TetroDirection& dir);
+	
+	virtual bool VerifyCollision(const Blocks& blockDirection, const TetroDirection& dir) const;
+	bool Collided(const Blocks& block, const TetroDirection& dir) const;
+
 };
