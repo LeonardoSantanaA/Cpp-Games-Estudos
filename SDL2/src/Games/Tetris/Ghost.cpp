@@ -12,8 +12,8 @@ Ghost::Ghost() {
 
 	for (auto& block : GetRectangles()) {
 		block.MoveTo(Playfield::GetGridPosition(5, 5).GetTopLeftPoint());
-		block.SetColor(Color(15, 56, 15, 155));
-		block.SetFillColor(Color(48, 98, 48, 125));
+		block.SetColor(Color(102, 113, 215, 255));
+		block.SetFillColor(Color(63, 172, 149, 75));
 	}
 	
 }

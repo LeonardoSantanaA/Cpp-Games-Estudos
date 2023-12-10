@@ -23,11 +23,23 @@ void Collider::VerifyScore(std::vector<Tetromino>& tetrominos, std::mutex& mutex
 						countColumn++;
 						if (countColumn == BLOCKS_WIDTH) {
 							yToDelete[i] = static_cast<int>(block.GetTopLeftPoint().GetY());
-							Tetris::IncrementScore(10);
-							if (yToDelete[i] <= Playfield::grid[0][0].GetTopLeftPoint().GetY()) {
+							if (yToDelete[i] <= Playfield::grid[0][1].GetTopLeftPoint().GetY()) {
 								Tetris::SetTetrisStates(TetrisGameStates::TET_GAMEOVER);
-								std::cout << "Game Over!" << std::endl;
+								std::cout << "############" << std::endl;
+								std::cout << "#Game Over!#" << std::endl;
+								std::cout << "############" << std::endl;
+								std::cout << "Press SPACE to continue" << std::endl;
+
 							}
+
+							//std::cout << "novo valor do y: " << block.GetTopLeftPoint().GetY() << std::endl;
+							//std::cout << " valor que precisa ser igual: " << yToDelete[i - 1] - Playfield::GRID_BLOCK_SIZE << std::endl;
+
+							if (i >= 1 && (block.GetTopLeftPoint().GetY() != yToDelete[i-1] - Playfield::GRID_BLOCK_SIZE)) {
+								std::cout << "sequence break!" << std::endl;
+								break;
+							}
+
 							i++;
 						}
 					}
@@ -42,13 +54,13 @@ void Collider::VerifyScore(std::vector<Tetromino>& tetrominos, std::mutex& mutex
 	int higherY = yToDelete[0];
 
 	for (int index = 0; index < i; ++index) {
-		if (yToDelete[index] > higherY) {
+		if (yToDelete[index] < higherY) {
 			higherY = yToDelete[index];
 		}
 
 		Collider::DeleteBlocks(tetrominos, yToDelete[index]);
 		ClearBlocks(tetrominos);
-		
+		Tetris::IncrementScore(100 * i);
 	}
 
 	FallTetrominos(tetrominos, higherY, i);
@@ -57,7 +69,7 @@ void Collider::VerifyScore(std::vector<Tetromino>& tetrominos, std::mutex& mutex
 		std::cout << "########" << std::endl;
 		std::cout << "#TETRIS#" << std::endl;
 		std::cout << "########" << std::endl;
-		Tetris::IncrementScore(100);
+		Tetris::IncrementScore(1000);
 	}
 
 	i = 0;
@@ -69,7 +81,6 @@ void Collider::DeleteBlocks(std::vector<Tetromino>& tetrominos, int y) {
 		for (auto& block : tetromino.GetRectangles()) {
 			if (block.GetTopLeftPoint().GetY() == y) {
 				block.SetStats(BlockStats::BL_REMOVE);
-				block.SetColor(Color::Red());
 			}
 		}
 	}

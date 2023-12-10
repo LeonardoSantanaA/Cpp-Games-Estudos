@@ -18,6 +18,8 @@ enum TetrisGameStates {
 
 class Tetris: public Game {
 public:
+	static std::vector<Tetromino> nextTetromino;
+
 	virtual void Init(GameController& controller) override;
 	virtual void Update(uint32_t dt) override;
 	virtual void Draw(Screen& screen) override;
@@ -51,6 +53,7 @@ private:
 	static int mScore;
 	static TetrisGameStates mState;
 
+	static void GenerateNextTetromino();
 	void RestartGame();
 
 	const int WIDTH_BLOCKS = 10;

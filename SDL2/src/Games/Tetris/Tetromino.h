@@ -12,7 +12,8 @@ class Screen;
 enum TetroStats {
 	TET_PLAY = 0,
 	TET_STATIC,
-	TET_GHOST
+	TET_GHOST,
+	TET_NEXT
 };
 
 enum TetroRotations {
@@ -47,7 +48,10 @@ public:
 	void Update(uint32_t dt);
 	void Draw(Screen& screen);
 
+	void PrepareToPlay();
+
 	inline uint32_t GetStats() const { return mStats; }
+	inline void SetState(uint32_t newState) { mStats = newState; }
 	inline virtual TetroRotations GetRotation() const { return mRotation; }
 	virtual inline TetroTypes GetType() const { return mType; }
 
@@ -70,6 +74,7 @@ public:
 	void VerifyScore();
 
 private:
+	int randomX;
 	const int NUM_TYPES = 7;
 
 	void Solidify();
@@ -105,7 +110,7 @@ protected:
 
 	virtual void Gravity();
 
-	inline void SetState(uint32_t newState) { mStats = newState; }
+	
 	inline virtual void SetRotation(TetroRotations rot) { mRotation = rot; }
 	inline virtual void SetType(TetroTypes newType) { mType = newType; }
 

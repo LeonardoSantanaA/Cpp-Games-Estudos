@@ -10,11 +10,19 @@
 TetrisGameStates Tetris::mState;
 int Tetris::mScore = 0;
 
+std::vector<Tetromino> Tetris::nextTetromino;
+
 void Tetris::Init(GameController& controller) {
 	controller.ClearAll();
 	SetTetrisStates(TetrisGameStates::TET_INPLAY);
 	playfield.Init();
-	GenerateTetromino();
+	
+	Tetromino tetromino;
+	Collider::tetrominos.push_back(tetromino);
+
+	GenerateNextTetromino();
+
+
 	scoreFile.LoadScoreFileLoader(App::GetBasePath() + "Assets/Scores.txt");
 
 	ButtonAction leftKeyAction;
@@ -84,6 +92,11 @@ void Tetris::Update(uint32_t dt) {
 		for (auto& tet : Collider::tetrominos) {
 			tet.Update(dt);
 		}
+
+		for (auto& next : nextTetromino) {
+			next.Update(dt);
+		}
+
 		if (Collider::tetrominos.back().GetStats() == TetroStats::TET_STATIC) {
 			Tetris::GenerateTetromino();
 		}
@@ -109,7 +122,9 @@ void Tetris::Draw(Screen& screen) {
 	for (auto& tet : Collider::tetrominos) {
 		tet.Draw(screen);
 	}
-
+	for (auto& next : nextTetromino) {
+		next.Draw(screen);
+	}
 }
 
 const std::string& Tetris::GetName() const {
@@ -118,9 +133,19 @@ const std::string& Tetris::GetName() const {
 }
 
 void Tetris::GenerateTetromino() {
+	nextTetromino.back().PrepareToPlay();
+	Collider::tetrominos.push_back(nextTetromino.back());
+	GenerateNextTetromino();
+}
+
+void Tetris::GenerateNextTetromino() {
 	Tetromino tetromino;
-	//tetromino.Init();
-	Collider::tetrominos.push_back(tetromino);
+
+	//tetromino.SetState(TetroStats::TET_NEXT);
+	nextTetromino.clear();
+	nextTetromino.push_back(tetromino);
+	nextTetromino.back().SetState(TetroStats::TET_NEXT);
+
 }
 
 void Tetris::RestartGame() {

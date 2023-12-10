@@ -22,6 +22,7 @@ public:
 
 	inline Vec2D GetTopLeftPoint() const { return rect.GetTopLeftPoint(); }
 	inline Vec2D GetBottomRightPoint() const { return rect.GetBottomRightPoint(); }
+	Vec2D GetCenterPoint() const { return rect.GetCenterPoint(); }
 	inline void SetColor(const Color& newColor) { color = newColor; }
 	inline void SetFillColor(const Color& newColor) { fillColor = newColor; }
 	inline void SetPosition(const Vec2D& pos) { rect.MoveTo(pos); }

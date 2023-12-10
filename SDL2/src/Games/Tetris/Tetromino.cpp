@@ -37,18 +37,97 @@ void Tetromino::Update(uint32_t dt) {
 			 UnsetMovementDirection(TetroDirection::TET_DOWN);
 		 }
 
-		 for (auto& block : this->GetRectangles()) {
-			 if (block.GetTopLeftPoint().GetY() > Playfield::GetGridPosition(0, BLOCKS_HEIGHT - 1).GetTopLeftPoint().GetY()) {
-				 std::cout << "adjusting position!" << std::endl;
-				 this->MoveBy(Vec2D(0, -Playfield::GRID_BLOCK_SIZE));
-			 }
-		 }
-
 	}
-	else if (mStats == TET_STATIC) {
+	else if (mStats == TET_NEXT) {
+		Blocks* NextBlockRectangle = Playfield::GetNextTetrominoRect();
+		int xMidNextBlockRectangle = 0;
+		int yMidNextBlockRectangle = 0;
+		int dirX = 0;
+		int dirY = 0;
 
+		for (auto& block : this->GetRectangles()) {
+			switch (mType) {
+				case TetroTypes::I:
+				{
+					xMidNextBlockRectangle = Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetBottomRightPoint().GetX() + (Playfield::GRID_BLOCK_SIZE * 3);
+					yMidNextBlockRectangle = Playfield::GetGridPosition(0, 1).GetTopLeftPoint().GetY() + (Playfield::GRID_BLOCK_SIZE * 4);
+					this->SetRotation(TetroRotations::ROT_DOWN);
+					this->Rotate();
+				}
+				break;
+
+				case TetroTypes::J:
+				{
+					xMidNextBlockRectangle = Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetBottomRightPoint().GetX() + (Playfield::GRID_BLOCK_SIZE * 4);
+					yMidNextBlockRectangle = Playfield::GetGridPosition(0, 1).GetTopLeftPoint().GetY() + (Playfield::GRID_BLOCK_SIZE * 3);
+				}
+				break;
+
+				case TetroTypes::L:
+				{
+					xMidNextBlockRectangle = Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetBottomRightPoint().GetX() + (Playfield::GRID_BLOCK_SIZE * 3);
+					yMidNextBlockRectangle = Playfield::GetGridPosition(0, 1).GetTopLeftPoint().GetY() + (Playfield::GRID_BLOCK_SIZE * 3);
+				}
+				break;
+
+				case TetroTypes::O:
+				{
+					xMidNextBlockRectangle = Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetBottomRightPoint().GetX() + (Playfield::GRID_BLOCK_SIZE * 3);
+					yMidNextBlockRectangle = Playfield::GetGridPosition(0, 1).GetTopLeftPoint().GetY() + (Playfield::GRID_BLOCK_SIZE * 3);
+				}
+				break;
+
+				case TetroTypes::S:
+				{
+					xMidNextBlockRectangle = Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetBottomRightPoint().GetX() + (Playfield::GRID_BLOCK_SIZE * 4);
+					yMidNextBlockRectangle = Playfield::GetGridPosition(0, 1).GetTopLeftPoint().GetY() + (Playfield::GRID_BLOCK_SIZE * 2);
+				}
+				break;
+
+				case TetroTypes::T:
+				{
+					xMidNextBlockRectangle = Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetBottomRightPoint().GetX() + (Playfield::GRID_BLOCK_SIZE * 3);
+					yMidNextBlockRectangle = Playfield::GetGridPosition(0, 1).GetTopLeftPoint().GetY() + (Playfield::GRID_BLOCK_SIZE * 3);
+				}
+				break;
+
+				case TetroTypes::Z:
+				{
+					xMidNextBlockRectangle = Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetBottomRightPoint().GetX() + (Playfield::GRID_BLOCK_SIZE * 4);
+					yMidNextBlockRectangle = Playfield::GetGridPosition(0, 1).GetTopLeftPoint().GetY() + (Playfield::GRID_BLOCK_SIZE * 3);
+				}
+				break;
+			}
+
+				if (block.GetTopLeftPoint().GetX() < xMidNextBlockRectangle) {
+					dirX = 1;
+				}
+				else if (block.GetTopLeftPoint().GetX() > xMidNextBlockRectangle) {
+					dirX = -1;
+				}
+				else {
+					dirX = 0;
+				}
+
+				if (block.GetTopLeftPoint().GetY() < yMidNextBlockRectangle) {
+					dirY = 1;
+				}
+				else if (block.GetTopLeftPoint().GetY() > yMidNextBlockRectangle) {
+					dirY = -1;
+				}
+				else {
+					dirY = 0;
+				}
+
+				this->MoveBy(Vec2D(Playfield::GRID_BLOCK_SIZE * dirX, Playfield::GRID_BLOCK_SIZE * dirY));
+		}
 	}
-
+	for (auto& block : this->GetRectangles()) {
+		if (block.GetTopLeftPoint().GetY() > Playfield::GetGridPosition(0, BLOCKS_HEIGHT - 1).GetTopLeftPoint().GetY()) {
+			std::cout << "adjusting position!" << std::endl;
+			this->MoveBy(Vec2D(0, -Playfield::GRID_BLOCK_SIZE));
+		}
+	}
 }
 
 void Tetromino::Draw(Screen& screen) {
@@ -57,10 +136,47 @@ void Tetromino::Draw(Screen& screen) {
 	}
 }
 
+void Tetromino::PrepareToPlay() {
+	int maxIterations = 1000;
+	int xStart = Playfield::GetGridPosition(randomX, 0).GetTopLeftPoint().GetX();
+	int yStart = Playfield::GetGridPosition(0, 0).GetTopLeftPoint().GetY();
+	int dirX = 0;
+	int dirY = 0;
+
+	while (GetRectangles()[0].GetTopLeftPoint().GetX() != randomX && maxIterations > 0) {
+		if (GetRectangles()[0].GetTopLeftPoint().GetX() < xStart) {
+			dirX = 1;
+		}
+		else if (GetRectangles()[0].GetTopLeftPoint().GetX() > xStart) {
+			dirX = -1;
+		}
+		else {
+			dirX = 0;
+		}
+
+		if (GetRectangles()[0].GetTopLeftPoint().GetY() < yStart) {
+			dirY = 1;
+		}
+		else if (GetRectangles()[0].GetTopLeftPoint().GetY() > yStart) {
+			dirY = -1;
+		}
+		else {
+			dirY = 0;
+		}
+
+		this->MoveBy(Vec2D(Playfield::GRID_BLOCK_SIZE * dirX, Playfield::GRID_BLOCK_SIZE * dirY));
+		maxIterations--;
+	}
+		
+	this->SetRotation(TetroRotations::ROT_RIGHT);
+	this->SetState(TetroStats::TET_PLAY);
+	this->Rotate();
+}
+
 void Tetromino::Solidify() {	
 	for (auto& block : this->GetRectangles()) {
-		block.SetColor(Color(155, 188, 25, 255));
-		block.SetFillColor(Color(139, 172, 15, 255));
+		block.SetColor(Color(44, 33, 55, 150));
+		block.SetFillColor(Color(44, 188, 166, 255));
 	}
 
 	mStats = TetroStats::TET_STATIC;
@@ -313,14 +429,15 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[0].SetY(midBlock.GetTopLeftPoint().GetY() - Playfield::GRID_BLOCK_SIZE);
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY() + Playfield::GRID_BLOCK_SIZE);
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY() + (Playfield::GRID_BLOCK_SIZE * 2));
-				
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
-
 			this->SetRotation(TetroRotations::ROT_LEFT);
 		}
 		//rotation to up
@@ -333,13 +450,14 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY());
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY());
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
-
 			this->SetRotation(TetroRotations::ROT_UP);
 		}
 		//rotation to right
@@ -352,10 +470,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY() - Playfield::GRID_BLOCK_SIZE);
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY() - (Playfield::GRID_BLOCK_SIZE * 2));
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -370,10 +490,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY());
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY());
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -395,10 +517,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY() - Playfield::GRID_BLOCK_SIZE);
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY() - (Playfield::GRID_BLOCK_SIZE * 2));
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -414,10 +538,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY());
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY());
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -433,13 +559,14 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY());
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY() + (Playfield::GRID_BLOCK_SIZE * 2));
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
-
 			this->SetRotation(TetroRotations::ROT_RIGHT);
 		}
 		else {
@@ -451,13 +578,14 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY());
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY());
 	
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
-
 			this->SetRotation(TetroRotations::ROT_DOWN);
 		}
 	}
@@ -475,12 +603,15 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY() + Playfield::GRID_BLOCK_SIZE);
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY() + (Playfield::GRID_BLOCK_SIZE * 2));
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
+
 			this->SetRotation(TetroRotations::ROT_LEFT);
 		}
 		//rotation to up
@@ -493,15 +624,16 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY());
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY());
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
 			this->SetRotation(TetroRotations::ROT_UP);
-
 
 		}
 		//rotation to right
@@ -514,10 +646,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY() - Playfield::GRID_BLOCK_SIZE);
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY() - (Playfield::GRID_BLOCK_SIZE * 2));
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -532,10 +666,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY());
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY());
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -556,10 +692,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY());
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY() + Playfield::GRID_BLOCK_SIZE);
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -575,10 +713,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY() - Playfield::GRID_BLOCK_SIZE);
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY() - Playfield::GRID_BLOCK_SIZE);
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -600,10 +740,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY() - Playfield::GRID_BLOCK_SIZE);
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY() + Playfield::GRID_BLOCK_SIZE);
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -619,10 +761,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY());
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY());
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -638,10 +782,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY() + Playfield::GRID_BLOCK_SIZE);
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY());
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -656,10 +802,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY());
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY());
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -680,10 +828,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY());
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY() - Playfield::GRID_BLOCK_SIZE);
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -699,10 +849,12 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 			rotVec[1].SetY(midBlock.GetTopLeftPoint().GetY() + Playfield::GRID_BLOCK_SIZE);
 			rotVec[2].SetY(midBlock.GetTopLeftPoint().GetY() + Playfield::GRID_BLOCK_SIZE);
 
-			for (int i = 0; i < 3; ++i) {
-				if (!IsFree(rotVec[i])) {
-					std::cout << "can't rotate!" << std::endl;
-					return false;
+			if (this->GetStats() == TetroStats::TET_PLAY) {
+				for (int i = 0; i < 3; ++i) {
+					if (!IsFree(rotVec[i])) {
+						std::cout << "can't rotate!" << std::endl;
+						return false;
+					}
 				}
 			}
 
@@ -720,15 +872,15 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 void Tetromino::GenerateTetromino() {
 	std::random_device rd;
 	std::mt19937 generator(rd());
-	std::uniform_int_distribution<int> disX(0, BLOCKS_WIDTH - 4);
+	std::uniform_int_distribution<int> disX(1, BLOCKS_WIDTH - 4);
 	std::uniform_int_distribution<int> disType(0, NUM_TYPES - 1);
 
-	int randomX = disX(generator);
+	randomX = disX(generator);
 	this->SetType(TetroTypes(disType(generator)));
 	
 	//DEBUG
 	//randomX = 0;
-	//mType = TetroTypes::I;
+	mType = TetroTypes::I;
 
 	switch (mType) {
 	case TetroTypes::I:
