@@ -6,4 +6,5 @@ q
 SDL2/.vs/
 *.db
 SDL2/out/build/x64-Debug/
-S:\C++\SDL2\out\build\x64-Debug/
+S:\C++\SDL2\out\build\x64-Debug/SDL2/out/build/x64-Debug/
+*.ipch

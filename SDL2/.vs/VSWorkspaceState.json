@@ -13,9 +13,7 @@
     "\\src\\App",
     "\\src\\Games",
     "\\src\\Games\\Tetris",
-    "\\src\\Shapes",
-    "\\src\\Utils"
+    "\\src\\Scenes"
   ],
-  "SelectedNode": "\\src\\Games\\Tetris\\Collider.cpp",
   "PreviewInSolutionExplorer": false
 }

@@ -6,3 +6,4 @@ q
 SDL2/out/
 SDL2/.vs/
 *.db
+SDL2/out/build/x64-Debug/

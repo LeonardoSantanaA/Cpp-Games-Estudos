@@ -2,3 +2,4 @@ SDL2/.vs/SDL2/v17/ipch/AutoPCH/98c5a4a5cf4aa5ea/SETUP.ipch filter=lfs diff=lfs m
 SDL2/.vs/SDL2/v17/ipch/AutoPCH/cf5a745dc22a702c/SCREEN.ipch filter=lfs diff=lfs merge=lfs -text
 SDL2/.vs/SDL2/v17/ipch/AutoPCH/294a2738610c9444/SCREEN.ipch filter=lfs diff=lfs merge=lfs -text
 SDL2/.vs/SDL2/v17/ipch/AutoPCH/67c0009cdd83786e/SCREEN.ipch filter=lfs diff=lfs merge=lfs -text
+SDL2/out/build/x64-Debug/SDL2Setup.pdb filter=lfs diff=lfs merge=lfs -text
