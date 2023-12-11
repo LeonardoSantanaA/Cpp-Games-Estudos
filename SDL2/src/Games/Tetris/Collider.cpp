@@ -23,15 +23,11 @@ void Collider::VerifyScore(std::vector<Tetromino>& tetrominos, std::mutex& mutex
 						countColumn++;
 						if (countColumn == BLOCKS_WIDTH) {
 							yToDelete[i] = static_cast<int>(block.GetTopLeftPoint().GetY());
-							if (yToDelete[i] <= Playfield::grid[0][1].GetTopLeftPoint().GetY()) {
-								Tetris::SetTetrisStates(TetrisGameStates::TET_GAMEOVER);
-								std::cout << "############" << std::endl;
-								std::cout << "#Game Over!#" << std::endl;
-								std::cout << "############" << std::endl;
-								std::cout << "Press SPACE to continue" << std::endl;
+						//	if (yToDelete[i] <= Playfield::grid[0][1].GetTopLeftPoint().GetY()) {
 
-							}
 
+						//	}
+						
 							//std::cout << "novo valor do y: " << block.GetTopLeftPoint().GetY() << std::endl;
 							//std::cout << " valor que precisa ser igual: " << yToDelete[i - 1] - Playfield::GRID_BLOCK_SIZE << std::endl;
 
@@ -136,4 +132,12 @@ void Collider::ClearBlocks(std::vector<Tetromino>& tetrominos) {
 		std::cout << "Tetrominos vector memory released." << std::endl;
 		Collider::tetrominos = std::move(newTetrominos);
 
+}
+
+void Collider::SetGameOver() {
+	Tetris::SetTetrisStates(TetrisGameStates::TET_GAMEOVER);
+	std::cout << "############" << std::endl;
+	std::cout << "#Game Over!#" << std::endl;
+	std::cout << "############" << std::endl;
+	std::cout << "Press SPACE to continue" << std::endl;
 }

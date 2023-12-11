@@ -175,6 +175,10 @@ void Tetromino::PrepareToPlay() {
 
 void Tetromino::Solidify() {	
 	for (auto& block : this->GetRectangles()) {
+		if (block.GetTopLeftPoint().GetY() <= Playfield::grid[0][0].GetTopLeftPoint().GetY()) {
+			Collider::SetGameOver();
+			break;
+		}
 		block.SetColor(Color(44, 33, 55, 150));
 		block.SetFillColor(Color(44, 188, 166, 255));
 	}
@@ -880,7 +884,7 @@ void Tetromino::GenerateTetromino() {
 	
 	//DEBUG
 	//randomX = 0;
-	//mType = TetroTypes::I;
+	//mType = TetroTypes::Z;
 
 	switch (mType) {
 	case TetroTypes::I:

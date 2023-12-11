@@ -11,6 +11,7 @@ class Collider {
 public:
 	static std::vector<Tetromino> tetrominos;
 	static void VerifyScore(std::vector<Tetromino>& tetrominos, std::mutex& mutex);
+	static void SetGameOver();
 
 private:
 	int yy = 0;
