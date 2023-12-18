@@ -11,9 +11,10 @@
     "",
     "\\src",
     "\\src\\App",
-    "\\src\\Games",
     "\\src\\Games\\Tetris",
-    "\\src\\Scenes"
+    "\\src\\Graphics",
+    "\\src\\Scenes",
+    "\\src\\Utils"
   ],
   "SelectedNode": "\\CMakeLists.txt",
   "PreviewInSolutionExplorer": false

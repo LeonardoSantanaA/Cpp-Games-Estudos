@@ -18,3 +18,7 @@ bool IsLessThanOrEqual(float x, float y){
 float MillisecondsToSeconds(unsigned int milliseconds) {
 	return static_cast<float>(milliseconds) / 1000.0f;
 }
+
+unsigned int GetIndex(unsigned int width, unsigned int r, unsigned int c){
+	return r * width + c;
+}
