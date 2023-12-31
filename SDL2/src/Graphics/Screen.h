@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include "ScreenBuffer.h"
 #include "Color.h"
+#include <string>
 #include <vector>
 
 class Vec2D;
@@ -14,6 +15,8 @@ class Circle;
 struct SDL_Window;
 struct SDL_Surface;
 class BMPImage;
+class SpriteSheet;
+struct Sprite;
 
 class Screen {
 public:
@@ -37,7 +40,8 @@ public:
 	void Draw(const Triangle& triangle, const Color& color, bool fill = false, const Color& fillColor = Color::White());
 	void Draw(const AARectangle& rect, const Color& color, bool fill = false, const Color& fillColor = Color::White());
 	void Draw(const Circle& circle, const Color& color, bool fill = false, const Color& fillColor = Color::White());
-	void Draw(const BMPImage& image, const Vec2D& pos);
+	void Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos);
+	void Draw(const SpriteSheet& spriteSheet, const std::string& spriteName, const Vec2D& pos);
 
 	void RotateLine(Line2D& line, float radian, const Color& color);
 
