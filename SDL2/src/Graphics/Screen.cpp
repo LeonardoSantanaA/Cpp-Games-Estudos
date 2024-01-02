@@ -6,6 +6,7 @@
 #include "../Shapes/AARectangle.h"
 #include "../Shapes/Circle.h"
 #include "../Utils/Utils.h"
+#include "../Graphics/BitmapFont.h"
 #include "BMPImage.h"
 #include "SpriteSheet.h"
 #include <cmath>
@@ -214,6 +215,27 @@ void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos)
 
 void Screen::Draw(const SpriteSheet& spriteSheet, const std::string& spriteName, const Vec2D& pos) {
 	Draw(spriteSheet.GetBMPImage(), spriteSheet.GetSprite(spriteName), pos);
+}
+
+void Screen::Draw(const BitmapFont& font, const std::string& textLine, const Vec2D& pos) {
+	uint32_t xPos = pos.GetX();
+
+	const SpriteSheet& ss = font.GetSpriteSheet();
+
+	for (char c : textLine) {
+		if (c == ' ') {
+			xPos += font.GetFontSpacingBetweenWords();
+			continue;
+		}
+
+		Sprite sprite = ss.GetSprite(std::string("") + c);
+
+		Draw(ss.GetBMPImage(), sprite, Vec2D(xPos, pos.GetY()));
+
+		xPos += sprite.width;
+
+		xPos += font.GetFontSpacingBetweenLetters();
+	}
 }
 
 void Screen::ClearScreen() {

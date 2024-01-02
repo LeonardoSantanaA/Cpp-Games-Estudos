@@ -9,7 +9,6 @@ ArcadeScene::ArcadeScene() {
 }
 
 void ArcadeScene::Init() {
-	mTempSS.Load("ArcadeFont");
 
 	ButtonAction action;
 	action.key = GameController::ActionKey();
@@ -61,7 +60,14 @@ void ArcadeScene::Draw(Screen& theScreen) {
 	theScreen.Draw(rect, Color(0, 0, 255, 150), true, Color(0, 0, 255, 50));
 	theScreen.Draw(line, Color::Magenta());
 	*/
-	theScreen.Draw(mTempSS, "5", Vec2D::Zero);
+	//theScreen.Draw(mTempSS, "5", Vec2D::Zero);
+
+	const BitmapFont& font = App::Singleton().GetFont();
+
+	AARectangle rect = { Vec2D::Zero, App::Singleton().Width(), App::Singleton().Height() };
+	Vec2D textDrawPosition;
+	textDrawPosition = font.GetDrawPosition(GetSceneName(), rect, BFXA_RIGHT, BFYA_TOP);
+	theScreen.Draw(font, GetSceneName(), textDrawPosition);
 }
 
 const std::string& ArcadeScene::GetSceneName() const {

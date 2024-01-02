@@ -7,7 +7,6 @@
 #include "../Shapes/Triangle.h"
 #include "../Shapes/Circle.h"
 #include "../Graphics/Color.h"
-#include "../Graphics/SpriteSheet.h"
 #include <memory>
 
 enum eGame {
@@ -31,6 +30,4 @@ public:
 private:
 	std::unique_ptr<Scene> GetScene(eGame game);
 
-	//temporary
-	SpriteSheet mTempSS;
 };

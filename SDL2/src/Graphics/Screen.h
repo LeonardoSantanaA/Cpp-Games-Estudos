@@ -17,6 +17,7 @@ struct SDL_Surface;
 class BMPImage;
 class SpriteSheet;
 struct Sprite;
+class BitmapFont;
 
 class Screen {
 public:
@@ -42,6 +43,7 @@ public:
 	void Draw(const Circle& circle, const Color& color, bool fill = false, const Color& fillColor = Color::White());
 	void Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos);
 	void Draw(const SpriteSheet& spriteSheet, const std::string& spriteName, const Vec2D& pos);
+	void Draw(const BitmapFont& font, const std::string& textLine, const Vec2D& pos);
 
 	void RotateLine(Line2D& line, float radian, const Color& color);
 
