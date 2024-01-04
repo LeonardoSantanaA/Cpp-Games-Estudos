@@ -23,7 +23,7 @@ Size BitmapFont::GetSizeOf(const std::string& str) const{
 		textSize.height = textSize.height < sprite.height ? sprite.height : textSize.height;
 		textSize.width += sprite.width;
 
-		if (static_cast<unsigned long long>(i) + 1 < length) {
+		if (i + 1 < length) {
 			textSize.width += GetFontSpacingBetweenLetters();
 		}
 		++i;
@@ -35,11 +35,11 @@ Size BitmapFont::GetSizeOf(const std::string& str) const{
 Vec2D BitmapFont::GetDrawPosition(const std::string& str, const AARectangle& box, BitmapFontXAlignment xAlign, BitmapFontYAlignment yAlign) const {
 	Size textSize = GetSizeOf(str);
 
-	uint32_t x = 0;
-	uint32_t y = 0;
+	auto x = 0;
+	auto y = 0;
 
 	if (xAlign == BFXA_CENTER) {
-		x = (box.GetWidth() / 2) - textSize.width / 2.0f;
+		x = (box.GetWidth() / 2.0f) - textSize.width / 2.0f;
 	}
 	else if (xAlign == BFXA_RIGHT) {
 		x = box.GetWidth() - textSize.width;
@@ -48,7 +48,7 @@ Vec2D BitmapFont::GetDrawPosition(const std::string& str, const AARectangle& box
 	x += box.GetTopLeftPoint().GetX();
 
 	if (yAlign == BFYA_CENTER) {
-		y = (box.GetHeight() / 2) - textSize.height / 2.0f;
+		y = (box.GetHeight() / 2.0f) - textSize.height / 2.0f;
 	}
 	else if (yAlign == BFYA_BOTTOM) {
 		y = box.GetHeight() - textSize.height;
@@ -56,5 +56,5 @@ Vec2D BitmapFont::GetDrawPosition(const std::string& str, const AARectangle& box
 
 	y += box.GetTopLeftPoint().GetY();
 
-	return Vec2D(x, y);
+	return Vec2D(static_cast<float>(x), static_cast<float>(y));
 }

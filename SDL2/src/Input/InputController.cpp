@@ -37,7 +37,7 @@ void InputController::Update(uint32_t dt) {
 		case SDL_MOUSEBUTTONUP:
 		case SDL_MOUSEBUTTONDOWN:
 			if (mnoptrCurrentController) {
-				MouseInputAction action = mnoptrCurrentController->GetMouseButtonActionForMouseButton(static_cast<MouseButton>(sdlEvent.button.button));
+				MouseInputAction action = mnoptrCurrentController->GetMouseButtonActionForMouseButton(sdlEvent.button.button);
 
 				MousePosition position;
 				position.xPos = sdlEvent.button.x;
