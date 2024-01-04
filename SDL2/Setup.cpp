@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "src/App/App.h"
+#include "src/Games/Tetris/Playfield.h"
 
 const int SCREEN_WIDTH = 224;
 const int SCREEN_HEIGHT = 288;
@@ -20,6 +21,8 @@ int main(int argc, char* argv[]) {
 	if (App::Singleton().Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION)) {
 		App::Singleton().Run();
 	}
+
+	Playfield::liberarRecursos();
 
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
 	_CrtDumpMemoryLeaks();

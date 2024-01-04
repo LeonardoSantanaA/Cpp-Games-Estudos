@@ -25,6 +25,8 @@ public:
 
 	static inline Blocks GetGridPosition(int x, int y) { return grid[x][y]; }
 
+	static void liberarRecursos();
+
 private:
 	static Blocks* nextTetrominoRect;
 	Blocks* backgroundRectBounds = new Blocks(Vec2D(0, 0), GRID_BLOCK_SIZE * BLOCKS_WIDTH + 1, GRID_BLOCK_SIZE * BLOCKS_HEIGHT + 1);

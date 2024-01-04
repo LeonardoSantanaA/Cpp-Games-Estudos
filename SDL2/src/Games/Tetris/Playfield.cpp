@@ -13,11 +13,11 @@ Blocks* Playfield::nextTetrominoRect = new Blocks(Vec2D(0, 0), GRID_BLOCK_SIZE *
 Playfield::Playfield() {
 	std::cout << "Playfield Started." << std::endl;
 	Playfield::Init();
+	
 }
 
 Playfield::~Playfield() {
-	delete nextTetrominoRect;
-	delete backgroundRectBounds;
+	Playfield::liberarRecursos();
 }
 
 void Playfield::Init() {
@@ -55,4 +55,11 @@ void Playfield::Draw(Screen& screen) {
 	}
 	nextTetrominoRect->Draw(screen);
 	backgroundRectBounds->Draw(screen);
+}
+
+void Playfield::liberarRecursos() {
+	if (nextTetrominoRect) {
+		delete nextTetrominoRect;
+		nextTetrominoRect = nullptr;
+	}
 }

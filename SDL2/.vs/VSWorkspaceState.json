@@ -11,10 +11,13 @@
     "",
     "\\src",
     "\\src\\App",
+    "\\src\\Games",
+    "\\src\\Games\\BreakOut",
+    "\\src\\Games\\Tetris",
     "\\src\\Graphics",
     "\\src\\Scenes",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\CMakeSettings.json",
+  "SelectedNode": "\\CMakeLists.txt",
   "PreviewInSolutionExplorer": false
 }
