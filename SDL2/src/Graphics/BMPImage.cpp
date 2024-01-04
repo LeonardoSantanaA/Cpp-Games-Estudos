@@ -27,8 +27,11 @@ bool BMPImage::LoadFile(const std::string& path) {
 		mPixels.push_back(Color(pixels[i]));
 	}
 
-	SDL_UnlockSurface(bmpSurface);
-	SDL_FreeSurface(bmpSurface);
+	
 
+	SDL_UnlockSurface(bmpSurface);
+	
+	SDL_FreeSurface(bmpSurface);
+	
 	return true;
 }

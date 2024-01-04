@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 
 project(SDL2Test)
 
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 
 find_package(SDL2 REQUIRED) 
 
@@ -40,6 +41,9 @@ add_executable(SDL2Setup "Setup.cpp"
 "src/Games/Tetris/Tetromino.h" "src/Games/Tetris/Tetromino.cpp"
 "src/Games/Tetris/Collider.h" "src/Games/Tetris/Collider.cpp"
 "src/Games/Tetris/Blocks.h" "src/Games/Tetris/Blocks.cpp" 
-"src/Games/Tetris/Ghost.h" "src/Games/Tetris/Ghost.cpp" "src/Graphics/BMPImage.h" "src/Graphics/BMPImage.cpp" "src/Graphics/SpriteSheet.h" "src/Graphics/SpriteSheet.cpp" "src/Graphics/BitmapFont.h" "src/Graphics/BitmapFont.cpp")
+"src/Games/Tetris/Ghost.h" "src/Games/Tetris/Ghost.cpp" 
+"src/Graphics/BMPImage.h" "src/Graphics/BMPImage.cpp" 
+"src/Graphics/SpriteSheet.h" "src/Graphics/SpriteSheet.cpp" 
+"src/Graphics/BitmapFont.h" "src/Graphics/BitmapFont.cpp")
 
 target_link_libraries(SDL2Setup SDL2::SDL2 SDL2::SDL2main)

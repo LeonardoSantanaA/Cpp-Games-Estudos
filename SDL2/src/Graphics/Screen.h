@@ -6,6 +6,7 @@
 #include "Color.h"
 #include <string>
 #include <vector>
+#include <functional>
 
 class Vec2D;
 class Line2D;
@@ -53,7 +54,10 @@ private:
 	//Screen& operator=(const Screen& screen);
 
 	void ClearScreen();
-	void FillPoly(const std::vector<Vec2D>& points, const Color& color);
+
+	using FillPolyFunc = std::function<Color(uint32_t x, uint32_t y)>;
+
+	void FillPoly(const std::vector<Vec2D>& points, FillPolyFunc func);
 
 	uint32_t mWidth;
 	uint32_t mHeight;
