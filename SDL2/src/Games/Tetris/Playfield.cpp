@@ -12,11 +12,12 @@ Blocks* Playfield::nextTetrominoRect = new Blocks(Vec2D(0, 0), GRID_BLOCK_SIZE *
 Playfield::Playfield() {
 	std::cout << "Playfield Started." << std::endl;
 	Playfield::Init();
-	
 }
 
 Playfield::~Playfield() {
 	Playfield::liberarRecursos();
+	delete backgroundRectBounds;
+	backgroundRectBounds = nullptr;
 }
 
 void Playfield::Init() {
@@ -33,18 +34,18 @@ void Playfield::Init() {
 	}
 	
 	nextTetrominoRect->MoveTo(Vec2D(GetGridPosition(BLOCKS_WIDTH - 1, 0).GetTopLeftPoint().GetX() + (GRID_BLOCK_SIZE * 2), GetGridPosition(0, 2).GetTopLeftPoint().GetY()));
-	nextTetrominoRect->SetColor(Color(44, 33, 55, 255));
-	nextTetrominoRect->SetFillColor(Color(161, 239, 140, 255));
+	nextTetrominoRect->SetColor(Color(164, 20, 136, 255));
+	nextTetrominoRect->SetFillColor(Color(121, 2, 98, 255));
 
 
 	backgroundRectBounds->MoveTo(Vec2D(GetGridPosition(0, 0).GetTopLeftPoint().GetX(), GetGridPosition(0, 0).GetTopLeftPoint().GetY()));
 	backgroundRectBounds->SetColor(Color(44, 33, 55, 255));
-	backgroundRectBounds->SetFillColor(Color(0, 0, 0, 0));
+	backgroundRectBounds->SetFillColor(Color(19, 19, 19, 255));
 
 	scoreRectBounds.MoveTo(Vec2D(Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetTopLeftPoint().GetX() + (Playfield::GRID_BLOCK_SIZE * 2),
 		Playfield::GetGridPosition(0, 12).GetTopLeftPoint().GetY()));
-	scoreRectBounds.SetColor(Color(44, 33, 55, 255));
-	scoreRectBounds.SetFillColor(Color(161, 239, 140, 255));
+	scoreRectBounds.SetColor(Color(164, 20, 136, 255));
+	scoreRectBounds.SetFillColor(Color(121, 2, 98, 255));
 }
 
 void Playfield::Update(uint32_t dt) {
@@ -53,7 +54,7 @@ void Playfield::Update(uint32_t dt) {
 
 void Playfield::Draw(Screen& screen) {
 	AARectangle background = { Vec2D::Zero, screen.Width(), screen.Height() };
-	screen.Draw(background, Color(68, 97, 118, 255), true, Color(68, 97, 118, 255));
+	screen.Draw(background, Color(78, 2, 146, 255), true, Color(78, 2, 146, 255));
 
 	for (int xx = 0; xx < BLOCKS_WIDTH; xx++) {
 		for (int yy = 0; yy < BLOCKS_HEIGHT; yy++) {

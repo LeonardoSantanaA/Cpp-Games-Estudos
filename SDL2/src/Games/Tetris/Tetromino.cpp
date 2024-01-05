@@ -5,7 +5,7 @@
 #include "Collider.h"
 #include <chrono>
 
-constexpr int GRAVITY_DELAY = 700;
+constexpr int GRAVITY_DELAY = 300;
 
 Tetromino::Tetromino() {
 	GenerateTetromino();
@@ -438,6 +438,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -458,6 +459,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -478,6 +480,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -498,6 +501,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -525,6 +529,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -546,6 +551,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -567,6 +573,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -586,6 +593,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -611,6 +619,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -632,6 +641,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -654,6 +664,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -674,6 +685,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -700,6 +712,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -721,6 +734,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -748,6 +762,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -769,6 +784,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -790,6 +806,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -810,6 +827,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -836,6 +854,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -857,6 +876,7 @@ bool Tetromino::CanRotate(TetroTypes type, Blocks& midBlock, Vec2D* rotVec) {
 				for (int i = 0; i < 3; ++i) {
 					if (!IsFree(rotVec[i])) {
 						std::cout << "can't rotate!" << std::endl;
+						mSound.PlaySound(cantRotateSound);
 						return false;
 					}
 				}
@@ -999,6 +1019,7 @@ void Tetromino::MoveDirection(const TetroDirection& dir) {
 void Tetromino::Gravity() {
 	if (IsFree(TetroDirection::TET_DOWN)) {
 		MoveBy(Vec2D(0, Playfield::GRID_BLOCK_SIZE));
+		mSound.PlaySound(tetrominoFallSoundEffect);
 	}
 }
 

@@ -10,12 +10,11 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\App",
+    "\\src\\Assets",
     "\\src\\Games",
     "\\src\\Games\\Tetris",
-    "\\src\\Scenes",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\CMakeLists.txt",
+  "SelectedNode": "\\src\\Assets\\CantRotate.wav",
   "PreviewInSolutionExplorer": false
 }

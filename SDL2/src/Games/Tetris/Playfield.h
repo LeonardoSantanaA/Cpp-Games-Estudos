@@ -30,6 +30,7 @@ public:
 
 private:
 	static Blocks* nextTetrominoRect;
+	AARectangle backgroundRect = AARectangle(Vec2D(0, 0), App::Singleton().Width(), App::Singleton().Height());
 	Blocks* backgroundRectBounds = new Blocks(Vec2D(0, 0), GRID_BLOCK_SIZE * BLOCKS_WIDTH + 1, GRID_BLOCK_SIZE * BLOCKS_HEIGHT + 1);
 	Blocks scoreRectBounds = Blocks(Vec2D(0, 0), GRID_BLOCK_SIZE * 5, GRID_BLOCK_SIZE * 4);
 };

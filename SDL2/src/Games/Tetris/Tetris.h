@@ -8,6 +8,7 @@
 #include <mutex>
 #include "Tetromino.h"
 #include "../../Utils/ScoreFileLoader.h"
+#include "../../Utils/Sound.h"
 #include "Ghost.h"
 #include <string>
 
@@ -54,6 +55,10 @@ private:
 	static int mScore;
 	int mCountTetris = 0;
 	static TetrisGameStates mState;
+
+	Sound mSound;
+	int scoreEffectSound = mSound.LoadSound("ScoreNormal.wav");
+	int tetrisEffectSound = mSound.LoadSound("TetrisEffect.wav");
 
 	static void GenerateNextTetromino();
 	void RestartGame();

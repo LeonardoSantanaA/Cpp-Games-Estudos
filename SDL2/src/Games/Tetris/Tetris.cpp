@@ -22,8 +22,10 @@ void Tetris::Init(GameController& controller) {
 
 	GenerateNextTetromino();
 
-
 	scoreFile.LoadScoreFileLoader(App::GetBasePath() + "Assets/Scores.txt");
+	//Sound::SetVolumeMusic(60);
+	int soundtrack = mSound.LoadMusic("TetrisSoundtrack.wav");
+	mSound.PlayMusic(soundtrack);
 
 	ButtonAction leftKeyAction;
 	leftKeyAction.key = GameController::LeftKey();
@@ -83,6 +85,7 @@ void Tetris::Init(GameController& controller) {
 		};
 	controller.AddInputActionForKey(rotateKeyAction);
 	
+
 }
 
 constexpr int UPDATE_DELAY = 700;
@@ -196,4 +199,5 @@ void Tetris::RestartGame() {
 	Collider::tetrominos.clear();
 	GenerateTetromino();
 	SetTetrisStates(TetrisGameStates::TET_INPLAY);
+	mSound.TogglePlay();
 }

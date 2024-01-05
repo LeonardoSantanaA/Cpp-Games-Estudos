@@ -3,6 +3,7 @@
 #include <vector>
 #include <mutex>
 #include <thread>
+#include "../../Utils/Sound.h"
 #include "Blocks.h"
 
 class Tetromino;
@@ -16,9 +17,15 @@ public:
 	static inline bool DesableTetris() { return tetris = false; }
 
 private:
-	int yy = 0;
-
 	static bool tetris;
+
+	Sound sound;
+	int scoreSoundEffect = sound.LoadSound("ScoreNormal.wav");
+	int tetrisSoundEffect = sound.LoadSound("TetrisEffect.wav");
+	int gameOverSoundEffect = sound.LoadSound("GameOver.wav");
+
+	void SoundEffect();
+
 	static void DeleteBlocks(std::vector<Tetromino>& tetrominos, int y);
 	static void ClearBlocks(std::vector<Tetromino>& tetrominos);
 	static bool FallTetrominos(std::vector<Tetromino>& tetrominos, int index, int qtd);

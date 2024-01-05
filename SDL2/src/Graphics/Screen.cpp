@@ -7,6 +7,7 @@
 #include "../Shapes/Circle.h"
 #include "../Utils/Utils.h"
 #include "../Graphics/BitmapFont.h"
+#include "../Utils/Sound.h"
 #include "BMPImage.h"
 #include "SpriteSheet.h"
 #include <cmath>
@@ -44,13 +45,14 @@ Screen::~Screen() {
 }
 
 SDL_Window* Screen::Init(uint32_t w, uint32_t h, uint32_t mag, bool fast) {
-
 	mFast = fast;
 
 	if (SDL_Init(SDL_INIT_VIDEO)) {
 		std::cout << "Error SDL_Init Failed" << std::endl;
 		return nullptr;
 	}
+
+	Sound::InitMixer();
 
 	mWidth = w;
 	mHeight = h;

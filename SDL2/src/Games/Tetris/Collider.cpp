@@ -48,16 +48,16 @@ void Collider::VerifyScore(std::vector<Tetromino>& tetrominos, std::mutex& mutex
 		
 		countColumn = 0;	
 	}
+	bool canPlaySound = false;
 	int higherY = yToDelete[0];
-
 	for (int index = 0; index < i; ++index) {
 		if (yToDelete[index] < higherY) {
 			higherY = yToDelete[index];
 		}
-
 		Collider::DeleteBlocks(tetrominos, yToDelete[index]);
 		ClearBlocks(tetrominos);
 		Tetris::IncrementScore(100 * i);
+		canPlaySound = true;
 	}
 
 	FallTetrominos(tetrominos, higherY, i);
@@ -67,7 +67,16 @@ void Collider::VerifyScore(std::vector<Tetromino>& tetrominos, std::mutex& mutex
 		//std::cout << "#TETRIS#" << std::endl;
 		//std::cout << "########" << std::endl;
 		tetris = true;
+		Collider collider;
+		collider.SoundEffect();
 		Tetris::IncrementScore(1000);
+		canPlaySound = false;
+	}
+
+	if (canPlaySound) {
+		std::cout << "tocar efeito" << std::endl;
+		Collider collider;
+		collider.SoundEffect();
 	}
 
 	i = 0;
@@ -95,9 +104,18 @@ bool Collider::FallTetrominos(std::vector<Tetromino>& tetrominos, int y, int qtd
 			}
 		}
 	}
+
 	return true;
 }
 
+void Collider::SoundEffect() {
+	if (!Collider::IsTetris()) {
+		sound.PlaySound(scoreSoundEffect);
+	}
+	else {
+		sound.PlaySound(tetrisSoundEffect);
+	}
+}
 
 void Collider::ClearBlocks(std::vector<Tetromino>& tetrominos) {
 
@@ -138,6 +156,9 @@ void Collider::ClearBlocks(std::vector<Tetromino>& tetrominos) {
 
 void Collider::SetGameOver() {
 	Tetris::SetTetrisStates(TetrisGameStates::TET_GAMEOVER);
+	Collider collider;
+	collider.sound.TogglePlay();
+	collider.sound.PlaySound(collider.gameOverSoundEffect);
 	std::cout << "############" << std::endl;
 	std::cout << "#Game Over!#" << std::endl;
 	std::cout << "############" << std::endl;

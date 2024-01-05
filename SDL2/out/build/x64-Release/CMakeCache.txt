@@ -210,6 +210,21 @@ SDL2Test_SOURCE_DIR:STATIC=S:/C++/SDL2
 //The directory containing a CMake configuration file for SDL2.
 SDL2_DIR:PATH=S:/SDL2/cmake
 
+//The directory containing a CMake configuration file for SDL2_Mixer.
+SDL2_Mixer_DIR:PATH=S:/SDL2/cmake
+
+//The directory containing a CMake configuration file for SDL2_mixer.
+SDL2_mixer_DIR:PATH=S:/SDL2/cmake
+
+//Path to a library.
+SDL_MIXER:FILEPATH=S:/SDL2/lib/x64/SDL2_mixer.lib
+
+//Path to a file.
+SDL_MIXER_INCLUDE_DIR:PATH=S:/SDL2/include
+
+//Path to a library.
+SDL_MIXER_LIBRARY:FILEPATH=S:/SDL2/lib/x64/SDL2_mixer.lib
+
 
 ########################
 # INTERNAL cache entries
@@ -347,4 +362,10 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding SDL_mixer
+FIND_PACKAGE_MESSAGE_DETAILS_SDL_mixer:INTERNAL=[S:/SDL2/lib/x64/SDL2_mixer.lib][S:/SDL2/include][v2.6.3()]
+//ADVANCED property for variable: SDL_MIXER_INCLUDE_DIR
+SDL_MIXER_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SDL_MIXER_LIBRARY
+SDL_MIXER_LIBRARY-ADVANCED:INTERNAL=1
 

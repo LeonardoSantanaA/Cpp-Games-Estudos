@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.8)
 
-project(SDL2Test )
+project(SDL2Test)
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 
 find_package(SDL2 REQUIRED) 
+find_package(SDL2_mixer REQUIRED)
 
-add_executable(ArcadeGame WIN32 "Setup.cpp" 
+add_executable(ArcadeGame WIN32
+"Setup.cpp" 
 "src/Graphics/Color.cpp" 
 "src/Graphics/ScreenBuffer.cpp" 
 "src/Graphics/Screen.cpp"
@@ -44,6 +46,7 @@ add_executable(ArcadeGame WIN32 "Setup.cpp"
 "src/Games/Tetris/Ghost.h" "src/Games/Tetris/Ghost.cpp" 
 "src/Graphics/BMPImage.h" "src/Graphics/BMPImage.cpp" 
 "src/Graphics/SpriteSheet.h" "src/Graphics/SpriteSheet.cpp" 
-"src/Graphics/BitmapFont.h" "src/Graphics/BitmapFont.cpp")
+"src/Graphics/BitmapFont.h" "src/Graphics/BitmapFont.cpp"   
+"src/Utils/Sound.h" "src/Utils/Sound.cpp")
 
-target_link_libraries(ArcadeGame SDL2::SDL2 SDL2::SDL2main)
+target_link_libraries(ArcadeGame SDL2::SDL2 SDL2::SDL2main SDL2_mixer::SDL2_mixer)

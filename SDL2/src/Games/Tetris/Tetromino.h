@@ -3,6 +3,7 @@
 #include "../../Shapes/Line2D.h"
 #include "Playfield.h"
 #include "Blocks.h"
+#include "../../Utils/Sound.h"
 #include <memory>
 
 class Screen;
@@ -91,6 +92,9 @@ private:
 protected:
 	TetroRotations mRotation;
 	TetroTypes mType;
+	Sound mSound;
+	int cantRotateSound = mSound.LoadSound("CantRotate.wav");
+	int tetrominoFallSoundEffect = mSound.LoadSound("BlockSound.wav");
 
 	std::shared_ptr<Blocks> tetroBlock1 = std::make_shared<Blocks>(Vec2D(0, 0),
 		Vec2D(Playfield::GRID_BLOCK_SIZE, Playfield::GRID_BLOCK_SIZE));
