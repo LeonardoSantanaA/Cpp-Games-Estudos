@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.8)
 
-project(SDL2Test)
+project(SDL2Test )
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 
 find_package(SDL2 REQUIRED) 
 
-add_executable(SDL2Setup "Setup.cpp" 
+add_executable(ArcadeGame WIN32 "Setup.cpp" 
 "src/Graphics/Color.cpp" 
 "src/Graphics/ScreenBuffer.cpp" 
 "src/Graphics/Screen.cpp"
@@ -46,4 +46,4 @@ add_executable(SDL2Setup "Setup.cpp"
 "src/Graphics/SpriteSheet.h" "src/Graphics/SpriteSheet.cpp" 
 "src/Graphics/BitmapFont.h" "src/Graphics/BitmapFont.cpp")
 
-target_link_libraries(SDL2Setup SDL2::SDL2 SDL2::SDL2main)
+target_link_libraries(ArcadeGame SDL2::SDL2 SDL2::SDL2main)

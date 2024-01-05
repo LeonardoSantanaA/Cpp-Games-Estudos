@@ -9,6 +9,7 @@
 #include "Tetromino.h"
 #include "../../Utils/ScoreFileLoader.h"
 #include "Ghost.h"
+#include <string>
 
 enum TetrisGameStates {
 	TET_INPLAY = 0,
@@ -51,6 +52,7 @@ private:
 	const int BLOCK_SIZE = 16;
 	int countDelay = 0;
 	static int mScore;
+	int mCountTetris = 0;
 	static TetrisGameStates mState;
 
 	static void GenerateNextTetromino();

@@ -41,305 +41,305 @@ include CMakeFiles\rules.ninja
 
 cmake_ninja_workdir = S$:\C++\SDL2\out\build\x64-Release\
 # =============================================================================
-# Object build statements for EXECUTABLE target SDL2Setup
+# Object build statements for EXECUTABLE target ArcadeGame
 
 
 #############################################
-# Order-only phony target for SDL2Setup
+# Order-only phony target for ArcadeGame
 
-build cmake_object_order_depends_target_SDL2Setup: phony || CMakeFiles\SDL2Setup.dir
+build cmake_object_order_depends_target_ArcadeGame: phony || CMakeFiles\ArcadeGame.dir
 
-build CMakeFiles\SDL2Setup.dir\Setup.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\Setup.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\Setup.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\Setup.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Graphics\Color.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Graphics\Color.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Graphics\Color.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Graphics\Color.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Graphics
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Graphics
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Graphics\ScreenBuffer.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Graphics\ScreenBuffer.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Graphics\ScreenBuffer.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Graphics\ScreenBuffer.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Graphics
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Graphics
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Graphics\Screen.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Graphics\Screen.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Graphics\Screen.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Graphics\Screen.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Graphics
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Graphics
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Utils\Utils.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Utils\Utils.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Utils\Utils.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Utils\Utils.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Utils
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Utils
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Utils\Vec2D.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Utils\Vec2D.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Utils\Vec2D.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Utils\Vec2D.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Utils
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Utils
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Shapes\Line2D.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Shapes\Line2D.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Shapes\Line2D.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Shapes\Line2D.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Shapes
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Shapes
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Shapes\Shape.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Shapes\Shape.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Shapes\Shape.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Shapes\Shape.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Shapes
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Shapes
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Shapes\Triangle.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Shapes\Triangle.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Shapes\Triangle.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Shapes\Triangle.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Shapes
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Shapes
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Shapes\AARectangle.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Shapes\AARectangle.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Shapes\AARectangle.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Shapes\AARectangle.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Shapes
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Shapes
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Shapes\Circle.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Shapes\Circle.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Shapes\Circle.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Shapes\Circle.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Shapes
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Shapes
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\App\App.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\App\App.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\App\App.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\App\App.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\App
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\App
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Scenes\ArcadeScene.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Scenes\ArcadeScene.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Scenes\ArcadeScene.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Scenes\ArcadeScene.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Scenes
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Scenes
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Input\GameController.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Input\GameController.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Input\GameController.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Input\GameController.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Input
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Input
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Input\InputController.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Input\InputController.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Input\InputController.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Input\InputController.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Input
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Input
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Scenes\GameScene.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Scenes\GameScene.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Scenes\GameScene.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Scenes\GameScene.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Scenes
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Scenes
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Utils\FileCommandLoader.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Utils\FileCommandLoader.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Utils\FileCommandLoader.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Utils\FileCommandLoader.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Utils
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Utils
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\BreakOut.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\BreakOut.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\BreakOut.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\BreakOut.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Games\BreakOut
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Games\BreakOut
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\Excluder.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\Excluder.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\Excluder.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\Excluder.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Games\BreakOut
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Games\BreakOut
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\Paddle.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\Paddle.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\Paddle.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\Paddle.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Games\BreakOut
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Games\BreakOut
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\Ball.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\Ball.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\Ball.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\Ball.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Games\BreakOut
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Games\BreakOut
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\LevelBoundary.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\LevelBoundary.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\LevelBoundary.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\LevelBoundary.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Games\BreakOut
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Games\BreakOut
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\Block.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\Block.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\Block.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\Block.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Games\BreakOut
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Games\BreakOut
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\BreakoutGameLevel.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\BreakoutGameLevel.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\BreakoutGameLevel.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Games\BreakOut\BreakoutGameLevel.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Games\BreakOut
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Games\BreakOut
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Utils\ScoreFileLoader.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Utils\ScoreFileLoader.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Utils\ScoreFileLoader.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Utils\ScoreFileLoader.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Utils
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Utils
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Games\Tetris\Tetris.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Games\Tetris\Tetris.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Games\Tetris\Tetris.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Games\Tetris\Tetris.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Games\Tetris
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Games\Tetris
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Games\Tetris\Playfield.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Games\Tetris\Playfield.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Games\Tetris\Playfield.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Games\Tetris\Playfield.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Games\Tetris
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Games\Tetris
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Games\Tetris\Tetromino.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Games\Tetris\Tetromino.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Games\Tetris\Tetromino.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Games\Tetris\Tetromino.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Games\Tetris
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Games\Tetris
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Games\Tetris\Collider.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Games\Tetris\Collider.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Games\Tetris\Collider.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Games\Tetris\Collider.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Games\Tetris
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Games\Tetris
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Games\Tetris\Blocks.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Games\Tetris\Blocks.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Games\Tetris\Blocks.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Games\Tetris\Blocks.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Games\Tetris
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Games\Tetris
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Games\Tetris\Ghost.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Games\Tetris\Ghost.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Games\Tetris\Ghost.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Games\Tetris\Ghost.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Games\Tetris
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Games\Tetris
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Graphics\BMPImage.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Graphics\BMPImage.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Graphics\BMPImage.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Graphics\BMPImage.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Graphics
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Graphics
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Graphics\SpriteSheet.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Graphics\SpriteSheet.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Graphics\SpriteSheet.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Graphics\SpriteSheet.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Graphics
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Graphics
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
-build CMakeFiles\SDL2Setup.dir\src\Graphics\BitmapFont.cpp.obj: CXX_COMPILER__SDL2Setup_unscanned_Release S$:\C++\SDL2\src\Graphics\BitmapFont.cpp || cmake_object_order_depends_target_SDL2Setup
+build CMakeFiles\ArcadeGame.dir\src\Graphics\BitmapFont.cpp.obj: CXX_COMPILER__ArcadeGame_unscanned_Release S$:\C++\SDL2\src\Graphics\BitmapFont.cpp || cmake_object_order_depends_target_ArcadeGame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   INCLUDES = -external:IS:\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
-  OBJECT_FILE_DIR = CMakeFiles\SDL2Setup.dir\src\Graphics
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_PDB = SDL2Setup.pdb
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\ArcadeGame.dir\src\Graphics
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_PDB = ArcadeGame.pdb
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target SDL2Setup
+# Link build statements for EXECUTABLE target ArcadeGame
 
 
 #############################################
-# Link the executable SDL2Setup.exe
+# Link the executable ArcadeGame.exe
 
-build SDL2Setup.exe: CXX_EXECUTABLE_LINKER__SDL2Setup_Release CMakeFiles\SDL2Setup.dir\Setup.cpp.obj CMakeFiles\SDL2Setup.dir\src\Graphics\Color.cpp.obj CMakeFiles\SDL2Setup.dir\src\Graphics\ScreenBuffer.cpp.obj CMakeFiles\SDL2Setup.dir\src\Graphics\Screen.cpp.obj CMakeFiles\SDL2Setup.dir\src\Utils\Utils.cpp.obj CMakeFiles\SDL2Setup.dir\src\Utils\Vec2D.cpp.obj CMakeFiles\SDL2Setup.dir\src\Shapes\Line2D.cpp.obj CMakeFiles\SDL2Setup.dir\src\Shapes\Shape.cpp.obj CMakeFiles\SDL2Setup.dir\src\Shapes\Triangle.cpp.obj CMakeFiles\SDL2Setup.dir\src\Shapes\AARectangle.cpp.obj CMakeFiles\SDL2Setup.dir\src\Shapes\Circle.cpp.obj CMakeFiles\SDL2Setup.dir\src\App\App.cpp.obj CMakeFiles\SDL2Setup.dir\src\Scenes\ArcadeScene.cpp.obj CMakeFiles\SDL2Setup.dir\src\Input\GameController.cpp.obj CMakeFiles\SDL2Setup.dir\src\Input\InputController.cpp.obj CMakeFiles\SDL2Setup.dir\src\Scenes\GameScene.cpp.obj CMakeFiles\SDL2Setup.dir\src\Utils\FileCommandLoader.cpp.obj CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\BreakOut.cpp.obj CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\Excluder.cpp.obj CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\Paddle.cpp.obj CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\Ball.cpp.obj CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\LevelBoundary.cpp.obj CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\Block.cpp.obj CMakeFiles\SDL2Setup.dir\src\Games\BreakOut\BreakoutGameLevel.cpp.obj CMakeFiles\SDL2Setup.dir\src\Utils\ScoreFileLoader.cpp.obj CMakeFiles\SDL2Setup.dir\src\Games\Tetris\Tetris.cpp.obj CMakeFiles\SDL2Setup.dir\src\Games\Tetris\Playfield.cpp.obj CMakeFiles\SDL2Setup.dir\src\Games\Tetris\Tetromino.cpp.obj CMakeFiles\SDL2Setup.dir\src\Games\Tetris\Collider.cpp.obj CMakeFiles\SDL2Setup.dir\src\Games\Tetris\Blocks.cpp.obj CMakeFiles\SDL2Setup.dir\src\Games\Tetris\Ghost.cpp.obj CMakeFiles\SDL2Setup.dir\src\Graphics\BMPImage.cpp.obj CMakeFiles\SDL2Setup.dir\src\Graphics\SpriteSheet.cpp.obj CMakeFiles\SDL2Setup.dir\src\Graphics\BitmapFont.cpp.obj | S$:\SDL2\cmake\..\lib\x64\SDL2.lib S$:\SDL2\cmake\..\lib\x64\SDL2main.lib
+build ArcadeGame.exe: CXX_EXECUTABLE_LINKER__ArcadeGame_Release CMakeFiles\ArcadeGame.dir\Setup.cpp.obj CMakeFiles\ArcadeGame.dir\src\Graphics\Color.cpp.obj CMakeFiles\ArcadeGame.dir\src\Graphics\ScreenBuffer.cpp.obj CMakeFiles\ArcadeGame.dir\src\Graphics\Screen.cpp.obj CMakeFiles\ArcadeGame.dir\src\Utils\Utils.cpp.obj CMakeFiles\ArcadeGame.dir\src\Utils\Vec2D.cpp.obj CMakeFiles\ArcadeGame.dir\src\Shapes\Line2D.cpp.obj CMakeFiles\ArcadeGame.dir\src\Shapes\Shape.cpp.obj CMakeFiles\ArcadeGame.dir\src\Shapes\Triangle.cpp.obj CMakeFiles\ArcadeGame.dir\src\Shapes\AARectangle.cpp.obj CMakeFiles\ArcadeGame.dir\src\Shapes\Circle.cpp.obj CMakeFiles\ArcadeGame.dir\src\App\App.cpp.obj CMakeFiles\ArcadeGame.dir\src\Scenes\ArcadeScene.cpp.obj CMakeFiles\ArcadeGame.dir\src\Input\GameController.cpp.obj CMakeFiles\ArcadeGame.dir\src\Input\InputController.cpp.obj CMakeFiles\ArcadeGame.dir\src\Scenes\GameScene.cpp.obj CMakeFiles\ArcadeGame.dir\src\Utils\FileCommandLoader.cpp.obj CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\BreakOut.cpp.obj CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\Excluder.cpp.obj CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\Paddle.cpp.obj CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\Ball.cpp.obj CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\LevelBoundary.cpp.obj CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\Block.cpp.obj CMakeFiles\ArcadeGame.dir\src\Games\BreakOut\BreakoutGameLevel.cpp.obj CMakeFiles\ArcadeGame.dir\src\Utils\ScoreFileLoader.cpp.obj CMakeFiles\ArcadeGame.dir\src\Games\Tetris\Tetris.cpp.obj CMakeFiles\ArcadeGame.dir\src\Games\Tetris\Playfield.cpp.obj CMakeFiles\ArcadeGame.dir\src\Games\Tetris\Tetromino.cpp.obj CMakeFiles\ArcadeGame.dir\src\Games\Tetris\Collider.cpp.obj CMakeFiles\ArcadeGame.dir\src\Games\Tetris\Blocks.cpp.obj CMakeFiles\ArcadeGame.dir\src\Games\Tetris\Ghost.cpp.obj CMakeFiles\ArcadeGame.dir\src\Graphics\BMPImage.cpp.obj CMakeFiles\ArcadeGame.dir\src\Graphics\SpriteSheet.cpp.obj CMakeFiles\ArcadeGame.dir\src\Graphics\BitmapFont.cpp.obj | S$:\SDL2\cmake\..\lib\x64\SDL2.lib S$:\SDL2\cmake\..\lib\x64\SDL2main.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
-  LINK_FLAGS = /machine:x64 /INCREMENTAL:NO /subsystem:console
+  LINK_FLAGS = /machine:x64 /INCREMENTAL:NO /subsystem:windows
   LINK_LIBRARIES = S:\SDL2\cmake\..\lib\x64\SDL2.lib  S:\SDL2\cmake\..\lib\x64\SDL2main.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  OBJECT_DIR = CMakeFiles\SDL2Setup.dir
+  OBJECT_DIR = CMakeFiles\ArcadeGame.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\SDL2Setup.dir\
-  TARGET_FILE = SDL2Setup.exe
-  TARGET_IMPLIB = SDL2Setup.lib
-  TARGET_PDB = SDL2Setup.pdb
+  TARGET_COMPILE_PDB = CMakeFiles\ArcadeGame.dir\
+  TARGET_FILE = ArcadeGame.exe
+  TARGET_IMPLIB = ArcadeGame.lib
+  TARGET_PDB = ArcadeGame.pdb
 
 
 #############################################
@@ -367,7 +367,7 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build SDL2Setup: phony SDL2Setup.exe
+build ArcadeGame: phony ArcadeGame.exe
 
 # =============================================================================
 # Folder targets.
@@ -377,7 +377,7 @@ build SDL2Setup: phony SDL2Setup.exe
 #############################################
 # Folder: S:/C++/SDL2/out/build/x64-Release
 
-build all: phony SDL2Setup.exe
+build all: phony ArcadeGame.exe
 
 # =============================================================================
 # Built-in targets

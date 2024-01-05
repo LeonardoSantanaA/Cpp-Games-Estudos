@@ -25,7 +25,7 @@ bool App::Init(uint32_t width, uint32_t height, uint32_t mag) {
 	PushScene(std::move(arcadeScene));
 
 	//temporary
-	/*
+	
 	{
 		std::unique_ptr<Tetris> tetrisGame = std::make_unique<Tetris>();
 
@@ -33,7 +33,7 @@ bool App::Init(uint32_t width, uint32_t height, uint32_t mag) {
 
 		PushScene(std::move(tetrisScene));
 	}
-	*/
+	
 
 
 

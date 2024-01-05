@@ -3,6 +3,7 @@
 #include "../../Shapes/AARectangle.h"
 #include "Blocks.h"
 #include "Collider.h"
+#include "../../App/App.h"
 
 
 #define BLOCKS_WIDTH 10
@@ -30,4 +31,5 @@ public:
 private:
 	static Blocks* nextTetrominoRect;
 	Blocks* backgroundRectBounds = new Blocks(Vec2D(0, 0), GRID_BLOCK_SIZE * BLOCKS_WIDTH + 1, GRID_BLOCK_SIZE * BLOCKS_HEIGHT + 1);
+	Blocks scoreRectBounds = Blocks(Vec2D(0, 0), GRID_BLOCK_SIZE * 5, GRID_BLOCK_SIZE * 4);
 };

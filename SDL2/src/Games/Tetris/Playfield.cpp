@@ -1,6 +1,5 @@
 #include "Playfield.h"
 #include "../../Utils/Vec2D.h"
-#include "../../App/App.h"
 #include "../../Graphics/Screen.h"
 #include "Tetromino.h"
 
@@ -41,6 +40,11 @@ void Playfield::Init() {
 	backgroundRectBounds->MoveTo(Vec2D(GetGridPosition(0, 0).GetTopLeftPoint().GetX(), GetGridPosition(0, 0).GetTopLeftPoint().GetY()));
 	backgroundRectBounds->SetColor(Color(44, 33, 55, 255));
 	backgroundRectBounds->SetFillColor(Color(0, 0, 0, 0));
+
+	scoreRectBounds.MoveTo(Vec2D(Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetTopLeftPoint().GetX() + (Playfield::GRID_BLOCK_SIZE * 2),
+		Playfield::GetGridPosition(0, 12).GetTopLeftPoint().GetY()));
+	scoreRectBounds.SetColor(Color(44, 33, 55, 255));
+	scoreRectBounds.SetFillColor(Color(161, 239, 140, 255));
 }
 
 void Playfield::Update(uint32_t dt) {
@@ -48,6 +52,9 @@ void Playfield::Update(uint32_t dt) {
 }
 
 void Playfield::Draw(Screen& screen) {
+	AARectangle background = { Vec2D::Zero, screen.Width(), screen.Height() };
+	screen.Draw(background, Color(68, 97, 118, 255), true, Color(68, 97, 118, 255));
+
 	for (int xx = 0; xx < BLOCKS_WIDTH; xx++) {
 		for (int yy = 0; yy < BLOCKS_HEIGHT; yy++) {
 			Playfield::grid[xx][yy].Draw(screen);
@@ -55,6 +62,7 @@ void Playfield::Draw(Screen& screen) {
 	}
 	nextTetrominoRect->Draw(screen);
 	backgroundRectBounds->Draw(screen);
+	scoreRectBounds.Draw(screen);
 }
 
 void Playfield::liberarRecursos() {

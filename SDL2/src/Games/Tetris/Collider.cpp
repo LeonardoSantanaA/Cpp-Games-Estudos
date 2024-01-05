@@ -5,6 +5,7 @@
 
 
 std::vector<Tetromino> Collider::tetrominos;
+bool Collider::tetris = false;
 
 void Collider::VerifyScore(std::vector<Tetromino>& tetrominos, std::mutex& mutex) {
 	std::lock_guard<std::mutex> lock(mutex);
@@ -62,9 +63,10 @@ void Collider::VerifyScore(std::vector<Tetromino>& tetrominos, std::mutex& mutex
 	FallTetrominos(tetrominos, higherY, i);
 
 	if (i > 3) {
-		std::cout << "########" << std::endl;
-		std::cout << "#TETRIS#" << std::endl;
-		std::cout << "########" << std::endl;
+		//std::cout << "########" << std::endl;
+		//std::cout << "#TETRIS#" << std::endl;
+		//std::cout << "########" << std::endl;
+		tetris = true;
 		Tetris::IncrementScore(1000);
 	}
 

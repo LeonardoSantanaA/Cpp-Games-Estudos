@@ -12,9 +12,7 @@
     "\\src",
     "\\src\\App",
     "\\src\\Games",
-    "\\src\\Games\\BreakOut",
     "\\src\\Games\\Tetris",
-    "\\src\\Graphics",
     "\\src\\Scenes",
     "\\src\\Utils"
   ],

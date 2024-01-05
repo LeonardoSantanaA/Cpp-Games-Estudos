@@ -62,12 +62,12 @@ void ArcadeScene::Draw(Screen& theScreen) {
 	*/
 	//theScreen.Draw(mTempSS, "5", Vec2D::Zero);
 
-	const BitmapFont& font = App::Singleton().GetFont();
+//	const BitmapFont& font = App::Singleton().GetFont();
 
-	AARectangle rect = { Vec2D::Zero, App::Singleton().Width(), App::Singleton().Height() };
-	Vec2D textDrawPosition;
-	textDrawPosition = font.GetDrawPosition(GetSceneName(), rect, BFXA_CENTER, BFYA_CENTER);
-	theScreen.Draw(font, GetSceneName(), textDrawPosition, Color::Red());
+//	AARectangle rect = { Vec2D::Zero, App::Singleton().Width(), App::Singleton().Height() };
+//	Vec2D textDrawPosition;
+//	textDrawPosition = font.GetDrawPosition(GetSceneName(), rect, BFXA_CENTER, BFYA_CENTER);
+//	theScreen.Draw(font, GetSceneName(), textDrawPosition, Color::Red());
 }
 
 const std::string& ArcadeScene::GetSceneName() const {

@@ -125,6 +125,44 @@ void Tetris::Draw(Screen& screen) {
 	for (auto& next : nextTetromino) {
 		next.Draw(screen);
 	}
+
+	const BitmapFont& font = App::Singleton().GetFont();
+
+	AARectangle rect = { Vec2D(Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetTopLeftPoint().GetX() + (Playfield::GRID_BLOCK_SIZE * 2), 
+		Playfield::GetGridPosition(0, 12).GetTopLeftPoint().GetY()),
+		static_cast<unsigned int>(Playfield::GRID_BLOCK_SIZE) * 5, static_cast<unsigned int>(Playfield::GRID_BLOCK_SIZE) * 4 };
+
+	Vec2D textDrawPosition;
+	textDrawPosition = font.GetDrawPosition(std::to_string(Tetris::GetScore()), rect, BFXA_CENTER, BFYA_CENTER);
+	screen.Draw(font, std::to_string(Tetris::GetScore()), textDrawPosition, Color(102, 113, 215, 255));
+
+	if (Collider::IsTetris()) {
+		if (mCountTetris <= 50) {
+			AARectangle rectTetris = { Vec2D(Playfield::GetGridPosition(BLOCKS_WIDTH - 1, 0).GetTopLeftPoint().GetX() + (Playfield::GRID_BLOCK_SIZE * 2),
+				Playfield::GetGridPosition(0, 8).GetTopLeftPoint().GetY()),
+				static_cast<unsigned int>(Playfield::GRID_BLOCK_SIZE) * 5, static_cast<unsigned int>(Playfield::GRID_BLOCK_SIZE) * 4 };
+
+			Vec2D textDrawPositionTetris;
+			textDrawPositionTetris = font.GetDrawPosition("TETRIS!", rectTetris, BFXA_CENTER, BFYA_CENTER);
+			screen.Draw(font, "TETRIS!", textDrawPositionTetris, Color(255, 4, 255, 255));
+			mCountTetris++;
+		}
+		else {
+			Collider::DesableTetris();
+			mCountTetris = 0;
+		}
+	}
+
+	if (GetTetrisStates() == TetrisGameStates::TET_GAMEOVER) {
+		AARectangle rectBackground = { Vec2D(App::Singleton().Width() / 2 - 50, App::Singleton().Height()/2 - 100), App::Singleton().Width()/2, App::Singleton().Height()/2 - 60};
+		Vec2D textDrawPositionBk;
+		textDrawPositionBk = font.GetDrawPosition("GAME OVER!", rectBackground, BFXA_CENTER, BFYA_CENTER);
+		screen.Draw(font, "GAME OVER!", textDrawPositionBk, Color(180, 13, 45, 255));
+		Vec2D textDrawPositionPressSpace;
+		textDrawPositionPressSpace = font.GetDrawPosition("Press Space to Continue", rectBackground, BFXA_CENTER, BFYA_BOTTOM);
+		screen.Draw(font, "Press Space to Continue", textDrawPositionPressSpace, Color(255, 40, 83, 255));
+	}
+
 }
 
 const std::string& Tetris::GetName() const {
