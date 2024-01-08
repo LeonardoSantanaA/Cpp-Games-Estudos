@@ -904,7 +904,7 @@ void Tetromino::GenerateTetromino() {
 	
 	//DEBUG
 	//randomX = 0;
-	//mType = TetroTypes::I;
+	//mType = TetroTypes::L;
 
 	switch (mType) {
 	case TetroTypes::I:

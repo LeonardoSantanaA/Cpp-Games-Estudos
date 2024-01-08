@@ -10,11 +10,13 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\Assets",
+    "\\src\\App",
     "\\src\\Games",
+    "\\src\\Games\\BreakOut",
     "\\src\\Games\\Tetris",
+    "\\src\\Graphics",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\src\\Assets\\CantRotate.wav",
+  "SelectedNode": "\\src\\Games\\Tetris\\Tetris.cpp",
   "PreviewInSolutionExplorer": false
 }

@@ -27,11 +27,11 @@ bool App::Init(uint32_t width, uint32_t height, uint32_t mag) {
 	//temporary
 	
 	{
-		std::unique_ptr<Tetris> tetrisGame = std::make_unique<Tetris>();
+		std::unique_ptr<BreakOut> breakoutGame = std::make_unique<BreakOut>();
 
-		std::unique_ptr<GameScene> tetrisScene = std::make_unique<GameScene>(std::move(tetrisGame));
+		std::unique_ptr<GameScene> brekaoutScene = std::make_unique<GameScene>(std::move(breakoutGame));
 
-		PushScene(std::move(tetrisScene));
+		PushScene(std::move(brekaoutScene));
 	}
 	
 
