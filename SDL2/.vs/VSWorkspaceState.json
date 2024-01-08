@@ -12,8 +12,8 @@
     "\\src",
     "\\src\\App",
     "\\src\\Games",
-    "\\src\\Input"
+    "\\src\\Scenes"
   ],
-  "SelectedNode": "\\src\\App\\App.cpp",
+  "SelectedNode": "\\src\\Scenes\\ArcadeScene.h",
   "PreviewInSolutionExplorer": false
 }
