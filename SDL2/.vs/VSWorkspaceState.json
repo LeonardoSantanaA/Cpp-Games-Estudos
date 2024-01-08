@@ -12,11 +12,8 @@
     "\\src",
     "\\src\\App",
     "\\src\\Games",
-    "\\src\\Games\\BreakOut",
-    "\\src\\Games\\Tetris",
-    "\\src\\Graphics",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\src\\Games\\Tetris\\Tetris.cpp",
+  "SelectedNode": "\\src\\App\\Button.cpp",
   "PreviewInSolutionExplorer": false
 }
