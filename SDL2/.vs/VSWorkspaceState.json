@@ -12,8 +12,8 @@
     "\\src",
     "\\src\\App",
     "\\src\\Games",
-    "\\src\\Utils"
+    "\\src\\Input"
   ],
-  "SelectedNode": "\\src\\App\\Button.cpp",
+  "SelectedNode": "\\src\\App\\App.cpp",
   "PreviewInSolutionExplorer": false
 }
