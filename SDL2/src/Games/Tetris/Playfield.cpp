@@ -15,7 +15,7 @@ Playfield::Playfield() {
 }
 
 Playfield::~Playfield() {
-	Playfield::liberarRecursos();
+	//Playfield::liberarRecursos();
 	delete backgroundRectBounds;
 	backgroundRectBounds = nullptr;
 }

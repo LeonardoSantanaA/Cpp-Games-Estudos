@@ -20,6 +20,12 @@ enum TetrisGameStates {
 
 class Tetris: public Game {
 public:
+	~Tetris() {
+		//Playfield::liberarRecursos();
+		mScore = 0;
+		Sound::QuitMixer();
+	}
+
 	static std::vector<Tetromino> nextTetromino;
 
 	virtual void Init(GameController& controller) override;

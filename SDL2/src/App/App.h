@@ -8,6 +8,7 @@
 #include "../Scenes/Scene.h"
 #include "../Input/InputController.h"
 #include "../Graphics/BitmapFont.h"
+#include "../Utils/Sound.h"
 
 struct SDL_Window;
 
@@ -21,7 +22,7 @@ public:
 	inline uint32_t Height() const { return mScreen.Height(); }
 	
 	void PushScene(std::unique_ptr<Scene> scene);
-	void PopScene(std::unique_ptr<Scene> scene);
+	void PopScene();
 	Scene* TopScene(); //current scene
 
 	static const std::string& GetBasePath();
@@ -35,4 +36,7 @@ private:
 	InputController mInputController;
 
 	BitmapFont mFont;
+
+	Sound mSound;
+	//int themeMusic;
 };

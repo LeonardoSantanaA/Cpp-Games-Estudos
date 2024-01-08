@@ -21,13 +21,20 @@ Blocks::Blocks(const Vec2D& topLeft, const Vec2D& bottomRight) {
 }
 
 void Blocks::Draw(Screen& screen){
-	screen.Draw(rect, color, true, fillColor);
+	if (this != nullptr) {
+		screen.Draw(rect, color, true, fillColor);
+	}
 }
 
 void Blocks::MoveTo(Vec2D pos) {
-	rect.MoveTo(pos);
+	if (this != nullptr) {
+		rect.MoveTo(pos);
+	}
+	
 }
 
 void Blocks::MoveBy(Vec2D offset) {
-	rect.MoveBy(offset);
+	if (this != nullptr) {
+		rect.MoveBy(offset);
+	}
 }

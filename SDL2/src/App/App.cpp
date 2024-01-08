@@ -1,9 +1,6 @@
 #include "App.h"
 #include <iostream>
 #include "../Scenes/ArcadeScene.h"
-#include "../Scenes/GameScene.h"
-#include "../Games/BreakOut/BreakOut.h"
-#include "../Games/Tetris/Tetris.h"
 #include <cassert>
 
 App& App::Singleton() {
@@ -21,11 +18,10 @@ bool App::Init(uint32_t width, uint32_t height, uint32_t mag) {
 	mScreen.SetClearColor(Color(0, 0, 0, 255));
 
 	std::unique_ptr<ArcadeScene> arcadeScene = std::make_unique<ArcadeScene>();
-
 	PushScene(std::move(arcadeScene));
 
 	//temporary
-	
+	/*
 	{
 		std::unique_ptr<BreakOut> breakoutGame = std::make_unique<BreakOut>();
 
@@ -33,9 +29,10 @@ bool App::Init(uint32_t width, uint32_t height, uint32_t mag) {
 
 		PushScene(std::move(brekaoutScene));
 	}
+	*/
+
+	int themeMusic = mSound.LoadMusic("MenuTheme.wav");
 	
-
-
 
 	return mnoptrWindow != nullptr;
 }
@@ -101,7 +98,7 @@ void App::PushScene(std::unique_ptr<Scene> scene) {
 	}
 }
 
-void App::PopScene(std::unique_ptr<Scene> scene) {
+void App::PopScene() {
 	if (mSceneStack.size() > 1) {
 		mSceneStack.pop_back();
 	}
@@ -115,6 +112,11 @@ void App::PopScene(std::unique_ptr<Scene> scene) {
 Scene* App::TopScene() { //current scene
 	if (mSceneStack.empty()) {
 		return nullptr;
+	}
+
+	if (mSceneStack.size() == 1 && Mix_PlayingMusic() == 0) {
+		int themeMusic = mSound.LoadMusic("MenuTheme.wav");
+		mSound.PlayMusic(themeMusic);
 	}
 
 	return mSceneStack.back().get();

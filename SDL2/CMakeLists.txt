@@ -48,6 +48,7 @@ add_executable(ArcadeGame WIN32
 "src/Graphics/SpriteSheet.h" "src/Graphics/SpriteSheet.cpp" 
 "src/Graphics/BitmapFont.h" "src/Graphics/BitmapFont.cpp"   
 "src/Utils/Sound.h" "src/Utils/Sound.cpp" "src/App/Button.h" 
-"src/App/Button.cpp" "src/Scenes/ButtonOptionsScene.cpp" "src/Scenes/NotImplementedScene.cpp")
+"src/App/Button.cpp" "src/Scenes/ButtonOptionsScene.cpp" 
+"src/Scenes/NotImplementedScene.h" "src/Scenes/NotImplementedScene.cpp")
 
 target_link_libraries(ArcadeGame SDL2::SDL2 SDL2::SDL2main SDL2_mixer::SDL2_mixer)

@@ -12,7 +12,6 @@ int Sound::LoadMusic(std::string filename) {
 	Mix_Music* m = nullptr;
 	std::string path = App::Singleton().GetBasePath() + std::string("Assets/") + filename;
 	m = Mix_LoadMUS(path.c_str());
-
 	if (m == nullptr) {
 		std::cout << "Failed to load music. Error: " << Mix_GetError() << std::endl;
 	}

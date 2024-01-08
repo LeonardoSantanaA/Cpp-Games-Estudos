@@ -27,7 +27,6 @@ void BreakoutGameLevel::Update(uint32_t dt, Ball& ball) {
 
 	for (auto& block : mBlocks) {
 		BoundaryEdge edge;
-
 		if (!block.IsDestroyed() &&
 			block.HasCollided(ball.GetBoundingRect(), edge)) {
 			collidedBlocks.push_back(block);

@@ -85,7 +85,17 @@ void Tetris::Init(GameController& controller) {
 		};
 	controller.AddInputActionForKey(rotateKeyAction);
 	
-
+	ButtonAction backAction;
+	backAction.key = GameController::CancelKey();
+	backAction.action = [this](uint32_t dt, InputState state)
+		{
+			if (GameController::IsPressed(state)) {
+				Collider::tetrominos.clear();
+				App::Singleton().PopScene();
+				
+			}
+		};
+	controller.AddInputActionForKey(backAction);
 }
 
 constexpr int UPDATE_DELAY = 700;

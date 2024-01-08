@@ -8,7 +8,7 @@ ButtonOptionsScene::ButtonOptionsScene(const std::vector<std::string>& optionNam
 {
 	const BitmapFont& font = App::Singleton().GetFont();
 
-	for (size_t i = 0; optionNames.size(); ++i) {
+	for (size_t i = 0; i < optionNames.size(); ++i) {
 		mButtons.push_back(Button(font, textColor));
 		mButtons.back().SetButtonText(optionNames[i]);
 	}

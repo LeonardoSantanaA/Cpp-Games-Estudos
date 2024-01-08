@@ -2,11 +2,8 @@
 
 #include "Scene.h"
 #include "../Graphics/Screen.h"
-#include "../Shapes/Line2D.h"
-#include "../Shapes/AARectangle.h"
-#include "../Shapes/Triangle.h"
-#include "../Shapes/Circle.h"
-#include "../Graphics/Color.h"
+#include "../Utils/Sound.h"
+#include "ButtonOptionsScene.h"
 #include <memory>
 
 enum eGame {
@@ -19,7 +16,7 @@ enum eGame {
 
 class Screen;
 
-class ArcadeScene : public Scene {
+class ArcadeScene : public ButtonOptionsScene {
 public:
 	ArcadeScene();
 	virtual void Init() override;
