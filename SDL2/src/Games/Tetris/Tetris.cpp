@@ -91,8 +91,8 @@ void Tetris::Init(GameController& controller) {
 		{
 			if (GameController::IsPressed(state)) {
 				Collider::tetrominos.clear();
+				scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", InputController::GetName().c_str(), GetScore());
 				App::Singleton().PopScene();
-				
 			}
 		};
 	controller.AddInputActionForKey(backAction);
@@ -200,7 +200,7 @@ void Tetris::GenerateNextTetromino() {
 }
 
 void Tetris::RestartGame() {
-	scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", "ABC", GetScore());
+	scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", InputController::GetName().c_str(), GetScore());
 	for (auto& tetromino : Collider::tetrominos) {
 		tetromino.GetRectangles().clear();
 	}

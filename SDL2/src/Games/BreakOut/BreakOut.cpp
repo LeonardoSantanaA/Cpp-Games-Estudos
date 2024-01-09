@@ -105,6 +105,7 @@ void BreakOut::Init(GameController& controller) {
 		{
 			if (mGameState == IN_SERVE || mGameState == IN_GAME_OVER) {
 				if (GameController::IsPressed(state)) {
+					scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", InputController::GetName().c_str(), GetLevelScore());
 					App::Singleton().PopScene();
 				}
 			}
@@ -144,14 +145,14 @@ void BreakOut::Update(uint32_t dt) {
 			}
 			else {
 				mScore = GetCurrentLevel().GetLevelScore();
-				scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", "ABC", GetLevelScore());
+				scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", InputController::GetName().c_str(), GetLevelScore());
 				mGameState = IN_GAME_OVER;
 				GetCurrentLevel().SetLevelScore(0);
 			}
 		}
 		else if (GetCurrentLevel().IsLevelComplete()) {
 			mScore = GetCurrentLevel().GetLevelScore();
-			scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", "ABC", GetLevelScore());
+			scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", InputController::GetName().c_str(), GetLevelScore());
 			mCurrentLevel = (mCurrentLevel + 1) % mLevels.size();
 			ResetGame(mCurrentLevel);
 			GetCurrentLevel().SetLevelScore(mScore);

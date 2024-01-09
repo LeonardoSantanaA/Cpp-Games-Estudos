@@ -11,6 +11,8 @@ enum eGame {
 	BREAK_OUT,
 	ASTEROIDS,
 	PACMAN,
+	SELECT_NAME,
+	SHOW_SCORES,
 	NUM_GAMES
 };
 
@@ -26,5 +28,5 @@ public:
 
 private:
 	std::unique_ptr<Scene> GetScene(eGame game);
-
+	bool cantPlay = true;
 };

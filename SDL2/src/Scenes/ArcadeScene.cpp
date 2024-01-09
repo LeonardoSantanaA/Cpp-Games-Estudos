@@ -3,21 +3,24 @@
 #include "../Input/GameController.h"
 #include "../App/App.h"
 #include "GameScene.h"
-
 #include "NotImplementedScene.h"
+#include "SelectNameScene.h"
+#include "ShowScoreScene.h"
 #include "../Games/BreakOut/BreakOut.h"
 #include "../Games/Tetris/Tetris.h"
 
-
-
 ArcadeScene::ArcadeScene():
-	ButtonOptionsScene({ "Tetris", "Break Out!", "Asteroids", "Pac-man"}, Color::Cyan())
+	ButtonOptionsScene({ "Select Name", "Tetris", "Break Out!", "Asteroids", "Pac-man", "Show Scores"}, Color::Cyan())
 {
 }
 
 void ArcadeScene::Init() {
 	
 	std::vector<Button::ButtonAction> actions;
+
+	actions.push_back([this] {
+		App::Singleton().PushScene(GetScene(SELECT_NAME));
+		});
 
 	actions.push_back([this] {
 		App::Singleton().PushScene(GetScene(TETRIS));
@@ -35,13 +38,23 @@ void ArcadeScene::Init() {
 		App::Singleton().PushScene(GetScene(PACMAN));
 		});
 
+	actions.push_back([this] {
+		App::Singleton().PushScene(GetScene(SHOW_SCORES));
+		});
+
 	SetButtonActions(actions);
 
 	ButtonOptionsScene::Init();
 
 }
 void ArcadeScene::Update(uint32_t dt) {
-
+	if (InputController::GetName().size() < 1) {
+		cantPlay = true;
+		//std::cout << "nao pode jogar" << std::endl;
+	}
+	else {
+		cantPlay = false;
+	}
 }
 
 void ArcadeScene::Draw(Screen& theScreen) {
@@ -67,6 +80,25 @@ void ArcadeScene::Draw(Screen& theScreen) {
 
 	ButtonOptionsScene::Draw(theScreen);
 
+	if (cantPlay) {
+		const BitmapFont& font = App::Singleton().GetFont();
+
+		Size sizeDrawCantPlay;
+		sizeDrawCantPlay = font.GetSizeOf("Type your name first!");
+		AARectangle rectCantPlay = { Vec2D(0, sizeDrawCantPlay.height), App::Singleton().Width(), App::Singleton().Height() / 2 };
+		Vec2D textDrawCantPlay;
+		textDrawCantPlay = font.GetDrawPosition("Type your name first!", rectCantPlay, BFXA_CENTER, BFYA_TOP);
+		//theScreen.Draw(rectLine, Color::White());
+		theScreen.Draw(font, "Type your name first!", textDrawCantPlay, Color::Red());
+
+	}
+	if (InputController::GetName().size() >= 1) {
+		const BitmapFont& font = App::Singleton().GetFont();
+
+		AARectangle rect = { Vec2D::Zero, App::Singleton().Width(), App::Singleton().Height()};
+		Vec2D textDrawName = font.GetDrawPosition("Player: " + InputController::GetName(), rect, BFXA_LEFT, BFYA_BOTTOM);
+		theScreen.Draw(font, "Player: " + InputController::GetName(), textDrawName, Color::Red());
+	}
 }
 
 const std::string& ArcadeScene::GetSceneName() const {
@@ -76,23 +108,44 @@ const std::string& ArcadeScene::GetSceneName() const {
 
 std::unique_ptr<Scene> ArcadeScene::GetScene(eGame game) {
 	Sound::QuitMixer();
+
 	switch (game) {
+		case SELECT_NAME:
+		{
+			std::unique_ptr<Scene> selectNameScene = std::make_unique<SelectNameScene>();
+
+			InputController::ClearName();
+			return selectNameScene;
+		}
+		break;
+
 		case TETRIS:
 		{
-			std::unique_ptr<Tetris> tetrisGame = std::make_unique<Tetris>();
+			if (!cantPlay) {
+				std::unique_ptr<Tetris> tetrisGame = std::make_unique<Tetris>();
 
-			std::unique_ptr<GameScene> tetrisScene = std::make_unique<GameScene>(std::move(tetrisGame));
-			return tetrisScene;
+				std::unique_ptr<GameScene> tetrisScene = std::make_unique<GameScene>(std::move(tetrisGame));
+				return tetrisScene;
+			}
+			else {
+				return 0;
+			}
+			
 		}
 		break;
 
 		case BREAK_OUT:
 		{
-			std::unique_ptr<BreakOut> breakoutGame = std::make_unique<BreakOut>();
+			if (!cantPlay) {
+				std::unique_ptr<BreakOut> breakoutGame = std::make_unique<BreakOut>();
 
-			std::unique_ptr<GameScene> breakoutScene = std::make_unique<GameScene>(std::move(breakoutGame));
+				std::unique_ptr<GameScene> breakoutScene = std::make_unique<GameScene>(std::move(breakoutGame));
 
-			return breakoutScene;
+				return breakoutScene;
+			}
+			else {
+				return 0;
+			}
 		}
 		break;
 
@@ -105,6 +158,14 @@ std::unique_ptr<Scene> ArcadeScene::GetScene(eGame game) {
 		case PACMAN:
 		{
 
+		}
+		break;
+
+		case SHOW_SCORES:
+		{
+			std::unique_ptr<Scene> showScoresScene = std::make_unique<ShowScoreScene>();
+
+			return showScoresScene;
 		}
 		break;
 

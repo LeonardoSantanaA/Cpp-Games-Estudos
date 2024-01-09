@@ -51,6 +51,7 @@ void App::Run() {
 			running = false;
 		});
 
+		//SDL_StartTextInput();
 
 		while (running) {
 			currentTick = SDL_GetTicks();
@@ -85,6 +86,8 @@ void App::Run() {
 
 			mScreen.SwapScreens();
 		}
+
+		//SDL_StopTextInput();
 	}
 }
 

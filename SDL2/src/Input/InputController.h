@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include "InputAction.h"
 
 class GameController;
@@ -13,8 +14,11 @@ public:
 
 	void SetGameController(GameController* controller);
 
+	static inline std::string GetName() { return mName; }
+	static inline void ClearName() { mName.clear(); }
+
 private:
 	InputAction mQuit;
 	GameController* mnoptrCurrentController;
-
+	static std::string mName;
 };

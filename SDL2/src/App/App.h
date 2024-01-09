@@ -28,6 +28,8 @@ public:
 	static const std::string& GetBasePath();
 	inline const BitmapFont& GetFont() const { return mFont; }
 
+
+
 private:
 	Screen mScreen;
 	SDL_Window* mnoptrWindow;

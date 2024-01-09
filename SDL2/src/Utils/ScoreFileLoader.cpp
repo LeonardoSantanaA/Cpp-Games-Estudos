@@ -1,8 +1,11 @@
 #include "ScoreFileLoader.h"
 #include <iostream>
+#include <string>
 #include <cstring>
 #include <fstream>
 #include <algorithm> //for swap and sort functions
+
+Score ScoreFileLoader::scores[SCORES_REAL_SIZE];
 
 void ScoreFileLoader::LoadScoreFileLoader(const std::string& scorePath) {
 	std::ifstream inFile;
@@ -37,13 +40,15 @@ bool ScoreFileLoader::VerifyScoreToWrite(int& index, int score) {
 
 
 std::string ScoreFileLoader::PrintName(const char* name) {
+	//std::cout << "esse metodo aqui!" << std::endl;
 	int i = 0;
 	std::string strName = "";
 	while (name[i] != '\0') {
 		strName += name[i];
 		i++;
 	}
-	return strName;
+	//return strName;
+	return static_cast<std::string>(name);
 }
 
 void ScoreFileLoader::SaveScoreToFile(const std::string& scorePath, const char* name, int score) {
@@ -73,7 +78,7 @@ void ScoreFileLoader::SaveScoreToFile(const std::string& scorePath, const char* 
 
 	std::cout <<  "/////Print After Save/////" << std::endl;
 	for (int i = 0; i < SCORES_TO_SHOW; ++i) {
-		std::cout << PrintName(name) << " - " << scores[i].score << std::endl;
+		std::cout << scores[i].name << " - " << scores[i].score << std::endl;
 	}
 	std::cout << "///////////////////////////" << std::endl;
 }

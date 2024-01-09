@@ -1,6 +1,9 @@
 #include "InputController.h"
 #include "GameController.h"
+#include <iostream>
 #include <SDL.h>
+
+std::string InputController::mName = "";
 
 InputController::InputController(): mQuit(nullptr), mnoptrCurrentController(nullptr) {
 
@@ -8,16 +11,27 @@ InputController::InputController(): mQuit(nullptr), mnoptrCurrentController(null
 
 void InputController::Init(InputAction quitAction) {
 	mQuit = quitAction;
+	SDL_StopTextInput();
 }
 
 void InputController::Update(uint32_t dt) {
 	SDL_Event sdlEvent;
+
+
 
 	while (SDL_PollEvent(&sdlEvent)) {
 		switch (sdlEvent.type) {
 		case SDL_QUIT:
 		{
 			mQuit(dt, SDL_PRESSED);
+		}
+		break;
+
+		case SDL_TEXTINPUT:
+		{
+			if (mName.size() <= 3) {
+				mName += sdlEvent.text.text;
+			}
 		}
 		break;
 
