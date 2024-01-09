@@ -11,12 +11,10 @@
     "",
     "\\src",
     "\\src\\App",
-    "\\src\\Assets",
     "\\src\\Games",
     "\\src\\Games\\BreakOut",
-    "\\src\\Games\\Tetris",
-    "\\src\\Graphics",
-    "\\src\\Scenes"
+    "\\src\\Input"
   ],
+  "SelectedNode": "\\src\\Scenes",
   "PreviewInSolutionExplorer": false
 }
