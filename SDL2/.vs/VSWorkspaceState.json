@@ -13,8 +13,9 @@
     "\\src\\App",
     "\\src\\Graphics",
     "\\src\\Input",
-    "\\src\\Scenes"
+    "\\src\\Scenes",
+    "\\src\\Utils"
   ],
-  "SelectedNode": "\\src\\Graphics\\Animation.cpp",
+  "SelectedNode": "\\src\\Utils\\FileCommandLoader.cpp",
   "PreviewInSolutionExplorer": false
 }

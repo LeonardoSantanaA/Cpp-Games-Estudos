@@ -10,7 +10,7 @@ struct AnimationFrame {
 	std::string overlay = "";
 	Color frameColor = Color::White();
 	Color overlayColor = Color::White();
-	Size size;
+	Vec2D size;
 	Vec2D offset = Vec2D::Zero;
 	int frameColorSet = 0;
 };
@@ -33,9 +33,9 @@ public:
 	inline const std::string& GetName() const { return mAnimationName; }
 
 	inline void SetSize(const Vec2D& size) { mSize = size; }
-	inline Vec2D GetSize() const { Return mSize; }
+	inline Vec2D GetSize() const { return mSize; }
 
-	inline SetFPS(int fps) { mFPS = fps; }
+	inline void SetFPS(int fps) { mFPS = fps; }
 	inline int GetFPS() const { return mFPS; }
 
 	inline void SetOverlayName(const std::string& overlayName) { mOverlay = overlayName; }
@@ -45,6 +45,8 @@ public:
 	inline size_t GetNumFrameColors() const { return mFrameColors.size(); }
 	inline size_t GetNumOverlayColors() const { return mOverlayColors.size(); }
 	inline size_t GetNumFrameOffsets() const { return mFrameOffsets.size(); }
+
+	static std::vector<Animation> Animation::LoadAnimations(const std::string& animationFilePath);
 
 private:
 	std::string mAnimationName;

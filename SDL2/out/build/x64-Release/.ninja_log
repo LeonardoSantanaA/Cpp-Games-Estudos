@@ -76,3 +76,5 @@
 1146	2178	7265151648367959	CMakeFiles/ArcadeGame.dir/src/Scenes/NotImplementedScene.cpp.obj	dad5e817ea83ce16
 7	625	7265191846400453	CMakeFiles/ArcadeGame.dir/src/Scenes/SelectNameScene.cpp.obj	23b6be4ae5107bdc
 17	670	7265218533735595	CMakeFiles/ArcadeGame.dir/src/Scenes/ShowScoreScene.cpp.obj	758630791284ef34
+3	740	7267654888283233	CMakeFiles/ArcadeGame.dir/src/Graphics/Animation.cpp.obj	34980c34f84d7cda
+740	3751	7267654918411875	ArcadeGame.exe	b89ba9577cbd8982
