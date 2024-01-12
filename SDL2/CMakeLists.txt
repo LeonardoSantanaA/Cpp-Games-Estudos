@@ -51,6 +51,6 @@ add_executable(ArcadeGame  #WIN32
 "src/App/Button.cpp" "src/Scenes/ButtonOptionsScene.cpp" 
 "src/Scenes/NotImplementedScene.h" "src/Scenes/NotImplementedScene.cpp" 
 "src/Scenes/SelectNameScene.h" "src/Scenes/SelectNameScene.cpp"
-"src/Scenes/ShowScoreScene.h" "src/Scenes/ShowScoreScene.cpp" "src/Graphics/Animation.cpp" "src/Graphics/AnimationPlayer.cpp")
+"src/Scenes/ShowScoreScene.h" "src/Scenes/ShowScoreScene.cpp" "src/Graphics/Animation.cpp" "src/Graphics/AnimationPlayer.cpp" "src/Graphics/AnimatedSprite.h" "src/Graphics/AnimatedSprite.cpp")
 
 target_link_libraries(ArcadeGame SDL2::SDL2 SDL2::SDL2main SDL2_mixer::SDL2_mixer)

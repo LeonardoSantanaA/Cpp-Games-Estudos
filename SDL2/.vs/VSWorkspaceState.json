@@ -16,6 +16,6 @@
     "\\src\\Scenes",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\CMakeLists.txt",
+  "SelectedNode": "\\src\\Scenes\\ArcadeScene.cpp",
   "PreviewInSolutionExplorer": false
 }

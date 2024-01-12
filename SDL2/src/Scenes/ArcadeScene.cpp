@@ -48,14 +48,15 @@ void ArcadeScene::Init() {
 
 	//temp
 	{
-		mAnimationPlayer.Init(App::Singleton().GetBasePath() + "Assets/Pacman_animations.txt");
 		mSpriteSheet.Load("PacmanSprites");
-		mAnimationPlayer.Play("move_left", true);
+		mSprite.Init(App::Singleton().GetBasePath() + "Assets/Pacman_animations.txt", mSpriteSheet);
+
+		mSprite.SetAnimation("death", true);
 	}
 
 }
 void ArcadeScene::Update(uint32_t dt) {
-	mAnimationPlayer.Update(dt);
+	mSprite.Update(dt);
 
 	if (InputController::GetName().size() < 1) {
 		cantPlay = true;
@@ -86,11 +87,7 @@ void ArcadeScene::Draw(Screen& theScreen) {
 //	textDrawPosition = font.GetDrawPosition(GetSceneName(), rect, BFXA_CENTER, BFYA_CENTER);
 //	theScreen.Draw(font, GetSceneName(), textDrawPosition, Color::Red());
 
-	AnimationFrame frame = mAnimationPlayer.GetCurrentAnimationFrame();
-
-	Color frameColor = frame.frameColor;
-
-	theScreen.Draw(mSpriteSheet, frame.frame, frame.offset, frameColor);
+	mSprite.Draw(theScreen);
 
 	ButtonOptionsScene::Draw(theScreen);
 	

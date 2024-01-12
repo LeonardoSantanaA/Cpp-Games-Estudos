@@ -3,7 +3,7 @@
 #include "Scene.h"
 #include "../Graphics/Screen.h"
 #include "../Utils/Sound.h"
-#include "../Graphics/AnimationPlayer.h"
+#include "../Graphics/AnimatedSprite.h"
 #include "../Graphics/SpriteSheet.h"
 #include "ButtonOptionsScene.h"
 #include <memory>
@@ -33,6 +33,6 @@ private:
 	bool cantPlay = true;
 
 	//temp
-	AnimationPlayer mAnimationPlayer;
+	AnimatedSprite mSprite;
 	SpriteSheet mSpriteSheet;
 };
