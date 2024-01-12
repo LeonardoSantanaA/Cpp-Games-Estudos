@@ -11,11 +11,11 @@
     "",
     "\\src",
     "\\src\\App",
+    "\\src\\Assets",
     "\\src\\Graphics",
-    "\\src\\Input",
     "\\src\\Scenes",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\src\\Utils\\FileCommandLoader.cpp",
+  "SelectedNode": "\\CMakeLists.txt",
   "PreviewInSolutionExplorer": false
 }

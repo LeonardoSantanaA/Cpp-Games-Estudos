@@ -84,7 +84,7 @@ SDL_Window* Screen::Init(uint32_t w, uint32_t h, uint32_t mag, bool fast) {
 		//mPixelFormat = SDL_AllocFormat(SDL_GetWindowPixelFormat(moptrWindow));
 
 		//its returning RGB888, i must force it to use the RGBA8888 format.
-		mPixelFormat = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
+		mPixelFormat = SDL_AllocFormat(SDL_PIXELFORMAT_ARGB8888);
 		//SDL_PixelFormat* pixelFormat = mnoptrWindowSurface->format; 
 		//std::cout << "pixel format is: " << SDL_GetPixelFormatName(pixelFormat->format) << std::endl;
 

@@ -3,6 +3,8 @@
 #include "Scene.h"
 #include "../Graphics/Screen.h"
 #include "../Utils/Sound.h"
+#include "../Graphics/AnimationPlayer.h"
+#include "../Graphics/SpriteSheet.h"
 #include "ButtonOptionsScene.h"
 #include <memory>
 
@@ -29,4 +31,8 @@ public:
 private:
 	std::unique_ptr<Scene> GetScene(eGame game);
 	bool cantPlay = true;
+
+	//temp
+	AnimationPlayer mAnimationPlayer;
+	SpriteSheet mSpriteSheet;
 };

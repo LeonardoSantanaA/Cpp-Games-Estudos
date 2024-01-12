@@ -46,11 +46,19 @@ void ArcadeScene::Init() {
 
 	ButtonOptionsScene::Init();
 
+	//temp
+	{
+		mAnimationPlayer.Init(App::Singleton().GetBasePath() + "Assets/Pacman_animations.txt");
+		mSpriteSheet.Load("PacmanSprites");
+		mAnimationPlayer.Play("move_left", true);
+	}
+
 }
 void ArcadeScene::Update(uint32_t dt) {
+	mAnimationPlayer.Update(dt);
+
 	if (InputController::GetName().size() < 1) {
 		cantPlay = true;
-		//std::cout << "nao pode jogar" << std::endl;
 	}
 	else {
 		cantPlay = false;
@@ -78,8 +86,14 @@ void ArcadeScene::Draw(Screen& theScreen) {
 //	textDrawPosition = font.GetDrawPosition(GetSceneName(), rect, BFXA_CENTER, BFYA_CENTER);
 //	theScreen.Draw(font, GetSceneName(), textDrawPosition, Color::Red());
 
-	ButtonOptionsScene::Draw(theScreen);
+	AnimationFrame frame = mAnimationPlayer.GetCurrentAnimationFrame();
 
+	Color frameColor = frame.frameColor;
+
+	theScreen.Draw(mSpriteSheet, frame.frame, frame.offset, frameColor);
+
+	ButtonOptionsScene::Draw(theScreen);
+	
 	if (cantPlay) {
 		const BitmapFont& font = App::Singleton().GetFont();
 
@@ -99,7 +113,11 @@ void ArcadeScene::Draw(Screen& theScreen) {
 		Vec2D textDrawName = font.GetDrawPosition("Player: " + InputController::GetName(), rect, BFXA_LEFT, BFYA_BOTTOM);
 		theScreen.Draw(font, "Player: " + InputController::GetName(), textDrawName, Color::Red());
 	}
+	
+
 }
+
+
 
 const std::string& ArcadeScene::GetSceneName() const {
 	static std::string sceneName = "Arcade";
