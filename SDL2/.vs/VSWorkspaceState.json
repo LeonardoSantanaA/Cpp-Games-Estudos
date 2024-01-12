@@ -11,10 +11,10 @@
     "",
     "\\src",
     "\\src\\App",
-    "\\src\\Games",
-    "\\src\\Games\\BreakOut",
-    "\\src\\Input"
+    "\\src\\Graphics",
+    "\\src\\Input",
+    "\\src\\Scenes"
   ],
-  "SelectedNode": "\\src\\Scenes",
+  "SelectedNode": "\\src\\Graphics\\Animation.cpp",
   "PreviewInSolutionExplorer": false
 }

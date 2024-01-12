@@ -29,7 +29,9 @@ void InputController::Update(uint32_t dt) {
 
 		case SDL_TEXTINPUT:
 		{
-			if (mName.size() <= 3) {
+			std::cout << mName.size();
+			if (mName.size() <= 2) {
+				
 				mName += sdlEvent.text.text;
 			}
 		}

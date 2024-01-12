@@ -105,7 +105,6 @@ void BreakOut::Init(GameController& controller) {
 		{
 			if (mGameState == IN_SERVE || mGameState == IN_GAME_OVER) {
 				if (GameController::IsPressed(state)) {
-					scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", InputController::GetName().c_str(), GetLevelScore());
 					App::Singleton().PopScene();
 				}
 			}
