@@ -31,8 +31,9 @@ public:
 private:
 	std::unique_ptr<Scene> GetScene(eGame game);
 	bool cantPlay = true;
-
+	
 	//temp
+	float angle = 0;
 	AnimatedSprite mSprite;
 	SpriteSheet mSpriteSheet;
 };

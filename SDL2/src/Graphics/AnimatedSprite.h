@@ -29,12 +29,16 @@ public:
 	inline const Color& GetColor() const { return mColor; }
 	const SpriteSheet* GetSpriteSheet() const { return mnoptrSpriteSheet; }
 
+	inline void SetAngle(float angle) { mAngle = angle; }
+	inline void SetRotate(bool rotate) { mRotate = rotate; }
 
 private:
 	const SpriteSheet* mnoptrSpriteSheet;
 	AnimationPlayer mAnimationPlayer;
 	Vec2D mPosition;
 	Color mColor;
+	float mAngle;
+	bool mRotate;
 
 };
 

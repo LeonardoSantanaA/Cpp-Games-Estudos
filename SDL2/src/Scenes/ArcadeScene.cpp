@@ -52,11 +52,15 @@ void ArcadeScene::Init() {
 		mSprite.Init(App::Singleton().GetBasePath() + "Assets/Pacman_animations.txt", mSpriteSheet);
 
 		mSprite.SetAnimation("death", true);
+		mSprite.SetRotate(true);
 	}
 
 }
 void ArcadeScene::Update(uint32_t dt) {
 	mSprite.Update(dt);
+
+	angle -= 0.1;
+	mSprite.SetAngle(angle);
 
 	if (InputController::GetName().size() < 1) {
 		cantPlay = true;

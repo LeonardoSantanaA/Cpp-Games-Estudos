@@ -267,7 +267,7 @@ void  Screen::RotateLine(Line2D& line, float radian, const Color& color) {
 	Draw(line, color);
 }
 
-void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos, const Color& overlayColor) {
+void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos, const Color& overlayColor, bool rotate, float angle) {
 	float rVal = static_cast<float>(overlayColor.GetRed()) / 255.0f;
 	float gVal = static_cast<float>(overlayColor.GetGreen()) / 255.0f;
 	float bVal = static_cast<float>(overlayColor.GetBlue()) / 255.0f;
@@ -283,6 +283,14 @@ void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos,
 	Vec2D bottomLeft = pos + Vec2D(0, height);
 	Vec2D bottomRight = pos + Vec2D(width, height);
 
+	if(rotate){
+		topLeft.Rotate(angle, Vec2D(sprite.width / 2, sprite.height / 2));
+		topRight.Rotate(angle, Vec2D(sprite.width / 2, sprite.height / 2));
+		bottomLeft.Rotate(angle, Vec2D(sprite.width / 2, sprite.height / 2));
+		bottomRight.Rotate(angle, Vec2D(sprite.width / 2, sprite.height / 2));
+	}
+
+	 
 	std::vector<Vec2D> points = { topLeft, bottomLeft, bottomRight, topRight };
 
 	Vec2D xAxis = topRight - topLeft;
@@ -318,8 +326,8 @@ void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos,
 
 }
 
-void Screen::Draw(const SpriteSheet& spriteSheet, const std::string& spriteName, const Vec2D& pos, const Color& overlayColor) {
-	Draw(spriteSheet.GetBMPImage(), spriteSheet.GetSprite(spriteName), pos, overlayColor);
+void Screen::Draw(const SpriteSheet& spriteSheet, const std::string& spriteName, const Vec2D& pos, const Color& overlayColor, bool rotate, float angle) {
+	Draw(spriteSheet.GetBMPImage(), spriteSheet.GetSprite(spriteName), pos, overlayColor, rotate, angle);
 }
 
 void Screen::Draw(const BitmapFont& font, const std::string& textLine, const Vec2D& pos, const Color& overlayColor) {

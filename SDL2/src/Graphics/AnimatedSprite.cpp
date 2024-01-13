@@ -2,7 +2,7 @@
 #include "../Shapes/AARectangle.h"
 #include "Screen.h"
 
-AnimatedSprite::AnimatedSprite(): mPosition(Vec2D::Zero), mnoptrSpriteSheet(nullptr) {
+AnimatedSprite::AnimatedSprite(): mPosition(Vec2D::Zero), mnoptrSpriteSheet(nullptr), mRotate(false), mAngle(0) {
 
 }
 
@@ -25,10 +25,10 @@ void AnimatedSprite::Draw(Screen& theScreen) {
 		frameColor = mColor;
 	}
 
-	theScreen.Draw(*mnoptrSpriteSheet, frame.frame, mPosition + frame.offset, frameColor);
+	theScreen.Draw(*mnoptrSpriteSheet, frame.frame, mPosition + frame.offset, frameColor, mRotate, mAngle);
 
 	if (frame.overlay.size() > 0) {
-		theScreen.Draw(*mnoptrSpriteSheet, frame.overlay, mPosition, frame.overlayColor);
+		theScreen.Draw(*mnoptrSpriteSheet, frame.overlay, mPosition, frame.overlayColor, mRotate, mAngle);
 	}
 }
 
