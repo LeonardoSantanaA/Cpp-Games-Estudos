@@ -7,6 +7,7 @@ static const float EPSILON = 0.0001f;
 
 const float PI = 3.14159f;
 const float TWO_PI = 2.0f * PI;
+const float HALF_PI = 0.5f * PI;
 
 bool IsEqual(float x, float y);
 bool IsGreaterThanOrEqual(float x, float y);

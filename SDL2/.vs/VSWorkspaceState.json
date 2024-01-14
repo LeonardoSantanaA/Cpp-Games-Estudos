@@ -10,12 +10,11 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\App",
-    "\\src\\Assets",
-    "\\src\\Graphics",
-    "\\src\\Scenes",
+    "\\src\\Games",
+    "\\src\\Games\\Asteroids",
+    "\\src\\Games\\BreakOut",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\src\\Scenes\\ArcadeScene.h",
+  "SelectedNode": "\\src\\Utils\\Utils.h",
   "PreviewInSolutionExplorer": false
 }

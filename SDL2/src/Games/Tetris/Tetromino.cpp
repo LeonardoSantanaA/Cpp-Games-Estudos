@@ -19,7 +19,7 @@ Tetromino::~Tetromino() {
 
 void Tetromino::Update(uint32_t dt) {
 	if (mStats == TET_PLAY) {
-		 if (mDirection == TetroDirection::TET_LEFT) {
+		if (mDirection == TetroDirection::TET_LEFT) {
 			MoveDirection(TetroDirection::TET_LEFT);
 		}
 		else if (mDirection == TetroDirection::TET_RIGHT) {

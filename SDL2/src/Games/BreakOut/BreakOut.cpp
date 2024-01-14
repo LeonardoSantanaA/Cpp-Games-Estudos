@@ -45,7 +45,6 @@ void BreakOut::Init(GameController& controller) {
 	controller.ClearAll();
 	scoreFile.LoadScoreFileLoader(App::GetBasePath() + "Assets/Scores.txt");
 	
-
 	ResetGame();
 
 	ButtonAction serveAction;

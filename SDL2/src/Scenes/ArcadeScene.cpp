@@ -8,6 +8,7 @@
 #include "ShowScoreScene.h"
 #include "../Games/BreakOut/BreakOut.h"
 #include "../Games/Tetris/Tetris.h"
+#include "../Games/Asteroids/Asteroids.h"
 
 ArcadeScene::ArcadeScene():
 	ButtonOptionsScene({ "Select Name", "Tetris", "Break Out!", "Asteroids", "Pac-man", "Show Scores"}, Color::Cyan())
@@ -53,6 +54,7 @@ void ArcadeScene::Init() {
 
 		mSprite.SetAnimation("death", true);
 		mSprite.SetRotate(true);
+		mSprite.SetPosition(Vec2D(50, 100));
 	}
 
 }
@@ -147,7 +149,10 @@ std::unique_ptr<Scene> ArcadeScene::GetScene(eGame game) {
 				return tetrisScene;
 			}
 			else {
-				return 0;
+				std::unique_ptr<Scene> selectNameScene = std::make_unique<SelectNameScene>();
+
+				InputController::ClearName();
+				return selectNameScene;
 			}
 			
 		}
@@ -163,14 +168,29 @@ std::unique_ptr<Scene> ArcadeScene::GetScene(eGame game) {
 				return breakoutScene;
 			}
 			else {
-				return 0;
+				std::unique_ptr<Scene> selectNameScene = std::make_unique<SelectNameScene>();
+
+				InputController::ClearName();
+				return selectNameScene;
 			}
 		}
 		break;
 
 		case ASTEROIDS:
 		{
+			//if (!cantPlay) {
+				std::unique_ptr<Asteroids> asteroidsGame = std::make_unique<Asteroids>();
 
+				std::unique_ptr<GameScene> asteroidsScene = std::make_unique<GameScene>(std::move(asteroidsGame));
+
+				return asteroidsScene;
+			//}
+			//else {
+				//std::unique_ptr<Scene> selectNameScene = std::make_unique<SelectNameScene>();
+
+				//InputController::ClearName();
+				//return selectNameScene;
+			//}
 		}
 		break;
 

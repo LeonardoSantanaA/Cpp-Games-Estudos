@@ -267,7 +267,7 @@ void  Screen::RotateLine(Line2D& line, float radian, const Color& color) {
 	Draw(line, color);
 }
 
-void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos, const Color& overlayColor, bool rotate, float angle) {
+void Screen::Draw(const BMPImage& image, const Sprite& sprite, Vec2D& pos, const Color& overlayColor, bool rotate, float angle) {
 	float rVal = static_cast<float>(overlayColor.GetRed()) / 255.0f;
 	float gVal = static_cast<float>(overlayColor.GetGreen()) / 255.0f;
 	float bVal = static_cast<float>(overlayColor.GetBlue()) / 255.0f;
@@ -283,13 +283,12 @@ void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos,
 	Vec2D bottomLeft = pos + Vec2D(0, height);
 	Vec2D bottomRight = pos + Vec2D(width, height);
 
-	if(rotate){
-		topLeft.Rotate(angle, Vec2D(sprite.width / 2, sprite.height / 2));
-		topRight.Rotate(angle, Vec2D(sprite.width / 2, sprite.height / 2));
-		bottomLeft.Rotate(angle, Vec2D(sprite.width / 2, sprite.height / 2));
-		bottomRight.Rotate(angle, Vec2D(sprite.width / 2, sprite.height / 2));
+	if (rotate) {
+		topLeft.Rotate(angle, Vec2D(pos.GetX() + sprite.width / 2, pos.GetY() + sprite.height / 2));
+		topRight.Rotate(angle, Vec2D(pos.GetX() + sprite.width / 2, pos.GetY() + sprite.height / 2));
+		bottomLeft.Rotate(angle, Vec2D(pos.GetX() + sprite.width / 2, pos.GetY() + sprite.height / 2));
+		bottomRight.Rotate(angle, Vec2D(pos.GetX() + sprite.width / 2, pos.GetY() + sprite.height / 2));
 	}
-
 	 
 	std::vector<Vec2D> points = { topLeft, bottomLeft, bottomRight, topRight };
 
@@ -309,24 +308,37 @@ void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos,
 		u = Clamp(u, 0.0f, 1.0f);
 		v = Clamp(v, 0.0f, 1.0f);
 
-		float tx = roundf(u * static_cast<float>(sprite.width));
-		float ty = roundf(v * static_cast<float>(sprite.height));
+		float tx_float = u * static_cast<float>(sprite.width);
+		float ty_float = v * static_cast<float>(sprite.height);
 
-		Color imageColor = pixels[GetIndex(image.GetWidth(), ty + sprite.yPos, tx + sprite.xPos)];
+		int tx = static_cast<int>(Clamp(tx_float, 0.0f, static_cast<float>(sprite.width - 1)));
+		int ty = static_cast<int>(Clamp(ty_float, 0.0f, static_cast<float>(sprite.height - 1)));
 
-		Color newColor = { 
-			static_cast<uint8_t>(imageColor.GetRed() * rVal),
-			static_cast<uint8_t>(imageColor.GetGreen() * gVal),
-			static_cast<uint8_t>(imageColor.GetBlue() * bVal), 
-			static_cast<uint8_t>(imageColor.GetAlpha() * aVal)
-		};
+		int index = GetIndex(image.GetWidth(), ty + sprite.yPos, tx + sprite.xPos);
 
-		return newColor;
-	});
+		if (index >= 0 && index < static_cast<int>(pixels.size())) {
+			Color imageColor = pixels[index];
+
+			Color newColor = {
+				static_cast<uint8_t>(imageColor.GetRed() * rVal),
+				static_cast<uint8_t>(imageColor.GetGreen() * gVal),
+				static_cast<uint8_t>(imageColor.GetBlue() * bVal),
+				static_cast<uint8_t>(imageColor.GetAlpha() * aVal)
+			};
+
+			return newColor;
+		}
+		else {
+			// Retorna uma cor padrão ou lida com a situação de índice inválido de outra maneira
+			// Aqui, estamos apenas retornando uma cor preta como exemplo
+			return Color();
+		}
+		});
+
 
 }
 
-void Screen::Draw(const SpriteSheet& spriteSheet, const std::string& spriteName, const Vec2D& pos, const Color& overlayColor, bool rotate, float angle) {
+void Screen::Draw(const SpriteSheet& spriteSheet, const std::string& spriteName, Vec2D& pos, const Color& overlayColor, bool rotate, float angle) {
 	Draw(spriteSheet.GetBMPImage(), spriteSheet.GetSprite(spriteName), pos, overlayColor, rotate, angle);
 }
 

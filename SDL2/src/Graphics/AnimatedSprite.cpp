@@ -25,10 +25,10 @@ void AnimatedSprite::Draw(Screen& theScreen) {
 		frameColor = mColor;
 	}
 
-	theScreen.Draw(*mnoptrSpriteSheet, frame.frame, mPosition + frame.offset, frameColor, mRotate, mAngle);
+	theScreen.Draw(*mnoptrSpriteSheet, frame.frame, mPosition + frame.offset, frameColor, true, mAngle);
 
 	if (frame.overlay.size() > 0) {
-		theScreen.Draw(*mnoptrSpriteSheet, frame.overlay, mPosition, frame.overlayColor, mRotate, mAngle);
+		theScreen.Draw(*mnoptrSpriteSheet, frame.overlay, mPosition, frame.overlayColor, true, mAngle);
 	}
 }
 

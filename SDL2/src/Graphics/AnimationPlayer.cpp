@@ -51,6 +51,8 @@ void AnimationPlayer::Update(uint32_t dt) {
 	if (mIsPlaying) {
 		mTime += dt;
 
+		//std::cout << mAnimations[mCurrentAnimation].GetNumFrames() << std::endl;
+
 		int fps = mAnimations[mCurrentAnimation].GetFPS();
 
 		float millisecondsPerFrame = static_cast<float>(1000) / static_cast<float>(fps);
