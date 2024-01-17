@@ -1,20 +1,27 @@
 #include "Ship.h"
 #include "../../App/App.h"
+#include "../../Utils/Utils.h"
 #include <math.h>
 
-
-Ship::Ship(): mController(nullptr), mAngle(0), lastDx(0), lastDy(0), mSpeed(0), turboPower(0.008f), mDirection(0), moving(false) {
+Ship::Ship(): mController(nullptr), mAngle(0), lastDx(0), lastDy(0), mSpeed(0), turboPower(0.008f), mDirection(0), moving(false), shoot(false) {
 
 }
 
 Ship::~Ship() {
 }
 
-void Ship::Init(GameController& controller) {
+void Ship::Init(GameController& controller, SpriteSheet& mPlayerSpriteSheet, AnimatedSprite& playerSprite) {
+
+	this->mPlayerSprite = playerSprite;
+	
 	Vec2D playerSpriteSize = mPlayerSprite.GetSize();
-	mPlayerSprite.SetPosition(Vec2D(App::Singleton().Width() / 2 - playerSpriteSize.GetX(), App::Singleton().Height() / 2 - playerSpriteSize.GetY() / 2));
 	mPlayerSprite.SetAnimation("ship", false);
+	mPlayerSprite.SetPosition(Vec2D(App::Singleton().Width() / 2 - playerSpriteSize.GetX(), App::Singleton().Height() / 2 - playerSpriteSize.GetY() / 2));
 	mPlayerSprite.SetRotate(true);
+	
+	mThrusterSprite.Init(App::Singleton().GetBasePath() + "Assets/AsteroidsAnimations.txt", mPlayerSpriteSheet);
+	mThrusterSprite.SetAnimation("thrusters", true);
+	mThrusterSprite.SetRotate(true);
 	
 	mController = &controller;
 
@@ -60,21 +67,19 @@ void Ship::Init(GameController& controller) {
 		{
 			if (GameController::IsPressed(state)) {
 				moving = true;
-				
 			}
 			else {
 				moving = false;
 			}
 		};
 	mController->AddInputActionForKey(turboAction);
-	
 
-	mPlayerSpriteSheet.Load("AsteroidsSprites");
-	mPlayerSprite.Init(App::Singleton().GetBasePath() + "Assets/AsteroidsAnimations.txt", mPlayerSpriteSheet);
+
 }
 
 void Ship::Update(uint32_t dt) {
 	mPlayerSprite.Update(dt);
+
 	Movement();
 
 	if (mDirection == ShipDirection::SHIP_LEFT) {
@@ -85,6 +90,7 @@ void Ship::Update(uint32_t dt) {
 	}
 
 	mPlayerSprite.SetAngle(mAngle + 1.5709f);
+
 }
 
 void Ship::Movement() {
@@ -105,7 +111,7 @@ void Ship::Movement() {
 
 	float moveDx = lastDx;
 	float moveDy = lastDy;
-
+	//std::cout << newDx << std::endl;
 	if (moving) {
 		if (moveDx < newDx) {
 			moveDx += turboPower;
@@ -121,6 +127,23 @@ void Ship::Movement() {
 			moveDy -= turboPower;
 		}
 	}
+	else {
+		if (mSpeed <= 0.5) {
+			if (moveDx < newDx) {
+				moveDx += 0.002f;
+			}
+			else if (moveDx > newDx) {
+				moveDx -= 0.002f;
+			}
+
+			if (moveDy < newDy) {
+				moveDy += 0.002f;
+			}
+			else if (moveDx > newDy) {
+				moveDy -= 0.002f;
+			}
+		}
+	}
 
 	mPlayerSprite.MoveBy(Vec2D(moveDx, moveDy));
 
@@ -131,3 +154,4 @@ void Ship::Movement() {
 void Ship::Draw(Screen& screen) {
 	mPlayerSprite.Draw(screen);
 }
+

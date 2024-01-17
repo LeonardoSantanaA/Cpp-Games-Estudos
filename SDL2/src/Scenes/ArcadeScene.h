@@ -34,6 +34,6 @@ private:
 	
 	//temp
 	float angle = 0;
-	AnimatedSprite mSprite;
-	SpriteSheet mSpriteSheet;
+	//AnimatedSprite mSprite;
+	//SpriteSheet mSpriteSheet;
 };

@@ -39,7 +39,7 @@ AnimationFrame Animation::GetAnimationFrame(uint32_t frameNum) const {
 
 std::vector<Animation> Animation::LoadAnimations(const std::string& animationFilePath) {
 	std::vector<Animation> animations;
-	FileCommandLoader fileLoader = {};
+	FileCommandLoader fileLoader;
 
 	Command animationCommand;
 	animationCommand.command = "animation";
@@ -119,10 +119,8 @@ std::vector<Animation> Animation::LoadAnimations(const std::string& animationFil
 
 	fileLoader.AddCommand(frameOffsetsCommand);
 
-	//assert(fileLoader.LoadFile(animationFilePath));
-	fileLoader.LoadFile(animationFilePath);
-
-	if (animations.size() > 0) { std::cout << "animation vector loaded." << std::endl; }
+	assert(fileLoader.LoadFile(animationFilePath));
+	//fileLoader.LoadFile(animationFilePath);
 
 	return animations;
 }

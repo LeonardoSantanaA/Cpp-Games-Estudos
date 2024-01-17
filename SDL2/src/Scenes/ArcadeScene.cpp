@@ -49,20 +49,20 @@ void ArcadeScene::Init() {
 
 	//temp
 	{
-		mSpriteSheet.Load("PacmanSprites");
-		mSprite.Init(App::Singleton().GetBasePath() + "Assets/Pacman_animations.txt", mSpriteSheet);
+		//mSpriteSheet.Load("PacmanSprites");
+		//mSprite.Init(App::Singleton().GetBasePath() + "Assets/Pacman_animations.txt", mSpriteSheet);
 
-		mSprite.SetAnimation("death", true);
-		mSprite.SetRotate(true);
-		mSprite.SetPosition(Vec2D(50, 100));
+		//mSprite.SetAnimation("death", true);
+		//mSprite.SetRotate(true);
+		//mSprite.SetPosition(Vec2D(50, 100));
 	}
 
 }
 void ArcadeScene::Update(uint32_t dt) {
-	mSprite.Update(dt);
+	//mSprite.Update(dt);
 
-	angle -= 0.1;
-	mSprite.SetAngle(angle);
+	//angle -= 0.1;
+	//mSprite.SetAngle(angle);
 
 	if (InputController::GetName().size() < 1) {
 		cantPlay = true;
@@ -93,7 +93,7 @@ void ArcadeScene::Draw(Screen& theScreen) {
 //	textDrawPosition = font.GetDrawPosition(GetSceneName(), rect, BFXA_CENTER, BFYA_CENTER);
 //	theScreen.Draw(font, GetSceneName(), textDrawPosition, Color::Red());
 
-	mSprite.Draw(theScreen);
+	//mSprite.Draw(theScreen);
 
 	ButtonOptionsScene::Draw(theScreen);
 	

@@ -13,6 +13,8 @@ class SpriteSheet;
 class AnimatedSprite {
 public:
 	AnimatedSprite();
+	AnimatedSprite(const AnimatedSprite& other);
+
 	void Init(const std::string& animationsPath, const SpriteSheet& spriteSheet, const Color& color = Color::White());
 	void Update(uint32_t dt);
 	void Draw(Screen& theScreen);
@@ -20,7 +22,7 @@ public:
 	void SetAnimation(const std::string& animationName, bool looped);
 	Vec2D GetSize() const;
 	void Stop();
-	const AARectangle& GetBoundingBox() const;
+	const AARectangle GetBoundingBox() const;
 
 	inline Vec2D GetPosition() const{ return mPosition; }
 	inline void SetPosition(const Vec2D& pos) { mPosition = pos; }

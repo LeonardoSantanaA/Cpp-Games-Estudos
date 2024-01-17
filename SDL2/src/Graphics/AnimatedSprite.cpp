@@ -6,6 +6,11 @@ AnimatedSprite::AnimatedSprite(): mPosition(Vec2D::Zero), mnoptrSpriteSheet(null
 
 }
 
+AnimatedSprite::AnimatedSprite(const AnimatedSprite& other)
+	:mPosition(other.mPosition), mnoptrSpriteSheet(other.mnoptrSpriteSheet), mRotate(other.mRotate), mAngle(other.mAngle), mColor(other.mColor) {
+}
+
+
 void AnimatedSprite::Init(const std::string& animationsPath, const SpriteSheet& spriteSheet, const Color& color){
 	mAnimationPlayer.Init(animationsPath);
 	mnoptrSpriteSheet = &spriteSheet;
@@ -25,11 +30,12 @@ void AnimatedSprite::Draw(Screen& theScreen) {
 		frameColor = mColor;
 	}
 
-	theScreen.Draw(*mnoptrSpriteSheet, frame.frame, mPosition + frame.offset, frameColor, true, mAngle);
+	theScreen.Draw(*mnoptrSpriteSheet, frame.frame, mPosition + frame.offset, frameColor, mRotate, mAngle);
 
 	if (frame.overlay.size() > 0) {
-		theScreen.Draw(*mnoptrSpriteSheet, frame.overlay, mPosition, frame.overlayColor, true, mAngle);
+		theScreen.Draw(*mnoptrSpriteSheet, frame.overlay, mPosition, frame.overlayColor, mRotate, mAngle);
 	}
+	
 }
 
 void AnimatedSprite::SetAnimation(const std::string& animationName, bool looped) {
@@ -44,7 +50,7 @@ void AnimatedSprite::Stop() {
 	mAnimationPlayer.Stop();
 }
 
-const AARectangle& AnimatedSprite::GetBoundingBox() const {
+const AARectangle AnimatedSprite::GetBoundingBox() const {
 	AARectangle box = { mPosition, static_cast<unsigned int>(GetSize().GetX()), static_cast<unsigned int>(GetSize().GetY()) };
 	return box;
 }

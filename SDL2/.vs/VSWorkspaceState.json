@@ -12,9 +12,8 @@
     "\\src",
     "\\src\\Games",
     "\\src\\Games\\Asteroids",
-    "\\src\\Games\\BreakOut",
+    "\\src\\Graphics",
     "\\src\\Utils"
   ],
-  "SelectedNode": "\\src\\Utils\\Utils.h",
   "PreviewInSolutionExplorer": false
 }

@@ -17,6 +17,12 @@ private:
 	GameController* mController;
 	Ship playerShip;
 
+	AnimatedSprite mBulletSprite;
+	AnimatedSprite mPlayerSprite;
+	SpriteSheet mPlayerSpriteSheet;
+
+	std::vector<Bullet> bullets;
+	bool CanShoot();
  
 
 	void ResetGame();

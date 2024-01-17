@@ -16,6 +16,7 @@ class SpriteSheet {
 public:
 
 	SpriteSheet();
+
 	bool Load(const std::string& name);
 	Sprite GetSprite(const std::string& spriteName) const;
 

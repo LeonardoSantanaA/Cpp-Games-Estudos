@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Bullet.h"
 #include "../../Graphics/AnimatedSprite.h"
 #include "../../Graphics/SpriteSheet.h"
 #include "../../Input/GameController.h"
@@ -19,14 +20,18 @@ public:
 	Ship();
 	~Ship();
 
-	void Init(GameController& controller);
+	void Init(GameController& controller, SpriteSheet& mPlayerSpriteSheet, AnimatedSprite& playerSprite);
 	void Update(uint32_t dt);
 	void SetAngle(float newAngle) { mAngle = newAngle; }
 	void Draw(Screen& screen);
 
+	const Vec2D& GetPosition() { return mPlayerSprite.GetPosition(); }
+	float GetAngle() { return mAngle; }
+
 private:
 	AnimatedSprite mPlayerSprite;
-	SpriteSheet mPlayerSpriteSheet;
+	AnimatedSprite mThrusterSprite;
+
 
 	inline bool IsMovingLeft() const { return mDirection == ShipDirection::SHIP_LEFT; }
 	inline bool IsMovingRight() const { return mDirection == ShipDirection::SHIP_RIGHT; }
@@ -41,6 +46,7 @@ private:
 	float mSpeed;
 	float mAngle;
 	bool moving;
+	bool shoot;
 
 	GameController* mController;
 

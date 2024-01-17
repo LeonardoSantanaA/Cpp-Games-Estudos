@@ -6,8 +6,6 @@ AnimationPlayer::AnimationPlayer(): mTime(0), mCurrentAnimation(0), mFrame(0), m
 
 bool AnimationPlayer::Init(const std::string& animationsPath) {
 	mAnimations = Animation::LoadAnimations(animationsPath);
-	if(mAnimations.size() > 0)
-		std::cout << "animations initiliazed." << std::endl;
 
 	return mAnimations.size() > 0;
 }
@@ -50,8 +48,6 @@ void AnimationPlayer::Stop() {
 void AnimationPlayer::Update(uint32_t dt) {
 	if (mIsPlaying) {
 		mTime += dt;
-
-		//std::cout << mAnimations[mCurrentAnimation].GetNumFrames() << std::endl;
 
 		int fps = mAnimations[mCurrentAnimation].GetFPS();
 
