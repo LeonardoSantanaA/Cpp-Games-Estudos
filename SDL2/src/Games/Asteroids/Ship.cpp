@@ -1,6 +1,7 @@
 #include "Ship.h"
 #include "../../App/App.h"
 #include "../../Utils/Utils.h"
+#include "../../Shapes/AARectangle.h"
 #include <math.h>
 
 Ship::Ship(): mController(nullptr), mAngle(0), lastDx(0), lastDy(0), mSpeed(0), turboPower(0.008f), mDirection(0), moving(false), shoot(false) {
@@ -153,5 +154,6 @@ void Ship::Movement() {
 
 void Ship::Draw(Screen& screen) {
 	mPlayerSprite.Draw(screen);
+	screen.Draw(mPlayerSprite.GetBoundingBox(), Color::Blue());
 }
 

@@ -21,6 +21,8 @@ public:
 	inline Vec2D GetPos() { return mBulletSprite.GetPosition(); }
 	inline void SetPos(const Vec2D& pos) { mPos = pos; }
 
+	AARectangle GetBoundingBox();
+
 private:
 	Vec2D mPos;
 	float mAngle;

@@ -38,8 +38,6 @@ Bullet& Bullet::operator=(const Bullet& other) {
 
 void Bullet::Init(SpriteSheet& spriteSheet, AnimatedSprite& bulletSprite) {
 	this->mBulletSprite = bulletSprite;
-
-	std::cout << mBulletSprite.GetSize().GetX() << std::endl;
 	
 	Load(spriteSheet);
 	mBulletSprite.SetPosition(mPos - Vec2D(mBulletSprite.GetSize().GetX() / 2, 0));

@@ -7,6 +7,11 @@ SpriteSheet::SpriteSheet() {
 
 }
 
+SpriteSheet::SpriteSheet(const SpriteSheet& other): mBMPImage(other.mBMPImage), mSections(other.mSections)
+{
+
+}
+
 bool SpriteSheet::Load(const std::string& name) {
 	bool loadedImage = mBMPImage.LoadFile(App::Singleton().GetBasePath() + std::string("Assets/") + name + ".bmp");
 	bool loadedSpriteSections = LoadSpriteSections(App::Singleton().GetBasePath() + std::string("Assets/") + name + ".txt");

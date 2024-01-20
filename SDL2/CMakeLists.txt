@@ -57,6 +57,6 @@ add_executable(ArcadeGame  #WIN32
 "src/Graphics/AnimatedSprite.h" "src/Graphics/AnimatedSprite.cpp" 
 "src/Games/Asteroids/Asteroids.h" "src/Games/Asteroids/Asteroids.cpp" 
 "src/Games/Asteroids/Ship.h" "src/Games/Asteroids/Ship.cpp" 
-"src/Games/Asteroids/Bullet.h" "src/Games/Asteroids/Bullet.cpp")
+"src/Games/Asteroids/Bullet.h" "src/Games/Asteroids/Bullet.cpp" "src/Games/Asteroids/Comet.h" "src/Games/Asteroids/Comet.cpp")
 
 target_link_libraries(ArcadeGame SDL2::SDL2 SDL2::SDL2main SDL2_mixer::SDL2_mixer)

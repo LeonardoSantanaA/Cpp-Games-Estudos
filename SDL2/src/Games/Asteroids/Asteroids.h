@@ -2,6 +2,7 @@
 
 #include "../Game.h"
 #include "Ship.h"
+#include "Comet.h"
 
 
 class Asteroids : public Game {
@@ -22,8 +23,12 @@ private:
 	SpriteSheet mPlayerSpriteSheet;
 
 	std::vector<Bullet> bullets;
+	std::vector<Comet> comets;
+
 	bool CanShoot();
- 
+	void GenerateComets();
 
 	void ResetGame();
+
+	int tempCount = 0;
 };

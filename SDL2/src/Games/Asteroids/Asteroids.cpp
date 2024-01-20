@@ -12,6 +12,8 @@ Asteroids::Asteroids(): mController(nullptr){
 	mBulletSprite.SetAnimation("missile", true);
 
 	bullets.reserve(3);
+
+	GenerateComets();
 }
 
 void Asteroids::Init(GameController& controller) {
@@ -43,9 +45,29 @@ void Asteroids::Update(uint32_t dt) {
 	playerShip.Update(dt);
 
 
-	for (auto& bullet : bullets) {
-		bullet.Update(dt);
+	
+	tempCount++;
+	if (tempCount >= 100) {
+		GenerateComets();
+		std::cout << "gerou" << std::endl;
+		tempCount = 0;
 	}
+
+	for (auto i = comets.begin(); i != comets.end(); ) {
+		auto& comet = *i; // Evita chamadas repetitivas de i->GetPos()
+
+		if (comet.GetPos().GetX() < -100 || comet.GetPos().GetX() > App::Singleton().Width() + 100 ||
+			comet.GetPos().GetY() < -100 || comet.GetPos().GetY() > App::Singleton().Height() + 100) {
+			i = comets.erase(i);
+			std::cout << "comet deleted." << std::endl;
+		}
+		else {
+			comet.Update(dt);
+			++i;
+		}
+	}
+
+
 
 	for (auto i = bullets.begin(); i != bullets.end(); ) {
 		auto& bullet = *i; // Evita chamadas repetitivas de i->GetPos()
@@ -56,7 +78,7 @@ void Asteroids::Update(uint32_t dt) {
 			std::cout << "bullet deleted." << std::endl;
 		}
 		else {
-			//bullet.Update(dt);
+			bullet.Update(dt);
 			++i;
 		}
 	}
@@ -67,6 +89,10 @@ void Asteroids::Draw(Screen& screen) {
 
 	for (auto& bullet : bullets) {
 		bullet.Draw(screen);
+	}
+
+	for (auto& comet : comets) {
+		comet.Draw(screen);
 	}
 }
 
@@ -88,4 +114,10 @@ bool Asteroids::CanShoot() {
 		return true;
 	}
 	return false;
+}
+
+void Asteroids::GenerateComets() {
+	Comet comet;
+	comets.push_back(comet);
+	comets.back().Init(mPlayerSpriteSheet, "AsteroidsSprites");
 }
