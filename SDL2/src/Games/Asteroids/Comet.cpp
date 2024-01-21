@@ -4,7 +4,7 @@
 #include <random>
 
 
-Comet::Comet(): mPos(Vec2D::Zero), mVelocity(2), mAngle(0), mDirectionRotateAngle(0), mRotateAngle(0), mSize(0), mCanExplode(false) {
+Comet::Comet(): mPos(Vec2D::Zero), mVelocity(2), mAngle(0), mDirectionRotateAngle(0), mRotateAngle(0), mSize(0), mCanExplode(false), mCanDestroy(false) {
 
 }
 
@@ -22,31 +22,9 @@ void Comet::Init(SpriteSheet& cometSpriteSheet, std::string loadPathSpriteSheet)
 	std::mt19937 gen(rd());
 
 	std::uniform_int_distribution<> randomSize(0, 2);
-	mSize = randomSize(gen);
+	SetSize(randomSize(gen));
 
-	switch (mSize) {
-	case COMET_SIZE::SMALL_ROCK:
-	{
-		mCometSprite = mCometSpriteSheet.GetSprite("small_rock");
-		mSpriteName = "small_rock";
-	}
-	break;
 
-	case COMET_SIZE::MEDIUM_ROCK:
-	{
-		mCometSprite = mCometSpriteSheet.GetSprite("medium_rock");
-		mSpriteName = "medium_rock";
-	}
-	break;
-
-	case COMET_SIZE::LARGE_ROCK:
-	{
-		mCometSprite = mCometSpriteSheet.GetSprite("medium_rock2");
-		mSpriteName = "medium_rock";
-	}
-	break;
-
-	}
 
 	std::uniform_int_distribution<> randomPos(0, 1);
 	int randomPosInitial = randomPos(gen);
@@ -177,4 +155,32 @@ const AARectangle Comet::GetBoundingBox() {
 	AARectangle box = { mPos, static_cast<unsigned int>(mCometSprite.width), static_cast<unsigned int>(mCometSprite.height) };
 
 	return box;
+}
+
+void Comet::SetSize(uint32_t size) {
+	mSize = size;
+
+	switch (mSize) {
+	case COMET_SIZE::SMALL_ROCK:
+	{
+		mCometSprite = mCometSpriteSheet.GetSprite("small_rock");
+		mSpriteName = "small_rock";
+	}
+	break;
+
+	case COMET_SIZE::MEDIUM_ROCK:
+	{
+		mCometSprite = mCometSpriteSheet.GetSprite("medium_rock");
+		mSpriteName = "medium_rock";
+	}
+	break;
+
+	case COMET_SIZE::LARGE_ROCK:
+	{
+		mCometSprite = mCometSpriteSheet.GetSprite("medium_rock2");
+		mSpriteName = "medium_rock2";
+	}
+	break;
+
+	}
 }

@@ -23,17 +23,26 @@ public:
 	~Comet();
 
 	void Init(SpriteSheet& cometSpriteSheet, std::string loadPathSpriteSheet);
-	inline Vec2D GetPos() { return mPos; }
+	
 
 	void Update(uint32_t dt);
 	void Draw(Screen& screen);
 
 	const AARectangle GetBoundingBox();
 
+	inline float GetAngle() { return mAngle; }
+	inline void SetAngle(float angle) { mAngle = angle; }
+	void SetSize(uint32_t size);
+	inline void SetPos(Vec2D pos) { mPos = pos; }
+	inline Vec2D GetPos() { return mPos; }
 	inline void SetExplode(bool canExplode) { mCanExplode = canExplode; }
+	inline void SetDestroy(bool canDestroy) { mCanDestroy = canDestroy; }
+	inline bool CanDestroy() { return mCanDestroy; }
 	inline bool CanExplode() { return mCanExplode; }
 	inline uint32_t GetSize() { return mSize; }
 	inline Vec2D GetSpriteSize() { return Vec2D(mCometSprite.width, mCometSprite.height); }
+	inline float GetVelocity() { return mVelocity; }
+	inline void SetVelocity(float newVel) { mVelocity = newVel; }
 
 private:
 	Vec2D mPos;
@@ -43,6 +52,7 @@ private:
 	float mVelocity;
 	uint32_t mSize;
 	bool mCanExplode;
+	bool mCanDestroy;
 
 	SpriteSheet mCometSpriteSheet;
 	Sprite mCometSprite;

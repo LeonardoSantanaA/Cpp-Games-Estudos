@@ -3,6 +3,7 @@
 #include "../../App/App.h"
 #include "../../Shapes/AARectangle.h"
 
+#include <random>
 #include <iostream>
 
 Asteroids::Asteroids(): mController(nullptr){
@@ -107,7 +108,6 @@ void Asteroids::Draw(Screen& screen) {
 			explosionSprite.SetAnimation("explosion", false);
 			explosionSprite.SetPosition(Vec2D(comet.GetPos() - (comet.GetSpriteSize() / 2)));
 			explosionSprite.Draw(screen);
-			std::cout << "draw explosion." << std::endl;
 			i = comets.erase(i);
 		}
 		else {
@@ -149,32 +149,62 @@ void Asteroids::GenerateComets() {
 void Asteroids::VerifyCollisions() {
 	for (auto i = bullets.begin(); i != bullets.end(); ) {
 		auto& bullet = *i;
+		std::vector<Comet> newComets;
+
 		for (auto c = comets.begin(); c != comets.end();) {
 			auto& comet = *c;
 
 			if (bullet.GetBoundingBox().Intersects(comet.GetBoundingBox())) {
 
 				if (comet.GetSize() == COMET_SIZE::LARGE_ROCK) {
-					std::cout << "dividir em pedaco um pouco menor." << std::endl;
-					c = comets.erase(c);
+					for (int j = 0; j < 2; ++j) {
+						Comet newComet;
+						//comets.push_back(newComet);
+						newComet.Init(mPlayerSpriteSheet, "AsteroidsSprites");
+						newComet.SetSize(COMET_SIZE::MEDIUM_ROCK);
+
+						newComet.SetPos(comet.GetPos());
+						newComet.SetVelocity(comet.GetVelocity() - 0.2);
+
+						std::random_device rd;
+						std::mt19937 gen(rd());
+						std::uniform_real_distribution<> randomAngle(-45, 45);
+						float newAngle =  comet.GetAngle()  + randomAngle(gen);
+						newComet.SetAngle(newAngle);
+						newComets.push_back(newComet);
+					}
+					comet.SetExplode(true);
 				}
 				else if (comet.GetSize() == COMET_SIZE::MEDIUM_ROCK) {
-					std::cout << "dividir em pedaco pequenininho" << std::endl;
-					c = comets.erase(c);
+					for (int j = 0; j < 3; ++j) {
+						Comet newComet;
+						//comets.push_back(newComet);
+						newComet.Init(mPlayerSpriteSheet, "AsteroidsSprites");
+						newComet.SetSize(COMET_SIZE::SMALL_ROCK);
+
+						newComet.SetPos(comet.GetPos());
+						newComet.SetVelocity(comet.GetVelocity() - 0.2);
+
+						std::random_device rd;
+						std::mt19937 gen(rd());
+						std::uniform_real_distribution<> randomAngle(-45, 45);
+						float newAngle = comet.GetAngle() + randomAngle(gen);
+						newComet.SetAngle(newAngle);
+						newComets.push_back(newComet);
+					}
+					comet.SetExplode(true);
 				}
 				else {
 					comet.SetExplode(true);
-					++c;
 				}
-				
-				
 				
 				bullet.SetToDestroy(true);
 			}
-			else {
 				++c;
-			}	
+
 		}
+
+		comets.insert(comets.end(), newComets.begin(), newComets.end());
 		++i;
 	}
 
@@ -184,6 +214,18 @@ void Asteroids::VerifyCollisions() {
 
 		if (bullet.CanDestroy()) {
 			i = bullets.erase(i);
+		}
+		else {
+			++i;
+		}
+	}
+
+	//erase comet that collided
+	for (auto i = comets.begin(); i != comets.end(); ) {
+		auto& comet = *i;
+
+		if (comet.CanDestroy()) {
+			i = comets.erase(i);
 		}
 		else {
 			++i;
