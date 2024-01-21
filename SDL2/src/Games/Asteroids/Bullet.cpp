@@ -2,12 +2,16 @@
 #include "../../App/App.h"
 #include "../../Shapes/AARectangle.h"
 
-Bullet::Bullet(): mPos(Vec2D::Zero), mAngle(0), mBulletSpeed(3) {
+Bullet::Bullet(): mPos(Vec2D::Zero), mAngle(0), mBulletSpeed(3), mCanDestroy(false) {
 	
 }
 
-Bullet::Bullet(const Vec2D& pos, float angle): mPos(pos), mAngle(angle), mBulletSpeed(3){
+Bullet::Bullet(const Vec2D& pos, float angle): mPos(pos), mAngle(angle), mBulletSpeed(3), mCanDestroy(false){
 
+
+}
+
+Bullet::~Bullet() {
 
 }
 
@@ -15,11 +19,9 @@ Bullet::Bullet(Bullet&& other) noexcept
 	: mPos(other.mPos),
 	mAngle(other.mAngle),
 	mBulletSpeed(other.mBulletSpeed),
-	mBulletSprite(other.mBulletSprite)
+	mBulletSprite(other.mBulletSprite),
+	mCanDestroy(false)
 {
-	std::cout << "Move constructor." << std::endl;
-
-	// A zeragem do objeto de origem não é necessária, pois os recursos já foram movidos
 	 other.mPos = {};
 	 other.mAngle = 0;
 	 other.mBulletSpeed = 0;
@@ -41,7 +43,6 @@ void Bullet::Init(SpriteSheet& spriteSheet, AnimatedSprite& bulletSprite) {
 	
 	Load(spriteSheet);
 	mBulletSprite.SetPosition(mPos - Vec2D(mBulletSprite.GetSize().GetX() / 2, 0));
-	
 }
 
 void Bullet::Load(SpriteSheet& mPlayerSpriteSheet) {
@@ -60,5 +61,8 @@ void Bullet::Update(uint32_t dt) {
 
 void Bullet::Draw(Screen& screen) {
 	mBulletSprite.Draw(screen);	
-	screen.Draw(mBulletSprite.GetBoundingBox(), Color::White());
+}
+
+const AARectangle Bullet::GetBoundingBox() {
+	return mBulletSprite.GetBoundingBox();
 }

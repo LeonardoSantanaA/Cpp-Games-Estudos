@@ -1,6 +1,7 @@
 #include "Asteroids.h"
 #include "../../Input/GameController.h"
 #include "../../App/App.h"
+#include "../../Shapes/AARectangle.h"
 
 #include <iostream>
 
@@ -11,9 +12,15 @@ Asteroids::Asteroids(): mController(nullptr){
 	mBulletSprite.Init(App::Singleton().GetBasePath() + "Assets/AsteroidsAnimations.txt", mPlayerSpriteSheet);
 	mBulletSprite.SetAnimation("missile", true);
 
+	mExplosionSprite.Init(App::Singleton().GetBasePath() + "Assets/AsteroidsAnimations.txt", mPlayerSpriteSheet);
+	mExplosionSprite.SetAnimation("explosion", false);
+
 	bullets.reserve(3);
 
+
 	GenerateComets();
+
+	
 }
 
 void Asteroids::Init(GameController& controller) {
@@ -43,18 +50,15 @@ void Asteroids::Init(GameController& controller) {
 
 void Asteroids::Update(uint32_t dt) {
 	playerShip.Update(dt);
-
-
 	
-	tempCount++;
-	if (tempCount >= 100) {
+
+	if (comets.empty())
+	{
 		GenerateComets();
-		std::cout << "gerou" << std::endl;
-		tempCount = 0;
 	}
 
 	for (auto i = comets.begin(); i != comets.end(); ) {
-		auto& comet = *i; // Evita chamadas repetitivas de i->GetPos()
+		auto& comet = *i;
 
 		if (comet.GetPos().GetX() < -100 || comet.GetPos().GetX() > App::Singleton().Width() + 100 ||
 			comet.GetPos().GetY() < -100 || comet.GetPos().GetY() > App::Singleton().Height() + 100) {
@@ -68,20 +72,21 @@ void Asteroids::Update(uint32_t dt) {
 	}
 
 
-
 	for (auto i = bullets.begin(); i != bullets.end(); ) {
-		auto& bullet = *i; // Evita chamadas repetitivas de i->GetPos()
+		auto& bullet = *i;
 
 		if (bullet.GetPos().GetX() < 0 || bullet.GetPos().GetX() > App::Singleton().Width() ||
 			bullet.GetPos().GetY() < 0 || bullet.GetPos().GetY() > App::Singleton().Height()) {
 			i = bullets.erase(i);
-			std::cout << "bullet deleted." << std::endl;
+
 		}
 		else {
 			bullet.Update(dt);
 			++i;
 		}
 	}
+
+	VerifyCollisions();
 }
 
 void Asteroids::Draw(Screen& screen) {
@@ -89,10 +94,27 @@ void Asteroids::Draw(Screen& screen) {
 
 	for (auto& bullet : bullets) {
 		bullet.Draw(screen);
+		screen.Draw(bullet.GetBoundingBox(), Color::White());
 	}
 
-	for (auto& comet : comets) {
-		comet.Draw(screen);
+	//draw comets, explosion and erase comets
+	for (auto i = comets.begin(); i != comets.end(); ) {
+		auto& comet = *i;
+
+		if (comet.CanExplode()) {
+			AnimatedSprite explosionSprite;
+			explosionSprite.Init(App::Singleton().GetBasePath() + "Assets/AsteroidsAnimations.txt", mPlayerSpriteSheet);
+			explosionSprite.SetAnimation("explosion", false);
+			explosionSprite.SetPosition(Vec2D(comet.GetPos() - (comet.GetSpriteSize() / 2)));
+			explosionSprite.Draw(screen);
+			std::cout << "draw explosion." << std::endl;
+			i = comets.erase(i);
+		}
+		else {
+			comet.Draw(screen);
+			screen.Draw(comet.GetBoundingBox(), Color::Red());
+			++i;
+		}
 	}
 }
 
@@ -117,7 +139,54 @@ bool Asteroids::CanShoot() {
 }
 
 void Asteroids::GenerateComets() {
-	Comet comet;
-	comets.push_back(comet);
-	comets.back().Init(mPlayerSpriteSheet, "AsteroidsSprites");
+	for (int i = 0; i < 3; ++i) {
+		Comet comet;
+		comets.push_back(comet);
+		comets.back().Init(mPlayerSpriteSheet, "AsteroidsSprites");
+	}
+}
+
+void Asteroids::VerifyCollisions() {
+	for (auto i = bullets.begin(); i != bullets.end(); ) {
+		auto& bullet = *i;
+		for (auto c = comets.begin(); c != comets.end();) {
+			auto& comet = *c;
+
+			if (bullet.GetBoundingBox().Intersects(comet.GetBoundingBox())) {
+
+				if (comet.GetSize() == COMET_SIZE::LARGE_ROCK) {
+					std::cout << "dividir em pedaco um pouco menor." << std::endl;
+					c = comets.erase(c);
+				}
+				else if (comet.GetSize() == COMET_SIZE::MEDIUM_ROCK) {
+					std::cout << "dividir em pedaco pequenininho" << std::endl;
+					c = comets.erase(c);
+				}
+				else {
+					comet.SetExplode(true);
+					++c;
+				}
+				
+				
+				
+				bullet.SetToDestroy(true);
+			}
+			else {
+				++c;
+			}	
+		}
+		++i;
+	}
+
+	//erase bullet that collided
+	for (auto i = bullets.begin(); i != bullets.end(); ) {
+		auto& bullet = *i;
+
+		if (bullet.CanDestroy()) {
+			i = bullets.erase(i);
+		}
+		else {
+			++i;
+		}
+	}
 }

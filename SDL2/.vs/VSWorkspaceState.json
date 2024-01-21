@@ -12,8 +12,8 @@
     "\\src",
     "\\src\\Games",
     "\\src\\Games\\Asteroids",
-    "\\src\\Graphics"
+    "\\src\\Utils"
   ],
-  "SelectedNode": "\\src\\Games\\Asteroids\\Asteroids.cpp",
+  "SelectedNode": "\\src\\Games\\Asteroids\\Comet.cpp",
   "PreviewInSolutionExplorer": false
 }

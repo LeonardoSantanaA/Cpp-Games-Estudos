@@ -20,6 +20,7 @@ enum COMET_SIZE {
 class Comet {
 public:
 	Comet();
+	~Comet();
 
 	void Init(SpriteSheet& cometSpriteSheet, std::string loadPathSpriteSheet);
 	inline Vec2D GetPos() { return mPos; }
@@ -29,13 +30,19 @@ public:
 
 	const AARectangle GetBoundingBox();
 
+	inline void SetExplode(bool canExplode) { mCanExplode = canExplode; }
+	inline bool CanExplode() { return mCanExplode; }
+	inline uint32_t GetSize() { return mSize; }
+	inline Vec2D GetSpriteSize() { return Vec2D(mCometSprite.width, mCometSprite.height); }
+
 private:
 	Vec2D mPos;
 	float mAngle;
 	float mRotateAngle;
 	int mDirectionRotateAngle;
 	float mVelocity;
-	int mSize;
+	uint32_t mSize;
+	bool mCanExplode;
 
 	SpriteSheet mCometSpriteSheet;
 	Sprite mCometSprite;

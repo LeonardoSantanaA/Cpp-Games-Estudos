@@ -20,6 +20,7 @@ private:
 
 	AnimatedSprite mBulletSprite;
 	AnimatedSprite mPlayerSprite;
+	AnimatedSprite mExplosionSprite;
 	SpriteSheet mPlayerSpriteSheet;
 
 	std::vector<Bullet> bullets;
@@ -27,6 +28,7 @@ private:
 
 	bool CanShoot();
 	void GenerateComets();
+	void VerifyCollisions();
 
 	void ResetGame();
 

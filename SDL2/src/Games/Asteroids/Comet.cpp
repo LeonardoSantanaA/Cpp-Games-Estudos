@@ -4,14 +4,19 @@
 #include <random>
 
 
-Comet::Comet(): mPos(Vec2D::Zero), mVelocity(2), mAngle(0), mDirectionRotateAngle(0), mRotateAngle(0), mSize(0) {
+Comet::Comet(): mPos(Vec2D::Zero), mVelocity(2), mAngle(0), mDirectionRotateAngle(0), mRotateAngle(0), mSize(0), mCanExplode(false) {
 
 }
 
+Comet::~Comet() {
+
+
+}
 
 void Comet::Init(SpriteSheet& cometSpriteSheet, std::string loadPathSpriteSheet) {
 
 	mCometSpriteSheet = cometSpriteSheet;
+
 
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -157,6 +162,7 @@ void Comet::Update(uint32_t dt) {
 		mRotateAngle += 0.03;
 	}
 
+
 	float dx = mVelocity * std::cosf(mAngle);
 	float dy = mVelocity * std::sinf(mAngle);
 	mPos += Vec2D(dx, dy);
@@ -164,7 +170,6 @@ void Comet::Update(uint32_t dt) {
 
 void Comet::Draw(Screen& screen) {
 	screen.Draw(mCometSpriteSheet, mSpriteName, mPos, Color::White(), true, mRotateAngle);
-	screen.Draw(GetBoundingBox(), Color::White());
 }
 
 

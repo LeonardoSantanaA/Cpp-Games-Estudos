@@ -8,6 +8,7 @@ class Bullet {
 public:
 	Bullet();
 	Bullet(const Vec2D& pos, float angle);
+	~Bullet();
 
 	Bullet(Bullet&& other) noexcept;
 	Bullet& operator=(const Bullet& other);
@@ -20,13 +21,16 @@ public:
 
 	inline Vec2D GetPos() { return mBulletSprite.GetPosition(); }
 	inline void SetPos(const Vec2D& pos) { mPos = pos; }
+	inline void SetToDestroy(bool destroy) { mCanDestroy = destroy; }
+	inline bool CanDestroy() { return mCanDestroy; }
 
-	AARectangle GetBoundingBox();
+	const AARectangle GetBoundingBox();
 
 private:
 	Vec2D mPos;
 	float mAngle;
 	float mBulletSpeed;
+	bool mCanDestroy;
 
 	AnimatedSprite mBulletSprite;
 };
