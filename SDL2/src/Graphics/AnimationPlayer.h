@@ -17,6 +17,7 @@ public:
 
 	inline bool IsFinishedPlaying() const { return mIsFinishedPlaying; }
 	inline uint32_t GetCurrentFrameNumber() const { return mFrame; }
+	inline bool IsPlaying() const { return mIsPlaying; }
 
 private:
 	uint32_t mTime;

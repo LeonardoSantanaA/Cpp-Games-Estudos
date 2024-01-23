@@ -34,14 +34,14 @@ public:
 	inline void SetAngle(float angle) { mAngle = angle; }
 	void SetSize(uint32_t size);
 	inline void SetPos(Vec2D pos) { mPos = pos; }
-	inline Vec2D GetPos() { return mPos; }
+	inline const Vec2D& GetPos() const { return mPos; }
 	inline void SetExplode(bool canExplode) { mCanExplode = canExplode; }
 	inline void SetDestroy(bool canDestroy) { mCanDestroy = canDestroy; }
 	inline bool CanDestroy() { return mCanDestroy; }
 	inline bool CanExplode() { return mCanExplode; }
-	inline uint32_t GetSize() { return mSize; }
-	inline Vec2D GetSpriteSize() { return Vec2D(mCometSprite.width, mCometSprite.height); }
-	inline float GetVelocity() { return mVelocity; }
+	inline uint32_t GetSize() const { return mSize; }
+	inline const Vec2D& GetSpriteSize() const { return Vec2D(mCometSprite.width, mCometSprite.height); }
+	inline float GetVelocity() const { return mVelocity; }
 	inline void SetVelocity(float newVel) { mVelocity = newVel; }
 
 private:

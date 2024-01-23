@@ -11,8 +11,8 @@
     "",
     "\\src",
     "\\src\\Games",
-    "\\src\\Games\\Asteroids",
-    "\\src\\Utils"
+    "\\src\\Games\\Asteroids"
   ],
+  "SelectedNode": "\\src\\Games\\Asteroids\\Ship.h",
   "PreviewInSolutionExplorer": false
 }

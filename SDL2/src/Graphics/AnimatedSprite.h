@@ -28,8 +28,9 @@ public:
 	inline void SetPosition(const Vec2D& pos) { mPosition = pos; }
 	inline void MoveBy(const Vec2D& delta) { mPosition += delta; }
 	inline bool IsFinishedPlayingAnimation() const { return mAnimationPlayer.IsFinishedPlaying(); }
+	inline const AnimationPlayer& GetAnimation() { return mAnimationPlayer; }
 	inline const Color& GetColor() const { return mColor; }
-	const SpriteSheet* GetSpriteSheet() const { return mnoptrSpriteSheet; }
+	inline const SpriteSheet* GetSpriteSheet() const { return mnoptrSpriteSheet; }
 
 	inline void SetAngle(float angle) { mAngle = angle; }
 	inline void SetRotate(bool rotate) { mRotate = rotate; }

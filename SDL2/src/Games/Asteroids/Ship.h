@@ -20,23 +20,31 @@ public:
 	Ship();
 	~Ship();
 
-	void Init(GameController& controller, SpriteSheet& mPlayerSpriteSheet, AnimatedSprite& playerSprite);
+	void Init(GameController& controller, SpriteSheet& playerSpriteSheet, AnimatedSprite& playerSprite);
+	void Reset();
 	void Update(uint32_t dt);
 	void SetAngle(float newAngle) { mAngle = newAngle; }
 	void Draw(Screen& screen);
 
+	const AARectangle GetBoundingBox();
 	const Vec2D& GetPosition() { return mPlayerSprite.GetPosition(); }
 	float GetAngle() { return mAngle; }
+
+	inline int GetLife() const { return mLife; }
+	inline bool CanReduceLife() const { return canReduceLife; }
+	inline void SetDamaged(bool wasDamaged) { damaged = wasDamaged; }
 
 private:
 	AnimatedSprite mPlayerSprite;
 	AnimatedSprite mThrusterSprite;
+	SpriteSheet mPlayerSpriteSheet;
 
 
 	inline bool IsMovingLeft() const { return mDirection == ShipDirection::SHIP_LEFT; }
 	inline bool IsMovingRight() const { return mDirection == ShipDirection::SHIP_RIGHT; }
 	inline void SetMovementDirection(ShipDirection dir) { mDirection |= dir; }
 	inline void UnsetMovementDirection(ShipDirection dir) { mDirection &= ~dir; }
+
 
 	void Movement();
 
@@ -47,7 +55,12 @@ private:
 	float mAngle;
 	bool moving;
 	bool shoot;
+	int countDownLife;
+	bool canReduceLife;
+	bool damaged;
+	int mLife;
 
+	Vec2D midPoint;
 	GameController* mController;
 
 };

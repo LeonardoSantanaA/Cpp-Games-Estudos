@@ -3,6 +3,7 @@
 #include "../Game.h"
 #include "Ship.h"
 #include "Comet.h"
+#include "../../Utils/ScoreFileLoader.h"
 
 
 class Asteroids : public Game {
@@ -25,12 +26,18 @@ private:
 
 	std::vector<Bullet> bullets;
 	std::vector<Comet> comets;
+	std::vector<AnimatedSprite> explosions;
 
 	bool CanShoot();
 	void GenerateComets();
 	void VerifyCollisions();
 
+	void InitGame();
 	void ResetGame();
+	inline int GetAsteroidsScore() { return mScore; }
 
-	int tempCount = 0;
+	int countDown;
+
+	ScoreFileLoader scoreFile;
+	int mScore;
 };

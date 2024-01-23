@@ -5,6 +5,7 @@
 
 #include <random>
 #include <iostream>
+#include <chrono>
 
 Asteroids::Asteroids(): mController(nullptr){
 	mPlayerSpriteSheet.Load("AsteroidsSprites");
@@ -45,15 +46,14 @@ void Asteroids::Init(GameController& controller) {
 	controller.AddInputActionForKey(shootAction);
 
 	mController = &controller;
-	ResetGame();
+	InitGame();
 
 }
 
 void Asteroids::Update(uint32_t dt) {
 	playerShip.Update(dt);
-	
 
-	if (comets.empty())
+	if (comets.size() < 2)
 	{
 		GenerateComets();
 	}
@@ -64,7 +64,6 @@ void Asteroids::Update(uint32_t dt) {
 		if (comet.GetPos().GetX() < -100 || comet.GetPos().GetX() > App::Singleton().Width() + 100 ||
 			comet.GetPos().GetY() < -100 || comet.GetPos().GetY() > App::Singleton().Height() + 100) {
 			i = comets.erase(i);
-			std::cout << "comet deleted." << std::endl;
 		}
 		else {
 			comet.Update(dt);
@@ -88,10 +87,35 @@ void Asteroids::Update(uint32_t dt) {
 	}
 
 	VerifyCollisions();
+
+	for (auto& explosion : explosions) {
+		explosion.Update(dt);
+	}
+	for (auto i = explosions.begin(); i != explosions.end(); ) {
+		auto& explosion = *i;
+
+		if (explosion.IsFinishedPlayingAnimation()) {
+			i = explosions.erase(i);
+		}
+		else if (!explosion.GetAnimation().IsPlaying()) {
+			std::cout << "animacoes para limpar!" << std::endl;
+			i = explosions.erase(i);
+		}
+		else {
+			i++;
+		}
+		
+	}
+
+	if (playerShip.GetLife() <= 0) {
+		ResetGame();
+	}
+
 }
 
 void Asteroids::Draw(Screen& screen) {
 	playerShip.Draw(screen);
+	screen.Draw(playerShip.GetBoundingBox(), Color::Pink());
 
 	for (auto& bullet : bullets) {
 		bullet.Draw(screen);
@@ -99,22 +123,30 @@ void Asteroids::Draw(Screen& screen) {
 	}
 
 	//draw comets, explosion and erase comets
-	for (auto i = comets.begin(); i != comets.end(); ) {
-		auto& comet = *i;
+	for(auto& comet : comets){
+	//for (auto i = comets.begin(); i != comets.end(); ) {
+		//auto& comet = *i;
 
 		if (comet.CanExplode()) {
 			AnimatedSprite explosionSprite;
-			explosionSprite.Init(App::Singleton().GetBasePath() + "Assets/AsteroidsAnimations.txt", mPlayerSpriteSheet);
-			explosionSprite.SetAnimation("explosion", false);
-			explosionSprite.SetPosition(Vec2D(comet.GetPos() - (comet.GetSpriteSize() / 2)));
-			explosionSprite.Draw(screen);
-			i = comets.erase(i);
+			explosions.push_back(explosionSprite);
+			explosions.back().Init(App::Singleton().GetBasePath() + "Assets/AsteroidsAnimations.txt", mPlayerSpriteSheet);
+			explosions.back().SetAnimation("explosion", false);
+			explosions.back().SetPosition(Vec2D(comet.GetPos() - (comet.GetSpriteSize() / 2)));
+			
+			//explosionSprite.Draw(screen);
+			//i = comets.erase(i);
+			comet.SetDestroy(true);
 		}
 		else {
 			comet.Draw(screen);
 			screen.Draw(comet.GetBoundingBox(), Color::Red());
-			++i;
+			//++i;
 		}
+	}
+
+	for (auto& explosion : explosions) {
+		explosion.Draw(screen);
 	}
 }
 
@@ -123,8 +155,17 @@ const std::string& Asteroids::GetName() const{
 	return name;
 }
 
-void Asteroids::ResetGame() {
+void Asteroids::InitGame() {
+
 	playerShip.Init(*mController, mPlayerSpriteSheet, mPlayerSprite);
+
+}
+
+void Asteroids::ResetGame() {
+	playerShip.Reset();
+	bullets.clear();
+	comets.clear();
+
 }
 
 bool Asteroids::CanShoot() {
@@ -147,12 +188,26 @@ void Asteroids::GenerateComets() {
 }
 
 void Asteroids::VerifyCollisions() {
-	for (auto i = bullets.begin(); i != bullets.end(); ) {
-		auto& bullet = *i;
+	for (auto& comet : comets) {
+
+		if (playerShip.GetBoundingBox().Intersects(comet.GetBoundingBox()) && playerShip.CanReduceLife() && !comet.CanExplode()) {
+			playerShip.SetDamaged(true);
+			comet.SetExplode(true);
+		}
+	}
+
+	for(auto& bullet : bullets){
+	//for (auto i = bullets.begin(); i != bullets.end(); ) {
+		//auto& bullet = *i;
 		std::vector<Comet> newComets;
 
-		for (auto c = comets.begin(); c != comets.end();) {
-			auto& comet = *c;
+		for(auto& comet : comets){
+			
+		//	if (playerShip.GetBoundingBox().Intersects(comet.GetBoundingBox())) {
+				
+				//std::cout << "colidiu" << std::endl;
+				//comet.SetExplode(true);
+		//	}
 
 			if (bullet.GetBoundingBox().Intersects(comet.GetBoundingBox())) {
 
@@ -168,7 +223,7 @@ void Asteroids::VerifyCollisions() {
 
 						std::random_device rd;
 						std::mt19937 gen(rd());
-						std::uniform_real_distribution<> randomAngle(-45, 45);
+						std::uniform_real_distribution<> randomAngle(-20, 20);
 						float newAngle =  comet.GetAngle()  + randomAngle(gen);
 						newComet.SetAngle(newAngle);
 						newComets.push_back(newComet);
@@ -187,7 +242,7 @@ void Asteroids::VerifyCollisions() {
 
 						std::random_device rd;
 						std::mt19937 gen(rd());
-						std::uniform_real_distribution<> randomAngle(-45, 45);
+						std::uniform_real_distribution<> randomAngle(-20, 20);
 						float newAngle = comet.GetAngle() + randomAngle(gen);
 						newComet.SetAngle(newAngle);
 						newComets.push_back(newComet);
@@ -200,20 +255,17 @@ void Asteroids::VerifyCollisions() {
 				
 				bullet.SetToDestroy(true);
 			}
-				++c;
-
 		}
 
 		comets.insert(comets.end(), newComets.begin(), newComets.end());
-		++i;
+		//++i;
 	}
 
 	//erase bullet that collided
 	for (auto i = bullets.begin(); i != bullets.end(); ) {
 		auto& bullet = *i;
-
 		if (bullet.CanDestroy()) {
-			i = bullets.erase(i);
+ 			i = bullets.erase(i);
 		}
 		else {
 			++i;

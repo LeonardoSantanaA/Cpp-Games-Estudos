@@ -24,8 +24,6 @@ void Comet::Init(SpriteSheet& cometSpriteSheet, std::string loadPathSpriteSheet)
 	std::uniform_int_distribution<> randomSize(0, 2);
 	SetSize(randomSize(gen));
 
-
-
 	std::uniform_int_distribution<> randomPos(0, 1);
 	int randomPosInitial = randomPos(gen);
 	
@@ -170,15 +168,24 @@ void Comet::SetSize(uint32_t size) {
 
 	case COMET_SIZE::MEDIUM_ROCK:
 	{
-		mCometSprite = mCometSpriteSheet.GetSprite("medium_rock");
-		mSpriteName = "medium_rock";
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_int_distribution<> randomSize(0, 1);
+		if (randomSize(gen) == 0) {
+			mCometSprite = mCometSpriteSheet.GetSprite("medium_rock");
+			mSpriteName = "medium_rock";
+		}
+		else {
+			mCometSprite = mCometSpriteSheet.GetSprite("medium_rock2");
+			mSpriteName = "medium_rock2";
+		}
 	}
 	break;
 
 	case COMET_SIZE::LARGE_ROCK:
 	{
-		mCometSprite = mCometSpriteSheet.GetSprite("medium_rock2");
-		mSpriteName = "medium_rock2";
+		mCometSprite = mCometSpriteSheet.GetSprite("big_rock");
+		mSpriteName = "big_rock";
 	}
 	break;
 

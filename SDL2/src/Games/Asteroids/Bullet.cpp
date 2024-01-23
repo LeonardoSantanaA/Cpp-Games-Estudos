@@ -20,7 +20,7 @@ Bullet::Bullet(Bullet&& other) noexcept
 	mAngle(other.mAngle),
 	mBulletSpeed(other.mBulletSpeed),
 	mBulletSprite(other.mBulletSprite),
-	mCanDestroy(false)
+	mCanDestroy(other.mCanDestroy)
 {
 	 other.mPos = {};
 	 other.mAngle = 0;
@@ -33,6 +33,7 @@ Bullet& Bullet::operator=(const Bullet& other) {
 		mPos = other.mPos;
 		mAngle = other.mAngle;
 		mBulletSpeed = other.mBulletSpeed;
+		mCanDestroy = false;
 		mBulletSprite = other.mBulletSprite;
 	}
 	return *this;
