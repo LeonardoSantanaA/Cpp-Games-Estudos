@@ -178,19 +178,19 @@ std::unique_ptr<Scene> ArcadeScene::GetScene(eGame game) {
 
 		case ASTEROIDS:
 		{
-			//if (!cantPlay) {
+			if (!cantPlay) {
 				std::unique_ptr<Asteroids> asteroidsGame = std::make_unique<Asteroids>();
 
 				std::unique_ptr<GameScene> asteroidsScene = std::make_unique<GameScene>(std::move(asteroidsGame));
 
 				return asteroidsScene;
-			//}
-			//else {
-				//std::unique_ptr<Scene> selectNameScene = std::make_unique<SelectNameScene>();
+			}
+			else {
+				std::unique_ptr<Scene> selectNameScene = std::make_unique<SelectNameScene>();
 
-				//InputController::ClearName();
-				//return selectNameScene;
-			//}
+				InputController::ClearName();
+				return selectNameScene;
+			}
 		}
 		break;
 

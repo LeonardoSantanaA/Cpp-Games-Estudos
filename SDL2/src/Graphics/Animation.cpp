@@ -119,8 +119,8 @@ std::vector<Animation> Animation::LoadAnimations(const std::string& animationFil
 
 	fileLoader.AddCommand(frameOffsetsCommand);
 
-	assert(fileLoader.LoadFile(animationFilePath));
-	//fileLoader.LoadFile(animationFilePath);
+	//assert(fileLoader.LoadFile(animationFilePath));
+	fileLoader.LoadFile(animationFilePath);
 
 	return animations;
 }

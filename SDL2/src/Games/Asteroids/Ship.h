@@ -33,6 +33,8 @@ public:
 	inline int GetLife() const { return mLife; }
 	inline bool CanReduceLife() const { return canReduceLife; }
 	inline void SetDamaged(bool wasDamaged) { damaged = wasDamaged; }
+	inline bool isDamaged() { return damaged; }
+	inline void FullLife() { mLife = 3; }
 
 private:
 	AnimatedSprite mPlayerSprite;

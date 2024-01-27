@@ -11,8 +11,11 @@
     "",
     "\\src",
     "\\src\\Games",
-    "\\src\\Games\\Asteroids"
+    "\\src\\Games\\Asteroids",
+    "\\src\\Games\\Tetris",
+    "\\src\\Graphics",
+    "\\src\\Scenes"
   ],
-  "SelectedNode": "\\src\\Games\\Asteroids\\Ship.h",
+  "SelectedNode": "\\CMakeLists.txt",
   "PreviewInSolutionExplorer": false
 }

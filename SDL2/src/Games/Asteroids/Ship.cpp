@@ -32,16 +32,6 @@ void Ship::Init(GameController& controller, SpriteSheet& playerSpriteSheet, Anim
 	
 	mController = &controller;
 
-	ButtonAction backAction;
-	backAction.key = GameController::CancelKey();
-	backAction.action = [](uint32_t dt, InputState state)
-		{
-			if (GameController::IsPressed(state)) {
-				App::Singleton().PopScene();
-			}
-		};
-	mController->AddInputActionForKey(backAction);
-
 	ButtonAction leftAction;
 	leftAction.key = GameController::LeftKey();
 	leftAction.action = [&](uint32_t dt, InputState state)
@@ -87,7 +77,6 @@ void Ship::Init(GameController& controller, SpriteSheet& playerSpriteSheet, Anim
 void Ship::Reset() {
 	Vec2D playerSpriteSize = mPlayerSprite.GetSize();
 	mPlayerSprite.SetPosition(Vec2D(App::Singleton().Width() / 2 - playerSpriteSize.GetX(), App::Singleton().Height() / 2 - playerSpriteSize.GetY() / 2));
-	mLife = 3;
 }
 
 void Ship::Update(uint32_t dt) {
