@@ -4,6 +4,7 @@
 #include "Ship.h"
 #include "Comet.h"
 #include "../../Utils/ScoreFileLoader.h"
+#include "../../Utils/Sound.h"
 #include <chrono>
 
 enum AST_STATUS {

@@ -9,6 +9,7 @@
 #include "../Games/BreakOut/BreakOut.h"
 #include "../Games/Tetris/Tetris.h"
 #include "../Games/Asteroids/Asteroids.h"
+#include "Pacman/PacmanStartScene.h"
 
 ArcadeScene::ArcadeScene():
 	ButtonOptionsScene({ "Select Name", "Tetris", "Break Out!", "Asteroids", "Pac-man", "Show Scores"}, Color::Cyan())
@@ -196,7 +197,15 @@ std::unique_ptr<Scene> ArcadeScene::GetScene(eGame game) {
 
 		case PACMAN:
 		{
+			if (!cantPlay) {
+				return std::make_unique<PacmanStartScene>();
+			}
+			else {
+				std::unique_ptr<Scene> selectNameScene = std::make_unique<SelectNameScene>();
 
+				InputController::ClearName();
+				return selectNameScene;
+			}
 		}
 		break;
 
