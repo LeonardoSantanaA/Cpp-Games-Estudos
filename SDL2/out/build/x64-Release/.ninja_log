@@ -1,5 +1,5 @@
 # ninja log v5
-4	924	7282298820340609	CMakeFiles/ArcadeGame.dir/src/Scenes/ArcadeScene.cpp.obj	b699c07453cdf879
+4	1036	7282315410545158	CMakeFiles/ArcadeGame.dir/src/Scenes/ArcadeScene.cpp.obj	b699c07453cdf879
 14	611	7260829649186795	CMakeFiles/SDL2Setup.dir/src/Utils/Utils.cpp.obj	d006692b4194e47f
 8	999	7238870668340364	CMakeFiles/SDL2Setup.dir/src/Graphics/Color.cpp.obj	e6f68b4d1979a8d5
 55	1084	7260916431650224	CMakeFiles/SDL2Setup.dir/src/Games/BreakOut/Block.cpp.obj	e2514423d3d753a0
@@ -21,6 +21,7 @@
 4	768	7260930873019965	CMakeFiles/SDL2Setup.dir/src/Graphics/Screen.cpp.obj	75a6292c0474eefe
 675	1814	7238870676354003	CMakeFiles/SDL2Setup.dir/src/Utils/FileCommandLoader.cpp.obj	74f1f546d4c4887e
 59	1718	7260916438926086	CMakeFiles/SDL2Setup.dir/src/Games/BreakOut/BreakoutGameLevel.cpp.obj	abee326232e12f31
+17	408	7282315404297207	CMakeFiles/ArcadeGame.dir/src/Games/Pacman/PacmanGame.cpp.obj	b1f1606f3c3004e1
 24	1138	7260916433036513	CMakeFiles/SDL2Setup.dir/src/Scenes/ArcadeScene.cpp.obj	39339f809049affb
 16	649	7267712928966411	CMakeFiles/ArcadeGame.dir/src/Graphics/ScreenBuffer.cpp.obj	18368e7f2c5c4dc6
 1388	2339	7267712946238507	CMakeFiles/ArcadeGame.dir/src/Games/BreakOut/LevelBoundary.cpp.obj	1fd5de372937f39d
@@ -46,7 +47,7 @@
 8	529	7260955564478421	CMakeFiles/SDL2Setup.dir/src/Graphics/BMPImage.cpp.obj	119a6192cf188237
 51	873	7260979193570200	CMakeFiles/SDL2Setup.dir/src/Graphics/BitmapFont.cpp.obj	a28c7d031999a029
 1186	2358	7260916445550820	CMakeFiles/SDL2Setup.dir/src/Graphics/SpriteSheet.cpp.obj	d32108f05dd1d525
-2	116	7282304482482499	build.ninja	2ffae65f82d88e0f
+2	116	7283153408059840	build.ninja	2ffae65f82d88e0f
 39	1480	7280623896205572	CMakeFiles/ArcadeGame.dir/src/Games/BreakOut/BreakOut.cpp.obj	f1b269b1f44b7252
 51	941	7267712932237861	CMakeFiles/ArcadeGame.dir/src/Shapes/Shape.cpp.obj	e9bae49bf126a25b
 22	677	7269833543600943	CMakeFiles/ArcadeGame.dir/src/Utils/Vec2D.cpp.obj	d9042d4b3581857e
@@ -67,10 +68,10 @@
 1316	3097	7280623912493641	CMakeFiles/ArcadeGame.dir/src/Games/Tetris/Ghost.cpp.obj	a1ef70a2d98eb1e0
 66	1428	7280623896006104	CMakeFiles/ArcadeGame.dir/src/Games/BreakOut/BreakoutGameLevel.cpp.obj	8398aed43ea26b79
 694	3223	7280623914059456	CMakeFiles/ArcadeGame.dir/src/Games/Tetris/Tetris.cpp.obj	2442d232a0b7a72e
-9	958	7282298820669731	CMakeFiles/ArcadeGame.dir/src/Games/Asteroids/Asteroids.cpp.obj	6afa175f67a48e8b
+9	1033	7282315410515242	CMakeFiles/ArcadeGame.dir/src/Games/Asteroids/Asteroids.cpp.obj	6afa175f67a48e8b
 1404	2794	7280623909511620	CMakeFiles/ArcadeGame.dir/src/Graphics/SpriteSheet.cpp.obj	c090e96beb33330b
 1428	2228	7280623904040291	CMakeFiles/ArcadeGame.dir/src/Graphics/BitmapFont.cpp.obj	ad62bd2fdfede16c
-958	3743	7282298848513886	ArcadeGame.exe	3ae9cae2a81b0ebb
+660	3468	7282317433236461	ArcadeGame.exe	baba6d9b2bf983f8
 1480	2768	7280623909052848	CMakeFiles/ArcadeGame.dir/src/Utils/Sound.cpp.obj	aeabd440dcedc3b1
 2	18	0	clean	8c45b54705a541e8
 1797	2830	7280623909661226	CMakeFiles/ArcadeGame.dir/src/App/Button.cpp.obj	50353bc007cf7709
@@ -83,8 +84,11 @@
 3097	4930	7280623931150637	CMakeFiles/ArcadeGame.dir/src/Games/Asteroids/Ship.cpp.obj	f80ee605d324e738
 3223	4806	7280623929902036	CMakeFiles/ArcadeGame.dir/src/Games/Asteroids/Bullet.cpp.obj	7eaf09fe74b485c3
 4017	5399	7280623935835239	CMakeFiles/ArcadeGame.dir/src/Games/Asteroids/Comet.cpp.obj	d47041ba741175ff
-17	408	7282315404297207	CMakeFiles/ArcadeGame.dir/src/Games/Pacman/PacmanGame.cpp.obj	b1f1606f3c3004e1
-9	1033	7282315410515242	CMakeFiles/ArcadeGame.dir/src/Games/Asteroids/Asteroids.cpp.obj	6afa175f67a48e8b
-4	1036	7282315410545158	CMakeFiles/ArcadeGame.dir/src/Scenes/ArcadeScene.cpp.obj	b699c07453cdf879
 3	659	7282317405148670	CMakeFiles/ArcadeGame.dir/src/Scenes/Pacman/PacmanStartScene.cpp.obj	9be58cb104cafe7c
-660	3468	7282317433236461	ArcadeGame.exe	baba6d9b2bf983f8
+4	567	7283158599084190	CMakeFiles/ArcadeGame.dir/src/Games/Pacman/PacmanLevel.cpp.obj	70fd1b5d25e8cf2d
+567	3645	7283158629824619	ArcadeGame.exe	4473539e75202d8f
+4	758	7283170178683077	CMakeFiles/ArcadeGame.dir/src/Games/Pacman/PacmanLevel.cpp.obj	70fd1b5d25e8cf2d
+758	3573	7283170206831350	ArcadeGame.exe	4473539e75202d8f
+3	581	7283171636586410	CMakeFiles/ArcadeGame.dir/src/Games/Pacman/PacmanGame.cpp.obj	b1f1606f3c3004e1
+9	732	7283171638092620	CMakeFiles/ArcadeGame.dir/src/Scenes/Pacman/PacmanStartScene.cpp.obj	9be58cb104cafe7c
+732	3553	7283171666313011	ArcadeGame.exe	4473539e75202d8f

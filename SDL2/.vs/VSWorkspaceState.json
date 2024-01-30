@@ -11,12 +11,8 @@
     "",
     "\\src",
     "\\src\\Games",
-    "\\src\\Games\\Asteroids",
-    "\\src\\Games\\Pacman",
-    "\\src\\Games\\Tetris",
-    "\\src\\Scenes",
-    "\\src\\Scenes\\Pacman"
+    "\\src\\Games\\Pacman"
   ],
-  "SelectedNode": "\\src\\Scenes\\ArcadeScene.cpp",
+  "SelectedNode": "\\src\\Games\\Pacman\\PacmanGame.cpp",
   "PreviewInSolutionExplorer": false
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../Games/Game.h"
+#include "PacmanLevel.h"
 
 class PacmanGame: public Game {
 
@@ -10,5 +11,5 @@ class PacmanGame: public Game {
 	virtual const std::string& GetName() const override;
 
 private:
-
+	PacmanLevel mLevel;
 };
