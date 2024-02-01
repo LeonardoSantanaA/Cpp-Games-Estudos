@@ -29,12 +29,12 @@ void Actor::Update(uint32_t dt) {
 				mDelta.SetX(mDelta.GetX() - dx);
 			}
 		}
-		else if(fabsf(mDelta.GetY() >= 1)){
+		else if(fabsf(mDelta.GetY()) >= 1){
 			int dy = int(fabsf(mDelta.GetY()));
 
 			if (mDelta.GetY() < 0) {
 				mSprite.MoveBy(Vec2D(0, -dy));
-				mDelta.SetY(mDelta.GetX() + dy);
+				mDelta.SetY(mDelta.GetY() + dy);
 			}
 			else {
 				mSprite.MoveBy(Vec2D(0, dy));
