@@ -1,0 +1,44 @@
+#pragma once
+
+#include "../../Graphics/AnimatedSprite.h"
+#include "../../Utils/Vec2D.h"
+#include "PacmanGameUtils.h"
+#include "../../Shapes/AARectangle.h"
+#include "../../Graphics/Color.h"
+#include <string>
+#include <stdint.h>
+
+class Screen;
+class SpriteSheet;
+
+class Actor {
+public:
+	virtual void Init(const SpriteSheet& spriteSheet, const std::string& animationsPath, const Vec2D& initialPos, uint32_t movementSpeed, bool updateSpriteOnMovement, const Color& spriteColor = Color::White());
+	virtual void Update(uint32_t dt);
+	virtual void Draw(Screen& screen);
+	virtual void Stop();
+	AARectangle GetEatingBoundingBox() const;
+
+
+	inline bool IsFinishedAnimation() const { return mSprite.IsFinishedPlayingAnimation(); }
+	inline const AARectangle GetBoundingBox() const { return mSprite.GetBoundingBox(); }
+	inline void MoveBy(const Vec2D& delta) { mSprite.MoveBy(delta); }
+	inline void MoveTo(const Vec2D& pos) { mSprite.SetPosition(pos); }
+	inline Vec2D GetPosition() const { return mSprite.GetPosition(); }
+	inline PacmanMovement GetMovementDirection() { return mMovementDirection; }
+	virtual inline void SetMovementDirection(PacmanMovement direction) { mMovementDirection = direction; }
+	inline const Color& GetSpriteColor() const { return mSprite.GetColor(); }
+
+protected:
+	inline void ResetDelta() { mDelta = Vec2D::Zero; }
+	inline void SetMovementSpeed(uint32_t movementSpeed) { mMovementSpeed = movementSpeed; }
+
+	void SetAnimation(const std::string& animationName, bool looped);
+
+	AnimatedSprite mSprite;
+private:
+	Vec2D mDelta;
+	PacmanMovement mMovementDirection;
+	uint32_t mMovementSpeed;
+	bool mUpdateSpriteOnUnUpdate;
+};

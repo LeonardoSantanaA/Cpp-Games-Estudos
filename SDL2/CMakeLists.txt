@@ -57,6 +57,6 @@ add_executable(ArcadeGame  #WIN32
 "src/Graphics/AnimatedSprite.h" "src/Graphics/AnimatedSprite.cpp" 
 "src/Games/Asteroids/Asteroids.h" "src/Games/Asteroids/Asteroids.cpp" 
 "src/Games/Asteroids/Ship.h" "src/Games/Asteroids/Ship.cpp" 
-"src/Games/Asteroids/Bullet.h" "src/Games/Asteroids/Bullet.cpp" "src/Games/Asteroids/Comet.h" "src/Games/Asteroids/Comet.cpp" "src/Games/Pacman/PacmanGame.h" "src/Games/Pacman/PacmanGame.cpp" "src/Scenes/Pacman/PacmanStartScene.cpp" "src/Scenes/Pacman/PacmanStartScene.h" "src/Games/Pacman/PacmanLevel.h" "src/Games/Pacman/PacmanLevel.cpp" "src/Games/Pacman/PacmanGameUtils.h" "src/Games/Pacman/PacmanGameUtils.cpp")
+"src/Games/Asteroids/Bullet.h" "src/Games/Asteroids/Bullet.cpp" "src/Games/Asteroids/Comet.h" "src/Games/Asteroids/Comet.cpp" "src/Games/Pacman/PacmanGame.h" "src/Games/Pacman/PacmanGame.cpp" "src/Scenes/Pacman/PacmanStartScene.cpp" "src/Scenes/Pacman/PacmanStartScene.h" "src/Games/Pacman/PacmanLevel.h" "src/Games/Pacman/PacmanLevel.cpp" "src/Games/Pacman/PacmanGameUtils.h" "src/Games/Pacman/PacmanGameUtils.cpp" "src/Games/Pacman/Actor.h" "src/Games/Pacman/Actor.cpp")
 
 target_link_libraries(ArcadeGame SDL2::SDL2 SDL2::SDL2main SDL2_mixer::SDL2_mixer)
