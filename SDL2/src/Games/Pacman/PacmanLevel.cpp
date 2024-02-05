@@ -28,7 +28,7 @@ void PacmanLevel::Update(uint32_t dt) {
 		}
 	}
 
-	for (Tile t : mTiles) {
+	for (Tile& t : mTiles) {
 		if (t.isTeleportTile) {
 			AARectangle teleportTileAABB(t.position, t.width, static_cast<float>(mTileHeight));
 
@@ -37,6 +37,21 @@ void PacmanLevel::Update(uint32_t dt) {
 
 			if (teleportToTile->isTeleportTile && teleportTileAABB.Intersects(mnoptrPacman->GetBoundingBox())) {
 				mnoptrPacman->MoveTo(teleportToTile->position + teleportToTile->offset);
+			}
+		}
+	}
+
+	for (auto& pellet : mPellets) {
+		if (!pellet.eaten) {
+			if (mnoptrPacman->GetEatingBoundingBox().Intersects(pellet.mBBox)) {
+				pellet.eaten = true;
+
+				mnoptrPacman->AteItem(pellet.score);
+
+				if (pellet.powerPellet) {
+					mnoptrPacman->ResetGhostEatenMultiplier();
+					//TODO: make ghosts go vulnerable
+				}
 			}
 		}
 	}
@@ -63,6 +78,11 @@ void PacmanLevel::Draw(Screen& screen) {
 
 void PacmanLevel::ResetLevel() {
 	ResetPellets();
+
+	if (mnoptrPacman) {
+		mnoptrPacman->MoveTo(mPacmanSpawnLocation);
+		mnoptrPacman->ResetToFirstAnimation();
+	}
 }
 
 void PacmanLevel::ResetPellets() {
@@ -219,6 +239,14 @@ bool PacmanLevel::LoadLevel(const std::string& levelPath) {
 		};
 	fileLoader.AddCommand(tileExcludePelletCommand);
 
+	Command tilePacmanSpawnPointCommand;
+	tilePacmanSpawnPointCommand.command = "tile_pacman_spawn_point";
+	tilePacmanSpawnPointCommand.parseFunc = [this](ParseFuncParams params) {
+		mTiles.back().pacmanSpawnPoint = FileCommandLoader::ReadInt(params);
+		};
+	fileLoader.AddCommand(tilePacmanSpawnPointCommand);
+
+
 	Command layoutCommand;
 	layoutCommand.command = "layout";
 	layoutCommand.commandType = COMMAND_MULTI_LINE;
@@ -235,6 +263,10 @@ bool PacmanLevel::LoadLevel(const std::string& levelPath) {
 					wall.Init(AARectangle(Vec2D(startingX, layoutOffset.GetY()), tile->width, static_cast<int>(mTileHeight)));
 
 					mWalls.push_back(wall);
+				}
+
+				if (tile->pacmanSpawnPoint > 0) {
+					mPacmanSpawnLocation = Vec2D(startingX + tile->offset.GetX(), layoutOffset.GetY() + tile->offset.GetY());
 				}
 
 				if (tile->excludePelletTile > 0) {

@@ -15,8 +15,11 @@ public:
 	void Update(uint32_t dt);
 	void Draw(Screen& screen);
 
+	void ResetLevel();
 	bool WillCollide(const AARectangle& aBBox, PacmanMovement direction) const;
 
+	inline Vec2D GetLayoutOffset() const { return mLayoutOffset; }
+	inline Vec2D GetPacmanSpawnLocation() const { return mPacmanSpawnLocation; }
 private:
 	struct Tile {
 		Vec2D position = Vec2D::Zero;
@@ -25,6 +28,7 @@ private:
 		int collidable = 0;
 		int isTeleportTile = 0;
 		int excludePelletTile = 0;
+		int pacmanSpawnPoint = 0;
 		char teleportToSymbol = 0;
 		char symbol = '-';
 	};
@@ -39,13 +43,14 @@ private:
 	bool LoadLevel(const std::string& levelPath);
 	Tile* GetTileForSymbol(char symbol);
 	void ResetPellets();
-	void ResetLevel();
+
 
 	std::vector<Excluder> mWalls;
 	std::vector<Tile> mTiles;
 
 	std::vector<Tile> mExclusionTiles;
 	std::vector<Pellet> mPellets;
+	Vec2D mPacmanSpawnLocation;
 	Vec2D mLayoutOffset;
 	size_t mTileHeight;
 
