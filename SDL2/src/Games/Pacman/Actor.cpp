@@ -7,6 +7,7 @@ void Actor::Init(const SpriteSheet& spriteSheet, const std::string& animationsPa
 	mUpdateSpriteOnUnUpdate = updateSpriteOnMovement;
 	mMovementSpeed = movementSpeed;
 	mDelta = Vec2D::Zero;
+	mSprite.SetPosition(initialPos);
 }
 
 void Actor::Update(uint32_t dt) {

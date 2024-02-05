@@ -4,21 +4,27 @@
 #include "../BreakOut/Excluder.h"
 #include <string>
 #include <vector>
+#include "PacmanGameUtils.h"
 
 class Screen;
+class Pacman;
 
 class PacmanLevel {
 public:
-	bool Init(const std::string& levelPath);
+	bool Init(const std::string& levelPath, Pacman* noptrPacman);
 	void Update(uint32_t dt);
 	void Draw(Screen& screen);
 
+	bool WillCollide(const AARectangle& aBBox, PacmanMovement direction) const;
 
 private:
 	struct Tile {
 		Vec2D position = Vec2D::Zero;
+		Vec2D offset = Vec2D::Zero;
 		int width = 0;
 		int collidable = 0;
+		int isTeleportTile = 0;
+		char teleportToSymbol = 0;
 		char symbol = '-';
 	};
 
@@ -31,4 +37,5 @@ private:
 	Vec2D mLayoutOffset;
 	size_t mTileHeight;
 
+	Pacman* mnoptrPacman;
 };
