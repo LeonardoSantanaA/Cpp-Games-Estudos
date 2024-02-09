@@ -6,7 +6,12 @@
 #include "../../Shapes/Circle.h"
 #include <cassert>
 
+namespace {
+	const uint32_t NUM_LEVELS = 256;
+}
+
 bool PacmanLevel::Init(const std::string& levelPath, Pacman* noptrPacman) {
+	mCurrentLevel = 0;
 	mnoptrPacman = noptrPacman;
 
 	bool levelLoaded = LoadLevel(levelPath);
@@ -83,6 +88,42 @@ void PacmanLevel::ResetLevel() {
 		mnoptrPacman->MoveTo(mPacmanSpawnLocation);
 		mnoptrPacman->ResetToFirstAnimation();
 	}
+}
+
+bool PacmanLevel::IsLevelOver() const {
+	return HasEatenAllPellets();
+}
+
+void PacmanLevel::IncreaseLevel() {
+	mCurrentLevel++;
+
+	if (mCurrentLevel > NUM_LEVELS) {
+		mCurrentLevel = 1;
+	}
+
+	ResetLevel();
+}
+
+void PacmanLevel::ResetToFirstLevel() {
+	mCurrentLevel = 1;
+	ResetLevel();
+}
+
+
+bool PacmanLevel::HasEatenAllPellets() const {
+	return NumPelletsEaten() >= mPellets.size() - 4; //4 super pellets
+}
+
+size_t PacmanLevel::NumPelletsEaten() const {
+	size_t numEaten = 0;
+
+	for (const auto& pellet : mPellets) {
+		if (!pellet.powerPellet && pellet.eaten) {
+			++numEaten;
+		}
+	}
+
+	return numEaten;
 }
 
 void PacmanLevel::ResetPellets() {

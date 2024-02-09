@@ -20,6 +20,10 @@ public:
 
 	inline Vec2D GetLayoutOffset() const { return mLayoutOffset; }
 	inline Vec2D GetPacmanSpawnLocation() const { return mPacmanSpawnLocation; }
+	bool IsLevelOver() const;
+	void IncreaseLevel();
+	void ResetToFirstLevel();
+
 private:
 	struct Tile {
 		Vec2D position = Vec2D::Zero;
@@ -43,7 +47,8 @@ private:
 	bool LoadLevel(const std::string& levelPath);
 	Tile* GetTileForSymbol(char symbol);
 	void ResetPellets();
-
+	bool HasEatenAllPellets() const;
+	size_t NumPelletsEaten() const;
 
 	std::vector<Excluder> mWalls;
 	std::vector<Tile> mTiles;
@@ -53,6 +58,6 @@ private:
 	Vec2D mPacmanSpawnLocation;
 	Vec2D mLayoutOffset;
 	size_t mTileHeight;
-
+	int mCurrentLevel;
 	Pacman* mnoptrPacman;
 };
