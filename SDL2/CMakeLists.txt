@@ -43,7 +43,7 @@ add_executable(ArcadeGame  #WIN32
 "src/Games/Tetris/Tetromino.h" "src/Games/Tetris/Tetromino.cpp"
 "src/Games/Tetris/Collider.h" "src/Games/Tetris/Collider.cpp"
 "src/Games/Tetris/Blocks.h" "src/Games/Tetris/Blocks.cpp" 
-"src/Games/Tetris/Ghost.h" "src/Games/Tetris/Ghost.cpp" 
+"src/Games/Pacman/GhostPacman.h" "src/Games/Tetris/Ghost.cpp" 
 "src/Graphics/BMPImage.h" "src/Graphics/BMPImage.cpp" 
 "src/Graphics/SpriteSheet.h" "src/Graphics/SpriteSheet.cpp" 
 "src/Graphics/BitmapFont.h" "src/Graphics/BitmapFont.cpp"   
@@ -57,6 +57,14 @@ add_executable(ArcadeGame  #WIN32
 "src/Graphics/AnimatedSprite.h" "src/Graphics/AnimatedSprite.cpp" 
 "src/Games/Asteroids/Asteroids.h" "src/Games/Asteroids/Asteroids.cpp" 
 "src/Games/Asteroids/Ship.h" "src/Games/Asteroids/Ship.cpp" 
-"src/Games/Asteroids/Bullet.h" "src/Games/Asteroids/Bullet.cpp" "src/Games/Asteroids/Comet.h" "src/Games/Asteroids/Comet.cpp" "src/Games/Pacman/PacmanGame.h" "src/Games/Pacman/PacmanGame.cpp" "src/Scenes/Pacman/PacmanStartScene.cpp" "src/Scenes/Pacman/PacmanStartScene.h" "src/Games/Pacman/PacmanLevel.h" "src/Games/Pacman/PacmanLevel.cpp" "src/Games/Pacman/PacmanGameUtils.h" "src/Games/Pacman/PacmanGameUtils.cpp" "src/Games/Pacman/Actor.h" "src/Games/Pacman/Actor.cpp" "src/Games/Pacman/Pacman.h" "src/Games/Pacman/Pacman.cpp")
+"src/Games/Asteroids/Bullet.h" "src/Games/Asteroids/Bullet.cpp" 
+"src/Games/Asteroids/Comet.h" "src/Games/Asteroids/Comet.cpp"
+"src/Games/Pacman/PacmanGame.h" "src/Games/Pacman/PacmanGame.cpp"
+"src/Scenes/Pacman/PacmanStartScene.cpp" "src/Scenes/Pacman/PacmanStartScene.h"
+"src/Games/Pacman/PacmanLevel.h" "src/Games/Pacman/PacmanLevel.cpp"
+"src/Games/Pacman/PacmanGameUtils.h" "src/Games/Pacman/PacmanGameUtils.cpp"
+"src/Games/Pacman/Actor.h" "src/Games/Pacman/Actor.cpp" 
+"src/Games/Pacman/Pacman.h" "src/Games/Pacman/Pacman.cpp" 
+"src/Games/Pacman/GhostPacman.h" "src/Games/Pacman/GhostPacman.cpp")
 
 target_link_libraries(ArcadeGame SDL2::SDL2 SDL2::SDL2main SDL2_mixer::SDL2_mixer)

@@ -21,7 +21,6 @@ Asteroids::Asteroids(): mController(nullptr), countDownStay(0), mScore(0), inver
 
 
 	GenerateComets();
-
 	
 }
 
@@ -53,9 +52,14 @@ void Asteroids::Init(GameController& controller) {
 					}
 				}
 				else if (GetGameStatus() == AST_GAMEOVER) {
+					for (auto& comet : comets) {
+						comet.SetExplode(true);
+					}
+					bullets.clear();
 					SetGameStatus(AST_WAIT);
 					playerShip.FullLife();
 					scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", InputController::GetName().c_str(), mScore);
+
 					mScore = 0;
 				}
 				

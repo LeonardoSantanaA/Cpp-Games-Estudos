@@ -16,6 +16,7 @@ void PacmanGame::Init(GameController& controller) {
 
 	mLevel.Init(App::Singleton().GetBasePath() + "Assets/Pacman_level.txt", &mPacmanSpriteSheet, &mPacman);
 
+	SetupGhosts();
 	ResetGame();
 
 	ButtonAction leftAction;
@@ -50,7 +51,13 @@ void PacmanGame::Init(GameController& controller) {
 void PacmanGame::Update(uint32_t dt) {
 	UpdatePacmanMovement();
 	mPacman.Update(dt);
+
+	for (size_t i = 0; i < NUM_GHOSTS; ++i) {
+		mGhosts[i].Update(dt);
+	}
+
 	mLevel.Update(dt);
+
 
 	if (mLevel.IsLevelOver()) {
 		mLevel.IncreaseLevel();
@@ -60,6 +67,10 @@ void PacmanGame::Update(uint32_t dt) {
 void PacmanGame::Draw(Screen& screen) {
 	mLevel.Draw(screen);
 	mPacman.Draw(screen);
+
+	for (auto& ghost : mGhosts) {
+		ghost.Draw(screen);
+	}
 
 	//Draw score
 	{
@@ -119,4 +130,28 @@ void PacmanGame::HandleGameControllerState(uint32_t dt, InputState state, Pacman
 	else if (GameController::IsReleased(state) && mPressedDirection == direction) {
 		mPressedDirection = PACMAN_MOVEMENT_NONE;
 	}
+}
+
+void PacmanGame::SetupGhosts() {
+	mGhosts.resize(NUM_GHOSTS);
+
+	GhostPacman blinky;
+	blinky.Init(mPacmanSpriteSheet, "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[BLINKY], GHOST_MOVEMENT_SPEED, true, Color::Red());
+	blinky.SetMovementDirection(PACMAN_MOVEMENT_LEFT);
+	mGhosts[BLINKY] = blinky;
+
+	GhostPacman inky;
+	inky.Init(mPacmanSpriteSheet, "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[INKY], GHOST_MOVEMENT_SPEED, true, Color::Cyan());
+	inky.SetMovementDirection(PACMAN_MOVEMENT_UP);
+	mGhosts[INKY] = inky;
+
+	GhostPacman pinky;
+	pinky.Init(mPacmanSpriteSheet, "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[PINKY], GHOST_MOVEMENT_SPEED, true, Color::Pink());
+	pinky.SetMovementDirection(PACMAN_MOVEMENT_DOWN);
+	mGhosts[PINKY] = pinky;
+
+	GhostPacman clyde;
+	clyde.Init(mPacmanSpriteSheet, "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[CLYDE], GHOST_MOVEMENT_SPEED, true, Color::Orange());
+	clyde.SetMovementDirection(PACMAN_MOVEMENT_UP);
+	mGhosts[CLYDE] = clyde;
 }

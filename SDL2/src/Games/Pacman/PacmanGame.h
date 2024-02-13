@@ -5,6 +5,7 @@
 #include "Pacman.h"
 #include "../../Graphics/SpriteSheet.h"
 #include "../../Input/InputAction.h"
+#include "GhostPacman.h"
 
 class PacmanGame: public Game {
 
@@ -19,10 +20,12 @@ private:
 	void HandleGameControllerState(uint32_t dt, InputState state, PacmanMovement direction);
 	void ResetLevel();
 	void DrawLives(Screen& screen);
+	void SetupGhosts();
 
 	PacmanMovement mPressedDirection;
 	SpriteSheet mPacmanSpriteSheet;
 	Pacman mPacman;
 	PacmanLevel mLevel;
 	size_t mNumLives;
+	std::vector<GhostPacman> mGhosts;
 };
