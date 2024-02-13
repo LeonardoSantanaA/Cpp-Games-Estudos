@@ -10,11 +10,12 @@
 
 class Screen;
 class Pacman;
+class GhostPacman;
 
 class PacmanLevel {
 public:
-	bool Init(const std::string& levelPath, const SpriteSheet* noptrSpriteSheet, Pacman* noptrPacman);
-	void Update(uint32_t dt);
+	bool Init(const std::string& levelPath, const SpriteSheet* noptrSpriteSheet);
+	void Update(uint32_t dt, Pacman& pacman, std::vector<GhostPacman>& ghosts);
 	void Draw(Screen& screen);
 
 	void ResetLevel();
@@ -94,5 +95,4 @@ private:
 	Vec2D mLayoutOffset;
 	size_t mTileHeight;
 	int mCurrentLevel;
-	Pacman* mnoptrPacman;
 };

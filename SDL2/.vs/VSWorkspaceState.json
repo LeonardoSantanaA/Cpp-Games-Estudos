@@ -11,8 +11,12 @@
     "",
     "\\src",
     "\\src\\Games",
-    "\\src\\Games\\Pacman"
+    "\\src\\Games\\Asteroids",
+    "\\src\\Games\\Pacman",
+    "\\src\\Scenes",
+    "\\src\\Scenes\\Pacman",
+    "\\src\\Utils"
   ],
-  "SelectedNode": "\\CMakeLists.txt",
+  "SelectedNode": "\\src\\Games\\Pacman\\PacmanGame.cpp",
   "PreviewInSolutionExplorer": false
 }

@@ -14,10 +14,20 @@ void PacmanGame::Init(GameController& controller) {
 
 	mPacman.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Pacman_animations.txt", Vec2D::Zero, PACMAN_MOVEMENT_SPEED, false);
 
-	mLevel.Init(App::Singleton().GetBasePath() + "Assets/Pacman_level.txt", &mPacmanSpriteSheet, &mPacman);
+	mLevel.Init(App::Singleton().GetBasePath() + "Assets/Pacman_level.txt", &mPacmanSpriteSheet);
 
 	SetupGhosts();
 	ResetGame();
+
+	ButtonAction backAction;
+	backAction.key = GameController::CancelKey();
+	backAction.action = [](uint32_t dt, InputState state)
+		{
+			if (GameController::IsPressed(state)) {
+				App::Singleton().PopScene();
+			}
+		};
+	controller.AddInputActionForKey(backAction);
 
 	ButtonAction leftAction;
 	leftAction.key = GameController::LeftKey();
@@ -56,11 +66,12 @@ void PacmanGame::Update(uint32_t dt) {
 		mGhosts[i].Update(dt);
 	}
 
-	mLevel.Update(dt);
+	mLevel.Update(dt, mPacman, mGhosts);
 
 
 	if (mLevel.IsLevelOver()) {
 		mLevel.IncreaseLevel();
+		ResetLevel();
 	}
 }
 
@@ -114,6 +125,12 @@ void PacmanGame::ResetGame() {
 	mPressedDirection = PACMAN_MOVEMENT_NONE;
 	mPacman.ResetScore();
 	mLevel.ResetToFirstLevel();
+	ResetLevel();
+}
+
+void PacmanGame::ResetLevel() {
+	mPacman.MoveTo(mLevel.GetPacmanSpawnLocation());
+	mPacman.ResetToFirstAnimation();
 }
 
 void PacmanGame::UpdatePacmanMovement() {
