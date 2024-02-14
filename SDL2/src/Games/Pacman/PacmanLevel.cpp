@@ -122,10 +122,16 @@ void PacmanLevel::Update(uint32_t dt, Pacman& pacman, std::vector<GhostPacman>& 
 }
 
 void PacmanLevel::Draw(Screen& screen) {
+	Sprite bgSprite;
+	bgSprite.width = mBGImage.GetWidth();
+	bgSprite.height = mBGImage.GetHeight();
+
+	screen.Draw(mBGImage, bgSprite, Vec2D::Zero);
+
 	//debug for walls
-	for (const auto& wall : mWalls) {
-		screen.Draw(wall.GetAARectangle(), Color::Blue());
-	}
+	//for (const auto& wall : mWalls) {
+		//screen.Draw(wall.GetAARectangle(), Color::Blue());
+	//}
 
 	for (const auto& pellet : mPellets) {
 		if (!pellet.eaten) {
@@ -318,6 +324,18 @@ bool PacmanLevel::WillCollide(const GhostPacman& ghost, const GhostAI& ghostAI, 
 
 bool PacmanLevel::LoadLevel(const std::string& levelPath) {
 	FileCommandLoader fileLoader;
+
+	std::string bgImageName;
+
+	Command bgImageCommand;
+	bgImageCommand.command = "bg_image";
+	bgImageCommand.parseFunc = [this, &bgImageName](ParseFuncParams params) {
+		bgImageName = FileCommandLoader::ReadString(params);
+		bool loaded = mBGImage.LoadFile(App::Singleton().GetBasePath() + std::string("Assets/") + bgImageName);
+
+		assert(loaded && "Didnt load the bg image.");
+		};
+	fileLoader.AddCommand(bgImageCommand);
 
 	Command tileWidthCommand;
 	tileWidthCommand.command = "tile_width";

@@ -14,6 +14,8 @@ namespace {
 
 void PacmanGame::Init(GameController& controller) {
 
+	scoreFile.LoadScoreFileLoader(App::GetBasePath() + "Assets/Scores.txt");
+
 	mReleaseGhostTimer = 0;
 	mPacmanSpriteSheet.Load("PacmanSprites");
 
@@ -28,9 +30,12 @@ void PacmanGame::Init(GameController& controller) {
 
 	ButtonAction backAction;
 	backAction.key = GameController::CancelKey();
-	backAction.action = [](uint32_t dt, InputState state)
+	backAction.action = [&](uint32_t dt, InputState state)
 		{
 			if (GameController::IsPressed(state)) {
+				if (mGameState != GAME_OVER) {
+					scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", InputController::GetName().c_str(), mPacman.Score());
+				}
 				App::Singleton().PopScene();
 			}
 		};
@@ -131,6 +136,7 @@ void PacmanGame::Update(uint32_t dt) {
 				ResetLevel();
 			}
 			else {
+				scoreFile.SaveScoreToFile(App::GetBasePath() + "Assets/Scores.txt", InputController::GetName().c_str(), mPacman.Score());
 				mGameState = GAME_OVER;
 			}
 		}
@@ -147,9 +153,9 @@ void PacmanGame::Draw(Screen& screen) {
 		ghost.Draw(screen);
 	}
 
-	for (auto& ghostAI : mGhostAIs) {
-		ghostAI.Draw(screen);
-	}
+	//for (auto& ghostAI : mGhostAIs) {
+		//ghostAI.Draw(screen);
+	//}
 
 	const auto& font = App::Singleton().GetFont();
 	Vec2D textDrawPosition;

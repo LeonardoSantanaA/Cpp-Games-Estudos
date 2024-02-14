@@ -127,6 +127,8 @@ PacmanMovement GhostAI::Update(uint32_t dt, const Pacman& pacman, const PacmanLe
 }
 
 void GhostAI::Draw(Screen& screen) {
+	//debug
+	/*
 	if (mnoptrGhost) {
 		Circle targetCircle = Circle(mTarget, 4);
 		screen.Draw(targetCircle, mnoptrGhost->GetSpriteColor(), true, mnoptrGhost->GetSpriteColor());
@@ -136,6 +138,7 @@ void GhostAI::Draw(Screen& screen) {
 		Color c = Color(mnoptrGhost->GetSpriteColor().GetRed(), mnoptrGhost->GetSpriteColor().GetGreen(), mnoptrGhost->GetSpriteColor().GetBlue(), 200);
 		screen.Draw(bbox, mnoptrGhost->GetSpriteColor(), true, c);
 	}
+	*/
 }
 
 void GhostAI::ChangeTarget(const Vec2D& target) {
