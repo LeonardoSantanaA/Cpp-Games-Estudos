@@ -26,7 +26,7 @@ public:
 	inline void MoveBy(const Vec2D& delta) { mSprite.MoveBy(delta); }
 	inline void MoveTo(const Vec2D& pos) { mSprite.SetPosition(pos); }
 	inline Vec2D GetPosition() const { return mSprite.GetPosition(); }
-	inline PacmanMovement GetMovementDirection() { return mMovementDirection; }
+	inline PacmanMovement GetMovementDirection() const { return mMovementDirection; }
 	virtual inline void SetMovementDirection(PacmanMovement direction) { mMovementDirection = direction; }
 	inline const Color& GetSpriteColor() const { return mSprite.GetColor(); }
 
