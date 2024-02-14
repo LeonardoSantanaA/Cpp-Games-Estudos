@@ -101,6 +101,19 @@ void PacmanGame::Update(uint32_t dt) {
 			}
 
 			ghost.Update(dt);
+
+			if (ghost.IsVulnerable() && mPacman.GetEatingBoundingBox().Intersects(ghost.GetBoundingBox())) {
+				ghost.EatenByPacman();
+				mPacman.AteGhost(ghost.GetPoints());
+			}
+			else if(ghost.IsAlive() && ghost.GetEatingBoundingBox().Intersects(mPacman.GetBoundingBox())){
+				mNumLives--;
+				mGameState = LOST_LIFE;
+				mPacman.EatenByGhost();
+				mPressedDirection = PACMAN_MOVEMENT_NONE;
+				mPacman.SetMovementDirection(PACMAN_MOVEMENT_NONE);
+				return;
+			}
 		}
 
 		mLevel.Update(dt, mPacman, mGhosts, mGhostAIs);
@@ -193,6 +206,7 @@ void PacmanGame::ResetGame() {
 }
 
 void PacmanGame::ResetLevel() {
+	mReleaseGhostTimer = 0;
 	mGameState = LEVEL_STARTING;
 
 	mPacman.MoveTo(mLevel.GetPacmanSpawnLocation());

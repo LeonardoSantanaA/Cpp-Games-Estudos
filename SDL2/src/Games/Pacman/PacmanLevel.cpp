@@ -100,7 +100,10 @@ void PacmanLevel::Update(uint32_t dt, Pacman& pacman, std::vector<GhostPacman>& 
 
 				if (pellet.powerPellet) {
 					pacman.ResetGhostEatenMultiplier();
-					//TODO: make ghosts go vulnerable
+					for (auto& ghost : ghosts) {
+						ghost.SetStateToVulnerable();
+					}
+
 				}
 			}
 		}
