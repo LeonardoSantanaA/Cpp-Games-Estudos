@@ -8,7 +8,7 @@ class SpriteSheet;
 
 class Pacman : public Actor {
 public:
-	virtual void Init(const SpriteSheet& spriteSheet, const std::string& animationPath, const Vec2D& initialPos, uint32_t movementSpeed, bool updateSpriteOnMovement);
+	virtual void Init(const SpriteSheet& spriteSheet, const std::string& animationPath, const Vec2D& initialPos, uint32_t movementSpeed, bool updateSpriteOnMovement, const Color& spriteColor = Color::White());
 	virtual void Update(uint32_t dt) override;
 	virtual void SetMovementDirection(PacmanMovement movementDir) override;
 

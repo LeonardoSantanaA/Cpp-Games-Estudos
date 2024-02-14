@@ -4,7 +4,7 @@ namespace {
 	const uint32_t NUM_POINTS_FOR_GHOST = 200;
 }
 
-GhostPacman::GhostPacman(): mPoints(0), mInitialPos(Vec2D::Zero) {
+GhostPacman::GhostPacman(): mPoints(0), mInitialPos(Vec2D::Zero), mIsReleased(false), mDelegate(nullptr) {
 
 }
 
@@ -88,9 +88,18 @@ void GhostPacman::ResetToFirstPosition() {
 	mVulnerabilityTimer = 0;
 	SetGhostState(GHOST_STATE_ALIVE);
 	mCanChangeDirection = true;
+	mIsReleased = false;
+
+	if (mDelegate) {
+		mDelegate->GhostWasResetToFirstPosition();
+	}
 }
 
 void GhostPacman::SetGhostState(GhostState state) {
+	if (mDelegate) {
+		mDelegate->GhostDelegateGhostStateChangedTo(mState, state);
+	}
+
 	mState = state;
 	switch (mState) {
 	case GHOST_STATE_ALIVE:
@@ -113,5 +122,13 @@ void GhostPacman::SetGhostState(GhostState state) {
 		SetMovementDirection(GetMovementDirection());
 		SetMovementSpeed(GHOST_BACK_TO_PEN_SPEED);
 		break;
+	}
+}
+
+void GhostPacman::ReleasedFromPen() {
+	mIsReleased = true;
+
+	if (mDelegate) {
+		mDelegate->GhostWasReleasedFromPen();
 	}
 }

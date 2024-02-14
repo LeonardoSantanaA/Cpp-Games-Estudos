@@ -6,10 +6,12 @@ namespace {
 	const std::string SCORE_STR = "Score   ";
 	const std::string PACMAN_LIFE_SPRITE_NAME = "pac_man_left_idle";
 	const size_t MAX_NUM_LIVES = 3;
+	const uint32_t RELEASE_GHOST_TIME = 5000;
 };
 
 void PacmanGame::Init(GameController& controller) {
 
+	mReleaseGhostTimer = 0;
 	mPacmanSpriteSheet.Load("PacmanSprites");
 
 	mPacman.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Pacman_animations.txt", Vec2D::Zero, PACMAN_MOVEMENT_SPEED, false);
@@ -62,21 +64,31 @@ void PacmanGame::Update(uint32_t dt) {
 	UpdatePacmanMovement();
 	mPacman.Update(dt);
 
+	mReleaseGhostTimer += dt;
+
 	for (size_t i = 0; i < NUM_GHOSTS; ++i) {
 
-		if (static_cast<GhostName>(i) == BLINKY) {
-			GhostAI& ghostAI = mGhostAIs[i];
-			auto direction = ghostAI.Update(dt, mPacman, mLevel, mGhosts);
+		GhostPacman& ghost = mGhosts[i];
+		GhostAI& ghostAI = mGhostAIs[i];
 
-			if (mGhosts[i].CanChangeDirection() && direction != mGhosts[i].GetMovementDirection()) {
-				mGhosts[i].SetMovementDirection(direction);
+		if (mReleaseGhostTimer >= RELEASE_GHOST_TIME && ghostAI.IsInPen() && !ghost.IsReleased()) {
+			mReleaseGhostTimer = 0;
+			ghost.ReleasedFromPen();
+		}
+
+		auto direction = ghostAI.Update(dt, mPacman, mLevel, mGhosts);
+
+		if ((ghost.IsReleased() && ghost.CanChangeDirection()) || (ghost.IsReleased() && ghostAI.WantsToLeavePen() && direction != PACMAN_MOVEMENT_NONE)) {
+			if (direction != ghost.GetMovementDirection()) {
+				ghost.SetMovementDirection(direction);
+				ghost.LockCanChangeDirection();
 			}
 		}
 
-		mGhosts[i].Update(dt);
+		ghost.Update(dt);
 	}
 
-	mLevel.Update(dt, mPacman, mGhosts);
+	mLevel.Update(dt, mPacman, mGhosts, mGhostAIs);
 
 	if (mLevel.IsLevelOver()) {
 		mLevel.IncreaseLevel();
@@ -144,6 +156,12 @@ void PacmanGame::ResetGame() {
 void PacmanGame::ResetLevel() {
 	mPacman.MoveTo(mLevel.GetPacmanSpawnLocation());
 	mPacman.ResetToFirstAnimation();
+
+	for (auto& ghost : mGhosts) {
+		ghost.ResetToFirstPosition();
+	}
+
+	mGhosts[BLINKY].ReleasedFromPen();
 }
 
 void PacmanGame::UpdatePacmanMovement() {
@@ -169,7 +187,7 @@ void PacmanGame::SetupGhosts() {
 	const Vec2D CLYDE_SCATTER_POS = Vec2D(0, App::Singleton().Height());
 
 	mGhosts.resize(NUM_GHOSTS);
-	mGhostAIs.resize(1);
+	mGhostAIs.resize(NUM_GHOSTS);
 
 	GhostPacman blinky;
 	blinky.Init(mPacmanSpriteSheet, "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[BLINKY], GHOST_MOVEMENT_SPEED, true, Color::Red());
@@ -177,22 +195,41 @@ void PacmanGame::SetupGhosts() {
 	mGhosts[BLINKY] = blinky;
 
 	auto blinkyAI = GhostAI();
-	blinkyAI.Init(mGhosts[BLINKY], blinky.GetBoundingBox().GetWidth(), BLINKY_SCATTER_POS, BLINKY);
+	blinkyAI.Init(mGhosts[BLINKY], blinky.GetBoundingBox().GetWidth(), BLINKY_SCATTER_POS, mLevel.GetGhostSpawnPoints()[PINKY], mLevel.GetGhostSpawnPoints()[BLINKY], BLINKY);
 
 	mGhostAIs[BLINKY] = blinkyAI;
-
-	GhostPacman inky;
-	inky.Init(mPacmanSpriteSheet, "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[INKY], GHOST_MOVEMENT_SPEED, true, Color::Cyan());
-	inky.SetMovementDirection(PACMAN_MOVEMENT_UP);
-	mGhosts[INKY] = inky;
 
 	GhostPacman pinky;
 	pinky.Init(mPacmanSpriteSheet, "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[PINKY], GHOST_MOVEMENT_SPEED, true, Color::Pink());
 	pinky.SetMovementDirection(PACMAN_MOVEMENT_DOWN);
 	mGhosts[PINKY] = pinky;
 
+	auto pinkyAI = GhostAI();
+	pinkyAI.Init(mGhosts[PINKY], pinky.GetBoundingBox().GetWidth(), PINKY_SCATTER_POS, mLevel.GetGhostSpawnPoints()[PINKY], mLevel.GetGhostSpawnPoints()[BLINKY], PINKY);
+
+	mGhostAIs[PINKY] = pinkyAI;
+
+	GhostPacman inky;
+	inky.Init(mPacmanSpriteSheet, "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[INKY], GHOST_MOVEMENT_SPEED, true, Color::Cyan());
+	inky.SetMovementDirection(PACMAN_MOVEMENT_UP);
+	mGhosts[INKY] = inky;
+
+	auto inkyAI = GhostAI();
+	inkyAI.Init(mGhosts[INKY], inky.GetBoundingBox().GetWidth(), INKY_SCATTER_POS, mLevel.GetGhostSpawnPoints()[PINKY], mLevel.GetGhostSpawnPoints()[BLINKY], INKY);
+
+	mGhostAIs[INKY] = inkyAI;
+
 	GhostPacman clyde;
 	clyde.Init(mPacmanSpriteSheet, "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[CLYDE], GHOST_MOVEMENT_SPEED, true, Color::Orange());
 	clyde.SetMovementDirection(PACMAN_MOVEMENT_UP);
 	mGhosts[CLYDE] = clyde;
+
+	auto clydeAI = GhostAI();
+	clydeAI.Init(mGhosts[CLYDE], clyde.GetBoundingBox().GetWidth(), CLYDE_SCATTER_POS, mLevel.GetGhostSpawnPoints()[PINKY], mLevel.GetGhostSpawnPoints()[BLINKY], CLYDE);
+
+	mGhostAIs[CLYDE] = clydeAI;
+
+	for (size_t i = 0; i < NUM_GHOSTS; ++i) {
+		mGhosts[i].SetGhostDelegate(mGhostAIs[i]);
+	}
 }

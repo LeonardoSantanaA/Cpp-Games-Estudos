@@ -29,7 +29,7 @@ bool PacmanLevel::Init(const std::string& levelPath, const SpriteSheet* noptrSpr
 	return levelLoaded;
 }
 
-void PacmanLevel::Update(uint32_t dt, Pacman& pacman, std::vector<GhostPacman>& ghosts) {
+void PacmanLevel::Update(uint32_t dt, Pacman& pacman, std::vector<GhostPacman>& ghosts, std::vector<GhostAI>& ghostAIs) {
 	for (const auto& wall : mWalls) {
 		BoundaryEdge edge;
 
@@ -42,6 +42,27 @@ void PacmanLevel::Update(uint32_t dt, Pacman& pacman, std::vector<GhostPacman>& 
 		for (auto& ghost : ghosts) {
 			if (wall.HasCollided(ghost.GetBoundingBox(), edge)) {
 				Vec2D offset = wall.GetCollisionOffset(ghost.GetBoundingBox());
+				ghost.MoveBy(offset);
+				ghost.Stop();
+			}
+		}
+	}
+
+	for (const auto& gate : mGate) {
+		BoundaryEdge edge;
+
+		if (gate.HasCollided(pacman.GetBoundingBox(), edge)) {
+			Vec2D offset = gate.GetCollisionOffset(pacman.GetBoundingBox());
+			pacman.MoveBy(offset);
+			pacman.Stop();
+		}
+
+		for (size_t i = 0; i < NUM_GHOSTS; ++i) {
+			GhostAI& ghostAI = ghostAIs[i];
+			GhostPacman& ghost = ghosts[i];
+
+			if (!(ghostAI.WantsToLeavePen() || ghostAI.IsEnteringPen()) && gate.HasCollided(ghost.GetBoundingBox(), edge)) {
+				Vec2D offset = gate.GetCollisionOffset(ghost.GetBoundingBox());
 				ghost.MoveBy(offset);
 				ghost.Stop();
 			}
@@ -254,9 +275,37 @@ bool PacmanLevel::WillCollide(const AARectangle& aBBox, PacmanMovement direction
 
 	bBox.MoveBy(GetMovementVector(direction));
 
+	BoundaryEdge edge;
+
 	for (const auto& wall : mWalls) {
-		BoundaryEdge edge;
+		
 		if (wall.HasCollided(bBox, edge)) {
+			return true;
+		}
+	}
+
+	for (const auto& gate : mGate) {
+		if (gate.HasCollided(bBox, edge)) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool PacmanLevel::WillCollide(const GhostPacman& ghost, const GhostAI& ghostAI, PacmanMovement direction) const {
+	AARectangle bbox = ghost.GetBoundingBox();
+	bbox.MoveBy(GetMovementVector(direction));
+
+	BoundaryEdge edge;
+	for (const auto& wall : mWalls) {
+		if (wall.HasCollided(bbox, edge)) {
+			return true;
+		}
+	}
+
+	for (const auto& gate : mGate) {
+		if (!(ghostAI.IsEnteringPen() || ghostAI.WantsToLeavePen()) && gate.HasCollided(bbox, edge)) {
 			return true;
 		}
 	}
@@ -382,6 +431,13 @@ bool PacmanLevel::LoadLevel(const std::string& levelPath) {
 		};
 	fileLoader.AddCommand(tileClydeSpawnPointCommand);
 
+	Command tileGateCommand;
+	tileGateCommand.command = "tile_is_gate";
+	tileGateCommand.parseFunc = [this](ParseFuncParams params) {
+		mTiles.back().isGate = FileCommandLoader::ReadInt(params);
+		};
+	fileLoader.AddCommand(tileGateCommand);
+
 	Command layoutCommand;
 	layoutCommand.command = "layout";
 	layoutCommand.commandType = COMMAND_MULTI_LINE;
@@ -393,7 +449,15 @@ bool PacmanLevel::LoadLevel(const std::string& levelPath) {
 			if (tile) {
 				tile->position = Vec2D(startingX, layoutOffset.GetY());
 
-				if (tile->collidable > 0) {
+				if (tile->isGate > 0) {
+					Excluder gate;
+
+					gate.Init(AARectangle(Vec2D(startingX, layoutOffset.GetY()), tile->width, static_cast<int>(mTileHeight)));
+
+					mGate.push_back(gate);
+				}
+
+				else if (tile->collidable > 0) {
 					Excluder wall;
 					wall.Init(AARectangle(Vec2D(startingX, layoutOffset.GetY()), tile->width, static_cast<int>(mTileHeight)));
 
@@ -407,13 +471,13 @@ bool PacmanLevel::LoadLevel(const std::string& levelPath) {
 					mBonusItem.bbox = AARectangle(Vec2D(startingX + tile->offset.GetX(), layoutOffset.GetY() + tile->offset.GetY()), SPRITE_WIDTH, SPRITE_HEIGHT);
 				}
 				else if (tile->blinkySpawnPoint > 0) {
-					mGhostsSpawnPoints[BLINKY] = Vec2D(startingX + tile->offset.GetX(), layoutOffset.GetY() + tile->offset.GetY());
+					mGhostsSpawnPoints[BLINKY] = Vec2D(startingX + tile->offset.GetX()+1, layoutOffset.GetY() + tile->offset.GetY());
 				}
 				else if (tile->pinkySpawnPoint > 0) {
 					mGhostsSpawnPoints[PINKY] = Vec2D(startingX + tile->offset.GetX(), layoutOffset.GetY() + tile->offset.GetY());
 				}
 				else if (tile->inkySpawnPoint > 0) {
-					mGhostsSpawnPoints[INKY] = Vec2D(startingX + tile->offset.GetX(), layoutOffset.GetY() + tile->offset.GetY());
+					mGhostsSpawnPoints[INKY] = Vec2D(startingX + tile->offset.GetX()+1, layoutOffset.GetY() + tile->offset.GetY());
 				}
 				else if (tile->clydeSpawnPoint > 0) {
 					mGhostsSpawnPoints[CLYDE] = Vec2D(startingX + tile->offset.GetX(), layoutOffset.GetY() + tile->offset.GetY());

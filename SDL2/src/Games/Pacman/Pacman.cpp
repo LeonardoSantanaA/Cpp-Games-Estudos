@@ -1,8 +1,8 @@
 #include "Pacman.h"
 #include "../../Utils/Utils.h"
 
-void Pacman::Init(const SpriteSheet& spriteSheet, const std::string& animationPath, const Vec2D& initialPos, uint32_t movementSpeed, bool updateSpriteOnMovement) {
-	Actor::Init(spriteSheet, animationPath, initialPos, movementSpeed, false);
+void Pacman::Init(const SpriteSheet& spriteSheet, const std::string& animationPath, const Vec2D& initialPos, uint32_t movementSpeed, bool updateSpriteOnMovement, const Color& spriteColor) {
+	Actor::Init(spriteSheet, animationPath, initialPos, movementSpeed, false, spriteColor);
 
 	ResetToFirstAnimation();
 	ResetScore();

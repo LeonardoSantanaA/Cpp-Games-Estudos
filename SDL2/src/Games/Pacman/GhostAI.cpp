@@ -16,7 +16,9 @@ GhostAI::GhostAI(): mnoptrGhost(nullptr) {
 
 }
 
-void GhostAI::Init(GhostPacman& ghost, uint32_t lookAheadDistance, const Vec2D& scatterTarget, GhostName name) {
+void GhostAI::Init(GhostPacman& ghost, uint32_t lookAheadDistance, const Vec2D& scatterTarget, const Vec2D& ghostPenTarget, const Vec2D& ghostExitPenPosition, GhostName name) {
+	mGhostPenTarget = ghostPenTarget;
+	mGhostExitPenPosition = ghostExitPenPosition;
 	mScatterTarget = scatterTarget;
 	mLookAheadDistance = lookAheadDistance;
 	mnoptrGhost = &ghost;
@@ -30,6 +32,31 @@ void GhostAI::Init(GhostPacman& ghost, uint32_t lookAheadDistance, const Vec2D& 
 
 PacmanMovement GhostAI::Update(uint32_t dt, const Pacman& pacman, const PacmanLevel& level, const std::vector<GhostPacman>& ghosts) {
 	if (mnoptrGhost) {
+		if (mState == GHOST_AI_STATE_START) {
+			return PACMAN_MOVEMENT_NONE;
+		}
+
+		if (mState == GHOST_AI_STATE_IN_PEN) {
+			mTimer += dt;
+
+			if (mTimer >= PEN_WAIT_DURATION) {
+				SetState(GHOST_AI_STATE_EXIT_PEN);
+			}
+			return PACMAN_MOVEMENT_NONE;
+		}
+
+		if (mState == GHOST_AI_STATE_GO_TO_PEN && mnoptrGhost->GetPosition() == mGhostPenTarget) {
+			SetState(GHOST_AI_STATE_IN_PEN);
+
+			mnoptrGhost->SetGhostState(GHOST_STATE_ALIVE);
+
+			return PACMAN_MOVEMENT_NONE;
+		}
+
+		if (mState == GHOST_AI_STATE_EXIT_PEN && mnoptrGhost->GetPosition() == mGhostExitPenPosition) {
+			SetState(GHOST_AI_STATE_SCATTER);
+		}
+
 		if (mState == GHOST_AI_STATE_SCATTER) {
 			mTimer += dt;
 			if (mTimer >= SCATTER_MODE_DURATION) {
@@ -55,7 +82,7 @@ PacmanMovement GhostAI::Update(uint32_t dt, const Pacman& pacman, const PacmanLe
 		possibleDirections.clear();
 
 		for (const auto& direction : tempDirections) {
-			if (!level.WillCollide(mnoptrGhost->GetBoundingBox(), direction)) {
+			if (!level.WillCollide(*mnoptrGhost, *this, direction)) {
 				possibleDirections.push_back(direction);
 			}
 		}
@@ -131,7 +158,7 @@ Vec2D GhostAI::GetChaseTarget(uint32_t dt, const Pacman& pacman, const PacmanLev
 	{
 		Vec2D pacmanOffsetPoint = pacman.GetBoundingBox().GetCenterPoint() + (GetMovementVector(pacman.GetMovementDirection()) * pacman.GetBoundingBox().GetWidth());
 
-		target = (pacmanOffsetPoint - ghosts[BLINKY].GetBoundingBox().GetCenterPoint() * 2 + ghosts[BLINKY].GetBoundingBox().GetCenterPoint());
+		target = (pacmanOffsetPoint - ghosts[BLINKY].GetBoundingBox().GetCenterPoint()) * 2 + ghosts[BLINKY].GetBoundingBox().GetCenterPoint();
 	}
 		break;
 
@@ -159,13 +186,18 @@ void GhostAI::SetState(GhostAIState state) {
 
 	switch (state) {
 	case GHOST_AI_STATE_IN_PEN:
+		mTimer = 0;
 		break;
 
 	case GHOST_AI_STATE_GO_TO_PEN:
 		break;
 
 	case GHOST_AI_STATE_EXIT_PEN:
+	{
+		Vec2D target = { mGhostPenTarget.GetX() + mnoptrGhost->GetBoundingBox().GetWidth() / 2, mGhostPenTarget.GetY() - mnoptrGhost->GetBoundingBox().GetHeight() / 2 };
 
+		ChangeTarget(target);
+	}
 		break;
 
 	case GHOST_AI_STATE_SCATTER:
@@ -176,4 +208,25 @@ void GhostAI::SetState(GhostAIState state) {
 	default:
 		break;
 	}
+}
+
+void GhostAI::GhostDelegateGhostStateChangedTo(GhostState lastState, GhostState state) {
+	if (mnoptrGhost && mnoptrGhost->IsReleased() && (lastState == GHOST_STATE_VULNERABLE || lastState == GHOST_STATE_VULNERABLE_ENDING)
+		&& !(IsInPen() || WantsToLeavePen())) {
+		mnoptrGhost->SetMovementDirection(GetOppositeDirection(mnoptrGhost->GetMovementDirection()));
+	}
+
+	if (state == GHOST_STATE_DEAD) {
+		SetState(GHOST_AI_STATE_GO_TO_PEN);
+	}
+}
+
+void GhostAI::GhostWasReleasedFromPen() {
+	if (mState == GHOST_AI_STATE_START) {
+		SetState(GHOST_AI_STATE_EXIT_PEN);
+	}
+}
+
+void GhostAI::GhostWasResetToFirstPosition() {
+	SetState(GHOST_AI_STATE_START);
 }

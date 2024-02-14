@@ -20,6 +20,14 @@ enum GhostState {
 	GHOST_STATE_DEAD
 };
 
+class GhostDelegate {
+public:
+	virtual ~GhostDelegate() {}
+	virtual void GhostDelegateGhostStateChangedTo(GhostState lastState, GhostState state) = 0;
+	virtual void GhostWasReleasedFromPen() = 0;
+	virtual void GhostWasResetToFirstPosition() = 0;
+};
+
 class GhostPacman : public Actor {
 public:
 	static const uint32_t VULNERABILITY_TIME = 6000;
@@ -29,12 +37,16 @@ public:
 	virtual void Init(const SpriteSheet& spriteSheet, const std::string& animationsPath, const Vec2D& initialPos, uint32_t movementSpeed, bool updateSpriteOnMovement, const Color& spriteColor = Color::White()) override;
 	virtual void Update(uint32_t dt) override;
 
+
 	void SetStateToVulnerable();
 	virtual void SetMovementDirection(PacmanMovement direction) override;
 	virtual void Stop() override;
 
 	void EatenByPacman();
 	void ResetToFirstPosition();
+
+	void ReleasedFromPen();
+	inline bool IsReleased() const { return mIsReleased; }
 
 	inline bool IsDead() const { return mState == GHOST_STATE_DEAD; }
 	inline bool IsVulnerable() const { return mState == GHOST_STATE_VULNERABLE || mState == GHOST_STATE_VULNERABLE_ENDING; }
@@ -43,14 +55,17 @@ public:
 	inline void LockCanChangeDirection() { mCanChangeDirection = false; }
 	inline bool CanChangeDirection() { return mCanChangeDirection; }
 
-
+	void SetGhostDelegate(GhostDelegate& delegate) { mDelegate = &delegate; }
 private:
 	void SetGhostState(GhostState state);
+
+	friend class GhostAI;
 
 	uint32_t mVulnerabilityTimer;
 	uint32_t mPoints;
 	GhostState mState;
 	bool mCanChangeDirection;
 	Vec2D mInitialPos;
-
+	bool mIsReleased;
+	GhostDelegate* mDelegate;
 };
