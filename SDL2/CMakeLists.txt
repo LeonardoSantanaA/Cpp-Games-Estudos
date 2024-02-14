@@ -65,6 +65,6 @@ add_executable(ArcadeGame  #WIN32
 "src/Games/Pacman/PacmanGameUtils.h" "src/Games/Pacman/PacmanGameUtils.cpp"
 "src/Games/Pacman/Actor.h" "src/Games/Pacman/Actor.cpp" 
 "src/Games/Pacman/Pacman.h" "src/Games/Pacman/Pacman.cpp" 
-"src/Games/Pacman/GhostPacman.h" "src/Games/Pacman/GhostPacman.cpp")
+"src/Games/Pacman/GhostPacman.h" "src/Games/Pacman/GhostPacman.cpp" "src/Games/Pacman/GhostAI.h" "src/Games/Pacman/GhostAI.cpp")
 
 target_link_libraries(ArcadeGame SDL2::SDL2 SDL2::SDL2main SDL2_mixer::SDL2_mixer)
